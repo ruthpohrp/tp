@@ -12,7 +12,17 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ![image](images/ruthpohrp.png?raw=true)
 
-*Role: Developer
+* Role: Developer
+
+### Chan Shi Yuan Galvin
+
+<img src="images/csygalvin.png" width="200px">
+
+[[github](http://github.com/csygalvin)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
 ### Quan Teng Foong
 
