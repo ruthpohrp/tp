@@ -38,11 +38,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Chan Shi Yuan Galvin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/csygalvin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/csygalvin)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
