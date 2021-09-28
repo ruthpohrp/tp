@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Quan Teng Foong
 
-<img src="images/kaldius.png" width="200px">
+<img src="images/kaldius.png" width="200px" alt="kaldius_photo">
 
 [github](http://github.com/kaldius)
 [portfolio](team/johndoe.md)
