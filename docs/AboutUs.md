@@ -36,3 +36,12 @@ We are a team based in the [School of Computing, National University of Singapor
 [portfolio](team/johndoe.md)
 
 * Role: Developer
+
+### Yousef Lulu Saud A
+
+<img src="images/luluyousef.png" width="200px">
+
+[github](https://github.com/luluyousef)
+[portfolio](team/johndoe.md)
+
+* Role: Developer
