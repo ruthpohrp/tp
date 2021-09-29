@@ -13,6 +13,37 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Non-Functional Requirements**
+
+* The product should be for a single user
+* The data should be stored locally and should be in a human editable text file.
+* The software should work on the Windows, Linux, and OS-X platforms.
+* The software should work without requiring an installer.
+* Package everything into a single JAR file.
+* The GUI should work well standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
+* The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%
+* The Developer Guide and User Guide should be PDF-friendly.
+* The product and its features should be testable under exam conditions
+* Schedule should be displayed in an easy-to-read format
+* JAR file should not exceed 100MB
+* Document files should not exceed 15MB per file
+* Typing should be the main form of input
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+|Terms|Definition|
+|-----|----------|
+|Event|A period of time to be blocked off|
+|Date|Date of event|
+|Time|Time of event|
+|Location|Location of event|
+|Tag|Additional information about an event|
+|Slot|A period of time that is free|
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
