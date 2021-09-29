@@ -289,16 +289,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete an event**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list events
+2.  DukePro(f) shows the list of events
+3.  User requests to delete a specific event in the list
+4.  DukePro(f) deletes the event
 
     Use case ends.
 
@@ -310,11 +310,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. DukePro(f) shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Edit an event**
+
+**MSS**
+
+1. User requests to list events
+2. DukePro(f) shows the list of events
+3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit
+4. DukePro(f) shows the list of events, with the newly edited event
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. DukePro(f) shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given fields do not exist.
+
+    * 3b1. DukePro(f) shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given fields exist, but the given information is improperly formatted.
+
+    * 3c1. DukePro(f) shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Search for an event**
+
+**MSS**
+
+1. User requests to search events
+2. DukePro(f) shows a list of events which have the search term in their name
+
+**Extensions**
+
+* 2a. No matches to the search term
+
+  *2a1. DukePro(f) shows an empty list
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
