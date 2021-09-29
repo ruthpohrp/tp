@@ -9,13 +9,13 @@ time. With DukePro(f), profs can easily query their available time slots and sav
 
 
 ## Table of Contents
-1. [Command Summary] (#commandsummary)
-2. [Quick Start] (#quickstart)
-3. [Features] (#features)
-4. [FAQ] (#faq)
+1. [Command Summary] (#1-command-summary-)
+2. [Quick Start] (#2-quick-start-)
+3. [Features] (#3-features-)
+4. [FAQ] (#4-faq-)
 
 ***
-## 1. Command summary <a name="commandsummary"></a>
+## 1. Command summary
 ***
 Action | Format, Examples
 --------|------------------
@@ -26,7 +26,7 @@ Action | Format, Examples
 **Save** | `save`
 
 ***
-## 2. Quick Start <a name="quickstart"></a>
+## 2. Quick Start
 ***
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -55,7 +55,7 @@ Action | Format, Examples
 6. Refer to the [Features](#features) below for details of each command.
 
 ***
-## 3. Features <a name="features"></a>
+## 3. Features
 ***
 <div markdown="block" class="alert alert-info">
 
@@ -142,7 +142,7 @@ Saves all edits made.
 Format: `save`
 
 ***
-## 4. FAQ <a name="faq"></a>
+## 4. FAQ
 ***
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
