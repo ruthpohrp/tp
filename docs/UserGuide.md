@@ -87,88 +87,53 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### 3.3 Listing All Consults: `list`
+Lists down all consult scheduled.
 
-Shows a list of all persons in the address book.
+Format: `list_consults`
 
-Format: `list`
+Expected output:
+```
+Name: Lulu Yousef; Date: 2021-09-01; Time: 1300; Module: CS2103T
+Name: Quan Teng Foong; Date: 2021-09-02; Time: 1000; Module: CS2103
+```
+### 3.4 Listing All Open Slots: `list_slots`
+Lists down all the open slots within the next week.
 
-### Editing a person : `edit`
+Format: ` list_slots`
 
-Edits an existing person in the address book.
+Expected output:
+```
+        Date: 2021-09-01
+		Available slots: 1000, 1100, 1400, 1500
+	Date: 2021-09-02
+		Available slots: 1100, 1300, 1400, 1500
+	Date: 2021-09-03
+		Available slots: 1000, 1100, 1300, 1400, 1500
+	Date: 2021-09-04
+		WEEKEND
+	Date: 2021-09-05
+		WEEKEND
+	Date: 2021-09-06
+		Available slots: 1000, 1100, 1300, 1400, 1500
+	Date: 2021-09-07
+		Available slots: 1000, 1100, 1300, 1400, 1500
+```
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+### 3.5 Deleting a Consultation Event: `delete`
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes a consult event from the timetable. Indexed according to the result of the ‘list’ command (see below).
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Example: `delete 1`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+### 3.6 Saving all edits : `save`
+Saves all edits made.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+Format: `save`
 
 --------------------------------------------------------------------------------------------------------------------
 
