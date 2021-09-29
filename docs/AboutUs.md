@@ -1,5 +1,6 @@
 ---
-About Us
+layout: page
+title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -8,9 +9,11 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Jacob Ng
 
-<img src="images/jacobng.png">
+![image](images/jacobng.png?raw=true)
 
 [[github](https://github.com/jacobnbh)]
+
+* Role: Developer
 
 ### Ruth Poh
 
@@ -23,7 +26,6 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/csygalvin.png" width="200px">
 
 [[github](http://github.com/csygalvin)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -33,7 +35,6 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/kaldius.png" width="200px" alt="kaldius_photo">
 
 [github](http://github.com/kaldius)
-[portfolio](team/johndoe.md)
 
 * Role: Developer
 
