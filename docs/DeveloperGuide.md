@@ -271,16 +271,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | user                                       | add a consultation event       | easily record and remember consultation sessions with my students      |
+| `* * *`  | user                                       | delete a consultation event    | forget about cancelled consultations and free up my timetable          |
+| `* * *`  | user                                       | list out all my events         | find out what is my next engagement                                    |
+| `* * *`  | user                                       | list out all my free slots     | find a suitable slot to add a commitment                               |
+| `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
+| `* * *`  | busy user with many daily events           | search for an event by name    | locate the details of events without going through the entire list     |
+| `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
+| `* * *`  | meticulous user                            | add notes to my events         | add details that I need to make preparations for before the event      |
+| `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
+| `* *`    | user                                       | list the upcoming events in the day | take note of what I should make preparations for                  |
+| `* *`    | user                                       | view the next upcoming event   | find out what is my next engagement                                    |
+| `* *`    | user                                       | print my schedule with censored details | send it to my students to see my available timings while maintaining confidentiality |
+| `*`      | new user                                   | see usage instructions/examples| refer to the instructions to learn how to optimize my usage of the app |
 
 ### Use cases
 
