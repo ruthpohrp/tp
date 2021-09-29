@@ -3,25 +3,43 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+DukePro(f) helps **professors in a university** plan their engagements. Amid long days of lectures and 
+tutorials, it is hard to properly fit in **consultations** with students and keep track of them at the same 
+time. With DukePro(f), profs can easily query their available time slots and save their engagements, making lesson-planning a breeze.
 
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## Table of Contents
+1. [Command Summary] (#commandsummary)
+2. [Quick Start] (#quickstart)
+3. [Features] (#features)
+4. [FAQ] (#faq)
 
-## Quick start
+***
+## 1. Command summary <a name="commandsummary"></a>
+***
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME d/DATE t/TIME m/MODULE` <br> e.g., `add n/Lulu Yousef d/2021-09-01 t/1300 m/CS2103T`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List** | `list_consults`
+**List Slots** | `list_slots`
+**Save** | `save`
 
+***
+## 2. Quick Start <a name="quickstart"></a>
+***
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+   Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing 
+   Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -34,12 +52,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
-
-## Features
-
+***
+## 3. Features <a name="features"></a>
+***
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -64,20 +81,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### 3.1 Adding a person: `add`
 
-Shows a message explaning how to access the help page.
+Adds a person to Dukepro(f).
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME d/DATE t/TIME m/MODULE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -87,8 +95,8 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### 3.3 Listing All Consults: `list`
-Lists down all consult scheduled.
+### 3.2 Listing All Consults: `list_consults`
+Lists down all consults scheduled.
 
 Format: `list_consults`
 
@@ -97,7 +105,7 @@ Expected output:
 Name: Lulu Yousef; Date: 2021-09-01; Time: 1300; Module: CS2103T
 Name: Quan Teng Foong; Date: 2021-09-02; Time: 1000; Module: CS2103
 ```
-### 3.4 Listing All Open Slots: `list_slots`
+### 3.3 Listing All Open Slots: `list_slots`
 Lists down all the open slots within the next week.
 
 Format: ` list_slots`
@@ -120,9 +128,7 @@ Expected output:
 		Available slots: 1000, 1100, 1300, 1400, 1500
 ```
 
-
-
-### 3.5 Deleting a Consultation Event: `delete`
+### 3.4 Deleting a Consultation Event: `delete`
 
 Deletes a consult event from the timetable. Indexed according to the result of the ‘list’ command (see below).
 
@@ -130,28 +136,13 @@ Format: `delete INDEX`
 
 Example: `delete 1`
 
-### 3.6 Saving all edits : `save`
+### 3.5 Saving all edits : `save`
 Saves all edits made.
 
 Format: `save`
 
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
+***
+## 4. FAQ <a name="faq"></a>
+***
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
