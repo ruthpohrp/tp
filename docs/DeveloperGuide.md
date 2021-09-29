@@ -13,6 +13,37 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Non-Functional Requirements**
+
+* The product should be for a single user
+* The data should be stored locally and should be in a human editable text file.
+* The software should work on the Windows, Linux, and OS-X platforms.
+* The software should work without requiring an installer.
+* Package everything into a single JAR file.
+* The GUI should work well standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
+* The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%
+* The Developer Guide and User Guide should be PDF-friendly.
+* The product and its features should be testable under exam conditions
+* Schedule should be displayed in an easy-to-read format
+* JAR file should not exceed 100MB
+* Document files should not exceed 15MB per file
+* Typing should be the main form of input
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+|Terms|Definition|
+|-----|----------|
+|Event|A period of time to be blocked off|
+|Date|Date of event|
+|Time|Time of event|
+|Location|Location of event|
+|Tag|Additional information about an event|
+|Slot|A period of time that is free|
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -257,42 +288,48 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a professor in a university
+* has a need to manage a significant number of commitments (i.e. lectures, tutorials, consultations)
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage daily commitments faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | user                                       | add a consultation event       | easily record and remember consultation sessions with my students      |
+| `* * *`  | user                                       | delete a consultation event    | forget about cancelled consultations and free up my timetable          |
+| `* * *`  | user                                       | list out all my events         | find out what is my next engagement                                    |
+| `* * *`  | user                                       | list out all my free slots     | find a suitable slot to add a commitment                               |
+| `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
+| `* * *`  | busy user with many daily events           | search for an event by name    | locate the details of events without going through the entire list     |
+| `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
+| `* * *`  | meticulous user                            | add notes to my events         | add details that I need to make preparations for before the event      |
+| `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
+| `* *`    | user                                       | list the upcoming events in the day | take note of what I should make preparations for                  |
+| `* *`    | user                                       | view the next upcoming event   | find out what is my next engagement                                    |
+| `* *`    | user                                       | print my schedule with censored details | send it to my students to see my available timings while maintaining confidentiality |
+| `*`      | new user                                   | see usage instructions/examples| refer to the instructions to learn how to optimize my usage of the app |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete an event**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list events
+2.  DukePro(f) shows the list of events
+3.  User requests to delete a specific event in the list
+4.  DukePro(f) deletes the event
 
     Use case ends.
 
@@ -304,11 +341,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. DukePro(f) shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Edit an event**
+
+**MSS**
+
+1. User requests to list events
+2. DukePro(f) shows the list of events
+3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit
+4. DukePro(f) shows the list of events, with the newly edited event
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. DukePro(f) shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given fields do not exist.
+
+    * 3b1. DukePro(f) shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given fields exist, but the given information is improperly formatted.
+
+    * 3c1. DukePro(f) shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Search for an event**
+
+**MSS**
+
+1. User requests to search events
+2. DukePro(f) shows a list of events which have the search term in their name
+
+**Extensions**
+
+* 2a. No matches to the search term
+
+  *2a1. DukePro(f) shows an empty list
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
