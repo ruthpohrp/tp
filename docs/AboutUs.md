@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Jacob Ng
 
-<img src="images/jacobng.png" width="200px">
+<img src="images/jacobnbh.png" width="200px">
 
 [[github](https://github.com/jacobnbh)]
 
