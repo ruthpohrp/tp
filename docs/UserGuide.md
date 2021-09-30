@@ -50,7 +50,7 @@ Action | Format, Examples
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add n/Lulu Yousef d/2021-09-01 t/1300 m/CS2103T` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`add n/Lulu Yousef d/2021-09-01 t/1300 m/CS2103T` : Adds a contact named `Lulu Yousef` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
     
