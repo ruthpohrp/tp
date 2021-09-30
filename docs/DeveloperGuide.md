@@ -11,36 +11,7 @@ title: Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
 
-## **Non-Functional Requirements**
-
-* The product should be for a single user
-* The data should be stored locally and should be in a human editable text file.
-* The software should work on the Windows, Linux, and OS-X platforms.
-* The software should work without requiring an installer.
-* Package everything into a single JAR file.
-* The GUI should work well standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
-* The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%
-* The Developer Guide and User Guide should be PDF-friendly.
-* The product and its features should be testable under exam conditions
-* Schedule should be displayed in an easy-to-read format
-* JAR file should not exceed 100MB
-* Document files should not exceed 15MB per file
-* Typing should be the main form of input
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Glossary**
-
-|Terms|Definition|
-|-----|----------|
-|Event|A period of time to be blocked off|
-|Date|Date of event|
-|Time|Time of event|
-|Location|Location of event|
-|Tag|Additional information about an event|
-|Slot|A period of time that is free|
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -397,16 +368,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  The product should be for a single user.
+4.  The data should be stored locally and should be in a human editable text file.
+5.  The software should work on all Mainstream OS.
+6.  The software should work without requiring an installer.
+7.  Package everything into a single JAR file.
+8.  The GUI should work well standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
+9.  The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+10. The Developer Guide and User Guide should be PDF-friendly.
+11. The product and its features should be testable under exam conditions.
+12. Schedule should be displayed in an easy-to-read format.
+13. JAR file should not exceed 100MB.
+14. Document files should not exceed 15MB per file.
+
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Event**: A period of time to be blocked off
+* **Date**: Date of event
+* **Time**: Time of event
+* **Location**: Location of event
+* **Name**: Name of event
+* **Index**: Unique index number of each event
+* **Tag**: Additional information about an event
+* **Note**: Detailed description of an event
+* **Slot**: A period of time that is free
+* **Schedule**: A list of events
 
 --------------------------------------------------------------------------------------------------------------------
 
