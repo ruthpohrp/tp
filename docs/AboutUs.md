@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Jacob Ng
 
-![image](images/jacobng.png?raw=true)
+<img src="images/jacobnbh.png" width="200px">
 
 [[github](https://github.com/jacobnbh)]
 
@@ -17,7 +17,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ruth Poh
 
-![image](images/ruthpohrp.png?raw=true)
+<img src="images/ruthpohrp.png" width="200px">
+
+[[github](https://github.com/ruthpohrp)]
 
 * Role: Developer
 
