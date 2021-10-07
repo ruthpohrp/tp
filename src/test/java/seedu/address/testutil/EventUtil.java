@@ -16,25 +16,25 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for Event.
  */
-public class PersonUtil {
+public class EventUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code event}.
      */
-    public static String getAddCommand(Event person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Event event) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(event);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code event}'s details.
      */
-    public static String getPersonDetails(Event person) {
+    public static String getPersonDetails(Event event) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + event.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + event.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + event.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + event.getAddress().value + " ");
+        event.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
