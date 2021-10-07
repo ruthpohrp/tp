@@ -21,7 +21,7 @@ import seedu.address.model.person.Event;
 /**
  * A utility class containing a list of {@code Event} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalEvents {
 
     public static final Event ALICE = new EventBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -57,20 +57,20 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalEvents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical events.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Event person : getTypicalPersons()) {
-            ab.addEvent(person);
+        for (Event event : getTypicalEvents()) {
+            ab.addEvent(event);
         }
         return ab;
     }
 
-    public static List<Event> getTypicalPersons() {
+    public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
