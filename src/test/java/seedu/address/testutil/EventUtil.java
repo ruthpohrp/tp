@@ -22,13 +22,13 @@ public class EventUtil {
      * Returns an add command string for adding the {@code event}.
      */
     public static String getAddCommand(Event event) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(event);
+        return AddCommand.COMMAND_WORD + " " + getEventDetails(event);
     }
 
     /**
      * Returns the part of command string for the given {@code event}'s details.
      */
-    public static String getPersonDetails(Event event) {
+    public static String getEventDetails(Event event) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + event.getName().fullName + " ");
         sb.append(PREFIX_PHONE + event.getPhone().value + " ");
