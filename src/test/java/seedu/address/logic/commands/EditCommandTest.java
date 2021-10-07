@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Event editedPerson = new EventBuilder().build();
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedPerson);
 
@@ -71,8 +71,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.EditEventDescriptor());
-        Event editedPerson = model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT, new EditCommand.EditEventDescriptor());
+        Event editedPerson = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedPerson);
 
@@ -83,11 +83,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showEventAtIndex(model, INDEX_FIRST_PERSON);
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        Event personInFilteredList = model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Event personInFilteredList = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         Event editedPerson = new EventBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT,
                 new EditEventDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedPerson);
@@ -100,20 +100,20 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Event firstPerson = model.getFilteredEventList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Event firstPerson = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_EVENT, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
     }
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showEventAtIndex(model, INDEX_FIRST_PERSON);
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         // edit person in filtered list into a duplicate in address book
-        Event personInList = model.getAddressBook().getEventList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+        Event personInList = model.getAddressBook().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT,
                 new EditEventDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
@@ -134,8 +134,8 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showEventAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
+        Index outOfBoundIndex = INDEX_SECOND_EVENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
 
@@ -147,11 +147,11 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_EVENT, DESC_AMY);
 
         // same values -> returns true
         EditCommand.EditEventDescriptor copyDescriptor = new EditCommand.EditEventDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_EVENT, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -164,10 +164,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EVENT, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EVENT, DESC_BOB)));
     }
 
 }
