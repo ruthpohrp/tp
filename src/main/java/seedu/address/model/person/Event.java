@@ -74,8 +74,8 @@ public class Event {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both events have the same identity and data fields.
+     * This defines a stronger notion of equality between two events.
      */
     @Override
     public boolean equals(Object other) {
@@ -87,12 +87,12 @@ public class Event {
             return false;
         }
 
-        Event otherPerson = (Event) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Event otherEvent = (Event) other;
+        return otherEvent.getName().equals(getName())
+                && otherEvent.getPhone().equals(getPhone())
+                && otherEvent.getEmail().equals(getEmail())
+                && otherEvent.getAddress().equals(getAddress())
+                && otherEvent.getTags().equals(getTags());
     }
 
     @Override
