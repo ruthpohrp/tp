@@ -15,16 +15,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.EventBuilder;
 
-public class PersonTest {
+public class EventTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Event person = new EventBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Event event = new EventBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> event.getTags().remove(0));
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameEvent() {
         // same object -> returns true
         assertTrue(ALICE.isSameEvent(ALICE));
 
@@ -65,7 +65,7 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different event -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
