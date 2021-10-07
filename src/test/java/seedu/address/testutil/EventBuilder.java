@@ -39,14 +39,14 @@ public class EventBuilder {
     }
 
     /**
-     * Initializes the EventBuilder with the data of {@code personToCopy}.
+     * Initializes the EventBuilder with the data of {@code eventToCopy}.
      */
-    public EventBuilder(Event personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public EventBuilder(Event eventToCopy) {
+        name = eventToCopy.getName();
+        phone = eventToCopy.getPhone();
+        email = eventToCopy.getEmail();
+        address = eventToCopy.getAddress();
+        tags = new HashSet<>(eventToCopy.getTags());
     }
 
     /**
