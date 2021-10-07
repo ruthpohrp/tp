@@ -21,6 +21,7 @@ public interface Model {
 
     /**
      * Returns the user prefs.
+     * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
 
