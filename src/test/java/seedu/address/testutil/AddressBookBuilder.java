@@ -24,7 +24,7 @@ public class AddressBookBuilder {
      * Adds a new {@code Event} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withPerson(Event person) {
-        addressBook.addPerson(person);
+        addressBook.addEvent(person);
         return this;
     }
 

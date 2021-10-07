@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.addressBook.getEventList());
     }
 
     public ModelManager() {
@@ -91,17 +91,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasEvent(Event person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return addressBook.hasEvent(person);
     }
 
     @Override
     public void deleteEvent(Event target) {
-        addressBook.removePerson(target);
+        addressBook.removeEvent(target);
     }
 
     @Override
     public void addEvent(Event person) {
-        addressBook.addPerson(person);
+        addressBook.addEvent(person);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setEvent(Event target, Event editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setEvent(target, editedPerson);
     }
 
     //=========== Filtered Event List Accessors =============================================================
