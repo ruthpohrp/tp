@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Event person) {
+        public void addEvent(Event person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -129,7 +129,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePerson(Event target) {
+        public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -180,7 +180,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Event person) {
+        public void addEvent(Event person) {
             requireNonNull(person);
             personsAdded.add(person);
         }

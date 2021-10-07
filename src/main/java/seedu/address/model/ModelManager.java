@@ -95,12 +95,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Event target) {
+    public void deleteEvent(Event target) {
         addressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Event person) {
+    public void addEvent(Event person) {
         addressBook.addPerson(person);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }

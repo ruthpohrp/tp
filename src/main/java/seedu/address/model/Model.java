@@ -58,16 +58,16 @@ public interface Model {
     boolean hasEvent(Event event);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given event.
+     * The event must exist in the address book.
      */
-    void deletePerson(Event target);
+    void deleteEvent(Event target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given event.
+     * {@code event} must not already exist in the address book.
      */
-    void addPerson(Event person);
+    void addEvent(Event event);
 
     /**
      * Replaces the given event {@code target} with {@code editedEvent}.
