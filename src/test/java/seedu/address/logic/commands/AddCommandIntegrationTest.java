@@ -26,20 +26,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Event validPerson = new EventBuilder().build();
+    public void execute_newEvent_success() {
+        Event validEvent = new EventBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addEvent(validPerson);
+        expectedModel.addEvent(validEvent);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validEvent), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validEvent), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Event personInList = model.getAddressBook().getEventList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_EVENT);
+    public void execute_duplicateEvent_throwsCommandException() {
+        Event eventInList = model.getAddressBook().getEventList().get(0);
+        assertCommandFailure(new AddCommand(eventInList), model, AddCommand.MESSAGE_DUPLICATE_EVENT);
     }
 
 }
