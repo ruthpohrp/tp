@@ -89,7 +89,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Event person) {
+    public boolean hasEvent(Event person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
@@ -102,11 +102,11 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Event person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
-    public void setPerson(Event target, Event editedPerson) {
+    public void setEvent(Event target, Event editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
@@ -124,7 +124,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Event> predicate) {
+    public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }

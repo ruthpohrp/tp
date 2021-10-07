@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Event person) {
+        public boolean hasEvent(Event person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Event target, Event editedPerson) {
+        public void setEvent(Event target, Event editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,7 +144,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Event> predicate) {
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -161,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Event person) {
+        public boolean hasEvent(Event person) {
             requireNonNull(person);
             return this.person.isSameEvent(person);
         }
@@ -174,7 +174,7 @@ public class AddCommandTest {
         final ArrayList<Event> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Event person) {
+        public boolean hasEvent(Event person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSameEvent);
         }

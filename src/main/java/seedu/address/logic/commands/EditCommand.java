@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -74,30 +74,30 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event personToEdit = lastShownList.get(index.getZeroBased());
-        Event editedPerson = createEditedPerson(personToEdit, editEventDescriptor);
+        Event eventToEdit = lastShownList.get(index.getZeroBased());
+        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!personToEdit.isSameEvent(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedPerson));
+        model.setEvent(eventToEdit, editedEvent);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
     /**
-     * Creates and returns a {@code Event} with the details of {@code personToEdit}
+     * Creates and returns a {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedPerson(Event personToEdit, EditEventDescriptor editEventDescriptor) {
-        assert personToEdit != null;
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+        assert eventToEdit != null;
 
-        Name updatedName = editEventDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editEventDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editEventDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editEventDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
+        Phone updatedPhone = editEventDescriptor.getPhone().orElse(eventToEdit.getPhone());
+        Email updatedEmail = editEventDescriptor.getEmail().orElse(eventToEdit.getEmail());
+        Address updatedAddress = editEventDescriptor.getAddress().orElse(eventToEdit.getAddress());
+        Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
         return new Event(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
