@@ -35,9 +35,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Event person = new EventBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(EventUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Event event = new EventBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(EventUtil.getAddCommand(event));
+        assertEquals(new AddCommand(event), command);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Event person = new EventBuilder().build();
-        EditEventDescriptor descriptor = new EditEventDescriptorBuilder(person).build();
+        Event event = new EventBuilder().build();
+        EditEventDescriptor descriptor = new EditEventDescriptorBuilder(event).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_EVENT.getOneBased() + " " + EventUtil.getEditEventDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_EVENT, descriptor), command);
