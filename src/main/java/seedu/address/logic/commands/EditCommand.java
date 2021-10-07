@@ -51,18 +51,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEventDescriptor editEventDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editEventDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editEventDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class EditCommand extends Command {
         }
 
         Event personToEdit = lastShownList.get(index.getZeroBased());
-        Event editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Event editedPerson = createEditedPerson(personToEdit, editEventDescriptor);
 
         if (!personToEdit.isSameEvent(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -88,16 +88,16 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Event} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedPerson(Event personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Event createEditedPerson(Event personToEdit, EditEventDescriptor editEventDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editEventDescriptor.getName().orElse(personToEdit.getName());
+        Phone updatedPhone = editEventDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Email updatedEmail = editEventDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Address updatedAddress = editEventDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Event(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -117,27 +117,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEventDescriptor.equals(e.editEventDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEventDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEventDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEventDescriptor(EditEventDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -209,12 +209,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEventDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEventDescriptor e = (EditEventDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
