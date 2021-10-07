@@ -119,7 +119,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Event> getFilteredPersonList() {
+    public ObservableList<Event> getFilteredEventList() {
         return filteredPersons;
     }
 

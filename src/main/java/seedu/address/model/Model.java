@@ -76,8 +76,8 @@ public interface Model {
      */
     void setPerson(Event target, Event editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Event> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
