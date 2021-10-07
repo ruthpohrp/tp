@@ -13,14 +13,14 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Event#isSamePerson(Event)}. As such, adding and updating of
- * persons uses Event#isSamePerson(Event) for equality so as to ensure that the person being added or updated is
+ * A person is considered unique by comparing using {@code Event#isSameEvent(Event)}. As such, adding and updating of
+ * persons uses Event#isSameEvent(Event) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Event#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Event#isSamePerson(Event)
+ * @see Event#isSameEvent(Event)
  */
 public class UniquePersonList implements Iterable<Event> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Event> {
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameEvent);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Event> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameEvent(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();
         }
 
@@ -127,7 +127,7 @@ public class UniquePersonList implements Iterable<Event> {
     private boolean personsAreUnique(List<Event> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                if (persons.get(i).isSameEvent(persons.get(j))) {
                     return false;
                 }
             }
