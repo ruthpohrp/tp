@@ -19,16 +19,16 @@ import seedu.address.model.person.Event;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedEvent> events = new ArrayList<>();
+    private final List<JsonAdaptedEvent> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given events.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("events") List<JsonAdaptedEvent> events) {
-        this.events.addAll(events);
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedEvent> persons) {
+        this.persons.addAll(persons);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
+        persons.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
-            Event event = jsonAdaptedEvent.toModelType();
-            if (addressBook.hasEvent(event)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+        for (JsonAdaptedEvent jsonAdaptedEvent : persons) {
+            Event person = jsonAdaptedEvent.toModelType();
+            if (addressBook.hasEvent(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addEvent(event);
+            addressBook.addEvent(person);
         }
         return addressBook;
     }
