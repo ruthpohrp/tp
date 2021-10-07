@@ -16,34 +16,34 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class to help with building EditEventDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditEventDescriptorBuilder {
 
     private EditEventDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditEventDescriptorBuilder() {
         descriptor = new EditEventDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditEventDescriptor descriptor) {
+    public EditEventDescriptorBuilder(EditCommand.EditEventDescriptor descriptor) {
         this.descriptor = new EditCommand.EditEventDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditEventDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditEventDescriptor} with fields containing {@code event}'s details
      */
-    public EditPersonDescriptorBuilder(Event person) {
+    public EditEventDescriptorBuilder(Event event) {
         descriptor = new EditEventDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(event.getName());
+        descriptor.setPhone(event.getPhone());
+        descriptor.setEmail(event.getEmail());
+        descriptor.setAddress(event.getAddress());
+        descriptor.setTags(event.getTags());
     }
 
     /**
      * Sets the {@code Name} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditEventDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -51,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Phone} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditEventDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
@@ -59,7 +59,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditEventDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
@@ -67,7 +67,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
+    public EditEventDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
         return this;
     }
@@ -76,7 +76,7 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditEventDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditEventDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
