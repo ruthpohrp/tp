@@ -12,13 +12,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Event;
 
 /**
- * Adds a person to the address book.
+ * Adds an event to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -33,17 +33,17 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New event added: %1$s";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
 
     private final Event toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Event}
      */
-    public AddCommand(Event person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Event event) {
+        requireNonNull(event);
+        toAdd = event;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasEvent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
         model.addEvent(toAdd);
