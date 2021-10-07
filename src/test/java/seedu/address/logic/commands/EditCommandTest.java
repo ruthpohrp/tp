@@ -36,35 +36,35 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Event editedPerson = new EventBuilder().build();
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedPerson).build();
+        Event editedEvent = new EventBuilder().build();
+        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedEvent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setEvent(model.getFilteredEventList().get(0), editedPerson);
+        expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredEventList().size());
-        Event lastPerson = model.getFilteredEventList().get(indexLastPerson.getZeroBased());
+        Index indexLastEvent = Index.fromOneBased(model.getFilteredEventList().size());
+        Event lastEvent = model.getFilteredEventList().get(indexLastEvent.getZeroBased());
 
-        EventBuilder personInList = new EventBuilder(lastPerson);
-        Event editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        EventBuilder eventInList = new EventBuilder(lastEvent);
+        Event editedEvent = eventInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastEvent, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setEvent(lastPerson, editedPerson);
+        expectedModel.setEvent(lastEvent, editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -72,9 +72,9 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT, new EditCommand.EditEventDescriptor());
-        Event editedPerson = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
+        Event editedEvent = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -85,42 +85,42 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        Event personInFilteredList = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        Event editedPerson = new EventBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+        Event eventInFilteredList = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
+        Event editedEvent = new EventBuilder(eventInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT,
                 new EditEventDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setEvent(model.getFilteredEventList().get(0), editedPerson);
+        expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Event firstPerson = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstPerson).build();
+    public void execute_duplicateEventUnfilteredList_failure() {
+        Event firstEvent = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
+        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_EVENT, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateEventFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        // edit person in filtered list into a duplicate in address book
-        Event personInList = model.getAddressBook().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
+        // edit event in filtered list into a duplicate in address book
+        Event eventInList = model.getAddressBook().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT,
-                new EditEventDescriptorBuilder(personInList).build());
+                new EditEventDescriptorBuilder(eventInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidEventIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
@@ -133,7 +133,7 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidEventIndexFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
