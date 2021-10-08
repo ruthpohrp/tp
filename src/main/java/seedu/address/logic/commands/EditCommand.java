@@ -96,7 +96,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Location updatedLocation = editPersonDescriptor.getAddress().orElse(personToEdit.getLocation());
+        Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedTags);
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.location);
+            setLocation(toCopy.location);
             setTags(toCopy.tags);
         }
 
@@ -176,11 +176,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Location location) {
+        public void setLocation(Location location) {
             this.location = location;
         }
 
-        public Optional<Location> getAddress() {
+        public Optional<Location> getLocation() {
             return Optional.ofNullable(location);
         }
 
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags());
         }
     }
