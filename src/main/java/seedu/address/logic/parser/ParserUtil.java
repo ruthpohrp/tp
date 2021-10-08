@@ -66,14 +66,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Location}.
+     * Parses a {@code String location} into an {@code Location}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code location} is invalid.
      */
-    public static Location parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
+    public static Location parseLocation(String location) throws ParseException {
+        requireNonNull(location);
+        String trimmedAddress = location.trim();
         if (!Location.isValidLocation(trimmedAddress)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
