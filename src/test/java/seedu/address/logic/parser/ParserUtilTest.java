@@ -113,16 +113,16 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseLocation_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseLocation_validValueWithoutWhitespace_returnsLocation() throws Exception {
         Location expectedLocation = new Location(VALID_LOCATION);
         assertEquals(expectedLocation, ParserUtil.parseLocation(VALID_LOCATION));
     }
 
     @Test
-    public void parseLocation_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_LOCATION + WHITESPACE;
+    public void parseLocation_validValueWithWhitespace_returnsTrimmedLocation() throws Exception {
+        String locationWithWhitespace = WHITESPACE + VALID_LOCATION + WHITESPACE;
         Location expectedLocation = new Location(VALID_LOCATION);
-        assertEquals(expectedLocation, ParserUtil.parseLocation(addressWithWhitespace));
+        assertEquals(expectedLocation, ParserUtil.parseLocation(locationWithWhitespace));
     }
 
     @Test
