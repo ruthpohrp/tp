@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressTest {
+public class LocationTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -14,13 +14,13 @@ public class AddressTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidLocation_throwsIllegalArgumentException() {
         String invalidAddress = "";
         assertThrows(IllegalArgumentException.class, () -> new Location(invalidAddress));
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidLocation() {
         // null address
         assertThrows(NullPointerException.class, () -> Location.isValidLocation(null));
 
