@@ -26,26 +26,26 @@ import seedu.address.testutil.EventBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_eventAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
-        Event validPerson = new EventBuilder().build();
+        Event validEvent = new EventBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validEvent).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.eventsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEvent), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validEvent), modelStub.eventsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Event validPerson = new EventBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithEvent(validPerson);
+    public void execute_duplicateEvent_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        AddCommand addCommand = new AddCommand(validEvent);
+        ModelStub modelStub = new ModelStubWithEvent(validEvent);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EVENT, () -> addCommand.execute(modelStub));
     }
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different event -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addEvent(Event person) {
+        public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasEvent(Event person) {
+        public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEvent(Event target, Event editedPerson) {
+        public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -153,17 +153,17 @@ public class AddCommandTest {
      * A Model stub that contains a single event.
      */
     private class ModelStubWithEvent extends ModelStub {
-        private final Event person;
+        private final Event event;
 
         ModelStubWithEvent(Event event) {
             requireNonNull(event);
-            this.person = event;
+            this.event = event;
         }
 
         @Override
         public boolean hasEvent(Event event) {
             requireNonNull(event);
-            return this.person.isSameEvent(event);
+            return this.event.isSameEvent(event);
         }
     }
 
