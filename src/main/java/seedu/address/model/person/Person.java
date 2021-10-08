@@ -109,7 +109,7 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("; Location: ")
                 .append(getLocation());
 
         Set<Tag> tags = getTags();
