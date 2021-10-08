@@ -48,7 +48,7 @@ public class Person {
         return email;
     }
 
-    public Location getAddress() {
+    public Location getLocation() {
         return location;
     }
 
@@ -91,7 +91,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getLocation().equals(getLocation())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -110,7 +110,7 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
