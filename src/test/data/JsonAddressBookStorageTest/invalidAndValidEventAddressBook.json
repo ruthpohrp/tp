@@ -1,12 +1,12 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "phone": "9482424",
+    "date": "2020-01-01",
     "email": "hans@example.com",
     "location": "4th street"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
+    "name": "Person With Invalid Date Field",
+    "date": "2020-021341-01",
     "email": "hans@example.com",
     "location": "4th street"
   } ]

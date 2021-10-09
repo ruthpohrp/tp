@@ -3,11 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class EventBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_DATE = "2020-01-01";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Date date;
     private Email email;
     private Location address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class EventBuilder {
      */
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        date = new Date(DEFAULT_DATE);
         email = new Email(DEFAULT_EMAIL);
         address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class EventBuilder {
      */
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
-        phone = eventToCopy.getPhone();
+        date = eventToCopy.getDate();
         email = eventToCopy.getEmail();
         address = eventToCopy.getLocation();
         tags = new HashSet<>(eventToCopy.getTags());
@@ -74,10 +74,10 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Event} that we are building.
+     * Sets the {@code Date} of the {@code Event} that we are building.
      */
-    public EventBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public EventBuilder withDate(String date) {
+        this.date = new Date(date);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class EventBuilder {
     }
 
     public Event build() {
-        return new Event(name, phone, email, address, tags);
+        return new Event(name, date, email, address, tags);
     }
 
 }

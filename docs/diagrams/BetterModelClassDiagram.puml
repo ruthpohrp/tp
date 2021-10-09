@@ -15,7 +15,7 @@ UniqueEventList -right-> Event
 Event -up-> "*" Tag
 
 Event *--> Name
-Event *--> Phone
+Event *--> Date
 Event *--> Email
 Event *--> Location
 @enduml
