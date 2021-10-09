@@ -27,7 +27,7 @@ class JsonAdaptedEvent {
     private final String name;
     private final String date;
     private final String email;
-    private final String address;
+    private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +35,12 @@ class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("date") String date,
-                            @JsonProperty("email") String email, @JsonProperty("location") String address,
+                            @JsonProperty("email") String email, @JsonProperty("location") String location,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.date = date;
         this.email = email;
-        this.address = address;
+        this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +53,7 @@ class JsonAdaptedEvent {
         name = source.getName().fullName;
         date = source.getDate().value;
         email = source.getEmail().value;
-        address = source.getLocation().value;
+        location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -94,14 +94,14 @@ class JsonAdaptedEvent {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Location.class.getSimpleName()));
         }
-        if (!Location.isValidLocation(address)) {
+        if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
-        final Location modelAddress = new Location(address);
+        final Location modelAddress = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
         return new Event(modelName, modelDate, modelEmail, modelAddress, modelTags);
