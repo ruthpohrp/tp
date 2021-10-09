@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path ScheduleFilePath = Paths.get( "data","addressbook.json");
+    private Path scheduleFilePath = Paths.get("data", "addressbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -48,12 +48,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path getScheduleFilePath() {
-        return ScheduleFilePath;
+        return scheduleFilePath;
     }
 
     public void setScheduleFilePath(Path scheduleFilePath) {
         requireNonNull(scheduleFilePath);
-        this.ScheduleFilePath = scheduleFilePath;
+        this.scheduleFilePath = scheduleFilePath;
     }
 
     @Override
@@ -68,19 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && ScheduleFilePath.equals(o.ScheduleFilePath);
+                && scheduleFilePath.equals(o.scheduleFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, ScheduleFilePath);
+        return Objects.hash(guiSettings, scheduleFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + ScheduleFilePath);
+        sb.append("\nLocal data file location : " + scheduleFilePath);
         return sb.toString();
     }
 
