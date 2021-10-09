@@ -47,7 +47,7 @@ Person *--> Address
 Person *--> "*" Tag
 
 Name -[hidden]right-> Date
-date -[hidden]right-> Address
+Date -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Person
