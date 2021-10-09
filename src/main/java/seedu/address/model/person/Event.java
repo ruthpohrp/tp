@@ -17,7 +17,7 @@ public class Event {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Date date;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Event {
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Phone phone, Email email, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, location, tags);
+    public Event(Name name, Date date, Email email, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, date, email, location, tags);
         this.name = name;
-        this.phone = phone;
+        this.date = date;
         this.email = email;
         this.location = location;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Event {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Date getDate() {
+        return date;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
-                && otherEvent.getPhone().equals(getPhone())
+                && otherEvent.getDate().equals(getDate())
                 && otherEvent.getEmail().equals(getEmail())
                 && otherEvent.getLocation().equals(getLocation())
                 && otherEvent.getTags().equals(getTags());
@@ -98,18 +98,18 @@ public class Event {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, location, tags);
+        return Objects.hash(name, date, email, location, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Date: ")
+                .append(getDate())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("; Location: ")
                 .append(getLocation());
 
         Set<Tag> tags = getTags();

@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
@@ -19,11 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,12 +38,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_DATE + "2020-01-01 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
@@ -94,12 +94,12 @@ public class EditCommand extends Command {
         assert eventToEdit != null;
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
-        Phone updatedPhone = editEventDescriptor.getPhone().orElse(eventToEdit.getPhone());
+        Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
         Email updatedEmail = editEventDescriptor.getEmail().orElse(eventToEdit.getEmail());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
-        return new Event(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedTags);
+        return new Event(updatedName, updatedDate, updatedEmail, updatedLocation, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      */
     public static class EditEventDescriptor {
         private Name name;
-        private Phone phone;
+        private Date date;
         private Email email;
         private Location location;
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          */
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setDate(toCopy.date);
             setEmail(toCopy.email);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, location, tags);
+            return CollectionUtil.isAnyNonNull(name, date, email, location, tags);
         }
 
         public void setName(Name name) {
@@ -160,12 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setEmail(Email email) {
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
             EditEventDescriptor e = (EditEventDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
+                    && getDate().equals(e.getDate())
                     && getEmail().equals(e.getEmail())
                     && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags());

@@ -33,9 +33,9 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label date;
     @FXML
-    private Label address;
+    private Label loc;
     @FXML
     private Label email;
     @FXML
@@ -49,8 +49,8 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
-        phone.setText(event.getPhone().value);
-        address.setText(event.getLocation().value);
+        date.setText(event.getDate().value);
+        loc.setText(event.getLocation().value);
         email.setText(event.getEmail().value);
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

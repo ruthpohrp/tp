@@ -21,7 +21,7 @@ Class Event
 Class Location
 Class Email
 Class Name
-Class Phone
+Class Date
 Class Tag
 
 }
@@ -41,13 +41,13 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueEventList
 UniqueEventList --> "~* all" Event
 Event *--> Name
-Event *--> Phone
+Event *--> Date
 Event *--> Email
 Event *--> Location
 Event *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Location
+Name -[hidden]right-> Date
+Date -[hidden]right-> Location
 Location -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Event
