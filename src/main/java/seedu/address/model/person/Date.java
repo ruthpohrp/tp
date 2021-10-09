@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 
 /**
@@ -9,13 +10,11 @@ import java.time.LocalDate;
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
-    
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should only contain numbers, and it should be in the form yyyy-mm-dd";
     public static final String VALIDATION_REGEX = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
     public final LocalDate date;
     public final String value;
-
 
     /**
      * Constructs a {@code Date}.
