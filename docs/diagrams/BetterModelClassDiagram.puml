@@ -17,5 +17,5 @@ Event -up-> "*" Tag
 Event *--> Name
 Event *--> Phone
 Event *--> Email
-Event *--> Address
+Event *--> Location
 @enduml

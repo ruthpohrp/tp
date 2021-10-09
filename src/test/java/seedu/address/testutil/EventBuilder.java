@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -24,7 +24,7 @@ public class EventBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Location address;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +34,7 @@ public class EventBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class EventBuilder {
         name = eventToCopy.getName();
         phone = eventToCopy.getPhone();
         email = eventToCopy.getEmail();
-        address = eventToCopy.getAddress();
+        address = eventToCopy.getLocation();
         tags = new HashSet<>(eventToCopy.getTags());
     }
 
@@ -68,8 +68,8 @@ public class EventBuilder {
     /**
      * Sets the {@code Address} of the {@code Event} that we are building.
      */
-    public EventBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public EventBuilder withLocation(String address) {
+        this.address = new Location(address);
         return this;
     }
 

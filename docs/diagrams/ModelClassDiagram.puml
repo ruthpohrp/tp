@@ -18,7 +18,7 @@ Class ReadOnlyUserPrefs
 
 Class UniqueEventList
 Class Event
-Class Address
+Class Location
 Class Email
 Class Name
 Class Phone
@@ -43,12 +43,12 @@ UniqueEventList --> "~* all" Event
 Event *--> Name
 Event *--> Phone
 Event *--> Email
-Event *--> Address
+Event *--> Location
 Event *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Location
+Location -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Event
 @enduml

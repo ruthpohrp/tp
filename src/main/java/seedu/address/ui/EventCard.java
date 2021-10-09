@@ -50,7 +50,7 @@ public class EventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
         phone.setText(event.getPhone().value);
-        address.setText(event.getAddress().value);
+        address.setText(event.getLocation().value);
         email.setText(event.getEmail().value);
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
