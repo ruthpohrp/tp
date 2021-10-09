@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "ScheduleFilePath" : "addressbook.json"
+  "scheduleFilePath" : "addressbook.json"
 }

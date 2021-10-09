@@ -11,7 +11,7 @@ time. With DukePro(f), profs can easily query their available time slots and sav
 - [1. Command summary](#1-command-summary)
 - [2. Quick Start](#2-quick-start)
 - [3. Features](#3-features)
-    * [3.1 Adding a person: `add`](#31-adding-a-person---add-)
+    * [3.1 Adding an event: `add`](#31-adding-an-event---add-)
     * [3.2 Listing All Consults: `list_consults`](#32-listing-all-consults---list-consults-)
     * [3.3 Listing All Open Slots: `list_slots`](#33-listing-all-open-slots---list-slots-)
     * [3.4 Deleting a Consultation Event: `delete`](#34-deleting-a-consultation-event---delete-)
@@ -80,14 +80,14 @@ Action | Format, Examples
 
 </div>
 
-### 3.1 Adding a person: `add`
+### 3.1 Adding an event: `add`
 
-Adds a person to Dukepro(f).
+Adds an event to Dukepro(f).
 
 Format: `add n/NAME d/DATE t/TIME m/MODULE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+An event can have any number of tags (including 0)
 </div>
 
 Examples:

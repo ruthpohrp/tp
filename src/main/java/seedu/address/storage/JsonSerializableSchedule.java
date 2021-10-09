@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.Schedule;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Event;
 
 /**
  * An Immutable Schedule that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableSchedule {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableSchedule} with the given persons.
+     * Constructs a {@code JsonSerializableSchedule} with the given events.
      */
     @JsonCreator
-    public JsonSerializableSchedule(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableSchedule(@JsonProperty("events") List<JsonAdaptedEvent> events) {
+        this.events.addAll(events);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableSchedule {
      * @param source future changes to this will not affect the created {@code JsonSerializableSchedule}.
      */
     public JsonSerializableSchedule(ReadOnlySchedule source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableSchedule {
      */
     public Schedule toModelType() throws IllegalValueException {
         Schedule schedule = new Schedule();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (schedule.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (schedule.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            schedule.addPerson(person);
+            schedule.addEvent(event);
         }
         return schedule;
     }

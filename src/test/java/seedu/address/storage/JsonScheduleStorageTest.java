@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalSchedule;
+import static seedu.address.testutil.TypicalEvents.ALICE;
+import static seedu.address.testutil.TypicalEvents.HOON;
+import static seedu.address.testutil.TypicalEvents.IDA;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -52,36 +52,36 @@ public class JsonScheduleStorageTest {
 
     @Test
     public void readSchedule_invalidPersonSchedule_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readSchedule("invalidPersonSchedule.json"));
+        assertThrows(DataConversionException.class, () -> readSchedule("invalidEventSchedule.json"));
     }
 
     @Test
     public void readSchedule_invalidAndValidPersonSchedule_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readSchedule("invalidAndValidPersonSchedule.json"));
+        assertThrows(DataConversionException.class, () -> readSchedule("invalidAndValidEventSchedule.json"));
     }
 
     @Test
     public void readAndSaveSchedule_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempSchedule.json");
         Schedule original = getTypicalSchedule();
-        JsonScheduleStorage jsonAddressBookStorage = new JsonScheduleStorage(filePath);
+        JsonScheduleStorage jsonScheduleStorage = new JsonScheduleStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveSchedule(original, filePath);
-        ReadOnlySchedule readBack = jsonAddressBookStorage.readSchedule(filePath).get();
+        jsonScheduleStorage.saveSchedule(original, filePath);
+        ReadOnlySchedule readBack = jsonScheduleStorage.readSchedule(filePath).get();
         assertEquals(original, new Schedule(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
-        jsonAddressBookStorage.saveSchedule(original, filePath);
-        readBack = jsonAddressBookStorage.readSchedule(filePath).get();
+        original.addEvent(HOON);
+        original.removeEvent(ALICE);
+        jsonScheduleStorage.saveSchedule(original, filePath);
+        readBack = jsonScheduleStorage.readSchedule(filePath).get();
         assertEquals(original, new Schedule(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
-        jsonAddressBookStorage.saveSchedule(original); // file path not specified
-        readBack = jsonAddressBookStorage.readSchedule().get(); // file path not specified
+        original.addEvent(IDA);
+        jsonScheduleStorage.saveSchedule(original); // file path not specified
+        readBack = jsonScheduleStorage.readSchedule().get(); // file path not specified
         assertEquals(original, new Schedule(readBack));
 
     }

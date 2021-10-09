@@ -10,29 +10,29 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Event in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Event {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Date date;
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Location location;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Event(Name name, Date date, Email email, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, date, email, location, tags);
         this.name = name;
-        this.phone = phone;
+        this.date = date;
         this.email = email;
-        this.address = address;
+        this.location = location;
         this.tags.addAll(tags);
     }
 
@@ -40,16 +40,16 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Date getDate() {
+        return date;
     }
 
     public Email getEmail() {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -61,21 +61,21 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both events have the same name.
+     * This defines a weaker notion of equality between two events.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameEvent(Event otherEvent) {
+        if (otherEvent == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherEvent != null
+                && otherEvent.getName().equals(getName());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both events have the same identity and data fields.
+     * This defines a stronger notion of equality between two events.
      */
     @Override
     public boolean equals(Object other) {
@@ -83,34 +83,34 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Event)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Event otherEvent = (Event) other;
+        return otherEvent.getName().equals(getName())
+                && otherEvent.getDate().equals(getDate())
+                && otherEvent.getEmail().equals(getEmail())
+                && otherEvent.getLocation().equals(getLocation())
+                && otherEvent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, date, email, location, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Date: ")
+                .append(getDate())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Location: ")
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

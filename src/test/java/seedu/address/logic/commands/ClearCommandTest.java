@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalSchedule;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import org.junit.jupiter.api.Test;
 

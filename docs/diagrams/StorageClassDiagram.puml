@@ -18,7 +18,7 @@ package "Schedule Storage" #F4F6F6{
 Interface ScheduleStorage <<Interface>>
 Class JsonScheduleStorage
 Class JsonSerializableSchedule
-Class JsonAdaptedPerson
+Class JsonAdaptedEvent
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> ScheduleStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonScheduleStorage .up.|> ScheduleStorage
 JsonScheduleStorage ..> JsonSerializableSchedule
-JsonSerializableSchedule --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableSchedule --> "*" JsonAdaptedEvent
+JsonAdaptedEvent --> "*" JsonAdaptedTag
 
 @enduml

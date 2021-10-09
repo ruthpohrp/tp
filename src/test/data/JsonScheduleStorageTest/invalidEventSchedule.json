@@ -1,0 +1,8 @@
+{
+  "events": [ {
+    "name": "Event with invalid name field: Ha!ns Mu@ster",
+    "date": "2020-01-01",
+    "email": "hans@example.com",
+    "location": "4th street"
+  } ]
+}

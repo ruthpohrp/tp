@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.Schedule;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Event;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,8 +23,8 @@ public class ScheduleBuilder {
     /**
      * Adds a new {@code Person} to the {@code Schedule} that we are building.
      */
-    public ScheduleBuilder withPerson(Person person) {
-        schedule.addPerson(person);
+    public ScheduleBuilder withEvent(Event event) {
+        schedule.addEvent(event);
         return this;
     }
 

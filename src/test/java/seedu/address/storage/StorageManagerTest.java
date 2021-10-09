@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalSchedule;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonScheduleStorage addressBookStorage = new JsonScheduleStorage(getTempFilePath("ab"));
+        JsonScheduleStorage scheduleStorage = new JsonScheduleStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(scheduleStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

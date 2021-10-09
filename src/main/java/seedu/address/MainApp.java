@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlySchedule> addressBookOptional;
+        Optional<ReadOnlySchedule> scheduleOptional;
         ReadOnlySchedule initialData;
         try {
-            addressBookOptional = storage.readSchedule();
-            if (!addressBookOptional.isPresent()) {
+            scheduleOptional = storage.readSchedule();
+            if (!scheduleOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Schedule");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleSchedule);
+            initialData = scheduleOptional.orElseGet(SampleDataUtil::getSampleSchedule);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Schedule");
             initialData = new Schedule();
