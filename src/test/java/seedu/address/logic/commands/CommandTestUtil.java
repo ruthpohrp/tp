@@ -49,7 +49,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020a-02-02"; // 'a' not allowed in 
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020a-02-02"; // 'a' not allowed in
     // dates
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
