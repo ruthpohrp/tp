@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlySchedule;
+import seedu.address.model.Schedule;
 import seedu.address.model.person.Event;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Schedule that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableSchedule {
 
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given events.
+     * Constructs a {@code JsonSerializableSchedule} with the given events.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("events") List<JsonAdaptedEvent> events) {
+    public JsonSerializableSchedule(@JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.events.addAll(events);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlySchedule} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableSchedule}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableSchedule(ReadOnlySchedule source) {
         events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code Schedule} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Schedule toModelType() throws IllegalValueException {
+        Schedule schedule = new Schedule();
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
-            if (addressBook.hasEvent(event)) {
+            if (schedule.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            addressBook.addEvent(event);
+            schedule.addEvent(event);
         }
-        return addressBook;
+        return schedule;
     }
 
 }

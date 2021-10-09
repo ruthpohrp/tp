@@ -19,26 +19,26 @@ import seedu.address.model.person.Event;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Schedule schedule;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given schedule and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySchedule addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.schedule = new Schedule(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        filteredEvents = new FilteredList<>(this.schedule.getEventList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Schedule(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,42 +66,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getScheduleFilePath() {
+        return userPrefs.getScheduleFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setScheduleFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setScheduleFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Schedule ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setSchedule(ReadOnlySchedule addressBook) {
+        this.schedule.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlySchedule getSchedule() {
+        return schedule;
     }
 
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return addressBook.hasEvent(event);
+        return schedule.hasEvent(event);
     }
 
     @Override
     public void deleteEvent(Event target) {
-        addressBook.removeEvent(target);
+        schedule.removeEvent(target);
     }
 
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        schedule.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
 
-        addressBook.setEvent(target, editedEvent);
+        schedule.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Event List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return schedule.equals(other.schedule)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEvents.equals(other.filteredEvents);
     }
