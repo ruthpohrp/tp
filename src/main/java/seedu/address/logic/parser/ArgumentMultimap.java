@@ -32,7 +32,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns the last time of {@code prefix}.
+     * Returns the last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);

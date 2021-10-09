@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Tokenizes arguments string of the form: {@code preamble <prefix>time <prefix>time ...}<br>
+ * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
  *     e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
- * 1. An argument's time can be an empty string e.g. the time of {@code k/} in the above example.<br>
+ * 1. An argument's time can be an empty string e.g. the value of {@code k/} in the above example.<br>
  * 2. Leading and trailing whitespaces of an argument time will be discarded.<br>
- * 3. An argument may be repeated and all its values will be accumulated e.g. the time of {@code t/}
+ * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
  *    in the above example.<br>
  */
 public class ArgumentTokenizer {

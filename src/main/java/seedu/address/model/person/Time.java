@@ -20,7 +20,7 @@ public class Time {
     public final LocalTime time;
 
     /**
-     * Constructs an {@code Time}.
+     * Constructs a {@code Time}.
      *
      * @param time A valid time for the event.
      */

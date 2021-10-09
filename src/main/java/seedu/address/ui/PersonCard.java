@@ -41,6 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    private String value = time.toString();
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
