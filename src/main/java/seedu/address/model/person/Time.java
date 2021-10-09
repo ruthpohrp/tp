@@ -1,71 +1,67 @@
 package seedu.address.model.person;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Event's time in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class Email {
+public class Time {
+    public static final String MESSAGE_CONSTRAINTS = "Time should be of the format HHmm e.g 1300. ";
+    public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
 
-    private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
-            + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
-            + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
-            + "separated by periods.\n"
-            + "The domain name must:\n"
-            + "    - end with a domain label at least 2 characters long\n"
-            + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
-    // alphanumeric and special characters
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
-    private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
-            + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
-    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
-
-    public final String value;
+    public final LocalTime time;
+    private static final DateTimeFormatter timeFormatter =  DateTimeFormatter.ofPattern("HHmm");
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Time}.
      *
-     * @param email A valid email address.
+     * @param time A valid time for the event.
      */
-    public Email(String email) {
-        requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+    public Time(String time) {
+        requireNonNull(time);
+        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
+        this.time = LocalTime.parse(time, timeFormatter);
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid time.
      */
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidTime(String test) {
+//        try {
+//            LocalTime.parse(test, timeFormatter);
+//            return true;
+//        } catch (DateTimeParseException t) {
+//            return false;
+//        }
+
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getTime() {
+        return time.format(timeFormatter);
     }
 
     @Override
     public String toString() {
-        return value;
+        return time.format(timeFormatter);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                || (other instanceof Time // instanceof handles nulls
+                && time.equals(((Time) other).time)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return time.hashCode();
     }
 
 }
