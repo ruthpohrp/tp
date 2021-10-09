@@ -1,11 +1,11 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
+  "events": [ {
+    "name": "Valid Event",
     "date": "2020-01-01",
     "email": "hans@example.com",
     "location": "4th street"
   }, {
-    "name": "Person With Invalid Date Field",
+    "name": "Event With Invalid Date Field",
     "date": "2020-021341-01",
     "email": "hans@example.com",
     "location": "4th street"

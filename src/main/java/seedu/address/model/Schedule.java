@@ -12,7 +12,7 @@ import seedu.address.model.person.UniqueEventList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Schedule implements ReadOnlySchedule {
 
     private final UniqueEventList events;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         events = new UniqueEventList();
     }
 
-    public AddressBook() {}
+    public Schedule() {}
 
     /**
-     * Creates an AddressBook using the Events in the {@code toBeCopied}
+     * Creates an Schedule using the Events in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Schedule(ReadOnlySchedule toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Schedule} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlySchedule newData) {
         requireNonNull(newData);
 
         setEvents(newData.getEventList());
@@ -86,7 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code Schedule}.
      * {@code key} must exist in the address book.
      */
     public void removeEvent(Event key) {
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && events.equals(((AddressBook) other).events));
+                || (other instanceof Schedule // instanceof handles nulls
+                && events.equals(((Schedule) other).events));
     }
 
     @Override
