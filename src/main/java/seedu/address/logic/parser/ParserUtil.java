@@ -73,11 +73,11 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
-        String trimmedAddress = location.trim();
-        if (!Location.isValidLocation(trimmedAddress)) {
+        String trimmedLocation = location.trim();
+        if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
-        return new Location(trimmedAddress);
+        return new Location(trimmedLocation);
     }
 
     /**
