@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.Schedule;
 import seedu.address.model.ReadOnlySchedule;
+import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -48,7 +48,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void ScheduleReadSave() throws Exception {
+    public void scheduleReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonScheduleStorage} class.

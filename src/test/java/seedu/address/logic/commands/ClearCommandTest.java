@@ -5,9 +5,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalSchedule;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Schedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
