@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Event;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Event}.
  */
-public class PersonCard extends UiPart<Region> {
+public class EventCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "EventListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Event event;
 
     @FXML
     private HBox cardPane;
@@ -35,24 +35,24 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
-    private Label address;
+    private Label loc;
     @FXML
     private Label email;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code EventCode} with the given {@code Event} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public EventCard(Event event, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.event = event;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        date.setText(person.getDate().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(event.getName().fullName);
+        date.setText(event.getDate().value);
+        loc.setText(event.getLocation().value);
+        email.setText(event.getEmail().value);
+        event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -65,13 +65,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof EventCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && event.equals(card.event);
     }
 }

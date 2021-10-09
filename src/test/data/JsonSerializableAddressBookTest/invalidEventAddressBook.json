@@ -1,8 +1,8 @@
 {
-  "persons": [ {
+  "events": [ {
     "name": "Hans Muster",
     "date": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "location": "4th street"
   } ]
 }
