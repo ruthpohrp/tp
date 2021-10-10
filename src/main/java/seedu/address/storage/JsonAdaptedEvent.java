@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Date;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,8 +26,8 @@ class JsonAdaptedEvent {
 
     private final String name;
     private final String date;
-    private final String email;
     private final String location;
+    private final String time;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,11 +35,11 @@ class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("date") String date,
-                            @JsonProperty("email") String email, @JsonProperty("location") String location,
+                            @JsonProperty("time") String email, @JsonProperty("location") String location,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.date = date;
-        this.email = email;
+        this.time = time;
         this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         date = source.getDate().value;
-        email = source.getEmail().value;
+        time = source.getTime().getValue();
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -86,13 +86,13 @@ class JsonAdaptedEvent {
         }
         final Date modelDate = new Date(date);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (time == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidTime(time)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Time modelTime = new Time(time);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -104,7 +104,7 @@ class JsonAdaptedEvent {
         final Location modelAddress = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
-        return new Event(modelName, modelDate, modelEmail, modelAddress, modelTags);
+        return new Event(modelName, modelDate, modelTime, modelAddress, modelTags);
     }
 
 }

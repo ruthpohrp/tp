@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,10 +21,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Date;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,12 +40,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TIME + "TIME] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "2020-01-01 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TIME + "0800";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,11 +96,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
         Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
-        Email updatedEmail = editEventDescriptor.getEmail().orElse(eventToEdit.getEmail());
+        Time updatedTime = editPersonDescriptor.getTime().orElse(personToEdit.getTime());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
-        return new Event(updatedName, updatedDate, updatedEmail, updatedLocation, updatedTags);
+        return new Event(updatedName, updatedDate, updatedTime, updatedLocation, updatedTags);
     }
 
     @Override
@@ -127,7 +128,7 @@ public class EditCommand extends Command {
     public static class EditEventDescriptor {
         private Name name;
         private Date date;
-        private Email email;
+        private Time time;
         private Location location;
         private Set<Tag> tags;
 
@@ -140,7 +141,7 @@ public class EditCommand extends Command {
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.date);
-            setEmail(toCopy.email);
+            setTime(toCopy.time);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
         }
@@ -149,7 +150,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, date, email, location, tags);
+            return CollectionUtil.isAnyNonNull(name, date, time, location, tags);
         }
 
         public void setName(Name name) {
@@ -168,12 +169,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setTime(Time time) {
+            this.time = time;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Time> getTime() {
+            return Optional.ofNullable(time);
         }
 
         public void setLocation(Location location) {
@@ -218,7 +219,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDate().equals(e.getDate())
-                    && getEmail().equals(e.getEmail())
+                    && getTime().equals(e.getTime())
                     && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags());
         }

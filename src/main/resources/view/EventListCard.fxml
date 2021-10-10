@@ -28,9 +28,15 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
+<<<<<<< HEAD:src/main/resources/view/EventListCard.fxml
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
       <Label fx:id="loc" styleClass="cell_small_label" text="\$location" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+=======
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+      <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
+>>>>>>> luluyousef-branch-refractor-Email-Time:src/main/resources/view/PersonListCard.fxml
     </VBox>
   </GridPane>
 </HBox>

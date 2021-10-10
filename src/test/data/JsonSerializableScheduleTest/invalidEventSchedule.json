@@ -2,7 +2,7 @@
   "events": [ {
     "name": "Hans Muster",
     "date": "9482424",
-    "email": "invalid@email!3e",
+    "time": "12:15",
     "location": "4th street"
   } ]
 }

@@ -3,43 +3,43 @@
   "events" : [ {
     "name" : "Alice Pauline",
     "date" : "2020-01-01",
-    "email" : "alice@example.com",
+    "time" : "0900",
     "location" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "date" : "2020-01-02",
-    "email" : "johnd@example.com",
+    "time" : "0830",
     "location" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "date" : "2020-01-03",
-    "email" : "heinz@example.com",
+    "time" : "1030",
     "location" : "wall street",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "date" : "2020-01-04",
-    "email" : "cornelia@example.com",
+    "time" : "1200",
     "location" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "date" : "2020-01-05",
-    "email" : "werner@example.com",
+    "time" : "1330",
     "location" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "date" : "2020-01-06",
-    "email" : "lydia@example.com",
+    "time" : "1500",
     "location" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "date" : "2020-01-07",
-    "email" : "anna@example.com",
+    "time" : "1530",
     "location" : "4th street",
     "tagged" : [ ]
   } ]
