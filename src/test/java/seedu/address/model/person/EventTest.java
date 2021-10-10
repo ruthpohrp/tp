@@ -3,10 +3,10 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE;
 import static seedu.address.testutil.TypicalEvents.BOB;
@@ -32,7 +32,7 @@ public class EventTest {
         assertFalse(ALICE.isSameEvent(null));
 
         // same name, all other attributes different -> returns true
-        Event editedAlice = new EventBuilder(ALICE).withDate(VALID_DATE_BOB).withEmail(VALID_EMAIL_BOB)
+        Event editedAlice = new EventBuilder(ALICE).withDate(VALID_DATE_BOB).withTime(VALID_TIME_BOB)
                 .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameEvent(editedAlice));
 
@@ -76,8 +76,8 @@ public class EventTest {
         editedAlice = new EventBuilder(ALICE).withDate(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new EventBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different time -> returns false
+        editedAlice = new EventBuilder(ALICE).withTime(VALID_TIME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false

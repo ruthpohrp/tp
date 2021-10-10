@@ -37,10 +37,11 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label loc;
     @FXML
-    private Label email;
+    private Label time;
     @FXML
     private FlowPane tags;
 
+    private String value = time.toString();
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
      */
@@ -51,7 +52,7 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName().fullName);
         date.setText(event.getDate().value);
         loc.setText(event.getLocation().value);
-        email.setText(event.getEmail().value);
+        time.setText(event.getTime().time.toString());
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
