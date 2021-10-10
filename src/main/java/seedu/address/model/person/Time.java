@@ -37,7 +37,7 @@ public class Time {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getTime() {
+    public String getValue() {
         return time.format(timeFormatter);
     }
 
