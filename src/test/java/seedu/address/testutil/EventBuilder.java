@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Date;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,12 +18,12 @@ public class EventBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_DATE = "2020-01-01";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_TIME = "0800";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Date date;
-    private Email email;
+    private Time time;
     private Location address;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
-        email = new Email(DEFAULT_EMAIL);
+        time = new Time(DEFAULT_TIME);
         address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         date = eventToCopy.getDate();
-        email = eventToCopy.getEmail();
+        time = eventToCopy.getTime();
         address = eventToCopy.getLocation();
         tags = new HashSet<>(eventToCopy.getTags());
     }
@@ -82,15 +82,15 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Event} that we are building.
+     * Sets the {@code Time} of the {@code Event} that we are building.
      */
-    public EventBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public EventBuilder withTime(String time) {
+        this.time = new Time(time);
         return this;
     }
 
     public Event build() {
-        return new Event(name, date, email, address, tags);
+        return new Event(name, date, time, address, tags);
     }
 
 }

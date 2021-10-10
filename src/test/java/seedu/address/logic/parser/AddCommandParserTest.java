@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -61,11 +60,11 @@ public class AddCommandParserTest {
                 + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + EMAIL_DESC_AMY + TIME_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + TIME_DESC_AMY + TIME_DESC_BOB
                 + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
         // multiple location - last location accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + EMAIL_DESC_BOB + TIME_DESC_BOB
+        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + TIME_DESC_BOB + TIME_DESC_BOB
                 + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
         // multiple tags - all accepted
@@ -120,7 +119,7 @@ public class AddCommandParserTest {
 
         // invalid time
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + INVALID_TIME_DESC + LOCATION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Time.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + TIME_DESC_BOB + INVALID_LOCATION_DESC

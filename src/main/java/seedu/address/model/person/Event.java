@@ -28,7 +28,7 @@ public class Event {
      * Every field must be present and not null.
      */
     public Event(Name name, Date date, Time time, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, date, email, location, tags);
+        requireAllNonNull(name, date, time, location, tags);
         this.name = name;
         this.date = date;
         this.time = time;
@@ -90,7 +90,7 @@ public class Event {
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
                 && otherEvent.getDate().equals(getDate())
-                && otherPerson.getTime().equals(getTime())
+                && otherEvent.getTime().equals(getTime())
                 && otherEvent.getLocation().equals(getLocation())
                 && otherEvent.getTags().equals(getTags());
     }

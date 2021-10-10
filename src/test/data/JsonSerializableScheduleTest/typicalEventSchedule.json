@@ -3,7 +3,7 @@
   "events" : [ {
     "name" : "Alice Pauline",
     "date" : "2020-01-01",
-    "time" : "0900",
+    "time" : "0800",
     "location" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
@@ -15,31 +15,31 @@
   }, {
     "name" : "Carl Kurz",
     "date" : "2020-01-03",
-    "time" : "1030",
+    "time" : "0930",
     "location" : "wall street",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "date" : "2020-01-04",
-    "time" : "1200",
+    "time" : "1000",
     "location" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "date" : "2020-01-05",
-    "time" : "1330",
+    "time" : "1030",
     "location" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "date" : "2020-01-06",
-    "time" : "1500",
+    "time" : "1100",
     "location" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "date" : "2020-01-07",
-    "time" : "1530",
+    "time" : "1130",
     "location" : "4th street",
     "tagged" : [ ]
   } ]

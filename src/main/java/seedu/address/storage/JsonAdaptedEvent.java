@@ -35,7 +35,7 @@ class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("date") String date,
-                            @JsonProperty("time") String email, @JsonProperty("location") String location,
+                            @JsonProperty("time") String time, @JsonProperty("location") String location,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.date = date;

@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -96,7 +95,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
         Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
-        Time updatedTime = editPersonDescriptor.getTime().orElse(personToEdit.getTime());
+        Time updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getTime());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 

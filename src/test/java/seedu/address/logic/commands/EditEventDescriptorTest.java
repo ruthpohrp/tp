@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_BOB;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
@@ -45,7 +44,7 @@ public class EditEventDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different time -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTime(VALID_TIME_BOB).build();
+        editedAmy = new EditEventDescriptorBuilder(DESC_AMY).withTime(VALID_TIME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
