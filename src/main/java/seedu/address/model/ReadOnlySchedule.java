@@ -6,7 +6,7 @@ import seedu.address.model.person.Event;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlySchedule {
 
     /**
      * Returns an unmodifiable view of the events list.

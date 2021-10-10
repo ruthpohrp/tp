@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE;
-import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.exceptions.DuplicateEventException;
 import seedu.address.testutil.EventBuilder;
 
-public class AddressBookTest {
+public class ScheduleTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Schedule schedule = new Schedule();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getEventList());
+        assertEquals(Collections.emptyList(), schedule.getEventList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> schedule.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlySchedule_replacesData() {
+        Schedule newData = getTypicalSchedule();
+        schedule.resetData(newData);
+        assertEquals(newData, schedule);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Event editedAlice = new EventBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Event> newEvents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newEvents);
+        ScheduleStub newData = new ScheduleStub(newEvents);
 
-        assertThrows(DuplicateEventException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateEventException.class, () -> schedule.resetData(newData));
     }
 
     @Test
     public void hasEvent_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEvent(null));
+        assertThrows(NullPointerException.class, () -> schedule.hasEvent(null));
     }
 
     @Test
-    public void hasEvent_eventNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEvent(ALICE));
+    public void hasEvent_eventNotInSchedule_returnsFalse() {
+        assertFalse(schedule.hasEvent(ALICE));
     }
 
     @Test
-    public void hasEvent_eventInAddressBook_returnsTrue() {
-        addressBook.addEvent(ALICE);
-        assertTrue(addressBook.hasEvent(ALICE));
+    public void hasEvent_eventInSchedule_returnsTrue() {
+        schedule.addEvent(ALICE);
+        assertTrue(schedule.hasEvent(ALICE));
     }
 
     @Test
-    public void hasEvent_eventWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEvent(ALICE);
+    public void hasEvent_eventWithSameIdentityFieldsInSchedule_returnsTrue() {
+        schedule.addEvent(ALICE);
         Event editedAlice = new EventBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasEvent(editedAlice));
+        assertTrue(schedule.hasEvent(editedAlice));
     }
 
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEventList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> schedule.getEventList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose events list can violate interface constraints.
+     * A stub ReadOnlySchedule whose events list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ScheduleStub implements ReadOnlySchedule {
         private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Event> events) {
+        ScheduleStub(Collection<Event> events) {
             this.events.setAll(events);
         }
 
