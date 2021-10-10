@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlySchedule <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
 Interface Model <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Schedule
+Class ReadOnlySchedule
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -21,7 +21,7 @@ Class Event
 Class Location
 Class Email
 Class Name
-Class Phone
+Class Date
 Class Tag
 
 }
@@ -29,25 +29,25 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Schedule .up.|> ReadOnlySchedule
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlySchedule
+ModelManager -left-> "1" Schedule
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueEventList
+Schedule *--> "1" UniqueEventList
 UniqueEventList --> "~* all" Event
 Event *--> Name
-Event *--> Phone
+Event *--> Date
 Event *--> Email
 Event *--> Location
 Event *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Location
+Name -[hidden]right-> Date
+Date -[hidden]right-> Location
 Location -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Event

@@ -21,7 +21,7 @@ public class EventCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on Schedule level 4</a>
      */
 
     public final Event event;
@@ -33,9 +33,9 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label date;
     @FXML
-    private Label address;
+    private Label loc;
     @FXML
     private Label email;
     @FXML
@@ -49,8 +49,8 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
-        phone.setText(event.getPhone().value);
-        address.setText(event.getLocation().value);
+        date.setText(event.getDate().value);
+        loc.setText(event.getLocation().value);
         email.setText(event.getEmail().value);
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

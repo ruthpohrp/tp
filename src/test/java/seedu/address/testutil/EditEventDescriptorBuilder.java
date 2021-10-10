@@ -6,11 +6,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +34,7 @@ public class EditEventDescriptorBuilder {
     public EditEventDescriptorBuilder(Event event) {
         descriptor = new EditEventDescriptor();
         descriptor.setName(event.getName());
-        descriptor.setPhone(event.getPhone());
+        descriptor.setDate(event.getDate());
         descriptor.setEmail(event.getEmail());
         descriptor.setLocation(event.getLocation());
         descriptor.setTags(event.getTags());
@@ -49,10 +49,10 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditEventDescriptor} that we are building.
+     * Sets the {@code Date} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditEventDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditEventDescriptorBuilder withDate(String date) {
+        descriptor.setDate(new Date(date));
         return this;
     }
 
@@ -65,7 +65,7 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditEventDescriptor} that we are building.
+     * Sets the {@code Location} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withLocation(String address) {
         descriptor.setLocation(new Location(address));
