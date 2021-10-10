@@ -84,7 +84,7 @@ private Label address;
 ...
 <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-<Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+<Label fx:id="time" styleClass="cell_small_label" text="\$time" />
 ...
 ```
 
@@ -103,7 +103,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "date": "2020-01-01",
-    "email": "hans@example.com",
+    "time": "1315",
     "address": "4th street"
   } ]
 }
