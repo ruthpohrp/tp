@@ -59,7 +59,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB + TIME_DESC_BOB
                 + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
-        // multiple emails - last email accepted
+        // multiple time - last time accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + TIME_DESC_AMY + TIME_DESC_BOB
                 + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedEvent));
 
@@ -94,7 +94,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + VALID_DATE_BOB + TIME_DESC_BOB + LOCATION_DESC_BOB,
                 expectedMessage);
 
-        // missing email prefix
+        // missing time prefix
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + VALID_TIME_BOB + LOCATION_DESC_BOB,
                 expectedMessage);
 
