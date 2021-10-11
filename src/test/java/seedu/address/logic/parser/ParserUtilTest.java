@@ -15,22 +15,22 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Date;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_DATE = "2020-35-35";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_LOCATION = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_TIME = "15:15";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_DATE = "2020-11-11";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_LOCATION = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_TIME = "1515";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -126,26 +126,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
+        Time expectedTime = new Time(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(VALID_TIME));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
+        String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
+        Time expectedTime = new Time(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
     }
 
     @Test
