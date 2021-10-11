@@ -1,0 +1,14 @@
+{
+  "events": [ {
+    "name": "Alice Pauline",
+    "date": "2020-01-01",
+    "time": "0800",
+    "location": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "date": "2020-01-01",
+    "time": "0830",
+    "location": "4th street"
+  } ]
+}
