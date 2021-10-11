@@ -20,7 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Schedule;
-import seedu.address.model.person.Event;
+import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
 public class AddCommandTest {

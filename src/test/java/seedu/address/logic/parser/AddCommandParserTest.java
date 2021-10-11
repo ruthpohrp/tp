@@ -32,11 +32,11 @@ import static seedu.address.testutil.TypicalEvents.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Date;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Time;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Location;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EventBuilder;
 
