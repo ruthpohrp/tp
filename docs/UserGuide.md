@@ -160,12 +160,12 @@ need to save manually.
 
 ## 4. FAQ
 ***
-**Q**: Where are the releases?
+**Q**: Where are the releases?<br>
 **A**: The release for v1.2 is a work in progress, please be patient!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
 that contains the data of your previous DukePro(f) home folder.
 
-**Q**: The dukeprof.jar isn’t opening when I double-click it.
+**Q**: The dukeprof.jar isn’t opening when I double-click it.<br>
 **A**: Try manually opening the dukeprof.jar on the command terminal using the command -java dukeprof.jar.
