@@ -8,6 +8,8 @@ tutorials, it is hard to properly fit in **consultations** with students and kee
 time. With DukePro(f), profs can easily query their available time slots and save their engagements, making lesson-planning a breeze.
 
 ## Table of Contents
+
+* TOC
 {:toc}
 
 ***
