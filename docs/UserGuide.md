@@ -47,12 +47,12 @@ Action | Format | Examples
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add n/Lulu Yousef d/2021-09-01 t/1300 m/CS2103T` : Adds a contact named `Lulu Yousef` to the Address Book.
+   * **`add`**`add n/Galvin Chan d/2020-07-07 t/1000 l/NUS tag/Tutorial 4` : Adds a consultation event for `Galvin Chan` to DukePro(f).
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd event shown in DukePro(f)'s current event list.
     
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#3-features) below for details of each command.
 
 
 ## 3. Features
