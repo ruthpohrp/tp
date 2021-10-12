@@ -96,15 +96,14 @@ Examples:
 
 ### 3.2 Clearing all Consultation Events : `clear`
 
-[clear description]
+Clears all consultation events stored in DukePro(f).
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING**: This command cannot be reversed. Be 
 careful when using this command!
 </div>
 
-[format description]
+Format: `clear`
 
-[example description]
 
 ### 3.3 Deleting a Consultation Event : `delete`
 
@@ -116,34 +115,31 @@ Example: `delete 1`
 
 ### 3.4 Editing a Consultation Event : `edit`
 
-[edit description]
+Edits the details of a consult event from DukePro(f). Indexed according to the result of the 'list' command(see below).
 
-[format description]
+Format: `edit INDEX [n/NAME] [d/DATE] [t/TIME] [l/LOCATION] [tag/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note**: Editing the tags will automatically 
 erase all previous tags!
 </div>
 
-[example description]
+Example: `edit 2 n/Ruth t/0730`
 
 ### 3.5 Finding a Consultation Event : `find`
+Finds all events whose names contain any of the specified keywords and displays them as a list with index numbers.
 
-[find description]
-
-[format description]
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note**: The keywords are case-insensitive!
 </div>
 
-[example description]
+Example: `find Jacob`
 
 ### 3.6 Viewing help : `help`
 
-[help description]
+Opens a pop-up window with a link to  DukePro(f)'s user guide.
 
-[format description]
-
-[example description]
+Format: `help`
 
 ### 3.7 Listing All Consultation Events : `list`
 Lists down all consultations scheduled in DukePro(f).
