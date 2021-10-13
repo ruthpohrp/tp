@@ -43,12 +43,12 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE + "2020-01-01 "
+            + PREFIX_DATE + "2020-10-14 "
             + PREFIX_TIME + "0800";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the schedule.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
