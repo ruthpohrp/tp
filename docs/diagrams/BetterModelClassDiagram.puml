@@ -16,6 +16,6 @@ Event -up-> "*" Tag
 
 Event *--> Name
 Event *--> Date
-Event *--> Email
+Event *--> Time
 Event *--> Location
 @enduml

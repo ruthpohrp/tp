@@ -14,7 +14,7 @@ import seedu.address.logic.parser.ScheduleParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySchedule;
-import seedu.address.model.person.Event;
+import seedu.address.model.event.Event;
 import seedu.address.storage.Storage;
 
 /**

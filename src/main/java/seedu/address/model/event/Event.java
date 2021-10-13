@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -18,7 +18,7 @@ public class Event {
     // Identity fields
     private final Name name;
     private final Date date;
-    private final Email email;
+    private final Time time;
 
     // Data fields
     private final Location location;
@@ -27,11 +27,11 @@ public class Event {
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Date date, Email email, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, date, email, location, tags);
+    public Event(Name name, Date date, Time time, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, date, time, location, tags);
         this.name = name;
         this.date = date;
-        this.email = email;
+        this.time = time;
         this.location = location;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Event {
         return date;
     }
 
-    public Email getEmail() {
-        return email;
+    public Time getTime() {
+        return time;
     }
 
     public Location getLocation() {
@@ -90,7 +90,7 @@ public class Event {
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
                 && otherEvent.getDate().equals(getDate())
-                && otherEvent.getEmail().equals(getEmail())
+                && otherEvent.getTime().equals(getTime())
                 && otherEvent.getLocation().equals(getLocation())
                 && otherEvent.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Event {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, email, location, tags);
+        return Objects.hash(name, date, time, location, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Event {
         builder.append(getName())
                 .append("; Date: ")
                 .append(getDate())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Time: ")
+                .append(getTime())
                 .append("; Location: ")
                 .append(getLocation());
 
