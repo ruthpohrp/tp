@@ -18,7 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the address book. " + "\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the schedule. " + "\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE + "DATE "
@@ -26,15 +26,15 @@ public class AddCommand extends Command {
             + PREFIX_LOCATION + "LOCATION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_DATE + "2020-01-01 "
-            + PREFIX_TIME + "0800 "
-            + PREFIX_LOCATION + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Jacob Ng "
+            + PREFIX_DATE + "2020-10-13 "
+            + PREFIX_TIME + "1300 "
+            + PREFIX_LOCATION + "The Deck "
+            + PREFIX_TAG + "CS1231S "
+            + PREFIX_TAG + "URGENT";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the schedule";
 
     private final Event toAdd;
 

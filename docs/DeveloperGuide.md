@@ -284,6 +284,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
 | `* * *`  | meticulous user                            | add notes to my events         | add details that I need to make preparations for before the event      |
 | `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
+| `* * *`  | user                                       | exit the app                   |                                                                        |
+| `* *`    | user                                       | add tags to my events          | group them more easily                                                 |
+| `* *`    | new user                                   | click a link to access the product website | receive help regarding any problems I have with the app    |
+| `* *`    | user                                       | clear the list of events       | empty out everything quickly instead of deleting them one by one       |
 | `* *`    | user                                       | list the upcoming events in the day | take note of what I should make preparations for                  |
 | `* *`    | user                                       | view the next upcoming event   | find out what is my next engagement                                    |
 | `* *`    | user                                       | print my schedule with censored details | send it to my students to see my available timings while maintaining confidentiality |
