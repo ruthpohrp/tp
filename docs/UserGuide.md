@@ -3,14 +3,6 @@ layout: page
 title: User Guide
 ---
 
-DukePro(f) helps **professors in a university** plan their engagements. Amid long days of lectures and 
-tutorials, it is hard to properly fit in **consultations** with students and keep track of them at the same 
-time. With DukePro(f), profs can easily query their available time slots and save their engagements, making lesson-planning a breeze.
-
-DukePro(f) helps **professors in a university** plan their engagements. Amid long days of lectures and 
-tutorials, it is hard to properly fit in **consultations** with students and keep track of them at the same 
-time. With DukePro(f), profs can easily query their available time slots and save their engagements, making lesson-planning a breeze.
-
 ## Table of Contents
 
 * TOC
