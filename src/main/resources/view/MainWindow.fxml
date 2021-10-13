@@ -14,7 +14,7 @@
 <?import javafx.stage.Stage?>
 
 <fx:root minHeight="600" minWidth="900" onCloseRequest="#handleExit" title="DukePro(f)" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+         xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
   <icons>
     <Image url="@/images/DukePro(f).png" />
   </icons>
