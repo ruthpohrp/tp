@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,7 +13,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="900" onCloseRequest="#handleExit" title="DukePro(f)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root minHeight="600" minWidth="900" onCloseRequest="#handleExit" title="DukePro(f)" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/DukePro(f).png" />
   </icons>
@@ -42,18 +44,24 @@
               </padding>
             </StackPane>
 
-            <StackPane fx:id="resultDisplayPlaceholder" prefHeight= "150.0" styleClass="pane-with-border">
+            <VBox fx:id="resultDisplayPlaceholder" prefHeight="180.0" styleClass="pane-with-border">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
-            </StackPane>
+              <Label styleClass="label-bright">
+                Results:
+              </Label>
+            </VBox>
           </VBox>
 
           <VBox fx:id="eventList" minWidth="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <Label styleClass="label-bright">
+              Student Consulations:
+            </Label>
+            <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </SplitPane>
 
