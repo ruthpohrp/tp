@@ -8,6 +8,8 @@ tutorials, it is hard to properly fit in **consultations** with students and kee
 time. With DukePro(f), profs can easily query their available time slots and save their engagements, making lesson-planning a breeze.
 
 ## Table of Contents
+
+* TOC
 {:toc}
 
 ***
@@ -45,12 +47,12 @@ Action | Format | Examples
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add n/Lulu Yousef d/2021-09-01 t/1300 m/CS2103T` : Adds a contact named `Lulu Yousef` to the Address Book.
+   * **`add`**`add n/Galvin Chan d/2020-07-07 t/1000 l/NUS tag/Tutorial 4` : Adds a consultation event for `Galvin Chan` to DukePro(f).
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd event shown in DukePro(f)'s current event list.
     
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#3-features) below for details of each command.
 
 
 ## 3. Features
@@ -96,15 +98,14 @@ Examples:
 
 ### 3.2 Clearing all Consultation Events : `clear`
 
-[clear description]
+Clears all consultation events stored in DukePro(f).
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING**: This command cannot be reversed. Be 
 careful when using this command!
 </div>
 
-[format description]
+Format: `clear`
 
-[example description]
 
 ### 3.3 Deleting a Consultation Event : `delete`
 
@@ -116,34 +117,31 @@ Example: `delete 1`
 
 ### 3.4 Editing a Consultation Event : `edit`
 
-[edit description]
+Edits the details of a consult event from DukePro(f). Indexed according to the result of the 'list' command(see below).
 
-[format description]
+Format: `edit INDEX [n/NAME] [d/DATE] [t/TIME] [l/LOCATION] [tag/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note**: Editing the tags will automatically 
 erase all previous tags!
 </div>
 
-[example description]
+Example: `edit 2 n/Ruth t/0730`
 
 ### 3.5 Finding a Consultation Event : `find`
+Finds all events whose names contain any of the specified keywords and displays them as a list with index numbers.
 
-[find description]
-
-[format description]
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note**: The keywords are case-insensitive!
 </div>
 
-[example description]
+Example: `find Jacob`
 
 ### 3.6 Viewing help : `help`
 
-[help description]
+Opens a pop-up window with a link to  DukePro(f)'s user guide.
 
-[format description]
-
-[example description]
+Format: `help`
 
 ### 3.7 Listing All Consultation Events : `list`
 Lists down all consultations scheduled in DukePro(f).
@@ -162,12 +160,12 @@ need to save manually.
 
 ## 4. FAQ
 ***
-**Q**: Where are the releases?
+**Q**: Where are the releases?<br>
 **A**: The release for v1.2 is a work in progress, please be patient!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
 that contains the data of your previous DukePro(f) home folder.
 
-**Q**: The dukeprof.jar isn’t opening when I double-click it.
+**Q**: The dukeprof.jar isn’t opening when I double-click it.<br>
 **A**: Try manually opening the dukeprof.jar on the command terminal using the command -java dukeprof.jar.
