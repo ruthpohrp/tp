@@ -81,14 +81,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String time} into an {@code TimeSlot}.
+     * Parses a {@code String timeSlot} into an {@code TimeSlot}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code time} is invalid.
+     * @throws ParseException if the given {@code timeSlot} is invalid.
      */
-    public static TimeSlot parseTime(String time) throws ParseException {
-        requireNonNull(time);
-        String trimmedTime = time.trim();
+    public static TimeSlot parseTimeSlot(String timeSlot) throws ParseException {
+        requireNonNull(timeSlot);
+        String trimmedTime = timeSlot.trim();
         if (!TimeSlot.isValidTime(trimmedTime)) {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
         }

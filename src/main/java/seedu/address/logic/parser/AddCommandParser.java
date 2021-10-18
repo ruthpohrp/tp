@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        TimeSlot timeSlot = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIMESLOT).get());
+        TimeSlot timeSlot = ParserUtil.parseTimeSlot(argMultimap.getValue(PREFIX_TIMESLOT).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
