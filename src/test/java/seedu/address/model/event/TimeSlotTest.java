@@ -1,10 +1,13 @@
 package seedu.address.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import java.sql.Time;
 
 public class TimeSlotTest {
 
@@ -59,5 +62,14 @@ public class TimeSlotTest {
         assertTrue(TimeSlot.isValidTimeSlot("2030", "2130"));
         assertTrue(TimeSlot.isValidTimeSlot("0715", "0815"));
 
+    }
+
+    @Test
+    public void compareTo() {
+        TimeSlot earlierSlot = new TimeSlot("1300", "1400");
+        TimeSlot sameAsEarlierSlot = new TimeSlot("1300", "1400");
+        TimeSlot laterSlot = new TimeSlot("1400", "1500");
+        assertTrue(earlierSlot.compareTo(laterSlot) < 0);
+        assertTrue(earlierSlot.compareTo(sameAsEarlierSlot) == 0);
     }
 }

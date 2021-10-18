@@ -63,7 +63,14 @@ public class TimeSlot {
 
     @Override
     public int hashCode() {
-        return startTime.hashCode();
+        // TODO: decide on a proper way to hash this class
+        // Originally "return startTime.hashCode();"
+        return this.toString().hashCode();
+    }
+
+    public int compareTo(TimeSlot timeSlot) {
+        return Integer.parseInt(this.startTime.format(timeFormatter))
+                - Integer.parseInt(timeSlot.startTime.format(timeFormatter));
     }
 
 }
