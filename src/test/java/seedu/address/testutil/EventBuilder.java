@@ -86,7 +86,6 @@ public class EventBuilder {
      * Sets the {@code TimeSlot} of the {@code Event} that we are building.
      */
     public EventBuilder withTimeSlot(String startTime, String endTime) {
-        //TODO: edit this method to take in an endtime
         this.timeSlot = new TimeSlot(startTime, endTime);
         return this;
     }

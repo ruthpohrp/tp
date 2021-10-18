@@ -60,7 +60,6 @@ public class EditEventDescriptorBuilder {
      * Sets the {@code TimeSlot} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withTimeSlot(String startTime, String endTime) {
-        //TODO: change this entire method to take in a endtime too
         descriptor.setTimeSlot(new TimeSlot(startTime, endTime));
         return this;
     }

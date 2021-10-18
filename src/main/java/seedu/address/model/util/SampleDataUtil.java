@@ -19,7 +19,6 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Event[] getSampleEvents() {
         return new Event[] {
-                //TODO: make sure all these timeslots are valid
             new Event(new Name("Jacob NG"), new Date("2020-10-13"), new TimeSlot("1300", "1400"),
                 new Location("The Deck"),
                 getTagSet("CS1231S", "URGENT")),

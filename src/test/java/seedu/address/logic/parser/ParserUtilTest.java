@@ -128,23 +128,23 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTime_null_throwsNullPointerException() {
+    public void parseTimeSlot_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeSlot((String) null));
     }
 
     @Test
-    public void parseTime_invalidValue_throwsParseException() {
+    public void parseTimeSlot_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTimeSlot(INVALID_TIMESLOT));
     }
 
     @Test
-    public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
+    public void parseTimeSlot_validValueWithoutWhitespace_returnsTime() throws Exception {
         TimeSlot expectedTime = new TimeSlot(VALID_TIMESLOT_STARTTIME, VALID_TIMESLOT_ENDTIME);
         assertEquals(expectedTime, ParserUtil.parseTimeSlot(VALID_TIMESLOT));
     }
 
     @Test
-    public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
+    public void parseTimeSlot_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
         String timeWithWhitespace = WHITESPACE + VALID_TIMESLOT + WHITESPACE;
         TimeSlot expectedTime = new TimeSlot(VALID_TIMESLOT_STARTTIME, VALID_TIMESLOT_ENDTIME);
         assertEquals(expectedTime, ParserUtil.parseTimeSlot(timeWithWhitespace));
