@@ -21,7 +21,7 @@ public class EventCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on Schedule level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
     public final Event event;
@@ -37,11 +37,11 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label loc;
     @FXML
-    private Label time;
+    private Label timeSlot;
     @FXML
     private FlowPane tags;
 
-    private String value = time.toString();
+    private String value = timeSlot.toString();
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
      */
@@ -52,7 +52,7 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName().fullName);
         date.setText(event.getDate().value);
         loc.setText(event.getLocation().value);
-        time.setText(event.getTimeSlot().startTime.toString());
+        timeSlot.setText(event.getTimeSlot().toString());
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
