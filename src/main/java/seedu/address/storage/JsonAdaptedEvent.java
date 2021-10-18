@@ -89,7 +89,7 @@ class JsonAdaptedEvent {
         if (time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName()));
         }
-        if (!TimeSlot.isValidTime(time)) {
+        if (!TimeSlot.isValidTimeSlot(time)) {
             throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
         final TimeSlot modelTime = new TimeSlot(time);

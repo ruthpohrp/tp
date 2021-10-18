@@ -89,7 +89,7 @@ public class ParserUtil {
     public static TimeSlot parseTimeSlot(String timeSlot) throws ParseException {
         requireNonNull(timeSlot);
         String trimmedTime = timeSlot.trim();
-        if (!TimeSlot.isValidTime(trimmedTime)) {
+        if (!TimeSlot.isValidTimeSlot(trimmedTime)) {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
         return new TimeSlot(trimmedTime);

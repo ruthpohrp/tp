@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an Event's timeslot in the schedule.
- * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String)}
  */
 public class TimeSlot {
     public static final String MESSAGE_CONSTRAINTS = "TimeSlot should be of the format HHmm e.g 1300. ";
@@ -18,45 +18,48 @@ public class TimeSlot {
     // TODO: should be changed to: "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$-^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" I THINK
 
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-    public final LocalTime time;
+    public final LocalTime startTime;
+    public final LocalTime endTime;
 
     /**
      * Constructs a {@code TimeSlot}.
      *
-     * @param time A valid time for the event.
+     * @param startTime A valid time for the event.
      */
-    public TimeSlot(String time) {
-        requireNonNull(time);
-        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        this.time = LocalTime.parse(time, timeFormatter);
+    public TimeSlot(String startTime) {
+        requireNonNull(startTime);
+        checkArgument(isValidTimeSlot(startTime), MESSAGE_CONSTRAINTS);
+        this.startTime = LocalTime.parse(startTime, timeFormatter);
+        // TODO: change constructor to take in startTime and endTime. endTime always 2359 for now.
+        this.endTime = LocalTime.parse("2359", timeFormatter);
     }
 
     /**
      * Returns if a given string is a valid time.
      */
-    public static boolean isValidTime(String test) {
+    public static boolean isValidTimeSlot(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     public String getValue() {
-        return time.format(timeFormatter);
+        return startTime.format(timeFormatter);
     }
 
     @Override
     public String toString() {
-        return time.format(timeFormatter);
+        return startTime.format(timeFormatter);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TimeSlot // instanceof handles nulls
-                && time.equals(((TimeSlot) other).time)); // state check
+                && startTime.equals(((TimeSlot) other).startTime)); // state check
     }
 
     @Override
     public int hashCode() {
-        return time.hashCode();
+        return startTime.hashCode();
     }
 
 }

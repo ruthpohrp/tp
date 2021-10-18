@@ -22,21 +22,21 @@ public class TimeSlotTest {
     @Test
     public void isValidTime() {
         // null time
-        assertThrows(NullPointerException.class, () -> TimeSlot.isValidTime(null));
+        assertThrows(NullPointerException.class, () -> TimeSlot.isValidTimeSlot(null));
 
         // blank time
-        assertFalse(TimeSlot.isValidTime("")); // empty string
-        assertFalse(TimeSlot.isValidTime(" ")); // spaces only
+        assertFalse(TimeSlot.isValidTimeSlot("")); // empty string
+        assertFalse(TimeSlot.isValidTimeSlot(" ")); // spaces only
 
         // invalid time
-        assertFalse(TimeSlot.isValidTime("15")); // missing minutes
-        assertFalse(TimeSlot.isValidTime("04:30")); // ':' not allowed in time
+        assertFalse(TimeSlot.isValidTimeSlot("15")); // missing minutes
+        assertFalse(TimeSlot.isValidTimeSlot("04:30")); // ':' not allowed in time
 
 
         // valid time
-        assertTrue(TimeSlot.isValidTime("2030"));
-        assertTrue(TimeSlot.isValidTime("0715"));
-        assertTrue(TimeSlot.isValidTime("2359"));
+        assertTrue(TimeSlot.isValidTimeSlot("2030"));
+        assertTrue(TimeSlot.isValidTimeSlot("0715"));
+        assertTrue(TimeSlot.isValidTimeSlot("2359"));
 
     }
 }
