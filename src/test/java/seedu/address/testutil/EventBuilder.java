@@ -7,7 +7,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,12 +18,13 @@ public class EventBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_DATE = "2020-01-01";
-    public static final String DEFAULT_TIME = "0800";
+    public static final String DEFAULT_STARTTIME = "0800";
+    public static final String DEFAULT_ENDTIME = "0900";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Date date;
-    private Time time;
+    private TimeSlot timeSlot;
     private Location address;
     private Set<Tag> tags;
 
@@ -33,7 +34,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
-        time = new Time(DEFAULT_TIME);
+        timeSlot = new TimeSlot(DEFAULT_STARTTIME, DEFAULT_ENDTIME);
         address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -44,7 +45,7 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         date = eventToCopy.getDate();
-        time = eventToCopy.getTime();
+        timeSlot = eventToCopy.getTimeSlot();
         address = eventToCopy.getLocation();
         tags = new HashSet<>(eventToCopy.getTags());
     }
@@ -82,15 +83,15 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Time} of the {@code Event} that we are building.
+     * Sets the {@code TimeSlot} of the {@code Event} that we are building.
      */
-    public EventBuilder withTime(String time) {
-        this.time = new Time(time);
+    public EventBuilder withTimeSlot(String startTime, String endTime) {
+        this.timeSlot = new TimeSlot(startTime, endTime);
         return this;
     }
 
     public Event build() {
-        return new Event(name, date, time, address, tags);
+        return new Event(name, date, timeSlot, address, tags);
     }
 
 }
