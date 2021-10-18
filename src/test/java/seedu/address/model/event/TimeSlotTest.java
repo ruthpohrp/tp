@@ -9,14 +9,25 @@ import org.junit.jupiter.api.Test;
 public class TimeSlotTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TimeSlot(null, null));
+    public void constructor_startTimeNull_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TimeSlot(null, "1500"));
     }
 
     @Test
-    public void constructor_invalidTime_throwsIllegalArgumentException() {
+    public void constructor_endTimeNull_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TimeSlot("1500", null));
+    }
+
+    @Test
+    public void constructor_invalidStartTime_throwsIllegalArgumentException() {
         String invalidTime = "";
-        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(invalidTime, invalidTime));
+        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(invalidTime, "1500"));
+    }
+
+    @Test
+    public void constructor_invalidEndTime_throwsIllegalArgumentException() {
+        String invalidTime = "";
+        assertThrows(IllegalArgumentException.class, () -> new TimeSlot("1500", invalidTime));
     }
 
     @Test
