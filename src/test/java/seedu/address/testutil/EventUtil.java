@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import java.util.Set;
 
@@ -32,7 +32,7 @@ public class EventUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + event.getName().fullName + " ");
         sb.append(PREFIX_DATE + event.getDate().value + " ");
-        sb.append(PREFIX_TIME + event.getTime().getValue() + " ");
+        sb.append(PREFIX_TIMESLOT + event.getTime().getValue() + " ");
         sb.append(PREFIX_LOCATION + event.getLocation().value + " ");
         event.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -47,7 +47,7 @@ public class EventUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
-        descriptor.getTime().ifPresent(time -> sb.append(PREFIX_TIME).append(time.getValue()).append(" "));
+        descriptor.getTime().ifPresent(time -> sb.append(PREFIX_TIMESLOT).append(time.getValue()).append(" "));
         descriptor.getLocation().ifPresent(address -> sb.append(PREFIX_LOCATION).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
