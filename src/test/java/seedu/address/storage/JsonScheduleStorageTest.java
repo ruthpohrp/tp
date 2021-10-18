@@ -51,12 +51,12 @@ public class JsonScheduleStorageTest {
     }
 
     @Test
-    public void readSchedule_invalidPersonSchedule_throwDataConversionException() {
+    public void readSchedule_invalidEventSchedule_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readSchedule("invalidEventSchedule.json"));
     }
 
     @Test
-    public void readSchedule_invalidAndValidPersonSchedule_throwDataConversionException() {
+    public void readSchedule_invalidAndValidEventSchedule_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readSchedule("invalidAndValidEventSchedule.json"));
     }
 
