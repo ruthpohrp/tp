@@ -26,12 +26,11 @@ public class TimeSlot {
      *
      * @param startTime A valid time for the event.
      */
-    public TimeSlot(String startTime) {
+    public TimeSlot(String startTime, String endTime) {
         requireNonNull(startTime);
         checkArgument(isValidTimeSlot(startTime), MESSAGE_CONSTRAINTS);
         this.startTime = LocalTime.parse(startTime, timeFormatter);
-        // TODO: change constructor to take in startTime and endTime. endTime always 2359 for now.
-        this.endTime = LocalTime.parse("2359", timeFormatter);
+        this.endTime = LocalTime.parse(endTime, timeFormatter);
     }
 
     /**

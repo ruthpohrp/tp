@@ -10,13 +10,13 @@ public class TimeSlotTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TimeSlot(null));
+        assertThrows(NullPointerException.class, () -> new TimeSlot(null, null));
     }
 
     @Test
     public void constructor_invalidTime_throwsIllegalArgumentException() {
         String invalidTime = "";
-        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(invalidTime));
+        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(invalidTime, invalidTime));
     }
 
     @Test

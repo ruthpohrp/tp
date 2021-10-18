@@ -18,7 +18,8 @@ public class EventBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_DATE = "2020-01-01";
-    public static final String DEFAULT_TIME = "0800";
+    public static final String DEFAULT_STARTTIME = "0800";
+    public static final String DEFAULT_ENDTIME = "0900";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -33,7 +34,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
-        time = new TimeSlot(DEFAULT_TIME);
+        time = new TimeSlot(DEFAULT_STARTTIME, DEFAULT_ENDTIME);
         address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -85,7 +86,8 @@ public class EventBuilder {
      * Sets the {@code TimeSlot} of the {@code Event} that we are building.
      */
     public EventBuilder withTime(String time) {
-        this.time = new TimeSlot(time);
+        //TODO: edit this method to take in an endtime
+        this.time = new TimeSlot(time, "2359");
         return this;
     }
 

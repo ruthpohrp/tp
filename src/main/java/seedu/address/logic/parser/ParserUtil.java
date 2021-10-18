@@ -92,7 +92,8 @@ public class ParserUtil {
         if (!TimeSlot.isValidTimeSlot(trimmedTime)) {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
-        return new TimeSlot(trimmedTime);
+        // TODO: change second argument to actual end time.
+        return new TimeSlot(trimmedTime, "2359");
     }
 
     /**

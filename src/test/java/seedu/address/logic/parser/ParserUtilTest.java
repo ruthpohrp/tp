@@ -137,14 +137,16 @@ public class ParserUtilTest {
 
     @Test
     public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
-        TimeSlot expectedTime = new TimeSlot(VALID_TIME);
+        //TODO: adjust this endtime
+        TimeSlot expectedTime = new TimeSlot(VALID_TIME, "2359");
         assertEquals(expectedTime, ParserUtil.parseTimeSlot(VALID_TIME));
     }
 
     @Test
     public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
         String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
-        TimeSlot expectedTime = new TimeSlot(VALID_TIME);
+        //TODO: adjust this endtime
+        TimeSlot expectedTime = new TimeSlot(VALID_TIME, "2359");
         assertEquals(expectedTime, ParserUtil.parseTimeSlot(timeWithWhitespace));
     }
 
