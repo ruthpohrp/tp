@@ -27,6 +27,7 @@ public class TimeSlot {
      */
     public TimeSlot(String startTime, String endTime) {
         requireNonNull(startTime);
+        requireNonNull(endTime);
         checkArgument(isValidTimeSlot(startTime, endTime), MESSAGE_CONSTRAINTS);
         this.startTime = LocalTime.parse(startTime, timeFormatter);
         this.endTime = LocalTime.parse(endTime, timeFormatter);
