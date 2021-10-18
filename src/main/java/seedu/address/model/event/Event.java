@@ -18,7 +18,7 @@ public class Event {
     // Identity fields
     private final Name name;
     private final Date date;
-    private final Time time;
+    private final TimeSlot time;
 
     // Data fields
     private final Location location;
@@ -27,7 +27,7 @@ public class Event {
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Date date, Time time, Location location, Set<Tag> tags) {
+    public Event(Name name, Date date, TimeSlot time, Location location, Set<Tag> tags) {
         requireAllNonNull(name, date, time, location, tags);
         this.name = name;
         this.date = date;
@@ -44,7 +44,7 @@ public class Event {
         return date;
     }
 
-    public Time getTime() {
+    public TimeSlot getTime() {
         return time;
     }
 
@@ -107,7 +107,7 @@ public class Event {
         builder.append(getName())
                 .append("; Date: ")
                 .append(getDate())
-                .append("; Time: ")
+                .append("; TimeSlot: ")
                 .append(getTime())
                 .append("; Location: ")
                 .append(getLocation());

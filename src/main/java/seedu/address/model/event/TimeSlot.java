@@ -9,22 +9,23 @@ import java.time.format.DateTimeFormatter;
 
 
 /**
- * Represents an Event's time in the address book.
+ * Represents an Event's timeslot in the schedule.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class Time {
-    public static final String MESSAGE_CONSTRAINTS = "Time should be of the format HHmm e.g 1300. ";
+public class TimeSlot {
+    public static final String MESSAGE_CONSTRAINTS = "TimeSlot should be of the format HHmm e.g 1300. ";
     public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
+    // TODO: should be changed to: "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$-^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" I THINK
 
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
     public final LocalTime time;
 
     /**
-     * Constructs a {@code Time}.
+     * Constructs a {@code TimeSlot}.
      *
      * @param time A valid time for the event.
      */
-    public Time(String time) {
+    public TimeSlot(String time) {
         requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         this.time = LocalTime.parse(time, timeFormatter);
@@ -49,8 +50,8 @@ public class Time {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Time // instanceof handles nulls
-                && time.equals(((Time) other).time)); // state check
+                || (other instanceof TimeSlot // instanceof handles nulls
+                && time.equals(((TimeSlot) other).time)); // state check
     }
 
     @Override

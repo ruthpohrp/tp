@@ -7,7 +7,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -23,7 +23,7 @@ public class EventBuilder {
 
     private Name name;
     private Date date;
-    private Time time;
+    private TimeSlot time;
     private Location address;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
-        time = new Time(DEFAULT_TIME);
+        time = new TimeSlot(DEFAULT_TIME);
         address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -82,10 +82,10 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Time} of the {@code Event} that we are building.
+     * Sets the {@code TimeSlot} of the {@code Event} that we are building.
      */
     public EventBuilder withTime(String time) {
-        this.time = new Time(time);
+        this.time = new TimeSlot(time);
         return this;
     }
 

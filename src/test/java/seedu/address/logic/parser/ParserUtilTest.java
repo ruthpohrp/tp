@@ -17,7 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -137,14 +137,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
-        Time expectedTime = new Time(VALID_TIME);
+        TimeSlot expectedTime = new TimeSlot(VALID_TIME);
         assertEquals(expectedTime, ParserUtil.parseTime(VALID_TIME));
     }
 
     @Test
     public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
         String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
-        Time expectedTime = new Time(VALID_TIME);
+        TimeSlot expectedTime = new TimeSlot(VALID_TIME);
         assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
     }
 

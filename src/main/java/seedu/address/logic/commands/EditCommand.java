@@ -23,7 +23,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -95,7 +95,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
         Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
-        Time updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getTime());
+        TimeSlot updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getTime());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
     public static class EditEventDescriptor {
         private Name name;
         private Date date;
-        private Time time;
+        private TimeSlot time;
         private Location location;
         private Set<Tag> tags;
 
@@ -168,11 +168,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
-        public void setTime(Time time) {
+        public void setTime(TimeSlot time) {
             this.time = time;
         }
 
-        public Optional<Time> getTime() {
+        public Optional<TimeSlot> getTime() {
             return Optional.ofNullable(time);
         }
 

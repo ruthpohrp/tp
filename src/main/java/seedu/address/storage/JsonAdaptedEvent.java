@@ -14,7 +14,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -87,12 +87,12 @@ class JsonAdaptedEvent {
         final Date modelDate = new Date(date);
 
         if (time == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName()));
         }
-        if (!Time.isValidTime(time)) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        if (!TimeSlot.isValidTime(time)) {
+            throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
-        final Time modelTime = new Time(time);
+        final TimeSlot modelTime = new TimeSlot(time);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

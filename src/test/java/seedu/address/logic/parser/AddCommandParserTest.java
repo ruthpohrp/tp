@@ -36,7 +36,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EventBuilder;
 
@@ -119,7 +119,7 @@ public class AddCommandParserTest {
 
         // invalid time
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + INVALID_TIME_DESC + LOCATION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Time.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TimeSlot.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + TIME_DESC_BOB + INVALID_LOCATION_DESC
