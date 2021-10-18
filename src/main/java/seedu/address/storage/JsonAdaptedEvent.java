@@ -55,9 +55,8 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         date = source.getDate().value;
-        startTime = source.getTime().getValue();
-        // TODO: edit this to take an endtime from event after making a getter in Event
-        endTime = "2359";
+        startTime = source.getTimeSlot().getStartTime();
+        endTime = source.getTimeSlot().getEndTime();
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

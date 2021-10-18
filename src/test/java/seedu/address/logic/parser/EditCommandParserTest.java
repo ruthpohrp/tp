@@ -13,17 +13,21 @@ import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -87,7 +91,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid date followed by valid time
-        assertParseFailure(parser, "1" + INVALID_DATE_DESC + TIME_DESC_AMY, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC + TIMESLOT_DESC_AMY, Date.MESSAGE_CONSTRAINTS);
 
         // valid date followed by invalid date. The test case for invalid date followed by valid date
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
@@ -108,10 +112,10 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_EVENT;
         String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + TAG_DESC_HUSBAND
-                + TIME_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + TIMESLOT_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDate(VALID_DATE_BOB).withTime(VALID_TIME_AMY).withLocation(VALID_LOCATION_AMY)
+                .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).withLocation(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -121,10 +125,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_EVENT;
-        String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + TIME_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + TIMESLOT_DESC_AMY;
 
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_BOB)
-                .withTime(VALID_TIME_AMY).build();
+                .withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -146,8 +150,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // time
-        userInput = targetIndex.getOneBased() + TIME_DESC_AMY;
-        descriptor = new EditEventDescriptorBuilder().withTime(VALID_TIME_AMY).build();
+        userInput = targetIndex.getOneBased() + TIMESLOT_DESC_AMY;
+        descriptor = new EditEventDescriptorBuilder().withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -167,13 +171,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_EVENT;
-        String userInput = targetIndex.getOneBased() + DATE_DESC_AMY + LOCATION_DESC_AMY + TIME_DESC_AMY
-                + TAG_DESC_FRIEND + DATE_DESC_AMY + LOCATION_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND
-                + DATE_DESC_BOB + LOCATION_DESC_BOB + TIME_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + DATE_DESC_AMY + LOCATION_DESC_AMY + TIMESLOT_DESC_AMY
+                + TAG_DESC_FRIEND + DATE_DESC_AMY + LOCATION_DESC_AMY + TIMESLOT_DESC_AMY + TAG_DESC_FRIEND
+                + DATE_DESC_BOB + LOCATION_DESC_BOB + TIMESLOT_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder()
                 .withDate(VALID_DATE_BOB)
-                .withTime(VALID_TIME_BOB)
+                .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
                 .withLocation(VALID_LOCATION_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
@@ -193,9 +197,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + TIME_DESC_BOB + INVALID_DATE_DESC + LOCATION_DESC_BOB
+        userInput = targetIndex.getOneBased() + TIMESLOT_DESC_BOB + INVALID_DATE_DESC + LOCATION_DESC_BOB
                 + DATE_DESC_BOB;
-        descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_BOB).withTime(VALID_TIME_BOB)
+        descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
                 .withLocation(VALID_LOCATION_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

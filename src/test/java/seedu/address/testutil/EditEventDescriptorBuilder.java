@@ -35,7 +35,7 @@ public class EditEventDescriptorBuilder {
         descriptor = new EditEventDescriptor();
         descriptor.setName(event.getName());
         descriptor.setDate(event.getDate());
-        descriptor.setTime(event.getTime());
+        descriptor.setTimeSlot(event.getTimeSlot());
         descriptor.setLocation(event.getLocation());
         descriptor.setTags(event.getTags());
     }
@@ -59,9 +59,9 @@ public class EditEventDescriptorBuilder {
     /**
      * Sets the {@code TimeSlot} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditEventDescriptorBuilder withTime(String time) {
+    public EditEventDescriptorBuilder withTimeSlot(String startTime, String endTime) {
         //TODO: change this entire method to take in a endtime too
-        descriptor.setTime(new TimeSlot(time, "2359"));
+        descriptor.setTimeSlot(new TimeSlot(startTime, endTime));
         return this;
     }
 

@@ -24,7 +24,7 @@ public class EventBuilder {
 
     private Name name;
     private Date date;
-    private TimeSlot time;
+    private TimeSlot timeSlot;
     private Location address;
     private Set<Tag> tags;
 
@@ -34,7 +34,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
-        time = new TimeSlot(DEFAULT_STARTTIME, DEFAULT_ENDTIME);
+        timeSlot = new TimeSlot(DEFAULT_STARTTIME, DEFAULT_ENDTIME);
         address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -45,7 +45,7 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         date = eventToCopy.getDate();
-        time = eventToCopy.getTime();
+        timeSlot = eventToCopy.getTimeSlot();
         address = eventToCopy.getLocation();
         tags = new HashSet<>(eventToCopy.getTags());
     }
@@ -85,14 +85,14 @@ public class EventBuilder {
     /**
      * Sets the {@code TimeSlot} of the {@code Event} that we are building.
      */
-    public EventBuilder withTime(String time) {
+    public EventBuilder withTimeSlot(String startTime, String endTime) {
         //TODO: edit this method to take in an endtime
-        this.time = new TimeSlot(time, "2359");
+        this.timeSlot = new TimeSlot(startTime, endTime);
         return this;
     }
 
     public Event build() {
-        return new Event(name, date, time, address, tags);
+        return new Event(name, date, timeSlot, address, tags);
     }
 
 }

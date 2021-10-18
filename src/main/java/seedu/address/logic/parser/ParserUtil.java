@@ -89,16 +89,15 @@ public class ParserUtil {
     public static TimeSlot parseTimeSlot(String timeSlot) throws ParseException {
         requireNonNull(timeSlot);
         String trimmedTime = timeSlot.trim();
-        String[] startTimeAndEndTime;
+        String[] startTimeAndEndTime = trimmedTime.split("-"); // Index 0: startTime; Index 1: endTime;
         try {
-            startTimeAndEndTime = trimmedTime.split("-"); // Index 0: startTime; Index 1: endTime;
+            if (!TimeSlot.isValidTimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1])) {
+                throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+            }
+            return new TimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
-        if (!TimeSlot.isValidTimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1])) {
-            throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
-        }
-        return new TimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1]);
     }
 
     /**

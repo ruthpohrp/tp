@@ -39,12 +39,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TIMESLOT + "TIME] "
+            + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "2020-10-14 "
-            + PREFIX_TIMESLOT + "0800";
+            + PREFIX_TIMESLOT + "0800-0900";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,7 +95,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
         Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
-        TimeSlot updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getTime());
+        TimeSlot updatedTime = editEventDescriptor.getTimeSlot().orElse(eventToEdit.getTimeSlot());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
     public static class EditEventDescriptor {
         private Name name;
         private Date date;
-        private TimeSlot time;
+        private TimeSlot timeSlot;
         private Location location;
         private Set<Tag> tags;
 
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.date);
-            setTime(toCopy.time);
+            setTimeSlot(toCopy.timeSlot);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
         }
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, date, time, location, tags);
+            return CollectionUtil.isAnyNonNull(name, date, timeSlot, location, tags);
         }
 
         public void setName(Name name) {
@@ -168,12 +168,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
-        public void setTime(TimeSlot time) {
-            this.time = time;
+        public void setTimeSlot(TimeSlot timeSlot) {
+            this.timeSlot = timeSlot;
         }
 
-        public Optional<TimeSlot> getTime() {
-            return Optional.ofNullable(time);
+        public Optional<TimeSlot> getTimeSlot() {
+            return Optional.ofNullable(timeSlot);
         }
 
         public void setLocation(Location location) {
@@ -218,7 +218,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDate().equals(e.getDate())
-                    && getTime().equals(e.getTime())
+                    && getTimeSlot().equals(e.getTimeSlot())
                     && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags());
         }
