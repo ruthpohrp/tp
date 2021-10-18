@@ -94,12 +94,10 @@ class JsonAdaptedEvent {
         if (startTime == null || endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName()));
         }
-        //TODO: change this to check if startTime and endTime for a valid TimeSlot
-        if (!TimeSlot.isValidTimeSlot(startTime)) {
+        if (!TimeSlot.isValidTimeSlot(startTime, endTime)) {
             throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
-        //TODO: adjust this endtime after we can save an endtime to the json file
-        final TimeSlot modelTimeSlot = new TimeSlot(startTime, "2359");
+        final TimeSlot modelTimeSlot = new TimeSlot(startTime, endTime);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

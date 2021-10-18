@@ -24,13 +24,15 @@ public class ParserUtilTest {
     private static final String INVALID_DATE = "2020-35-35";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_LOCATION = " ";
-    private static final String INVALID_TIME = "15:15";
+    private static final String INVALID_TIMESLOT = "15:15-16:00";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_DATE = "2020-11-11";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_LOCATION = "123 Main Street #0505";
-    private static final String VALID_TIME = "1515";
+    private static final String VALID_TIMESLOT = "1515-1600";
+    private static final String VALID_TIMESLOT_STARTTIME = "1515";
+    private static final String VALID_TIMESLOT_ENDTIME = "1600";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -132,21 +134,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseTime_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTimeSlot(INVALID_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeSlot(INVALID_TIMESLOT));
     }
 
     @Test
     public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
-        //TODO: adjust this endtime
-        TimeSlot expectedTime = new TimeSlot(VALID_TIME, "2359");
-        assertEquals(expectedTime, ParserUtil.parseTimeSlot(VALID_TIME));
+        TimeSlot expectedTime = new TimeSlot(VALID_TIMESLOT_STARTTIME, VALID_TIMESLOT_ENDTIME);
+        assertEquals(expectedTime, ParserUtil.parseTimeSlot(VALID_TIMESLOT));
     }
 
     @Test
     public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
-        String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
-        //TODO: adjust this endtime
-        TimeSlot expectedTime = new TimeSlot(VALID_TIME, "2359");
+        String timeWithWhitespace = WHITESPACE + VALID_TIMESLOT + WHITESPACE;
+        TimeSlot expectedTime = new TimeSlot(VALID_TIMESLOT_STARTTIME, VALID_TIMESLOT_ENDTIME);
         assertEquals(expectedTime, ParserUtil.parseTimeSlot(timeWithWhitespace));
     }
 
