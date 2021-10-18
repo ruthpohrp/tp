@@ -27,7 +27,8 @@ class JsonAdaptedEvent {
     private final String name;
     private final String date;
     private final String location;
-    private final String time;
+    private final String startTime;
+    private final String endTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,11 +36,13 @@ class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("date") String date,
-                            @JsonProperty("time") String time, @JsonProperty("location") String location,
+                            @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
+                            @JsonProperty("location") String location,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.date = date;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +55,9 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         date = source.getDate().value;
-        time = source.getTime().getValue();
+        startTime = source.getTime().getValue();
+        // TODO: edit this to take an endtime from event after making a getter in Event
+        endTime = "2359";
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -86,14 +91,15 @@ class JsonAdaptedEvent {
         }
         final Date modelDate = new Date(date);
 
-        if (time == null) {
+        if (startTime == null || endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName()));
         }
-        if (!TimeSlot.isValidTimeSlot(time)) {
+        //TODO: change this to check if startTime and endTime for a valid TimeSlot
+        if (!TimeSlot.isValidTimeSlot(startTime)) {
             throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
         //TODO: adjust this endtime after we can save an endtime to the json file
-        final TimeSlot modelTime = new TimeSlot(time, "2359");
+        final TimeSlot modelTimeSlot = new TimeSlot(startTime, "2359");
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -105,7 +111,7 @@ class JsonAdaptedEvent {
         final Location modelAddress = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
-        return new Event(modelName, modelDate, modelTime, modelAddress, modelTags);
+        return new Event(modelName, modelDate, modelTimeSlot, modelAddress, modelTags);
     }
 
 }
