@@ -26,8 +26,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -115,7 +113,8 @@ public class EditCommandParserTest {
                 + TIMESLOT_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).withLocation(VALID_LOCATION_AMY)
+                .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY)
+                .withLocation(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -199,7 +198,8 @@ public class EditCommandParserTest {
         // other valid values specified
         userInput = targetIndex.getOneBased() + TIMESLOT_DESC_BOB + INVALID_DATE_DESC + LOCATION_DESC_BOB
                 + DATE_DESC_BOB;
-        descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
+        descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_BOB)
+                .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
                 .withLocation(VALID_LOCATION_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

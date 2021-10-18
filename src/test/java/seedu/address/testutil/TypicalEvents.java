@@ -52,9 +52,11 @@ public class TypicalEvents {
 
     // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event AMY = new EventBuilder().withName(VALID_NAME_AMY).withDate(VALID_DATE_AMY)
-            .withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).withLocation(VALID_LOCATION_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
     public static final Event BOB = new EventBuilder().withName(VALID_NAME_BOB).withDate(VALID_DATE_BOB)
-            .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB).withLocation(VALID_LOCATION_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

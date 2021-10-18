@@ -67,10 +67,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditEventDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDate(VALID_DATE_AMY).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).withLocation(VALID_LOCATION_AMY)
+                .withDate(VALID_DATE_AMY).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY)
+                .withLocation(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditEventDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB).withLocation(VALID_LOCATION_BOB)
+                .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
+                .withLocation(VALID_LOCATION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

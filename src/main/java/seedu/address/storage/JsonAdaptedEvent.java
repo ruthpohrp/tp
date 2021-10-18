@@ -91,7 +91,8 @@ class JsonAdaptedEvent {
         final Date modelDate = new Date(date);
 
         if (startTime == null || endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeSlot.class.getSimpleName()));
         }
         if (!TimeSlot.isValidTimeSlot(startTime, endTime)) {
             throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);

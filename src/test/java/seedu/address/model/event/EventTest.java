@@ -33,7 +33,8 @@ public class EventTest {
         assertFalse(ALICE.isSameEvent(null));
 
         // same name, all other attributes different -> returns true
-        Event editedAlice = new EventBuilder(ALICE).withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
+        Event editedAlice = new EventBuilder(ALICE).withDate(VALID_DATE_BOB)
+                .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
                 .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameEvent(editedAlice));
 
