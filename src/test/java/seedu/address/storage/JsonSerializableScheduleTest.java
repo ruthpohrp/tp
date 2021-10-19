@@ -18,7 +18,6 @@ public class JsonSerializableScheduleTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableScheduleTest");
     private static final Path TYPICAL_EVENTS_FILE = TEST_DATA_FOLDER.resolve("typicalEventSchedule.json");
     private static final Path INVALID_EVENT_FILE = TEST_DATA_FOLDER.resolve("invalidEventSchedule.json");
-    private static final Path DUPLICATE_EVENT_FILE = TEST_DATA_FOLDER.resolve("duplicateEventSchedule.json");
 
     @Test
     public void toModelType_typicalEventsFile_success() throws Exception {
@@ -34,14 +33,6 @@ public class JsonSerializableScheduleTest {
         JsonSerializableSchedule dataFromFile = JsonUtil.readJsonFile(INVALID_EVENT_FILE,
                 JsonSerializableSchedule.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
-    }
-
-    @Test
-    public void toModelType_duplicateEvents_throwsIllegalValueException() throws Exception {
-        JsonSerializableSchedule dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EVENT_FILE,
-                JsonSerializableSchedule.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableSchedule.MESSAGE_DUPLICATE_EVENT,
-                dataFromFile::toModelType);
     }
 
 }
