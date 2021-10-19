@@ -35,6 +35,16 @@ public class Date {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Compares this Date instance with another Date instance.
+     *
+     * @param other other Date to compare to.
+     * @return a positive integer if this date is chronologically before other date.
+     */
+    public int compareTo(Date other) {
+        return date.compareTo(other.date);
+    }
+
     @Override
     public String toString() {
         return date.toString();

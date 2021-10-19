@@ -29,9 +29,7 @@ public class SortedEventList implements Iterable<Event> {
     private class EventSorter implements Comparator<Event> {
         @Override
         public int compare(Event o1, Event o2) {
-            LocalDate date1 = o1.getDate().date;
-            LocalDate date2 = o2.getDate().date;
-            return date1.compareTo(date2);
+            return o1.compareTo(o2);
         }
     }
 

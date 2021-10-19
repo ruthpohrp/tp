@@ -73,6 +73,15 @@ public class Event {
                 && otherEvent.getName().equals(getName());
     }
 
+    public int compareTo(Event other) {
+        int compareDate = date.compareTo(other.date);
+        if (compareDate != 0) {
+            return compareDate;
+        } else {
+            return timeSlot.compareTo(other.timeSlot);
+        }
+    }
+
     /**
      * Returns true if both events have the same identity and data fields.
      * This defines a stronger notion of equality between two events.
