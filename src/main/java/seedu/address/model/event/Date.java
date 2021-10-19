@@ -39,7 +39,8 @@ public class Date {
      * Compares this Date instance with another Date instance.
      *
      * @param other other Date to compare to.
-     * @return a positive integer if this date is chronologically before other date.
+     * @return a positive integer if this Date is earlier than the other, a negative integer if this Date
+     * is later than the other and zero if the 2 Dates share the same date.
      */
     public int compareTo(Date other) {
         return date.compareTo(other.date);

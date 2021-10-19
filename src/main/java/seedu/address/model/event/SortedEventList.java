@@ -13,15 +13,11 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
- * A list of events that enforces uniqueness between its elements and does not allow nulls.
- * An event is considered unique by comparing using {@code Event#isSameEvent(Event)}. As such, adding and updating of
- * events uses Event#isSameEvent(Event) for equality so as to ensure that the event being added or updated is
- * unique in terms of identity in the UniqueEventList. However, the removal of an event uses Event#equals(Object) so
- * as to ensure that the event with exactly the same fields will be removed.
+ * A list of events is sorted chronologically and does not allow nulls.
+ * Duplicate Events are allowed in this Event list to accomodate repeated events with same person.
  *
  * Supports a minimal set of list operations.
  *
- * @see Event#isSameEvent(Event)
  */
 public class SortedEventList implements Iterable<Event> {
     private class EventSorter implements Comparator<Event> {
@@ -46,7 +42,6 @@ public class SortedEventList implements Iterable<Event> {
 
     /**
      * Adds an event to the list.
-     * The event must not already exist in the list.
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
@@ -67,7 +62,6 @@ public class SortedEventList implements Iterable<Event> {
     /**
      * Replaces the event {@code target} in the list with {@code editedEvent}.
      * {@code target} must exist in the list.
-     * The event identity of {@code editedEvent} must not be the same as another existing event in the list.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
@@ -87,11 +81,9 @@ public class SortedEventList implements Iterable<Event> {
 
     /**
      * Replaces the contents of this list with {@code events}.
-     * {@code events} must not contain duplicate events.
      */
     public void setEvent(List<Event> events) {
         requireAllNonNull(events);
-
         internalList.setAll(events);
     }
 

@@ -73,6 +73,14 @@ public class Event {
                 && otherEvent.getName().equals(getName());
     }
 
+    /**
+     * Compares this Event instance with another Event instance.
+     *
+     * @param other other Event to compare to.
+     * @return a positive integer if this Event's Date and timeSlot is chronologically before other Event,
+     * a negative integer if this Event's Date and timeSlot is chronologically after other Event,
+     * zero if both Events are on the same date and start at the same time.
+     */
     public int compareTo(Event other) {
         int compareDate = date.compareTo(other.date);
         if (compareDate != 0) {

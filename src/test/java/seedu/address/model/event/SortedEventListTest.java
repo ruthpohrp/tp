@@ -47,24 +47,24 @@ public class SortedEventListTest {
 
     @Test
     public void sortEventByTimeSlot() {
-        Event CARL_SAME_DATE = new EventBuilder(CARL).withDate("2020-01-01").build();
-        sortedEventList.add(CARL_SAME_DATE);
+        Event sameDateCarl = new EventBuilder(CARL).withDate("2020-01-01").build();
+        sortedEventList.add(sameDateCarl);
         sortedEventList.add(ALICE);
         SortedEventList expectedSortedEventList = new SortedEventList();
         expectedSortedEventList.add(ALICE);
-        expectedSortedEventList.add(CARL_SAME_DATE);
+        expectedSortedEventList.add(sameDateCarl);
         assertEquals(expectedSortedEventList, sortedEventList);
     }
 
     @Test
     public void sortEventByTimeSlotDate() {
-        Event CARL_SAME_DATE = new EventBuilder(CARL).withDate("2020-01-01").build();
+        Event sameDateCarl = new EventBuilder(CARL).withDate("2020-01-01").build();
         sortedEventList.add(ALICE);
-        sortedEventList.add(CARL_SAME_DATE);
+        sortedEventList.add(sameDateCarl);
         Event editedAlice = new EventBuilder(ALICE).withTimeSlot("1200", "1230").build();
         sortedEventList.setEvent(ALICE, editedAlice);
         SortedEventList expectedSortedEventList = new SortedEventList();
-        expectedSortedEventList.add(CARL_SAME_DATE);
+        expectedSortedEventList.add(sameDateCarl);
         expectedSortedEventList.add(editedAlice);
         assertEquals(expectedSortedEventList, sortedEventList);
     }
@@ -192,6 +192,6 @@ public class SortedEventListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> sortedEventList.asUnmodifiableObservableList().remove(0));
+            -> sortedEventList.asUnmodifiableObservableList().remove(0));
     }
 }
