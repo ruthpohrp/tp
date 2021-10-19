@@ -36,10 +36,4 @@ public class AddCommandIntegrationTest {
                 String.format(AddCommand.MESSAGE_SUCCESS, validEvent), expectedModel);
     }
 
-    @Test
-    public void execute_duplicateEvent_throwsCommandException() {
-        Event eventInList = model.getSchedule().getEventList().get(0);
-        assertCommandFailure(new AddCommand(eventInList), model, AddCommand.MESSAGE_DUPLICATE_EVENT);
-    }
-
 }

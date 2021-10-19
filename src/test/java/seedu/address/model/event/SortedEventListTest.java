@@ -9,14 +9,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE;
 import static seedu.address.testutil.TypicalEvents.BENSON;
 import static seedu.address.testutil.TypicalEvents.BOB;
+import static seedu.address.testutil.TypicalEvents.CARL;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.testutil.EventBuilder;
 
@@ -42,6 +41,30 @@ public class SortedEventListTest {
         sortedEventList.setEvent(ALICE, editedAlice);
         SortedEventList expectedSortedEventList = new SortedEventList();
         expectedSortedEventList.add(BENSON);
+        expectedSortedEventList.add(editedAlice);
+        assertEquals(expectedSortedEventList, sortedEventList);
+    }
+
+    @Test
+    public void sortEventByTimeSlot() {
+        Event CARL_SAME_DATE = new EventBuilder(CARL).withDate("2020-01-01").build();
+        sortedEventList.add(CARL_SAME_DATE);
+        sortedEventList.add(ALICE);
+        SortedEventList expectedSortedEventList = new SortedEventList();
+        expectedSortedEventList.add(ALICE);
+        expectedSortedEventList.add(CARL_SAME_DATE);
+        assertEquals(expectedSortedEventList, sortedEventList);
+    }
+
+    @Test
+    public void sortEventByTimeSlotDate() {
+        Event CARL_SAME_DATE = new EventBuilder(CARL).withDate("2020-01-01").build();
+        sortedEventList.add(ALICE);
+        sortedEventList.add(CARL_SAME_DATE);
+        Event editedAlice = new EventBuilder(ALICE).withTimeSlot("1200", "1230").build();
+        sortedEventList.setEvent(ALICE, editedAlice);
+        SortedEventList expectedSortedEventList = new SortedEventList();
+        expectedSortedEventList.add(CARL_SAME_DATE);
         expectedSortedEventList.add(editedAlice);
         assertEquals(expectedSortedEventList, sortedEventList);
     }
@@ -73,12 +96,6 @@ public class SortedEventListTest {
     @Test
     public void add_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> sortedEventList.add(null));
-    }
-
-    @Test
-    public void add_duplicateEvent_throwsDuplicateEventException() {
-        sortedEventList.add(ALICE);
-        assertThrows(DuplicateEventException.class, () -> sortedEventList.add(ALICE));
     }
 
     @Test
@@ -126,13 +143,6 @@ public class SortedEventListTest {
     }
 
     @Test
-    public void setEvent_editedEventHasNonUniqueIdentity_throwsDuplicateEventException() {
-        sortedEventList.add(ALICE);
-        sortedEventList.add(BOB);
-        assertThrows(DuplicateEventException.class, () -> sortedEventList.setEvent(ALICE, BOB));
-    }
-
-    @Test
     public void remove_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> sortedEventList.remove(null));
     }
@@ -177,12 +187,6 @@ public class SortedEventListTest {
         SortedEventList expectedSortedEventList = new SortedEventList();
         expectedSortedEventList.add(BOB);
         assertEquals(expectedSortedEventList, sortedEventList);
-    }
-
-    @Test
-    public void setEvent_listWithDuplicateEvents_throwsDuplicateEventException() {
-        List<Event> listWithDuplicateEvents = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateEventException.class, () -> sortedEventList.setEvent(listWithDuplicateEvents));
     }
 
     @Test

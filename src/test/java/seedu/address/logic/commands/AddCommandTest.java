@@ -42,15 +42,6 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicateEvent_throwsCommandException() {
-        Event validEvent = new EventBuilder().build();
-        AddCommand addCommand = new AddCommand(validEvent);
-        ModelStub modelStub = new ModelStubWithEvent(validEvent);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EVENT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
     public void equals() {
         Event alice = new EventBuilder().withName("Alice").build();
         Event bob = new EventBuilder().withName("Bob").build();

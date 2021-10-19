@@ -3,7 +3,6 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
@@ -52,9 +50,6 @@ public class SortedEventList implements Iterable<Event> {
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateEventException();
-        }
         internalList.add(toAdd);
     }
 
@@ -82,10 +77,6 @@ public class SortedEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
-            throw new DuplicateEventException();
-        }
-
         internalList.set(index, editedEvent);
     }
 
@@ -100,9 +91,6 @@ public class SortedEventList implements Iterable<Event> {
      */
     public void setEvent(List<Event> events) {
         requireAllNonNull(events);
-        if (!eventsAreUnique(events)) {
-            throw new DuplicateEventException();
-        }
 
         internalList.setAll(events);
     }
@@ -129,19 +117,5 @@ public class SortedEventList implements Iterable<Event> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code events} contains only unique events.
-     */
-    private boolean eventsAreUnique(List<Event> events) {
-        for (int i = 0; i < events.size() - 1; i++) {
-            for (int j = i + 1; j < events.size(); j++) {
-                if (events.get(i).isSameEvent(events.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

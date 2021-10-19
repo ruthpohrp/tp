@@ -9,17 +9,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE;
 import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.testutil.EventBuilder;
 
 public class ScheduleTest {
@@ -41,17 +38,6 @@ public class ScheduleTest {
         Schedule newData = getTypicalSchedule();
         schedule.resetData(newData);
         assertEquals(newData, schedule);
-    }
-
-    @Test
-    public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
-        // Two events with the same identity fields
-        Event editedAlice = new EventBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Event> newEvents = Arrays.asList(ALICE, editedAlice);
-        ScheduleStub newData = new ScheduleStub(newEvents);
-
-        assertThrows(DuplicateEventException.class, () -> schedule.resetData(newData));
     }
 
     @Test
