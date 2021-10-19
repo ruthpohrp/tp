@@ -70,6 +70,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match date, time and location, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "1500", "Main", "Street"));
         assertFalse(predicate.test(new EventBuilder().withName("Alice").withDate("2020-01-01")
-                .withTime("1500").withLocation("Main Street").build()));
+                .withTimeSlot("1500", "1600").withLocation("Main Street").build()));
     }
 }

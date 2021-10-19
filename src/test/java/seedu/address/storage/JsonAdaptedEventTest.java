@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_DATE = "2020";
@@ -26,7 +26,8 @@ public class JsonAdaptedEventTest {
 
     private static final String VALID_DATE = BENSON.getDate().toString();
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_TIME = BENSON.getTime().toString();
+    private static final String VALID_STARTTIME = BENSON.getTimeSlot().getStartTime();
+    private static final String VALID_ENDTIME = BENSON.getTimeSlot().getEndTime();
     private static final String VALID_ADDRESS = BENSON.getLocation().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -41,14 +42,16 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedEvent event =
-                new JsonAdaptedEvent(INVALID_NAME, VALID_DATE, VALID_TIME, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedEvent(INVALID_NAME, VALID_DATE, VALID_STARTTIME, VALID_ENDTIME, VALID_ADDRESS,
+                        VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(null, VALID_DATE, VALID_TIME, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(null, VALID_DATE, VALID_STARTTIME, VALID_ENDTIME,
+                VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
@@ -56,44 +59,65 @@ public class JsonAdaptedEventTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedEvent event =
-                new JsonAdaptedEvent(VALID_NAME, INVALID_DATE, VALID_TIME, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedEvent(VALID_NAME, INVALID_DATE, VALID_STARTTIME, VALID_ENDTIME, VALID_ADDRESS,
+                        VALID_TAGS);
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, null, VALID_TIME, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, null, VALID_STARTTIME, VALID_ENDTIME,
+                VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
-    public void toModelType_invalidTime_throwsIllegalValueException() {
+    public void toModelType_invalidStartTime_throwsIllegalValueException() {
         JsonAdaptedEvent event =
-                new JsonAdaptedEvent(VALID_NAME, VALID_DATE, INVALID_TIME, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Time.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedEvent(VALID_NAME, VALID_DATE, INVALID_TIME, VALID_ENDTIME, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = TimeSlot.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
-    public void toModelType_nullTime_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_DATE, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
+    public void toModelType_invalidEndTime_throwsIllegalValueException() {
+        JsonAdaptedEvent event =
+                new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_STARTTIME, INVALID_TIME, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = TimeSlot.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullStartTime_throwsIllegalValueException() {
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_DATE, null, VALID_ENDTIME,
+                VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullEndTime_throwsIllegalValueException() {
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_STARTTIME, null,
+                VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeSlot.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedEvent event =
-                new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_TIME, INVALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_STARTTIME, VALID_ENDTIME, INVALID_ADDRESS,
+                        VALID_TAGS);
         String expectedMessage = Location.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_TIME, null, VALID_TAGS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_STARTTIME, VALID_ENDTIME,
+                null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
@@ -103,7 +127,8 @@ public class JsonAdaptedEventTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedEvent event =
-                new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_TIME, VALID_ADDRESS, invalidTags);
+                new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_STARTTIME, VALID_ENDTIME, VALID_ADDRESS,
+                        invalidTags);
         assertThrows(IllegalValueException.class, event::toModelType);
     }
 
