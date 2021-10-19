@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.SortedEventList;
 import seedu.address.model.event.UniqueEventList;
 
 /**
@@ -14,7 +15,7 @@ import seedu.address.model.event.UniqueEventList;
  */
 public class Schedule implements ReadOnlySchedule {
 
-    private final UniqueEventList events;
+    private final SortedEventList events;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +25,7 @@ public class Schedule implements ReadOnlySchedule {
      *   among constructors.
      */
     {
-        events = new UniqueEventList();
+        events = new SortedEventList();
     }
 
     public Schedule() {}
