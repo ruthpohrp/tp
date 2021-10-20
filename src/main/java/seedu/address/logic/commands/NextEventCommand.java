@@ -16,7 +16,7 @@ public class NextEventCommand extends Command {
 
     public static final String COMMAND_WORD = "next_event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Displays the next event scheduled for the day\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the next event scheduled for the day\n"
             + "Example: " + COMMAND_WORD;
 
     private final EventContainsCurrentTimePredicate timePredicate;
