@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
@@ -34,12 +33,6 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(new AddCommand(validEvent), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validEvent), expectedModel);
-    }
-
-    @Test
-    public void execute_duplicateEvent_throwsCommandException() {
-        Event eventInList = model.getSchedule().getEventList().get(0);
-        assertCommandFailure(new AddCommand(eventInList), model, AddCommand.MESSAGE_DUPLICATE_EVENT);
     }
 
 }
