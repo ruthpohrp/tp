@@ -40,6 +40,8 @@ public class EventCard extends UiPart<Region> {
     private Label timeSlot;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label remark;
 
     private String value = timeSlot.toString();
     /**
@@ -53,6 +55,7 @@ public class EventCard extends UiPart<Region> {
         date.setText(event.getDate().value);
         loc.setText(event.getLocation().value);
         timeSlot.setText(event.getTimeSlot().toString());
+        remark.setText(event.getRemark().value);
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

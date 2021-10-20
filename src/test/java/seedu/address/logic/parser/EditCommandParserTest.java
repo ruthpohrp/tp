@@ -11,6 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_AMY;
@@ -22,6 +24,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -110,12 +114,13 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_EVENT;
         String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + TAG_DESC_HUSBAND
-                + TIMESLOT_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + TIMESLOT_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + REMARK_DESC_AMY;
 
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY)
                 .withLocation(VALID_LOCATION_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withLocation(VALID_REMARK_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -165,6 +170,12 @@ public class EditCommandParserTest {
         descriptor = new EditEventDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // remark
+        userInput = targetIndex.getOneBased() + REMARK_DESC_AMY;
+        descriptor = new EditEventDescriptorBuilder().withLocation(VALID_REMARK_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -172,13 +183,15 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_EVENT;
         String userInput = targetIndex.getOneBased() + DATE_DESC_AMY + LOCATION_DESC_AMY + TIMESLOT_DESC_AMY
                 + TAG_DESC_FRIEND + DATE_DESC_AMY + LOCATION_DESC_AMY + TIMESLOT_DESC_AMY + TAG_DESC_FRIEND
-                + DATE_DESC_BOB + LOCATION_DESC_BOB + TIMESLOT_DESC_BOB + TAG_DESC_HUSBAND;
+                + REMARK_DESC_AMY + DATE_DESC_BOB + LOCATION_DESC_BOB + TIMESLOT_DESC_BOB + TAG_DESC_HUSBAND
+                + REMARK_DESC_BOB;
 
         EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder()
                 .withDate(VALID_DATE_BOB)
                 .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
                 .withLocation(VALID_LOCATION_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withRemark(VALID_REMARK_BOB)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

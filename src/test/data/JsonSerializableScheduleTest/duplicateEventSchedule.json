@@ -5,12 +5,14 @@
     "startTime": "0800",
     "endTime" : "0900",
     "location": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "remark": "This is a remark."
   }, {
     "name": "Alice Pauline",
     "date": "2020-01-01",
     "startTime": "0830",
     "endTime" : "0930",
-    "location": "4th street"
+    "location": "4th street",
+    "remark": "This is a remark."
   } ]
 }

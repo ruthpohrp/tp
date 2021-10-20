@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents an Event in the address book.
+ * Represents an Event in the schedule.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event {
@@ -23,17 +23,19 @@ public class Event {
     // Data fields
     private final Location location;
     private final Set<Tag> tags = new HashSet<>();
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Date date, TimeSlot timeSlot, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, date, timeSlot, location, tags);
+    public Event(Name name, Date date, TimeSlot timeSlot, Location location, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, date, timeSlot, location, tags, remark);
         this.name = name;
         this.date = date;
         this.timeSlot = timeSlot;
         this.location = location;
         this.tags.addAll(tags);
+        this.remark = remark;
     }
 
     public Name getName() {
@@ -50,6 +52,10 @@ public class Event {
 
     public Location getLocation() {
         return location;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -92,13 +98,15 @@ public class Event {
                 && otherEvent.getDate().equals(getDate())
                 && otherEvent.getTimeSlot().equals(getTimeSlot())
                 && otherEvent.getLocation().equals(getLocation())
-                && otherEvent.getTags().equals(getTags());
+                && otherEvent.getTags().equals(getTags())
+                && otherEvent.getTags().equals(getRemark());
+
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, timeSlot, location, tags);
+        return Objects.hash(name, date, timeSlot, location, tags, remark);
     }
 
     @Override
@@ -117,6 +125,12 @@ public class Event {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        if (!tags.isEmpty()) {
+            builder.append("; Remark: ")
+            .append(getRemark());
+        }
+
         return builder.toString();
     }
 

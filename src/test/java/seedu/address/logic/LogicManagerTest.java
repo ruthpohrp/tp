@@ -3,10 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.AMY;
 
@@ -80,7 +77,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + DATE_DESC_AMY + TIMESLOT_DESC_AMY
-                + LOCATION_DESC_AMY;
+                + LOCATION_DESC_AMY + REMARK_DESC_AMY;
         Event expectedEvent = new EventBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEvent(expectedEvent);

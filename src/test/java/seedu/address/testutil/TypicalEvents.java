@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -28,11 +30,13 @@ public class TypicalEvents {
     public static final Event ALICE = new EventBuilder().withName("Alice Pauline")
             .withLocation("123, Jurong West Ave 6, #08-111").withTimeSlot("0800", "0900")
             .withDate("2020-01-01")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withRemark("A nice girl.").build();
     public static final Event BENSON = new EventBuilder().withName("Benson Meier")
             .withLocation("311, Clementi Ave 2, #02-25")
             .withTimeSlot("0830", "0930").withDate("2020-01-02")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withRemark("A weird boy.").build();
     public static final Event CARL = new EventBuilder().withName("Carl Kurz").withDate("2020-01-03")
             .withTimeSlot("0930", "1030").withLocation("wall street").build();
     public static final Event DANIEL = new EventBuilder().withName("Daniel Meier").withDate("2020-01-04")
@@ -53,10 +57,10 @@ public class TypicalEvents {
     // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event AMY = new EventBuilder().withName(VALID_NAME_AMY).withDate(VALID_DATE_AMY)
             .withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY).withLocation(VALID_LOCATION_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_FRIEND).withRemark(VALID_REMARK_AMY).build();
     public static final Event BOB = new EventBuilder().withName(VALID_NAME_BOB).withDate(VALID_DATE_BOB)
             .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB).withLocation(VALID_LOCATION_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRemark(VALID_REMARK_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
