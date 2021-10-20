@@ -192,22 +192,27 @@ The `NextEventCommand` class has one field timePredicate of type EventContainsCu
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
+
 ### Remark feature - Ruth
+
+#### Description
+
+The remark feature is an optional description added to `Event`. It adds a remark to the
+consultation event, and is stored internally as a `Remark` in `seedu.address.model.event.Event`.
 
 #### Implementation
 
-The remark feature is an optional description added to `Event`. It adds a remark to the
-consultation event, stored internally as a `Remark` in `Event`.
+The `Remark` class has one field `value` of type String.
 
-There are two ways the remark is implemented:
-* `AddCommand#remark()` — Adds a new `Event` to the list with a remark description attached to it.
-* `EditCommand#remark` — Edits the remark description of an existing `Event` on the list.
+Unlike the other Objects in `Event`, all `Remark` inputs are valid, and hence do not need to check for Validity, unless the input is `null`.
 
-Given below is an example usage scenario and how the remark feature behaves at each step.
+There are two ways the remark can be added to an `Event`:
+* `AddCommand(Event)` method  — Adds a new `Event` to the list (now with an optional remark description attached to it).
+* `EditCommand(Event)` method — Edits the remark description of an existing `Event` on the list.
 
-Step 1. The user launches the application.
+As a Remark is an optional input, if user does not input any remarks when adding a new event, the Remark will simply be stored as an empty String `””` in `Remark` in `Event` as default.
 
-Step 2. The user executes `add n/Lulu Yousef d/2020-01-01 t/0800 l/NUS r/Wants to go through Tutorial 4.`
+To display the remark in the GUI, a new `Label` called `remark` is added to `EventCard` as well as `EventListCard.fxml`.
 
 ### \[Proposed\] Undo/redo feature
 
