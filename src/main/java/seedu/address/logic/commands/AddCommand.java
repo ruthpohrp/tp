@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
@@ -12,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Adds an event to the address book.
+ * Adds an event to the schedule.
  */
 public class AddCommand extends Command {
 
@@ -24,17 +25,19 @@ public class AddCommand extends Command {
             + PREFIX_DATE + "DATE "
             + PREFIX_TIMESLOT + "TIMESLOT "
             + PREFIX_LOCATION + "LOCATION "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Jacob Ng "
             + PREFIX_DATE + "2020-10-13 "
             + PREFIX_TIMESLOT + "1300-1400 "
             + PREFIX_LOCATION + "The Deck "
             + PREFIX_TAG + "CS1231S "
-            + PREFIX_TAG + "URGENT";
+            + PREFIX_TAG + "URGENT "
+            + PREFIX_REMARK + "Wants to review Tutorial 4";
+
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the schedule";
 
     private final Event toAdd;
 
@@ -49,10 +52,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasEvent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
-        }
 
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

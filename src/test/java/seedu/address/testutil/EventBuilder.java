@@ -7,6 +7,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
+import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -27,6 +28,7 @@ public class EventBuilder {
     private TimeSlot timeSlot;
     private Location address;
     private Set<Tag> tags;
+    private Remark remark;
 
     /**
      * Creates a {@code EventBuilder} with the default details.
@@ -37,6 +39,7 @@ public class EventBuilder {
         timeSlot = new TimeSlot(DEFAULT_STARTTIME, DEFAULT_ENDTIME);
         address = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        remark = new Remark("");
     }
 
     /**
@@ -48,6 +51,7 @@ public class EventBuilder {
         timeSlot = eventToCopy.getTimeSlot();
         address = eventToCopy.getLocation();
         tags = new HashSet<>(eventToCopy.getTags());
+        remark = eventToCopy.getRemark();
     }
 
     /**
@@ -90,8 +94,16 @@ public class EventBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Event} that we are building.
+     */
+    public EventBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Event build() {
-        return new Event(name, date, timeSlot, address, tags);
+        return new Event(name, date, timeSlot, address, tags, remark);
     }
 
 }

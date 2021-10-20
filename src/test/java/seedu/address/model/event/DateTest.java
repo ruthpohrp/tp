@@ -36,4 +36,13 @@ public class DateTest {
         assertTrue(Date.isValidDate("2020-01-01"));
         assertTrue(Date.isValidDate("2024-02-29")); // leap year
     }
+
+    @Test
+    public void compareTo() {
+        Date earlierDate = new Date("2020-01-01");
+        Date sameAsEarlierDate = new Date("2020-01-01");
+        Date laterDate = new Date("2020-01-02");
+        assertTrue(earlierDate.compareTo(laterDate) < 0);
+        assertTrue(earlierDate.compareTo(sameAsEarlierDate) == 0);
+    }
 }
