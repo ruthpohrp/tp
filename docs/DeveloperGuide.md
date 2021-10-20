@@ -169,6 +169,30 @@ The `internalUnmodifiableList` is a `SortedList` that wraps around the `internal
 
 The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that `Schedule` uses as a field to store events. This ObservableList will have its Events sorted chronologically.
 
+### UpcomingEventsCommand - Lulu
+#### Description
+The `UpcomingEventCommand` class is a command that lists all the events scheduled for the current day.
+
+#### Implementation
+The `UpcomingEventsCommand` class has one field `datePredicate` of type `EventContainsTodaysDatePredicate`.
+
+`EventContainsTodaysDatePredicate` is  a class that checks whether an event's date matches today's date.
+
+The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered event list that is filtered by the `datePredicate`.
+
+### NextEventCommand - Lulu
+#### Description
+The `NextEventCommand` class is a command that displays the next event based on the current time in the schedule.
+
+#### Implementation
+The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
+
+`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot is after the current time.
+
+The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
+Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
+
+
 ### Remark feature - Ruth
 
 #### Description
