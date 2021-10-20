@@ -10,6 +10,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
+import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
@@ -38,6 +39,7 @@ public class EditEventDescriptorBuilder {
         descriptor.setTimeSlot(event.getTimeSlot());
         descriptor.setLocation(event.getLocation());
         descriptor.setTags(event.getTags());
+        descriptor.setRemark(event.getRemark());
     }
 
     /**
@@ -79,6 +81,14 @@ public class EditEventDescriptorBuilder {
     public EditEventDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code EditEventDescriptor} that we are building.
+     */
+    public EditEventDescriptorBuilder withRemark(String remark) {
+        descriptor.setRemark(new Remark(remark));
         return this;
     }
 
