@@ -18,7 +18,7 @@ public class Event {
     // Identity fields
     private final Name name;
     private final Date date;
-    private final Time time;
+    private final TimeSlot timeSlot;
 
     // Data fields
     private final Location location;
@@ -27,11 +27,11 @@ public class Event {
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, Date date, Time time, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, date, time, location, tags);
+    public Event(Name name, Date date, TimeSlot timeSlot, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, date, timeSlot, location, tags);
         this.name = name;
         this.date = date;
-        this.time = time;
+        this.timeSlot = timeSlot;
         this.location = location;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Event {
         return date;
     }
 
-    public Time getTime() {
-        return time;
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
     }
 
     public Location getLocation() {
@@ -90,7 +90,7 @@ public class Event {
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
                 && otherEvent.getDate().equals(getDate())
-                && otherEvent.getTime().equals(getTime())
+                && otherEvent.getTimeSlot().equals(getTimeSlot())
                 && otherEvent.getLocation().equals(getLocation())
                 && otherEvent.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Event {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, time, location, tags);
+        return Objects.hash(name, date, timeSlot, location, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Event {
         builder.append(getName())
                 .append("; Date: ")
                 .append(getDate())
-                .append("; Time: ")
-                .append(getTime())
+                .append("; TimeSlot: ")
+                .append(getTimeSlot())
                 .append("; Location: ")
                 .append(getLocation());
 

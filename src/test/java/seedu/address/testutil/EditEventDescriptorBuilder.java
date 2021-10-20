@@ -10,7 +10,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,7 +35,7 @@ public class EditEventDescriptorBuilder {
         descriptor = new EditEventDescriptor();
         descriptor.setName(event.getName());
         descriptor.setDate(event.getDate());
-        descriptor.setTime(event.getTime());
+        descriptor.setTimeSlot(event.getTimeSlot());
         descriptor.setLocation(event.getLocation());
         descriptor.setTags(event.getTags());
     }
@@ -57,10 +57,10 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Time} of the {@code EditEventDescriptor} that we are building.
+     * Sets the {@code TimeSlot} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditEventDescriptorBuilder withTime(String time) {
-        descriptor.setTime(new Time(time));
+    public EditEventDescriptorBuilder withTimeSlot(String startTime, String endTime) {
+        descriptor.setTimeSlot(new TimeSlot(startTime, endTime));
         return this;
     }
 

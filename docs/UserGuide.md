@@ -163,5 +163,6 @@ need to save manually.
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
 that contains the data of your previous DukePro(f) home folder.
 
-**Q**: The dukeprof.jar isn’t opening when I double-click it.<br>
+<!-- **Q**: The dukeprof.jar isn’t opening when I double-click it.<br>
 **A**: Try manually opening the dukeprof.jar on the command terminal using the command -java dukeprof.jar.
+-->

@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,18 +81,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String time} into an {@code Time}.
+     * Parses a {@code String timeSlot} into an {@code TimeSlot}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code time} is invalid.
+     * @throws ParseException if the given {@code timeSlot} is invalid.
      */
-    public static Time parseTime(String time) throws ParseException {
-        requireNonNull(time);
-        String trimmedTime = time.trim();
-        if (!Time.isValidTime(trimmedTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+    public static TimeSlot parseTimeSlot(String timeSlot) throws ParseException {
+        requireNonNull(timeSlot);
+        String trimmedTimeSlot = timeSlot.trim();
+        String[] startTimeAndEndTime = trimmedTimeSlot.split("-"); // Index 0: startTime; Index 1: endTime;
+        try {
+            if (!TimeSlot.isValidTimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1])) {
+                throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+            }
+            return new TimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
-        return new Time(trimmedTime);
     }
 
     /**

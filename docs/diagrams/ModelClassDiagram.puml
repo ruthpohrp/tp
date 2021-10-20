@@ -19,7 +19,7 @@ Class ReadOnlyUserPrefs
 Class UniqueEventList
 Class Event
 Class Location
-Class Email
+Class Time
 Class Name
 Class Date
 Class Tag
@@ -42,13 +42,13 @@ Schedule *--> "1" UniqueEventList
 UniqueEventList --> "~* all" Event
 Event *--> Name
 Event *--> Date
-Event *--> Email
+Event *--> Time
 Event *--> Location
 Event *--> "*" Tag
 
 Name -[hidden]right-> Date
 Date -[hidden]right-> Location
-Location -[hidden]right-> Email
+Location -[hidden]right-> Time
 
 ModelManager -->"~* filtered" Event
 @enduml

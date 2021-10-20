@@ -17,20 +17,22 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_DATE = "2020-35-35";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_LOCATION = " ";
-    private static final String INVALID_TIME = "15:15";
+    private static final String INVALID_TIMESLOT = "15:15-16:00";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_DATE = "2020-11-11";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_LOCATION = "123 Main Street #0505";
-    private static final String VALID_TIME = "1515";
+    private static final String VALID_TIMESLOT = "1515-1600";
+    private static final String VALID_TIMESLOT_STARTTIME = "1515";
+    private static final String VALID_TIMESLOT_ENDTIME = "1600";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -126,26 +128,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTime_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
+    public void parseTimeSlot_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeSlot((String) null));
     }
 
     @Test
-    public void parseTime_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
+    public void parseTimeSlot_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTimeSlot(INVALID_TIMESLOT));
     }
 
     @Test
-    public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
-        Time expectedTime = new Time(VALID_TIME);
-        assertEquals(expectedTime, ParserUtil.parseTime(VALID_TIME));
+    public void parseTimeSlot_validValueWithoutWhitespace_returnsTime() throws Exception {
+        TimeSlot expectedTime = new TimeSlot(VALID_TIMESLOT_STARTTIME, VALID_TIMESLOT_ENDTIME);
+        assertEquals(expectedTime, ParserUtil.parseTimeSlot(VALID_TIMESLOT));
     }
 
     @Test
-    public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
-        String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
-        Time expectedTime = new Time(VALID_TIME);
-        assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
+    public void parseTimeSlot_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
+        String timeWithWhitespace = WHITESPACE + VALID_TIMESLOT + WHITESPACE;
+        TimeSlot expectedTime = new TimeSlot(VALID_TIMESLOT_STARTTIME, VALID_TIMESLOT_ENDTIME);
+        assertEquals(expectedTime, ParserUtil.parseTimeSlot(timeWithWhitespace));
     }
 
     @Test

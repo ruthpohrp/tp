@@ -10,7 +10,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,24 +19,21 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new Name("Alex Yeoh"), new Date("2020-01-01"), new Time("1200"),
-                new Location("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Event(new Name("Bernice Yu"), new Date("2020-01-02"), new Time("1215"),
-                new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Event(new Name("Charlotte Oliveiro"), new Date("2020-01-03"), new Time("1300"),
-                new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Event(new Name("David Li"), new Date("2020-01-04"), new Time("1330"),
-                new Location("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Event(new Name("Irfan Ibrahim"), new Date("2020-01-05"), new Time("1400"),
-                new Location("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Event(new Name("Roy Balakrishnan"), new Date("2020-01-06"), new Time("1500"),
-                new Location("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Event(new Name("Jacob NG"), new Date("2020-10-13"), new TimeSlot("1300", "1400"),
+                new Location("The Deck"),
+                getTagSet("CS1231S", "URGENT")),
+            new Event(new Name("Ruth Poh"), new Date("2020-10-15"), new TimeSlot("1600", "1700"),
+                new Location("Central Library"),
+                getTagSet("Supplementary")),
+            new Event(new Name("Teng Foong"), new Date("2020-10-18"), new TimeSlot("1000", "1100"),
+                new Location("COM1 Basement"),
+                getTagSet("CS1231S")),
+            new Event(new Name("Galvin"), new Date("2020-10-19"), new TimeSlot("1400", "1500"),
+                new Location("Office"),
+                getTagSet("CS2100")),
+            new Event(new Name("Lulu"), new Date("2020-10-20"), new TimeSlot("1400", "1500"),
+                new Location("Office"),
+                getTagSet("Supplementary"))
         };
     }
 
