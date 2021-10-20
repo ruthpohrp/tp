@@ -214,6 +214,17 @@ As a Remark is an optional input, if user does not input any remarks when adding
 
 To display the remark in the GUI, a new `Label` called `remark` is added to `EventCard` as well as `EventListCard.fxml`.
 
+### TimeSlot - Teng Foong
+#### Description
+
+The `TimeSlot` class encapsulates the concept of an Event taking up a certain time period.
+
+#### Implementation
+
+The `TimeSlot` class has 2 fields, `startTime` and `endTime` and their values hold what their names imply.
+
+A `TimeSlot` can be compared to another `TimeSlot` and this is done **only** using their `startTime` fields.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -453,7 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A period of time to be blocked off
 * **Date**: Date of event
-* **Time**: Time of event
+* **TimeSlot**: Time period of an event
 * **Location**: Location of event
 * **Name**: Name of event
 * **Index**: Unique index number of each event
