@@ -192,6 +192,22 @@ The `NextEventCommand` class has one field timePredicate of type EventContainsCu
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
+### Remark feature - Ruth
+
+#### Implementation
+
+The remark feature is an optional description added to `Event`. It adds a remark to the
+consultation event, stored internally as a `Remark` in `Event`.
+
+There are two ways the remark is implemented:
+* `AddCommand#remark()` — Adds a new `Event` to the list with a remark description attached to it.
+* `EditCommand#remark` — Edits the remark description of an existing `Event` on the list.
+
+Given below is an example usage scenario and how the remark feature behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `add n/Lulu Yousef d/2020-01-01 t/0800 l/NUS r/Wants to go through Tutorial 4.`
 
 ### \[Proposed\] Undo/redo feature
 
@@ -319,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
 | `* * *`  | busy user with many daily events           | search for an event by name    | locate the details of events without going through the entire list     |
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
-| `* * *`  | meticulous user                            | add notes to my events         | add details that I need to make preparations for before the event      |
+| `* * *`  | meticulous user                            | add remarks to my events       | add details that I need to make preparations for before the event      |
 | `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
 | `* * *`  | user                                       | exit the app                   |                                                                        |
 | `* *`    | user                                       | add tags to my events          | group them more easily                                                 |

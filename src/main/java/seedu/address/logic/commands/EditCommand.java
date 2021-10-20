@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
@@ -23,6 +24,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
+import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
@@ -41,7 +43,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "2020-10-14 "
             + PREFIX_TIMESLOT + "0800-0900";
@@ -93,8 +96,9 @@ public class EditCommand extends Command {
         TimeSlot updatedTime = editEventDescriptor.getTimeSlot().orElse(eventToEdit.getTimeSlot());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
+        Remark updatedRemark = editEventDescriptor.getRemark().orElse(eventToEdit.getRemark());
 
-        return new Event(updatedName, updatedDate, updatedTime, updatedLocation, updatedTags);
+        return new Event(updatedName, updatedDate, updatedTime, updatedLocation, updatedTags, updatedRemark);
     }
 
     @Override
@@ -125,6 +129,7 @@ public class EditCommand extends Command {
         private TimeSlot timeSlot;
         private Location location;
         private Set<Tag> tags;
+        private Remark remark;
 
         public EditEventDescriptor() {}
 
@@ -138,13 +143,14 @@ public class EditCommand extends Command {
             setTimeSlot(toCopy.timeSlot);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
+            setRemark(toCopy.remark);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, date, timeSlot, location, tags);
+            return CollectionUtil.isAnyNonNull(name, date, timeSlot, location, tags, remark);
         }
 
         public void setName(Name name) {
@@ -196,6 +202,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -215,7 +229,8 @@ public class EditCommand extends Command {
                     && getDate().equals(e.getDate())
                     && getTimeSlot().equals(e.getTimeSlot())
                     && getLocation().equals(e.getLocation())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getRemark().equals(e.getRemark());
         }
     }
 }
