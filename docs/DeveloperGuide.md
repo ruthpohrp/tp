@@ -169,6 +169,27 @@ The `internalUnmodifiableList` is a `SortedList` that wraps around the `internal
 
 The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that `Schedule` uses as a field to store events. This ObservableList will have its Events sorted chronologically.
 
+### Remark feature - Ruth
+
+#### Description
+
+The remark feature is an optional description added to `Event`. It adds a remark to the
+consultation event, and is stored internally as a `Remark` in `seedu.address.model.event.Event`.
+
+#### Implementation
+
+The `Remark` class has one field `value` of type String.
+
+Unlike the other Objects in `Event`, all `Remark` inputs are valid, and hence do not need to check for Validity, unless the input is `null`.
+
+There are two ways the remark can be added to an `Event`:
+* `AddCommand(Event)` method  — Adds a new `Event` to the list (now with an optional remark description attached to it).
+* `EditCommand(Event)` method — Edits the remark description of an existing `Event` on the list.
+
+As a Remark is an optional input, if user does not input any remarks when adding a new event, the Remark will simply be stored as an empty String `””` in `Remark` in `Event` as default.
+
+To display the remark in the GUI, a new `Label` called `remark` is added to `EventCard` as well as `EventListCard.fxml`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -295,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
 | `* * *`  | busy user with many daily events           | search for an event by name    | locate the details of events without going through the entire list     |
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
-| `* * *`  | meticulous user                            | add notes to my events         | add details that I need to make preparations for before the event      |
+| `* * *`  | meticulous user                            | add remarks to my events       | add details that I need to make preparations for before the event      |
 | `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
 | `* * *`  | user                                       | exit the app                   |                                                                        |
 | `* *`    | user                                       | add tags to my events          | group them more easily                                                 |

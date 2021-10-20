@@ -10,6 +10,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
+import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
@@ -21,19 +22,19 @@ public class SampleDataUtil {
         return new Event[] {
             new Event(new Name("Jacob NG"), new Date("2020-10-13"), new TimeSlot("1300", "1400"),
                 new Location("The Deck"),
-                getTagSet("CS1231S", "URGENT")),
+                getTagSet("CS1231S", "URGENT"), new Remark("Cool student")),
             new Event(new Name("Ruth Poh"), new Date("2020-10-15"), new TimeSlot("1600", "1700"),
                 new Location("Central Library"),
-                getTagSet("Supplementary")),
+                getTagSet("Supplementary"), new Remark("Coool student")),
             new Event(new Name("Teng Foong"), new Date("2020-10-18"), new TimeSlot("1000", "1100"),
                 new Location("COM1 Basement"),
-                getTagSet("CS1231S")),
+                getTagSet("CS1231S"), new Remark("Cooool student")),
             new Event(new Name("Galvin"), new Date("2020-10-19"), new TimeSlot("1400", "1500"),
                 new Location("Office"),
-                getTagSet("CS2100")),
+                getTagSet("CS2100"), new Remark("Student. Very cool.")),
             new Event(new Name("Lulu"), new Date("2020-10-20"), new TimeSlot("1400", "1500"),
                 new Location("Office"),
-                getTagSet("Supplementary"))
+                getTagSet("Supplementary"), new Remark(""))
         };
     }
 
