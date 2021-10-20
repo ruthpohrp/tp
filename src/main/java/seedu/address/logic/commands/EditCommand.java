@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "2020-10-14 "
@@ -234,7 +234,8 @@ public class EditCommand extends Command {
                     && getDate().equals(e.getDate())
                     && getTimeSlot().equals(e.getTimeSlot())
                     && getLocation().equals(e.getLocation())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getRemark().equals(e.getRemark());
         }
     }
 }
