@@ -52,13 +52,12 @@ public class TimeSlot {
 
     /**
      * Compares a TimeSlot's startTime with another.
-     * @param timeSlot other TimeSlot to compare to.
+     * @param other other TimeSlot to compare to.
      * @return a positive integer if this TimeSlot started earlier than the other, a negative integer if this TimeSlot
      * started later than the other and zero if the 2 TimeSlots started at the same time.
      */
-    public int compareTo(TimeSlot timeSlot) {
-        return Integer.parseInt(this.startTime.format(timeFormatter))
-                - Integer.parseInt(timeSlot.startTime.format(timeFormatter));
+    public int compareTo(TimeSlot other) {
+        return startTime.compareTo(other.startTime);
     }
 
     @Override

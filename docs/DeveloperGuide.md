@@ -123,7 +123,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the schedule data i.e., all `Event` objects (which are contained in a `UniqueEventList` object).
+* stores the schedule data i.e., all `Event` objects (which are contained in a `SortEventList` object).
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -155,6 +155,19 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### SortedEventList - Galvin
+#### Description
+The `SortedEventList` class provides an abstraction over an internal list of `Events`. 
+
+#### Implementation
+The `SortedEventList` class contains 2 fields, `internalList` and `internalUnmodifiableList`.
+
+The `internalList` is an `ObservableArrayList` that is not sorted.
+
+The `internalUnmodifiableList` is a `SortedList` that wraps around the `internalList` to maintain the sorted property of Events
+
+The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that `Schedule` uses as a field to store events. This ObservableList will have its Events sorted chronologically.
 
 ### \[Proposed\] Undo/redo feature
 

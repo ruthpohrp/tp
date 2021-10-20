@@ -99,27 +99,6 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateEventUnfilteredList_failure() {
-        Event firstEvent = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_EVENT, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
-    }
-
-    @Test
-    public void execute_duplicateEventFilteredList_failure() {
-        showEventAtIndex(model, INDEX_FIRST_EVENT);
-
-        // edit event in filtered list into a duplicate in address book
-        Event eventInList = model.getSchedule().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT,
-                new EditEventDescriptorBuilder(eventInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
-    }
-
-    @Test
     public void execute_invalidEventIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_BOB).build();
