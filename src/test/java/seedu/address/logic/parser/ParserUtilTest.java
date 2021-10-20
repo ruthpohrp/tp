@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
+import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
@@ -35,6 +36,8 @@ public class ParserUtilTest {
     private static final String VALID_TIMESLOT_ENDTIME = "1600";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_REMARK = "All remarks are valid.";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -195,4 +198,23 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseRemark_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark((String) null));
+    }
+
+    @Test
+    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
+    }
+
+    @Test
+    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
+        String remarkWithWhitespace = WHITESPACE + VALID_REMARK + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
+    }
+
 }

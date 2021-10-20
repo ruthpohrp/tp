@@ -123,7 +123,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the schedule data i.e., all `Event` objects (which are contained in a `UniqueEventList` object).
+* stores the schedule data i.e., all `Event` objects (which are contained in a `SortEventList` object).
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -155,6 +155,64 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### SortedEventList - Galvin
+#### Description
+The `SortedEventList` class provides an abstraction over an internal list of `Events`. 
+
+#### Implementation
+The `SortedEventList` class contains 2 fields, `internalList` and `internalUnmodifiableList`.
+
+The `internalList` is an `ObservableArrayList` that is not sorted.
+
+The `internalUnmodifiableList` is a `SortedList` that wraps around the `internalList` to maintain the sorted property of Events
+
+The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that `Schedule` uses as a field to store events. This ObservableList will have its Events sorted chronologically.
+
+### UpcomingEventsCommand - Lulu
+#### Description
+The `UpcomingEventCommand` class is a command that lists all the events scheduled for the current day.
+
+#### Implementation
+The `UpcomingEventsCommand` class has one field `datePredicate` of type `EventContainsTodaysDatePredicate`.
+
+`EventContainsTodaysDatePredicate` is  a class that checks whether an event's date matches today's date.
+
+The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered event list that is filtered by the `datePredicate`.
+
+### NextEventCommand - Lulu
+#### Description
+The `NextEventCommand` class is a command that displays the next event based on the current time in the schedule.
+
+#### Implementation
+The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
+
+`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot is after the current time.
+
+The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
+Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
+
+
+### Remark feature - Ruth
+
+#### Description
+
+The remark feature is an optional description added to `Event`. It adds a remark to the
+consultation event, and is stored internally as a `Remark` in `seedu.address.model.event.Event`.
+
+#### Implementation
+
+The `Remark` class has one field `value` of type String.
+
+Unlike the other Objects in `Event`, all `Remark` inputs are valid, and hence do not need to check for Validity, unless the input is `null`.
+
+There are two ways the remark can be added to an `Event`:
+* `AddCommand(Event)` method  — Adds a new `Event` to the list (now with an optional remark description attached to it).
+* `EditCommand(Event)` method — Edits the remark description of an existing `Event` on the list.
+
+As a Remark is an optional input, if user does not input any remarks when adding a new event, the Remark will simply be stored as an empty String `””` in `Remark` in `Event` as default.
+
+To display the remark in the GUI, a new `Label` called `remark` is added to `EventCard` as well as `EventListCard.fxml`.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -282,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
 | `* * *`  | busy user with many daily events           | search for an event by name    | locate the details of events without going through the entire list     |
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
-| `* * *`  | meticulous user                            | add notes to my events         | add details that I need to make preparations for before the event      |
+| `* * *`  | meticulous user                            | add remarks to my events       | add details that I need to make preparations for before the event      |
 | `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
 | `* * *`  | user                                       | exit the app                   |                                                                        |
 | `* *`    | user                                       | add tags to my events          | group them more easily                                                 |

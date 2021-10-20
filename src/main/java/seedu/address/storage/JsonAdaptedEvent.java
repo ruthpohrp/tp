@@ -14,6 +14,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
+import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
@@ -30,6 +31,7 @@ class JsonAdaptedEvent {
     private final String startTime;
     private final String endTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String remark;
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
@@ -38,7 +40,8 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("date") String date,
                             @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
                             @JsonProperty("location") String location,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                            @JsonProperty("remark") String remark) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
@@ -47,6 +50,7 @@ class JsonAdaptedEvent {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.remark = remark;
     }
 
     /**
@@ -61,6 +65,7 @@ class JsonAdaptedEvent {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        remark = source.getRemark().value;
     }
 
     /**
@@ -109,7 +114,13 @@ class JsonAdaptedEvent {
         final Location modelAddress = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
-        return new Event(modelName, modelDate, modelTimeSlot, modelAddress, modelTags);
+
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+        return new Event(modelName, modelDate, modelTimeSlot, modelAddress, modelTags, modelRemark);
     }
 
 }
