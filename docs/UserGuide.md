@@ -3,10 +3,6 @@ layout: page
 title: User Guide
 ---
 
-DukePro(f) helps **professors in a university** plan their engagements. Amid long days of lectures and 
-tutorials, it is hard to properly fit in **consultations** with students and keep track of them at the same 
-time. With DukePro(f), profs can easily query their available time slots and save their engagements, making lesson-planning a breeze.
-
 ## Table of Contents
 
 * TOC
@@ -167,5 +163,6 @@ need to save manually.
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
 that contains the data of your previous DukePro(f) home folder.
 
-**Q**: The dukeprof.jar isn’t opening when I double-click it.<br>
+<!-- **Q**: The dukeprof.jar isn’t opening when I double-click it.<br>
 **A**: Try manually opening the dukeprof.jar on the command terminal using the command -java dukeprof.jar.
+-->
