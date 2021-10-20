@@ -120,7 +120,7 @@ public class EditCommandParserTest {
                 .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY)
                 .withLocation(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .withLocation(VALID_REMARK_AMY).build();
+                .withRemark(VALID_REMARK_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -173,7 +173,7 @@ public class EditCommandParserTest {
 
         // remark
         userInput = targetIndex.getOneBased() + REMARK_DESC_AMY;
-        descriptor = new EditEventDescriptorBuilder().withLocation(VALID_REMARK_AMY).build();
+        descriptor = new EditEventDescriptorBuilder().withRemark(VALID_REMARK_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

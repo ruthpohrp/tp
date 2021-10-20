@@ -99,7 +99,7 @@ public class Event {
                 && otherEvent.getTimeSlot().equals(getTimeSlot())
                 && otherEvent.getLocation().equals(getLocation())
                 && otherEvent.getTags().equals(getTags())
-                && otherEvent.getTags().equals(getRemark());
+                && otherEvent.getRemark().equals(getRemark());
 
     }
 
@@ -126,10 +126,7 @@ public class Event {
             tags.forEach(builder::append);
         }
 
-        if (!tags.isEmpty()) {
-            builder.append("; Remark: ")
-            .append(getRemark());
-        }
+        builder.append("; Remark: ").append(getRemark());
 
         return builder.toString();
     }

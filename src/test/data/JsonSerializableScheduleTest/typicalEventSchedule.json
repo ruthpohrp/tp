@@ -7,7 +7,7 @@
     "endTime" : "0900",
     "location" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
-    "remark": "May schedule with her friends."
+    "remark": "A nice girl."
   }, {
     "name" : "Benson Meier",
     "date" : "2020-01-02",
@@ -15,7 +15,7 @@
     "endTime" : "0930",
     "location" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "remark": ""
+    "remark": "A weird boy."
   }, {
     "name" : "Carl Kurz",
     "date" : "2020-01-03",
@@ -47,7 +47,7 @@
     "endTime" : "1200",
     "location" : "little tokyo",
     "tagged" : [ ],
-    "remark": "Learns better with visual aids."
+    "remark": ""
   }, {
     "name" : "George Best",
     "date" : "2020-01-07",

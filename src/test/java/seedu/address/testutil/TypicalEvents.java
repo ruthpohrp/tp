@@ -38,7 +38,7 @@ public class TypicalEvents {
             .withTags("owesMoney", "friends")
             .withRemark("A weird boy.").build();
     public static final Event CARL = new EventBuilder().withName("Carl Kurz").withDate("2020-01-03")
-            .withTimeSlot("0930", "1030").withLocation("wall street").build();
+            .withTimeSlot("0930", "1030").withLocation("wall street").withRemark("May change schedule.").build();
     public static final Event DANIEL = new EventBuilder().withName("Daniel Meier").withDate("2020-01-04")
             .withTimeSlot("1000", "1100").withLocation("10th street").withTags("friends").build();
     public static final Event ELLE = new EventBuilder().withName("Elle Meyer").withDate("2020-01-05")
