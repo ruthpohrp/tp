@@ -71,7 +71,6 @@ public class TimeSlot {
                 || (other instanceof TimeSlot // instanceof handles nulls
                 && startTime.equals(((TimeSlot) other).startTime)
                 && endTime.equals(((TimeSlot) other).endTime));// state check for both time fields
-
     }
 
     @Override

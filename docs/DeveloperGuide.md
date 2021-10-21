@@ -464,7 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A period of time to be blocked off
 * **Date**: Date of event
-* **TimeSlot**: Time period of event
+* **TimeSlot**: Time period of an event
 * **Location**: Location of event
 * **Name**: Name of event
 * **Index**: Unique index number of each event
