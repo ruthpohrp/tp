@@ -69,13 +69,13 @@ public class TimeSlot {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TimeSlot // instanceof handles nulls
-                && startTime.equals(((TimeSlot) other).startTime)); // state check
+                && startTime.equals(((TimeSlot) other).startTime)
+                && endTime.equals(((TimeSlot) other).endTime));// state check for both time fields
+
     }
 
     @Override
     public int hashCode() {
-        // TODO: decide on a proper way to hash this class
-        // Originally "return startTime.hashCode();"
         return this.toString().hashCode();
     }
 }
