@@ -8,8 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.Event;
-import seedu.address.model.tag.SupplementaryLabel;
-import seedu.address.model.tag.UrgentLabel;
 
 /**
  * An UI component that displays information of a {@code Event}.
@@ -60,15 +58,7 @@ public class EventCard extends UiPart<Region> {
         remark.setText(event.getRemark().value);
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    if (tag.tagName.equals("URGENT")) {
-                        tags.getChildren().add(new UrgentLabel());
-                    } else if (tag.tagName.equals("supplementary")) {
-                        tags.getChildren().add(new SupplementaryLabel());
-                    } else {
-                        tags.getChildren().add(new Label(tag.tagName));
-                    }
-                });
+                .forEach(tag -> tags.getChildren().add(tag.createLabel()));
     }
 
     @Override
