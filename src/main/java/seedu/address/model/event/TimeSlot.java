@@ -70,7 +70,7 @@ public class TimeSlot {
         return other == this // short circuit if same object
                 || (other instanceof TimeSlot // instanceof handles nulls
                 && startTime.equals(((TimeSlot) other).startTime)
-                && endTime.equals(((TimeSlot) other).endTime));// state check for both time fields
+                && endTime.equals(((TimeSlot) other).endTime)); // state check for both time fields
     }
 
     @Override
