@@ -26,4 +26,11 @@ public interface EventList {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     ObservableList<Event> asUnmodifiableObservableList();
+
+    /**
+     * Checks if the given Event overlaps with any of the Events in the list.
+     * @param toCheck the Event to check.
+     * @return true if the Event's TimeSlot overlaps with any other Event in the list, false otherwise.
+     */
+    boolean isOverlapped(Event toCheck);
 }

@@ -101,4 +101,10 @@ public class SortedEventList implements Iterable<Event>, EventList {
     public int hashCode() {
         return internalList.hashCode();
     }
+
+    @Override
+    public boolean isOverlapped(Event toCheck) {
+        //TODO: For Ruth to implement
+        return false;
+    }
 }
