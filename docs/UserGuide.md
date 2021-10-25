@@ -109,15 +109,19 @@ Action | Format | Examples
 
 Adds a consultation event to Dukepro(f).
 
-Format: `add n/NAME d/DATE t/TIME l/LOCATION [tag/TAG]... [r/REMARK]`
+Format: `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]`
+* tags with the text "URGENT" and "supplementary" will automatically be changed to red and yellow respectively to 
+enable the user to indicate the consultation's severity
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An event can have any number of tags (including 0).
 </div>
 
 Example(s):
-* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary`
+* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`
 * `add n/Ruth Poh d/2020-02-02 t/1000-1100 l/The Deck r/May have to switch to zoom`
+* `tag/URGENT` will be shown as ![urgent tag](images/URGENT tag.png) 
+* `tag/supplementary` will be shown as ![supplementary tag](images/supplementary tag.png)
 
 ### 5.2 Clearing all Consultation Events : `clear`
 
