@@ -198,7 +198,7 @@ need to save manually.
 ## 6. FAQ
 ***
 **Q**: Where are the releases?<br>
-**A**: The release for v1.2 is a work in progress, please be patient!
+**A**: The release for v1.3 is a work in progress, please be patient!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
