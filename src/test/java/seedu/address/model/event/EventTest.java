@@ -3,12 +3,14 @@ package seedu.address.model.event;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE;
+import static seedu.address.testutil.TypicalEvents.BENSON;
 import static seedu.address.testutil.TypicalEvents.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -32,7 +34,8 @@ public class EventTest {
         assertFalse(ALICE.isSameEvent(null));
 
         // same name, all other attributes different -> returns true
-        Event editedAlice = new EventBuilder(ALICE).withDate(VALID_DATE_BOB).withTime(VALID_TIME_BOB)
+        Event editedAlice = new EventBuilder(ALICE).withDate(VALID_DATE_BOB)
+                .withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
                 .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameEvent(editedAlice));
 
@@ -77,7 +80,7 @@ public class EventTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different time -> returns false
-        editedAlice = new EventBuilder(ALICE).withTime(VALID_TIME_BOB).build();
+        editedAlice = new EventBuilder(ALICE).withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
@@ -87,5 +90,27 @@ public class EventTest {
         // different tags -> returns false
         editedAlice = new EventBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void compareTo() {
+        Event earlierEvent = ALICE;
+        Event sameAsEarlierEvent = new EventBuilder(BENSON)
+                .withTimeSlot("0800", "0900")
+                .withDate("2020-01-01")
+                .build();
+        Event laterDateEvent = new EventBuilder(BENSON)
+                .withTimeSlot("0800", "0900")
+                .withDate("2020-01-02")
+                .build();
+        Event laterSlotEvent = new EventBuilder(BENSON)
+                .withTimeSlot("1000", "1100")
+                .withDate("2020-01-01")
+                .build();
+        assertTrue(earlierEvent.compareTo(sameAsEarlierEvent) == 0);
+        assertTrue(earlierEvent.compareTo(laterDateEvent) < 0);
+        assertTrue(earlierEvent.compareTo(laterSlotEvent) < 0);
+        assertTrue(laterDateEvent.compareTo(earlierEvent) > 0);
+        assertTrue(laterSlotEvent.compareTo(earlierEvent) > 0);
     }
 }

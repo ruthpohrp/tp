@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 
 /**
- * Represents a Person's date number in the address book.
+ * Represents an Event's date number in the schedule.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
@@ -33,6 +33,17 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Compares this Date instance with another Date instance.
+     *
+     * @param other other Date to compare to.
+     * @return a positive integer if this Date is earlier than the other, a negative integer if this Date
+     * is later than the other and zero if the 2 Dates share the same date.
+     */
+    public int compareTo(Date other) {
+        return date.compareTo(other.date);
     }
 
     @Override

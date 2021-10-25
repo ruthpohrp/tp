@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -32,26 +33,34 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BOB = "2020-02-02";
     public static final String VALID_LOCATION_AMY = "Block 312, Amy Street 1";
     public static final String VALID_LOCATION_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_REMARK_AMY = "Likes to bake apple pie with me.";
+    public static final String VALID_REMARK_BOB = "Plays golf with his buddies on Sunday.";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_TIME_AMY = "1300";
-    public static final String VALID_TIME_BOB = "0830";
+    public static final String VALID_STARTTIME_AMY = "1300";
+    public static final String VALID_ENDTIME_AMY = "1400";
+    public static final String VALID_STARTTIME_BOB = "0830";
+    public static final String VALID_ENDTIME_BOB = "0900";
+    public static final String VALID_TIMESLOT_AMY = VALID_STARTTIME_AMY + "-" + VALID_ENDTIME_AMY;
+    public static final String VALID_TIMESLOT_BOB = VALID_STARTTIME_BOB + "-" + VALID_ENDTIME_BOB;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
-    public static final String TIME_DESC_AMY = " " + PREFIX_TIME + VALID_TIME_AMY;
-    public static final String TIME_DESC_BOB = " " + PREFIX_TIME + VALID_TIME_BOB;
+    public static final String TIMESLOT_DESC_AMY = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_AMY;
+    public static final String TIMESLOT_DESC_BOB = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_BOB;
     public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
     public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
+    public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
+    public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020a-02-02"; // 'a' not allowed in
     // dates
-    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "15:15"; // ':' not allowed in time
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIMESLOT + "15:15-16:00"; // ':' not allowed in time
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -63,11 +72,15 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditEventDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDate(VALID_DATE_AMY).withTime(VALID_TIME_AMY).withLocation(VALID_LOCATION_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withDate(VALID_DATE_AMY).withTimeSlot(VALID_STARTTIME_AMY, VALID_ENDTIME_AMY)
+                .withLocation(VALID_LOCATION_AMY)
+                .withTags(VALID_TAG_FRIEND)
+                .withRemark(VALID_REMARK_AMY).build();
         DESC_BOB = new EditEventDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDate(VALID_DATE_BOB).withTime(VALID_TIME_BOB).withLocation(VALID_LOCATION_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDate(VALID_DATE_BOB).withTimeSlot(VALID_STARTTIME_BOB, VALID_ENDTIME_BOB)
+                .withLocation(VALID_LOCATION_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withRemark(VALID_REMARK_BOB).build();
     }
 
     /**

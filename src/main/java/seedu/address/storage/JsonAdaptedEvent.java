@@ -14,7 +14,8 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.Remark;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,23 +28,29 @@ class JsonAdaptedEvent {
     private final String name;
     private final String date;
     private final String location;
-    private final String time;
+    private final String startTime;
+    private final String endTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String remark;
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("date") String date,
-                            @JsonProperty("time") String time, @JsonProperty("location") String location,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
+                            @JsonProperty("location") String location,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                            @JsonProperty("remark") String remark) {
         this.name = name;
         this.date = date;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.remark = remark;
     }
 
     /**
@@ -52,11 +59,13 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         date = source.getDate().value;
-        time = source.getTime().getValue();
+        startTime = source.getTimeSlot().getStartTime();
+        endTime = source.getTimeSlot().getEndTime();
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        remark = source.getRemark().value;
     }
 
     /**
@@ -86,13 +95,14 @@ class JsonAdaptedEvent {
         }
         final Date modelDate = new Date(date);
 
-        if (time == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+        if (startTime == null || endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeSlot.class.getSimpleName()));
         }
-        if (!Time.isValidTime(time)) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        if (!TimeSlot.isValidTimeSlot(startTime, endTime)) {
+            throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
         }
-        final Time modelTime = new Time(time);
+        final TimeSlot modelTimeSlot = new TimeSlot(startTime, endTime);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -104,7 +114,13 @@ class JsonAdaptedEvent {
         final Location modelAddress = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
-        return new Event(modelName, modelDate, modelTime, modelAddress, modelTags);
+
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+        return new Event(modelName, modelDate, modelTimeSlot, modelAddress, modelTags, modelRemark);
     }
 
 }

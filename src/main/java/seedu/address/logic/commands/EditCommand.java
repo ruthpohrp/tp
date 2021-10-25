@@ -4,8 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
@@ -23,7 +24,8 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
-import seedu.address.model.event.Time;
+import seedu.address.model.event.Remark;
+import seedu.address.model.event.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,16 +41,16 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TIME + "TIME] "
+            + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "2020-10-14 "
-            + PREFIX_TIME + "0800";
+            + PREFIX_TIMESLOT + "0800-0900";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the schedule.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
@@ -77,10 +79,6 @@ public class EditCommand extends Command {
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
-        }
-
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
@@ -95,11 +93,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
         Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
-        Time updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getTime());
+        TimeSlot updatedTime = editEventDescriptor.getTimeSlot().orElse(eventToEdit.getTimeSlot());
         Location updatedLocation = editEventDescriptor.getLocation().orElse(eventToEdit.getLocation());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
+        Remark updatedRemark = editEventDescriptor.getRemark().orElse(eventToEdit.getRemark());
 
-        return new Event(updatedName, updatedDate, updatedTime, updatedLocation, updatedTags);
+        return new Event(updatedName, updatedDate, updatedTime, updatedLocation, updatedTags, updatedRemark);
     }
 
     @Override
@@ -127,9 +126,10 @@ public class EditCommand extends Command {
     public static class EditEventDescriptor {
         private Name name;
         private Date date;
-        private Time time;
+        private TimeSlot timeSlot;
         private Location location;
         private Set<Tag> tags;
+        private Remark remark;
 
         public EditEventDescriptor() {}
 
@@ -140,16 +140,17 @@ public class EditCommand extends Command {
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.date);
-            setTime(toCopy.time);
+            setTimeSlot(toCopy.timeSlot);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
+            setRemark(toCopy.remark);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, date, time, location, tags);
+            return CollectionUtil.isAnyNonNull(name, date, timeSlot, location, tags, remark);
         }
 
         public void setName(Name name) {
@@ -168,12 +169,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
-        public void setTime(Time time) {
-            this.time = time;
+        public void setTimeSlot(TimeSlot timeSlot) {
+            this.timeSlot = timeSlot;
         }
 
-        public Optional<Time> getTime() {
-            return Optional.ofNullable(time);
+        public Optional<TimeSlot> getTimeSlot() {
+            return Optional.ofNullable(timeSlot);
         }
 
         public void setLocation(Location location) {
@@ -201,6 +202,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -218,9 +227,10 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDate().equals(e.getDate())
-                    && getTime().equals(e.getTime())
+                    && getTimeSlot().equals(e.getTimeSlot())
                     && getLocation().equals(e.getLocation())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getRemark().equals(e.getRemark());
         }
     }
 }
