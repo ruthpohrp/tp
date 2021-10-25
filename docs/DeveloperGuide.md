@@ -472,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Schedule**: A list of events
 
 [comment]: <> (* **Note**: Detailed description of an event)
-[comment]: <> (* **Slot**: A period of time that is free)
+[comment]: <> (* **EmptySlot**: A period of time that is free)
 
 
 --------------------------------------------------------------------------------------------------------------------
