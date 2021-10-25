@@ -19,7 +19,7 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
  * Supports a minimal set of list operations.
  *
  */
-public class SortedEventList implements Iterable<Event> {
+public class SortedEventList implements Iterable<Event>, EventList {
     private class EventSorter implements Comparator<Event> {
         @Override
         public int compare(Event o1, Event o2) {
@@ -32,26 +32,19 @@ public class SortedEventList implements Iterable<Event> {
             new SortedList<>(FXCollections.unmodifiableObservableList(internalList),
                     new EventSorter());
 
-    /**
-     * Returns true if the list contains an equivalent event as the given argument.
-     */
+    @Override
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameEvent);
     }
 
-    /**
-     * Adds an event to the list.
-     */
+    @Override
     public void add(Event toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }
 
-    /**
-     * Removes the equivalent event from the list.
-     * The event must exist in the list.
-     */
+    @Override
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -87,9 +80,7 @@ public class SortedEventList implements Iterable<Event> {
         internalList.setAll(events);
     }
 
-    /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
+    @Override
     public ObservableList<Event> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
