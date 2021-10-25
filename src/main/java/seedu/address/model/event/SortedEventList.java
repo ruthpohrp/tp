@@ -19,7 +19,7 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
  * Supports a minimal set of list operations.
  *
  */
-public class SortedEventList implements Iterable<Event>, EventList {
+public class SortedEventList implements EventList {
     private class EventSorter implements Comparator<Event> {
         @Override
         public int compare(Event o1, Event o2) {
@@ -52,10 +52,8 @@ public class SortedEventList implements Iterable<Event>, EventList {
         }
     }
 
-    /**
-     * Replaces the event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the list.
-     */
+
+    @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
 
@@ -103,7 +101,7 @@ public class SortedEventList implements Iterable<Event>, EventList {
     }
 
     @Override
-    public boolean isOverlapped(Event toCheck) {
+    public boolean isOverlapping(Event toCheck) {
         //TODO: For Ruth to implement
         return false;
     }

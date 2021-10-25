@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 /**
  * Interface for a list of Events.
  */
-public interface EventList {
+public interface EventList extends Iterable<Event> {
     /**
      * Returns true if the list contains an equivalent event as the given argument.
      */
@@ -23,6 +23,12 @@ public interface EventList {
     void remove(Event toRemove);
 
     /**
+     * Replaces the event {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in the list.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     ObservableList<Event> asUnmodifiableObservableList();
@@ -32,5 +38,5 @@ public interface EventList {
      * @param toCheck the Event to check.
      * @return true if the Event's TimeSlot overlaps with any other Event in the list, false otherwise.
      */
-    boolean isOverlapped(Event toCheck);
+    boolean isOverlapping(Event toCheck);
 }
