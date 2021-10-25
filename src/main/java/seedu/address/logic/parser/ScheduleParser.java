@@ -15,6 +15,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.NextEventCommand;
+import seedu.address.logic.commands.UpcomingEventsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -60,6 +62,12 @@ public class ScheduleParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case UpcomingEventsCommand.COMMAND_WORD:
+            return new UpcomingEventsCommand();
+
+        case NextEventCommand.COMMAND_WORD:
+            return new NextEventCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
