@@ -72,29 +72,41 @@ public class TimeSlotTest {
 
     @Test
     public void overlaps() {
-        TimeSlot A = new TimeSlot("1000", "1200");
-        TimeSlot B = new TimeSlot("1100", "1300");
-        TimeSlot C = new TimeSlot("1200", "1400");
-        TimeSlot D = new TimeSlot("1300", "1500");
-        TimeSlot E = new TimeSlot("1400", "1600");
-        assertFalse(A.overlaps(C));
-        assertTrue(B.overlaps(C));
-        assertTrue(C.overlaps(C));
-        assertTrue(D.overlaps(C));
-        assertFalse(E.overlaps(C));
+        TimeSlot timeSlot = new TimeSlot("1200", "1400");
+
+        // fully before
+        assertFalse(timeSlot.overlaps("1000", "1200"));
+
+        // partial overlap before
+        assertTrue(timeSlot.overlaps("1100", "1300"));
+
+        // full overlap
+        assertTrue(timeSlot.overlaps("1200", "1400"));
+
+        // partial overlap after
+        assertTrue(timeSlot.overlaps("1300", "1500"));
+
+        // fully after
+        assertFalse(timeSlot.overlaps("1400", "1600"));
     }
 
     @Test
     public void isBlocked() {
-        TimeSlot A = new TimeSlot("1000", "1200");
-        TimeSlot B = new TimeSlot("1100", "1300");
-        TimeSlot C = new TimeSlot("1200", "1400");
-        TimeSlot D = new TimeSlot("1300", "1500");
-        TimeSlot E = new TimeSlot("1400", "1600");
-        TimeSlot.block(C);
-        assertFalse(TimeSlot.isBlocked(A));
-        assertTrue(TimeSlot.isBlocked(B));
-        assertTrue(TimeSlot.isBlocked(D));
-        assertFalse(TimeSlot.isBlocked(E));
+        TimeSlot.block("1200", "1400");
+
+        // fully before
+        assertFalse(TimeSlot.isBlocked("1000", "1200"));
+
+        // partial overlap before
+        assertTrue(TimeSlot.isBlocked("1100", "1300"));
+
+        // full overlap
+        assertTrue(TimeSlot.isBlocked("1200", "1400"));
+
+        // partial overlap after
+        assertTrue(TimeSlot.isBlocked("1300", "1500"));
+
+        // fully after
+        assertFalse(TimeSlot.isBlocked("1400", "1600"));
     }
 }

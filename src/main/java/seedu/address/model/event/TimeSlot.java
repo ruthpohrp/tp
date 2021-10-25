@@ -4,6 +4,7 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -46,22 +47,25 @@ public class TimeSlot {
 
     /**
      * Add a new TimeSlot to blockedTimeSlots.
-     * @param timeSlot a new TimeSlot to block.
+     * @param startTime start time of blocked period.
+     * @param endTime end time of blocked period.
      */
-    public static void block(TimeSlot timeSlot) {
+    public static void block(String startTime, String endTime) {
         //TODO: create isBlockable(TimeSlot timeSlot) to check if given timeslot can be blocked
         //(e.g. user has an event 1200-1400 but tries to block 1300-1400)
+        TimeSlot timeSlot = new TimeSlot(startTime, endTime);
         blockedTimeSlots.add(timeSlot);
     }
 
     /**
      * Checks if given TimeSlot is blocked.
-     * @param timeSlot TimeSlot to be checked.
+     * @param startTime start time to be tested.
+     * @param endTime end time to be tested.
      * @return true if the given TimeSlot is blocked, false otherwise.
      */
-    public static boolean isBlocked(TimeSlot timeSlot) {
+    public static boolean isBlocked(String startTime, String endTime) {
         for (TimeSlot blockedTimeSlot : blockedTimeSlots) {
-            if (timeSlot.overlaps(blockedTimeSlot)) {
+            if (blockedTimeSlot.overlaps(startTime, endTime)) {
                 return true;
             }
         }
@@ -70,12 +74,15 @@ public class TimeSlot {
 
     /**
      * Checks if other TimeSlot has an overlap with this instance of TimeSlot.
-     * @param other another TimeSlot.
+     * @param otherStartTimeString start time to be tested.
+     * @param otherEndTimeString end time to be tested.
      * @return true if there is an overlap, false otherwise.
      */
-    public boolean overlaps(TimeSlot other) {
-        return other.startTime.compareTo(this.endTime) < 0
-                && this.startTime.compareTo(other.endTime) < 0;
+    public boolean overlaps(String otherStartTimeString, String otherEndTimeString) {
+        LocalTime otherStartTime = LocalTime.parse(otherStartTimeString, timeFormatter);
+        LocalTime otherEndTime = LocalTime.parse(otherEndTimeString, timeFormatter);
+        return otherStartTime.compareTo(this.endTime) < 0
+                && this.startTime.compareTo(otherEndTime) < 0;
     }
 
     public String startTimeToString() {
