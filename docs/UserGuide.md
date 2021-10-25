@@ -4,29 +4,55 @@ title: User Guide
 ---
 
 ## Table of Contents
+***
 
 * TOC
 {:toc}
 
+## 1. Introduction
 ***
-## 1. Command Summary
+
+DukePro(f) is an application that assists **professors in the University** in planning for their weekly engagements.
+Amidst long hours of lectures and tutorials in the week, professors may still need to cater timeslots for **student
+consultations**, which can be hard to come by and difficult to keep track of.
+
+It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors in a University, and it is also a nod
+to our CS2103T iP (individual Project), which was named `Duke`.
+
+## 2. Purpose
+***
+
+This document is the User Guide for DukePro(f). It is intended to provide all the necessary information to use this software.
+The manual assumes that the user has the ability to type fast and prefers typing over other means of input.
+This User Guide contains the following sections:
+1. Command Summary (TODO HYPERLINKS)
+2. Quick Start
+3. Features
+4. FAQ
+
+## 3. Command Summary
 ***
 
 Action | Format | Examples
 --------|-------|-------
-**Add** | `add n/NAME d/DATE t/TIME l/LOCATION [tag/TAG]...` | `add n/Lulu Yousef d/2020-01-01 t/0800 l/NUS tag/Important tag/Supplementary`
-**Clear** | `clear`  | -
-**Delete** | `delete INDEX` | `delete 3`
-**Edit** | `edit INDEX [n/NAME] [d/DATE] [t/TIME] [l/LOCATION] [tag/TAG]...`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
-**Find** | `find KEYWORD`  | `find Teng Foong`
-**Help** | `help` | -
-**List** | `list` | -
-**Exit** | `exit` | -
+**[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary`
+**[Clear](#52-clearing-all-consultation-events--clear)** | `clear`  | -
+**[Delete](#53-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
+**[Edit](#54-editing-a-consultation-event--edit)** | `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
+**[Find](#55-finding-a-consultation-event--find)** | `find KEYWORD`  | `find Teng Foong`
+**[Help](#56-viewing-help--help)** | `help` | -
+**[List](#57-listing-all-consultation-events--list)** | `list` | -
+**[Display Next Event](#58-displaying-the-next-consultation-event--next_event)** | `next_event` | -
+**[List Upcoming Events](#59-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
+**[Exit](#510-exiting-the-app--exit)** | `exit` | -
 
 
-## 2. Quick Start
+## 4. Quick Start
 ***
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+   Not sure how? Click [here](https://www.oracle.com/java/technologies/downloads/)!
+</div>
 
 2. Download the latest `dukeprof.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases).
 
@@ -41,9 +67,9 @@ Action | Format | Examples
    Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all consultation events.
 
-   * **`add`**`add n/Galvin Chan d/2020-07-07 t/1000 l/NUS tag/Tutorial 4` : Adds a consultation event for `Galvin Chan` to DukePro(f).
+   * **`add`**`add n/Galvin Chan d/2020-07-07 t/1000-1100 l/NUS tag/Tutorial 4` : Adds a consultation event for `Galvin Chan` to DukePro(f).
 
    * **`delete`**`3` : Deletes the 3rd event shown in DukePro(f)'s current event list.
     
@@ -51,7 +77,7 @@ Action | Format | Examples
 6. Refer to the [Features](#3-features) below for details of each command.
 
 
-## 3. Features
+## 5. Features
 ***
 <div markdown="block" class="alert alert-info">
 
@@ -60,10 +86,10 @@ Action | Format | Examples
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Lulu Yousef`.
 
-* Items in square brackets are optional.
+* Items in square brackets are optional. (Items not in square brackets are necessary!)
   * e.g. `[tag/TAG]` is an optional parameter.
 
-* Parameters can have more than one entry will be anteceded by a `...`
+* Parameters that can have more than one entry will be anteceded by a `...`
   * e.g. `[tag/TAG]...` can have more than one entry, so `tag/supplmentary tag/important` is accepted.
 
 * Parameters can be in any order.<br>
@@ -79,20 +105,21 @@ Action | Format | Examples
 
 </div>
 
-### 3.1 Adding a Consultation Event : `add`
+### 5.1 Adding a Consultation Event : `add`
 
-Adds an event to Dukepro(f).
+Adds a consultation event to Dukepro(f).
 
-Format: `add n/NAME d/DATE t/TIME l/LOCATION [tag/TAG]...`
+Format: `add n/NAME d/DATE t/TIME l/LOCATION [tag/TAG]... [r/REMARK]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An event can have any number of tags (including 0).
 </div>
 
-Examples:
-* `add n/Lulu Yousef d/2020-01-01 t/0800 l/NUS tag/Important tag/Supplementary`
+Example(s):
+* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary`
+* `add n/Ruth Poh d/2020-02-02 t/1000-1100 l/The Deck r/May have to switch to zoom`
 
-### 3.2 Clearing all Consultation Events : `clear`
+### 5.2 Clearing all Consultation Events : `clear`
 
 Clears all consultation events stored in DukePro(f).
 
@@ -103,58 +130,72 @@ careful when using this command!
 Format: `clear`
 
 
-### 3.3 Deleting a Consultation Event : `delete`
+### 5.3 Deleting a Consultation Event : `delete`
 
-Deletes a consult event from DukePro(f). Indexed according to the result of the ‘list’ command (see below).
+Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 
 Format: `delete INDEX`
 
-Example: `delete 1`
+Example(s): 
+* `delete 1`
 
-### 3.4 Editing a Consultation Event : `edit`
+### 5.4 Editing a Consultation Event : `edit`
 
-Edits the details of a consult event from DukePro(f). Indexed according to the result of the 'list' command(see below).
+Edits the details of a consultation event from DukePro(f) at the specified `INDEX`.
 
-Format: `edit INDEX [n/NAME] [d/DATE] [t/TIME] [l/LOCATION] [tag/TAG]...`
+Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note**: Editing the tags will automatically 
+<div markdown="span" class="alert alert-danger">:bulb: **Tip**: Editing the tags will automatically 
 erase all previous tags!
 </div>
 
-Example: `edit 2 n/Ruth t/0730`
+Example(s): 
+* `edit 2 n/Ruth t/0730-0830`
+* `edit 3 r/May have to switch to zoom`
 
-### 3.5 Finding a Consultation Event : `find`
+### 5.5 Finding a Consultation Event : `find`
 Finds all events whose names contain any of the specified keywords and displays them as a list with index numbers.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note**: The keywords are case-insensitive!
+<div markdown="span" class="alert alert-primary">:bulb: **Tip**: The keywords are case-insensitive!
 </div>
 
-Example: `find Jacob`
+Example(s): 
+* `find Jacob`
 
-### 3.6 Viewing help : `help`
+### 5.6 Viewing help : `help`
 
-Opens a pop-up window with a link to  DukePro(f)'s user guide.
+Opens a pop-up window with a link to DukePro(f)'s user guide.
 
 Format: `help`
 
-### 3.7 Listing All Consultation Events : `list`
-Lists down all consultations scheduled in DukePro(f).
+### 5.7 Listing all Consultation Events : `list`
+Lists down all consultation events scheduled in DukePro(f).
 
 Format: `list`
 
-### 3.8 Exiting the app : `exit`
+### 5.8 Displaying the next Consultation Event : `next_event`
+Displays the next consultation event scheduled for the day in DukePro(f).
+
+Format: `next_event`
+
+### 5.9 Listing all Upcoming Events : `upcoming_events`
+Lists down all the upcoming consultation events for the current day.
+
+Format: `upcoming_events`
+
+### 5.10 Exiting the app : `exit`
 Exits DukePro(f).
 
 Format: `exit`
 
-### 3.9 Saving all edits
+### 5.11 Saving all edits
 Event data is automatically saved into the hard disk after any command that changes the data. There is no
 need to save manually.
 
 
-## 4. FAQ
+## 6. FAQ
 ***
 **Q**: Where are the releases?<br>
 **A**: The release for v1.2 is a work in progress, please be patient!
