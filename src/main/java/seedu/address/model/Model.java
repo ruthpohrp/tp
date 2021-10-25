@@ -77,6 +77,13 @@ public interface Model {
      */
     void setEvent(Event target, Event editedEvent);
 
+    /**
+     * Blocks the given TimeSlot.
+     * @param startTime start time of time slot to block.
+     * @param endTime end time of time slot to block.
+     */
+    void blockTimeSlot(String startTime, String endTime);
+
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 

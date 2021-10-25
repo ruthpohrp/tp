@@ -129,6 +129,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void blockTimeSlot(String startTime, String endTime) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }

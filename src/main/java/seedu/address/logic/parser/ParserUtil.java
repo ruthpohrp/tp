@@ -8,12 +8,15 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
 import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
+import seedu.address.logic.commands.exceptions.TimeSlotBlockedException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -87,17 +90,20 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code timeSlot} is invalid.
      */
-    public static TimeSlot parseTimeSlot(String timeSlot) throws ParseException {
+    public static TimeSlot parseTimeSlot(String timeSlot) throws ParseException, CommandException {
         requireNonNull(timeSlot);
         String trimmedTimeSlot = timeSlot.trim();
         String[] startTimeAndEndTime = trimmedTimeSlot.split("-"); // Index 0: startTime; Index 1: endTime;
         try {
             if (!TimeSlot.isValidTimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1])) {
-                throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+                throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS_TIMESLOT);
+            } else if (TimeSlot.isBlocked(startTimeAndEndTime[0], startTimeAndEndTime[1])) {
+                throw new TimeSlotBlockedException("The specified time slot is blocked. Please try a different time" +
+                        " slot.");
             }
             return new TimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+            throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS_TIMESLOT);
         }
     }
 

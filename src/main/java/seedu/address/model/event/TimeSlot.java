@@ -14,7 +14,10 @@ import java.util.ArrayList;
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String, String)}
  */
 public class TimeSlot {
-    public static final String MESSAGE_CONSTRAINTS = "TimeSlot should be of the format HHmm e.g 1300-1400. ";
+    public static final String MESSAGE_CONSTRAINTS_TIMESLOT = "TimeSlot should be of the format HHmm-HHmm " +
+            "e.g 1300-1400. ";
+    public static final String MESSAGE_CONSTRAINTS_BLOCK = "Blocked TimeSlot should be of the format HHmm-HHmm " +
+            "e.g 1300-1400. ";
     public static final String TIMESLOT_BLOCKED = "TimeSlot coincides with a blocked period.";
     public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
 
@@ -31,7 +34,7 @@ public class TimeSlot {
     public TimeSlot(String startTime, String endTime) {
         requireNonNull(startTime);
         requireNonNull(endTime);
-        checkArgument(isValidTimeSlot(startTime, endTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTimeSlot(startTime, endTime), MESSAGE_CONSTRAINTS_TIMESLOT);
         checkArgument(!isBlocked(startTime, endTime), TIMESLOT_BLOCKED);
         this.startTime = LocalTime.parse(startTime, timeFormatter);
         this.endTime = LocalTime.parse(endTime, timeFormatter);
@@ -56,6 +59,13 @@ public class TimeSlot {
         //(e.g. user has an event 1200-1400 but tries to block 1300-1400)
         TimeSlot timeSlot = new TimeSlot(startTime, endTime);
         blockedTimeSlots.add(timeSlot);
+    }
+
+    /**
+     * Removes all blocked time slots. (Used for tests only)
+     */
+    public static void unblockAll() {
+        blockedTimeSlots.clear();
     }
 
     /**

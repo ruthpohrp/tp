@@ -100,7 +100,7 @@ class JsonAdaptedEvent {
                     TimeSlot.class.getSimpleName()));
         }
         if (!TimeSlot.isValidTimeSlot(startTime, endTime)) {
-            throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(TimeSlot.MESSAGE_CONSTRAINTS_TIMESLOT);
         }
         final TimeSlot modelTimeSlot = new TimeSlot(startTime, endTime);
 

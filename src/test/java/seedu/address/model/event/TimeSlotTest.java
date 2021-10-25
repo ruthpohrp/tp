@@ -4,9 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 public class TimeSlotTest {
+
+    @AfterEach
+    public void clearBlockedTimeSlots() {
+        TimeSlot.unblockAll();
+    }
 
     @Test
     public void constructor_startTimeNull_throwsNullPointerException() {
@@ -100,21 +106,21 @@ public class TimeSlotTest {
 
     @Test
     public void isBlocked() {
-        TimeSlot.block("1200", "1400");
+        TimeSlot.block("1800", "2000");
 
         // fully before
-        assertFalse(TimeSlot.isBlocked("1000", "1200"));
+        assertFalse(TimeSlot.isBlocked("1600", "1800"));
 
         // partial overlap before
-        assertTrue(TimeSlot.isBlocked("1100", "1300"));
+        assertTrue(TimeSlot.isBlocked("1700", "1900"));
 
         // full overlap
-        assertTrue(TimeSlot.isBlocked("1200", "1400"));
+        assertTrue(TimeSlot.isBlocked("1800", "2000"));
 
         // partial overlap after
-        assertTrue(TimeSlot.isBlocked("1300", "1500"));
+        assertTrue(TimeSlot.isBlocked("1900", "2100"));
 
         // fully after
-        assertFalse(TimeSlot.isBlocked("1400", "1600"));
+        assertFalse(TimeSlot.isBlocked("2000", "2200"));
     }
 }

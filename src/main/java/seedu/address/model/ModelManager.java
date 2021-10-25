@@ -112,6 +112,14 @@ public class ModelManager implements Model {
         schedule.setEvent(target, editedEvent);
     }
 
+    @Override
+    public void blockTimeSlot(String startTime, String endTime) {
+        requireAllNonNull(startTime);
+        requireAllNonNull(endTime);
+
+        schedule.blockTimeSlot(startTime, endTime);
+    }
+
     //=========== Filtered Event List Accessors =============================================================
 
     /**

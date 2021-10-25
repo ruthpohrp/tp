@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.SortedEventList;
+import seedu.address.model.event.TimeSlot;
 
 /**
  * Wraps all data at the address-book level
@@ -91,6 +92,15 @@ public class Schedule implements ReadOnlySchedule {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Blocks the given TimeSlot.
+     * @param startTime start time of time slot to block.
+     * @param endTime end time of time slot to block.
+     */
+    public void blockTimeSlot(String startTime, String endTime) {
+        TimeSlot.block(startTime, endTime);
     }
 
     //// util methods
