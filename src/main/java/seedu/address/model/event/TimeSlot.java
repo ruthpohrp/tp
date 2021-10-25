@@ -4,7 +4,6 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
  */
 public class TimeSlot {
     public static final String MESSAGE_CONSTRAINTS = "TimeSlot should be of the format HHmm e.g 1300-1400. ";
+    public static final String TIMESLOT_BLOCKED = "TimeSlot coincides with a blocked period.";
     public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
 
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
@@ -32,6 +32,7 @@ public class TimeSlot {
         requireNonNull(startTime);
         requireNonNull(endTime);
         checkArgument(isValidTimeSlot(startTime, endTime), MESSAGE_CONSTRAINTS);
+        checkArgument(!isBlocked(startTime, endTime), TIMESLOT_BLOCKED);
         this.startTime = LocalTime.parse(startTime, timeFormatter);
         this.endTime = LocalTime.parse(endTime, timeFormatter);
     }

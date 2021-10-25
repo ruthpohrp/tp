@@ -31,6 +31,14 @@ public class TimeSlotTest {
     }
 
     @Test
+    public void constructor_blockedTimeSlot_throwsIllegalArgumentException() {
+        TimeSlot.block("1200", "1300");
+        String blockedStartTime = "1230";
+        String validEndTime = "1330";
+        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(blockedStartTime, validEndTime));
+    }
+
+    @Test
     public void isValidTimeSlot() {
         // null startTime
         assertThrows(NullPointerException.class, () -> TimeSlot.isValidTimeSlot(null, "1300"));
