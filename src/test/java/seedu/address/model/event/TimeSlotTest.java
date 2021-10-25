@@ -69,4 +69,32 @@ public class TimeSlotTest {
         assertTrue(earlierSlot.compareTo(laterSlot) < 0);
         assertTrue(earlierSlot.compareTo(sameAsEarlierSlot) == 0);
     }
+
+    @Test
+    public void overlaps() {
+        TimeSlot A = new TimeSlot("1000", "1200");
+        TimeSlot B = new TimeSlot("1100", "1300");
+        TimeSlot C = new TimeSlot("1200", "1400");
+        TimeSlot D = new TimeSlot("1300", "1500");
+        TimeSlot E = new TimeSlot("1400", "1600");
+        assertFalse(A.overlaps(C));
+        assertTrue(B.overlaps(C));
+        assertTrue(C.overlaps(C));
+        assertTrue(D.overlaps(C));
+        assertFalse(E.overlaps(C));
+    }
+
+    @Test
+    public void isBlocked() {
+        TimeSlot A = new TimeSlot("1000", "1200");
+        TimeSlot B = new TimeSlot("1100", "1300");
+        TimeSlot C = new TimeSlot("1200", "1400");
+        TimeSlot D = new TimeSlot("1300", "1500");
+        TimeSlot E = new TimeSlot("1400", "1600");
+        TimeSlot.block(C);
+        assertFalse(TimeSlot.isBlocked(A));
+        assertTrue(TimeSlot.isBlocked(B));
+        assertTrue(TimeSlot.isBlocked(D));
+        assertFalse(TimeSlot.isBlocked(E));
+    }
 }

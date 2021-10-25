@@ -45,11 +45,20 @@ public class TimeSlot {
     }
 
     /**
+     * Add a new TimeSlot to blockedTimeSlots.
+     * @param timeSlot a new TimeSlot to block.
+     */
+    public static void block(TimeSlot timeSlot) {
+        //TODO: create isBlockable(TimeSlot timeSlot) to check if given timeslot can be blocked
+        //(e.g. user has an event 1200-1400 but tries to block 1300-1400)
+        blockedTimeSlots.add(timeSlot);
+    }
+
+    /**
      * Checks if given TimeSlot is blocked.
      * @param timeSlot TimeSlot to be checked.
      * @return true if the given TimeSlot is blocked, false otherwise.
      */
-    //TODO: write tests
     public static boolean isBlocked(TimeSlot timeSlot) {
         for (TimeSlot blockedTimeSlot : blockedTimeSlots) {
             if (timeSlot.overlaps(blockedTimeSlot)) {
@@ -64,7 +73,6 @@ public class TimeSlot {
      * @param other another TimeSlot.
      * @return true if there is an overlap, false otherwise.
      */
-    //TODO: write tests
     public boolean overlaps(TimeSlot other) {
         return other.startTime.compareTo(this.endTime) < 0
                 && this.startTime.compareTo(other.endTime) < 0;
@@ -104,15 +112,5 @@ public class TimeSlot {
     @Override
     public int hashCode() {
         return this.toString().hashCode();
-    }
-
-    /**
-     * Add a new TimeSlot to blockedTimeSlots.
-     * @param timeSlot a new TimeSlot to block.
-     */
-    public void block(TimeSlot timeSlot) {
-        //TODO: create isBlockable(TimeSlot timeSlot) to check if given timeslot can be blocked. (For now assume correct
-        //inputs)
-        blockedTimeSlots.add(timeSlot);
     }
 }
