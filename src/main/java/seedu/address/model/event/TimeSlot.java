@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 /**
@@ -17,6 +18,7 @@ public class TimeSlot {
     public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
 
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
+    private static final ArrayList<TimeSlot> blockedTimeSlots = new ArrayList<>();
     public final LocalTime startTime;
     public final LocalTime endTime;
 
@@ -42,11 +44,37 @@ public class TimeSlot {
                 && Integer.parseInt(testEndTime) > Integer.parseInt(testStartTime);
     }
 
-    public String getStartTime() {
+    /**
+     * Checks if given TimeSlot is blocked.
+     * @param timeSlot TimeSlot to be checked.
+     * @return true if the given TimeSlot is blocked, false otherwise.
+     */
+    //TODO: write tests
+    public static boolean isBlocked(TimeSlot timeSlot) {
+        for (TimeSlot blockedTimeSlot : blockedTimeSlots) {
+            if (timeSlot.overlaps(blockedTimeSlot)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if other TimeSlot has an overlap with this instance of TimeSlot.
+     * @param other another TimeSlot.
+     * @return true if there is an overlap, false otherwise.
+     */
+    //TODO: write tests
+    public boolean overlaps(TimeSlot other) {
+        return other.startTime.compareTo(this.endTime) < 0
+                && this.startTime.compareTo(other.endTime) < 0;
+    }
+
+    public String startTimeToString() {
         return startTime.format(timeFormatter);
     }
 
-    public String getEndTime() {
+    public String endTimeToString() {
         return endTime.format(timeFormatter);
     }
 
@@ -76,5 +104,15 @@ public class TimeSlot {
     @Override
     public int hashCode() {
         return this.toString().hashCode();
+    }
+
+    /**
+     * Add a new TimeSlot to blockedTimeSlots.
+     * @param timeSlot a new TimeSlot to block.
+     */
+    public void block(TimeSlot timeSlot) {
+        //TODO: create isBlockable(TimeSlot timeSlot) to check if given timeslot can be blocked. (For now assume correct
+        //inputs)
+        blockedTimeSlots.add(timeSlot);
     }
 }
