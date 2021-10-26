@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 
 /**
@@ -14,13 +13,10 @@ import java.util.ArrayList;
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String, String)}
  */
 public class TimeSlot {
-    public static final String MESSAGE_CONSTRAINTS = "TimeSlot should be of the format HHmm-HHmm "
-            + "e.g 1300-1400. ";
-    public static final String TIMESLOT_BLOCKED = "TimeSlot coincides with a blocked period.";
+    public static final String MESSAGE_CONSTRAINTS = "TimeSlot should be of the format HHmm-HHmm e.g 1300-1400. ";
     public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
 
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-    private static final ArrayList<TimeSlot> blockedTimeSlots = new ArrayList<>();
     public final LocalTime startTime;
     public final LocalTime endTime;
 
@@ -54,6 +50,14 @@ public class TimeSlot {
         return endTime.format(timeFormatter);
     }
 
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return this.endTime;
+    }
+
     /**
      * Compares a TimeSlot's startTime with another.
      * @param other other TimeSlot to compare to.
@@ -75,6 +79,29 @@ public class TimeSlot {
                 || (other instanceof TimeSlot // instanceof handles nulls
                 && startTime.equals(((TimeSlot) other).startTime)
                 && endTime.equals(((TimeSlot) other).endTime)); // state check for both time fields
+    }
+
+    /**
+     * Checks if this TimeSlot instance overlaps with another TimeSlot instance.
+     * Note that if a TimeSlots ends at the same time as the other TimeSlot begins,
+     * it is not considered as overlapping.
+     * @param timeSlot Other TimeSlot to check for overlaps.
+     * @return True if overlaps, false otherwise.
+     */
+    public boolean isOverlappingWith(TimeSlot timeSlot) {
+        boolean isOverlapping = true;
+        LocalTime aStartTime = this.startTime;
+        LocalTime aEndTime = this.endTime;
+        LocalTime bStartTime = timeSlot.getStartTime();
+        LocalTime bEndTime = timeSlot.getEndTime();
+
+        if (!aEndTime.isAfter(bStartTime)
+                || !bEndTime.isAfter(aStartTime)
+        ) {
+            isOverlapping = false;
+        }
+
+        return isOverlapping;
     }
 
     @Override
