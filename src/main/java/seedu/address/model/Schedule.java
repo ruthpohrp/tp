@@ -2,6 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -9,10 +12,13 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Overlappable;
 import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
+import seedu.address.model.event.TimeSlot;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Wraps all data at the address-book level
@@ -144,4 +150,54 @@ public class Schedule implements ReadOnlySchedule {
     public int hashCode() {
         return events.hashCode();
     }
+
+    private class OverlappableComparator implements Comparator<Overlappable> {
+
+        @Override
+        public int compare(Overlappable o1, Overlappable o2) {
+            int compareDate = o1.getDate().compareTo(o2.getDate());
+            if (compareDate != 0) {
+                return compareDate;
+            } else {
+                return o1.getTimeSlot().compareTo(o2.getTimeSlot());
+            }
+        }
+    }
+
+    private ArrayList<Overlappable> merge() {
+        Iterator<Event> eventsIterator = events.iterator();
+        Iterator<BlockedSlot> blockedIterator = blockedSlotList.iterator();
+        ArrayList<Overlappable> allOverlappables = new ArrayList<>();
+        eventsIterator.forEachRemaining(e -> allOverlappables.add(e));
+        blockedIterator.forEachRemaining(b -> allOverlappables.add(b));
+        allOverlappables.sort(new OverlappableComparator());
+        return allOverlappables;
+    }
+
+    public ArrayList<FreeSlot> getFreeSlots() {
+        ArrayList<Overlappable> allOverlappables = merge();
+        ArrayList<FreeSlot> freeSlots = new ArrayList<>();
+        for (int i = 1; i < allOverlappables.size(); i++) {
+            Overlappable prev = allOverlappables.get(i - 1);
+            Overlappable curr = allOverlappables.get(i);
+            String prevEndTime = prev.getTimeSlot().endTimeToString();
+            String currStartTime = curr.getTimeSlot().startTimeToString();
+
+            if (prev.getDate().equals(curr.getDate())) {
+                if (!prevEndTime.equals(currStartTime)) {
+                    freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, currStartTime)));
+                }
+            } else {
+                if (!prevEndTime.equals("2359")) {
+                    freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, "2359")));
+                }
+                if (!currStartTime.equals("0000")) {
+                    freeSlots.add(new FreeSlot(curr.getDate(), new TimeSlot("0000", currStartTime)));
+                }
+
+            }
+        }
+        return freeSlots;
+    }
+
 }

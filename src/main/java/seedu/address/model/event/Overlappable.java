@@ -12,4 +12,8 @@ public interface Overlappable {
      */
     boolean isOverlappingWith(Overlappable overlappable);
 
+    Date getDate();
+
+    TimeSlot getTimeSlot();
+
 }
