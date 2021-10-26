@@ -19,5 +19,4 @@ public class TypicalBlockedSlots {
 
     private TypicalBlockedSlots() {
     } // prevents instantiation
-
 }

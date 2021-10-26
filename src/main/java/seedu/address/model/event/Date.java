@@ -37,14 +37,19 @@ public class Date {
 
     /**
      * Compares this Date instance with another Date instance.
-     * @param other other Date to compare to.
-     * @return a positive integer if this Date is earlier than the other, a negative integer if this Date
+     * @param other Other Date to compare to.
+     * @return A positive integer if this Date is earlier than the other, a negative integer if this Date
      * is later than the other and zero if the 2 Dates share the same date.
      */
     public int compareTo(Date other) {
         return date.compareTo(other.date);
     }
 
+    /**
+     * Checks if this Date instance has the same date as another Date instance.
+     * @param other Other Date to compare to.
+     * @return True if has same date, false otherwise.
+     */
     public boolean hasSameDate(Date other) {
         if (this.compareTo(other) == 0) {
             return true;

@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalBlockedSlots.NINE_TO_TEN;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.BlockedSlotBuilder;
-import seedu.address.testutil.EventBuilder;
 
 public class BlockedSlotTest {
 

@@ -99,8 +99,8 @@ public class TimeSlot {
         LocalTime bStartTime = timeSlot.getStartTime();
         LocalTime bEndTime = timeSlot.getEndTime();
 
-        if (!aEndTime.isAfter(bStartTime) ||
-                !bEndTime.isAfter(aStartTime)
+        if (!aEndTime.isAfter(bStartTime)
+                || !bEndTime.isAfter(aStartTime)
         ) {
             isOverlapping = false;
         }

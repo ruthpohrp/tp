@@ -78,7 +78,7 @@ public class SortedBlockedSlotListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> sortedBlockedSlotList.asUnmodifiableObservableList().remove(0));
+            -> sortedBlockedSlotList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
