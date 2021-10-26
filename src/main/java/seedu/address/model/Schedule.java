@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -18,7 +19,6 @@ import seedu.address.model.event.Overlappable;
 import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
 import seedu.address.model.event.TimeSlot;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Wraps all data at the address-book level
@@ -45,14 +45,14 @@ public class Schedule implements ReadOnlySchedule {
 
     public Schedule() {
         //TODO delete later. this is just to populate blockedSLotList with some data
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-13"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-13"), new TimeSlot("1900", "2359")));
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-15"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-15"), new TimeSlot("1900", "2359")));
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-18"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-18"), new TimeSlot("1900", "2359")));
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-19"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2020-10-19"), new TimeSlot("1900", "2359")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-10-28"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-10-28"), new TimeSlot("1900", "2359")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-10-29"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-10-29"), new TimeSlot("1900", "2359")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-10-31"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-10-31"), new TimeSlot("1900", "2359")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-11-03"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2021-11-03"), new TimeSlot("1900", "2359")));
     }
 
     /**
@@ -184,30 +184,48 @@ public class Schedule implements ReadOnlySchedule {
         return allOverlappables;
     }
 
+    private LocalDate today = null;
+
     public ArrayList<FreeSlot> getFreeSlots() {
+        today = LocalDate.now();
         ArrayList<Overlappable> allOverlappables = merge();
         ArrayList<FreeSlot> freeSlots = new ArrayList<>();
+        if (allOverlappables.isEmpty()) {
+            return freeSlots;
+        }
+
+        addEmptyDates(freeSlots, allOverlappables.get(0));
+
         for (int i = 1; i < allOverlappables.size(); i++) {
             Overlappable prev = allOverlappables.get(i - 1);
             Overlappable curr = allOverlappables.get(i);
             String prevEndTime = prev.getTimeSlot().endTimeToString();
             String currStartTime = curr.getTimeSlot().startTimeToString();
 
-            if (prev.getDate().equals(curr.getDate())) {
-                if (!prevEndTime.equals(currStartTime)) {
-                    freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, currStartTime)));
-                }
+            if (prev.getDate().equals(curr.getDate()) && !prevEndTime.equals(currStartTime)) {
+                freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, currStartTime)));
             } else {
                 if (!prevEndTime.equals("2359")) {
                     freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, "2359")));
                 }
+
+                today = today.plusDays(1);
+                addEmptyDates(freeSlots, curr);
+
                 if (!currStartTime.equals("0000")) {
                     freeSlots.add(new FreeSlot(curr.getDate(), new TimeSlot("0000", currStartTime)));
                 }
-
             }
         }
         return freeSlots;
+    }
+
+
+    private void addEmptyDates(ArrayList<FreeSlot> freeSlots, Overlappable next) {
+        while (today.isBefore(next.getDate().date)){
+            freeSlots.add(new FreeSlot(today, new TimeSlot("0000", "2359")));
+            today = today.plusDays(1);
+        }
     }
 
 }
