@@ -44,15 +44,6 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     public Schedule() {
-        //TODO delete later. this is just to populate blockedSLotList with some data
-        blockedSlotList.add(new BlockedSlot(new Date("2021-10-28"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2021-10-28"), new TimeSlot("1900", "2359")));
-        blockedSlotList.add(new BlockedSlot(new Date("2021-10-29"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2021-10-29"), new TimeSlot("1900", "2359")));
-        blockedSlotList.add(new BlockedSlot(new Date("2021-10-31"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2021-10-31"), new TimeSlot("1900", "2359")));
-        blockedSlotList.add(new BlockedSlot(new Date("2021-11-03"), new TimeSlot("0000", "0700")));
-        blockedSlotList.add(new BlockedSlot(new Date("2021-11-03"), new TimeSlot("1900", "2359")));
     }
 
     /**

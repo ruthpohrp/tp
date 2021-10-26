@@ -12,6 +12,12 @@ public class FreeSlotsCommand extends Command{
 
     public static final String MESSAGE_SUCCESS = "Here are your free slots:";
 
+    private Date today;
+
+    public FreeSlotsCommand(Date today) {
+        this.today = today;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ArrayList<FreeSlot> freeSlots = model.getFreeSlots(Date.TODAY);

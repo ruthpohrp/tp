@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NextEventCommand;
 import seedu.address.logic.commands.UpcomingEventsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Date;
 
 /**
  * Parses user input.
@@ -72,7 +73,7 @@ public class ScheduleParser {
             return new NextEventCommand();
 
         case FreeSlotsCommand.COMMAND_WORD:
-            return new FreeSlotsCommand();
+            return new FreeSlotsCommand(Date.TODAY);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
