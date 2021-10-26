@@ -11,9 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.exceptions.SlotBlockedException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final Schedule schedule;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<BlockedSlot> filteredBlockedSlots;
 
     /**
      * Initializes a ModelManager with the given schedule and userPrefs.
@@ -37,6 +38,7 @@ public class ModelManager implements Model {
         this.schedule = new Schedule(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.schedule.getEventList());
+        filteredBlockedSlots = new FilteredList<>(this.schedule.getBlockedSlotList());
     }
 
     public ModelManager() {
@@ -73,16 +75,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setScheduleFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setScheduleFilePath(addressBookFilePath);
+    public void setScheduleFilePath(Path scheduleFilePath) {
+        requireNonNull(scheduleFilePath);
+        userPrefs.setScheduleFilePath(scheduleFilePath);
     }
 
     //=========== Schedule ================================================================================
 
     @Override
-    public void setSchedule(ReadOnlySchedule addressBook) {
-        this.schedule.resetData(addressBook);
+    public void setSchedule(ReadOnlySchedule schedule) {
+        this.schedule.resetData(schedule);
     }
 
     @Override
@@ -104,15 +106,13 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-
         schedule.setEvent(target, editedEvent);
     }
 
     @Override
     public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
-        requireAllNonNull(blockedSlot);
-
         schedule.addBlock(blockedSlot);
+        updateFilteredBlockedSlotList(PREDICATE_SHOW_ALL_BLOCKED_SLOTS);
     }
 
     //=========== Filtered Event List Accessors =============================================================
@@ -131,10 +131,38 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
+
+    //=========== Filtered Blocked Slot List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code BlockedSlot} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<BlockedSlot> getFilteredBlockedSlotList() {
+        return filteredBlockedSlots;
+    }
+
+    @Override
+    public void updateFilteredBlockedSlotList(Predicate<BlockedSlot> predicate) {
+        requireNonNull(predicate);
+        filteredBlockedSlots.setPredicate(predicate);
+    }
+
+    @Override
+    public String filteredBlockedSlotListToString() {
+        StringBuilder builder = new StringBuilder();
+        for (BlockedSlot blockedSlot : filteredBlockedSlots) {
+            builder.append(blockedSlot);
+        }
+        return builder.toString();
+    }
+
     @Override
     public Event nextEventInTheList() {
         return filteredEvents.get(0);
     }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -151,7 +179,10 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return schedule.equals(other.schedule)
                 && userPrefs.equals(other.userPrefs)
-                && filteredEvents.equals(other.filteredEvents);
+                && filteredEvents.equals(other.filteredEvents)
+                && filteredBlockedSlots.equals(other.filteredBlockedSlots);
     }
+
+
 
 }
