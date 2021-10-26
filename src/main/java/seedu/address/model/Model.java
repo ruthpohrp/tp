@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.SlotBlockedException;
 
@@ -106,4 +108,12 @@ public interface Model {
      * Gets the first event in the filtered list.
      */
     Event nextEventInTheList();
+
+    /**
+     * Gets a list of all free slots from today's date to last event/block slot.
+     *
+     * @param date Today's date
+     * @return ArrayList of freeSlots
+     */
+    ArrayList<FreeSlot> getFreeSlots(Date date);
 }

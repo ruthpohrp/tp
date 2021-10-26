@@ -15,11 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.FreeSlot;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Schedule;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
@@ -156,6 +158,11 @@ public class AddCommandTest {
 
         @Override
         public Event nextEventInTheList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<FreeSlot> getFreeSlots(Date date) {
             throw new AssertionError("This method should not be called.");
         }
     }

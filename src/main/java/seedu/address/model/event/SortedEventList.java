@@ -77,7 +77,7 @@ public class SortedEventList implements SortedOverlappableList<Event> {
 
     @Override
     public Iterator<Event> iterator() {
-        return internalList.iterator();
+        return internalUnmodifiableList.iterator();
     }
 
     @Override
