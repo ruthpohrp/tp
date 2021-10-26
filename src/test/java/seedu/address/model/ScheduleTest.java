@@ -41,30 +41,6 @@ public class ScheduleTest {
     }
 
     @Test
-    public void hasEvent_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> schedule.hasEvent(null));
-    }
-
-    @Test
-    public void hasEvent_eventNotInSchedule_returnsFalse() {
-        assertFalse(schedule.hasEvent(ALICE));
-    }
-
-    @Test
-    public void hasEvent_eventInSchedule_returnsTrue() {
-        schedule.addEvent(ALICE);
-        assertTrue(schedule.hasEvent(ALICE));
-    }
-
-    @Test
-    public void hasEvent_eventWithSameIdentityFieldsInSchedule_returnsTrue() {
-        schedule.addEvent(ALICE);
-        Event editedAlice = new EventBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(schedule.hasEvent(editedAlice));
-    }
-
-    @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> schedule.getEventList().remove(0));
     }

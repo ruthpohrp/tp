@@ -6,10 +6,6 @@ import javafx.collections.ObservableList;
  * Interface for a list of Events.
  */
 public interface EventList extends Iterable<Event> {
-    /**
-     * Returns true if the list contains an equivalent event as the given argument.
-     */
-    boolean contains(Event toCheck);
 
     /**
      * Adds an event to the list.

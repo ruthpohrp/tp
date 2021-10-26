@@ -70,30 +70,6 @@ public class SortedEventListTest {
     }
 
     @Test
-    public void contains_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> sortedEventList.contains(null));
-    }
-
-    @Test
-    public void contains_eventNotInList_returnsFalse() {
-        assertFalse(sortedEventList.contains(ALICE));
-    }
-
-    @Test
-    public void contains_eventInList_returnsTrue() {
-        sortedEventList.add(ALICE);
-        assertTrue(sortedEventList.contains(ALICE));
-    }
-
-    @Test
-    public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
-        sortedEventList.add(ALICE);
-        Event editedAlice = new EventBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(sortedEventList.contains(editedAlice));
-    }
-
-    @Test
     public void add_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> sortedEventList.add(null));
     }

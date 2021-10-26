@@ -9,13 +9,6 @@ import javafx.collections.ObservableList;
 public interface SortedOverlappableList extends Iterable<Overlappable> {
 
     /**
-     * Checks if the list contains the given Overlappable.
-     * @param overlappable Overlappable to check.
-     * @return true if the list contains the given Overlappable, false otherwise.
-     */
-    boolean contains(Overlappable overlappable);
-
-    /**
      * Adds an event to the list.
      * @param overlappable Overlappable to be added.
      */

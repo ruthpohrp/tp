@@ -33,12 +33,6 @@ public class SortedEventList implements EventList {
                     new EventSorter());
 
     @Override
-    public boolean contains(Event toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameEvent);
-    }
-
-    @Override
     public void add(Event toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);

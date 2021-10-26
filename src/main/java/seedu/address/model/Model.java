@@ -54,11 +54,6 @@ public interface Model {
     ReadOnlySchedule getSchedule();
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
-     */
-    boolean hasEvent(Event event);
-
-    /**
      * Deletes the given event.
      * The event must exist in the address book.
      */
