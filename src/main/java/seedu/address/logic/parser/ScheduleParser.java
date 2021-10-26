@@ -14,6 +14,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FreeSlotsCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NextEventCommand;
@@ -69,6 +70,9 @@ public class ScheduleParser {
 
         case NextEventCommand.COMMAND_WORD:
             return new NextEventCommand();
+
+        case FreeSlotsCommand.COMMAND_WORD:
+            return new FreeSlotsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -93,4 +94,11 @@ public interface Model {
      * Gets the first event in the filtered list.
      */
     Event nextEventInTheList();
+
+    /**
+     * Gets a list of all free slots between all events and blocked time.
+     *
+     * @return ArrayList of freeSlots
+     */
+    ArrayList<FreeSlot> getFreeSlots();
 }

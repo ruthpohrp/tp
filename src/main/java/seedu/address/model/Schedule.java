@@ -43,7 +43,17 @@ public class Schedule implements ReadOnlySchedule {
         blockedSlotList = new SortedBlockedSlotList();
     }
 
-    public Schedule() {}
+    public Schedule() {
+        //TODO delete later. this is just to populate blockedSLotList with some data
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-13"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-13"), new TimeSlot("1900", "2359")));
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-15"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-15"), new TimeSlot("1900", "2359")));
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-18"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-18"), new TimeSlot("1900", "2359")));
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-19"), new TimeSlot("0000", "0700")));
+        blockedSlotList.add(new BlockedSlot(new Date("2020-10-19"), new TimeSlot("1900", "2359")));
+    }
 
     /**
      * Creates a Schedule using the Events in the {@code toBeCopied}

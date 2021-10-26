@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -135,6 +136,12 @@ public class ModelManager implements Model {
     public Event nextEventInTheList() {
         return filteredEvents.get(0);
     }
+
+    @Override
+    public ArrayList<FreeSlot> getFreeSlots() {
+        return schedule.getFreeSlots();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

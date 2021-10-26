@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.FreeSlot;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -140,6 +141,11 @@ public class AddCommandTest {
         }
         @Override
         public Event nextEventInTheList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<FreeSlot> getFreeSlots() {
             throw new AssertionError("This method should not be called.");
         }
     }
