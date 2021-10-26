@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents an Event in the schedule.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event implements HasDateTime {
+public class Event implements Overlappable {
 
     // Identity fields
     private final Name name;
@@ -149,7 +149,7 @@ public class Event implements HasDateTime {
     }
 
     @Override
-    public boolean overlaps(HasDateTime hasDateTime) {
+    public boolean overlaps(Overlappable overlappable) {
         //TODO: For Ruth to implement.
         return false;
     }
