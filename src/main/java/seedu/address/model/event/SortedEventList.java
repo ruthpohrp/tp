@@ -92,9 +92,20 @@ public class SortedEventList implements SortedOverlappableList<Event> {
         return internalList.hashCode();
     }
 
+    /**
+     * Checks if any Overlappable in the list overlaps with another Overlappable instance.
+     * @param overlappable Overlappable to check.
+     * @return True if overlaps, false otherwise.
+     */
     @Override
-    public boolean isOverlappingWith(Overlappable toCheck) {
-        //TODO: For Ruth to implement
-        return false;
+    public boolean isOverlappingWith(Overlappable overlappable) {
+        boolean passesOverlappingCheck = true;
+        for (Overlappable o : internalList) {
+            if (!o.isOverlappingWith(overlappable)) {
+                passesOverlappingCheck = false;
+            }
+        }
+
+        return passesOverlappingCheck;
     }
 }
