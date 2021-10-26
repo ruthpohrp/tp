@@ -84,17 +84,11 @@ public interface Model {
      */
     void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException;
 
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Checks if the given Overlappable is blocked.
+     * @param overlappable the Overlappable to be checked.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
     boolean isBlocked(Overlappable overlappable);
 
     /** Returns an unmodifiable view of the filtered event list */
