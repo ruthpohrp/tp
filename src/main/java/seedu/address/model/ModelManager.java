@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.SlotBlockedException;
 
@@ -160,7 +162,17 @@ public class ModelManager implements Model {
 
     @Override
     public Event nextEventInTheList() {
-        return filteredEvents.get(0);
+        if (filteredEvents.isEmpty()) {
+            return null;
+        } else {
+            return filteredEvents.get(0);
+        }
+
+    }
+
+    @Override
+    public ArrayList<FreeSlot> getFreeSlots(Date date) {
+        return schedule.getFreeSlots(date);
     }
 
     @Override

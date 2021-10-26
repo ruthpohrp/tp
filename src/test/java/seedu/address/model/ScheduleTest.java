@@ -1,9 +1,12 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.getTypicalEvents;
 import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -12,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 
 public class ScheduleTest {
@@ -38,6 +42,23 @@ public class ScheduleTest {
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> schedule.getEventList().remove(0));
+    }
+
+    @Test
+    public void emptySchedule_getFreeSlot_emptyList() {
+        Schedule empty = new Schedule();
+        assertEquals(new ArrayList<>(), empty.getFreeSlots(new Date("2020-01-01")));
+    }
+
+    @Test
+    public void nonEmptySchedule_getFreeSlot_nonEmptyList() {
+        Schedule schedule = getTypicalSchedule();
+        ArrayList<FreeSlot> freeSlots = schedule.getFreeSlots(new Date("2020-01-01"));
+        for (FreeSlot f: freeSlots) {
+            for (Event e: getTypicalEvents()) {
+                assertTrue(!f.isOverlappingWith(e));
+            }
+        }
     }
 
     /**
