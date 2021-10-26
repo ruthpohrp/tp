@@ -4,13 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.BlockCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.TimeSlot;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new BlockCommand object

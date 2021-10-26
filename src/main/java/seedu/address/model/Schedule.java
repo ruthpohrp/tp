@@ -5,12 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Overlappable;
 import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
+import seedu.address.model.event.exceptions.SlotBlockedException;
 
 /**
  * Wraps all data at the address-book level
