@@ -6,10 +6,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.SlotBlockedException;
+import seedu.address.model.event.Overlappable;
 
 /**
  * The API of the Model component.
@@ -82,6 +83,13 @@ public interface Model {
      * Adds the given BlockedSlot.
      */
     void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException;
+
+    /**
+     * Checks if the given Overlappable is blocked.
+     * @param overlappable the Overlappable to be checked.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    boolean isBlocked(Overlappable overlappable);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
