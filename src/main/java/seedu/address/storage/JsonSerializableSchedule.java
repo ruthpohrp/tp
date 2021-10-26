@@ -41,7 +41,8 @@ class JsonSerializableSchedule {
      */
     public JsonSerializableSchedule(ReadOnlySchedule source) {
         events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
-        blockedSlots.addAll(source.getBlockedSlotList().stream().map(JsonAdaptedBlockedSlot::new).collect(Collectors.toList()));
+        blockedSlots.addAll(source.getBlockedSlotList().stream()
+                .map(JsonAdaptedBlockedSlot::new).collect(Collectors.toList()));
     }
 
     /**
