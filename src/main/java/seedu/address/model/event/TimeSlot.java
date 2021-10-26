@@ -14,10 +14,8 @@ import java.util.ArrayList;
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String, String)}
  */
 public class TimeSlot {
-    public static final String MESSAGE_CONSTRAINTS_TIMESLOT = "TimeSlot should be of the format HHmm-HHmm " +
-            "e.g 1300-1400. ";
-    public static final String MESSAGE_CONSTRAINTS_BLOCK = "Blocked TimeSlot should be of the format HHmm-HHmm " +
-            "e.g 1300-1400. ";
+    public static final String MESSAGE_CONSTRAINTS = "TimeSlot should be of the format HHmm-HHmm "
+            + "e.g 1300-1400. ";
     public static final String TIMESLOT_BLOCKED = "TimeSlot coincides with a blocked period.";
     public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
 
@@ -34,8 +32,7 @@ public class TimeSlot {
     public TimeSlot(String startTime, String endTime) {
         requireNonNull(startTime);
         requireNonNull(endTime);
-        checkArgument(isValidTimeSlot(startTime, endTime), MESSAGE_CONSTRAINTS_TIMESLOT);
-        checkArgument(!isBlocked(startTime, endTime), TIMESLOT_BLOCKED);
+        checkArgument(isValidTimeSlot(startTime, endTime), MESSAGE_CONSTRAINTS);
         this.startTime = LocalTime.parse(startTime, timeFormatter);
         this.endTime = LocalTime.parse(endTime, timeFormatter);
     }
@@ -47,53 +44,6 @@ public class TimeSlot {
     public static boolean isValidTimeSlot(String testStartTime, String testEndTime) {
         return testStartTime.matches(VALIDATION_REGEX) && testEndTime.matches(VALIDATION_REGEX)
                 && Integer.parseInt(testEndTime) > Integer.parseInt(testStartTime);
-    }
-
-    /**
-     * Add a new TimeSlot to blockedTimeSlots.
-     * @param startTime start time of blocked period.
-     * @param endTime end time of blocked period.
-     */
-    public static void block(String startTime, String endTime) {
-        //TODO: create isBlockable(TimeSlot timeSlot) to check if given timeslot can be blocked
-        //(e.g. user has an event 1200-1400 but tries to block 1300-1400)
-        TimeSlot timeSlot = new TimeSlot(startTime, endTime);
-        blockedTimeSlots.add(timeSlot);
-    }
-
-    /**
-     * Removes all blocked time slots. (Used for tests only)
-     */
-    public static void unblockAll() {
-        blockedTimeSlots.clear();
-    }
-
-    /**
-     * Checks if given TimeSlot is blocked.
-     * @param startTime start time to be tested.
-     * @param endTime end time to be tested.
-     * @return true if the given TimeSlot is blocked, false otherwise.
-     */
-    public static boolean isBlocked(String startTime, String endTime) {
-        for (TimeSlot blockedTimeSlot : blockedTimeSlots) {
-            if (blockedTimeSlot.overlaps(startTime, endTime)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if other TimeSlot has an overlap with this instance of TimeSlot.
-     * @param otherStartTimeString start time to be tested.
-     * @param otherEndTimeString end time to be tested.
-     * @return true if there is an overlap, false otherwise.
-     */
-    public boolean overlaps(String otherStartTimeString, String otherEndTimeString) {
-        LocalTime otherStartTime = LocalTime.parse(otherStartTimeString, timeFormatter);
-        LocalTime otherEndTime = LocalTime.parse(otherEndTimeString, timeFormatter);
-        return otherStartTime.compareTo(this.endTime) < 0
-                && this.startTime.compareTo(otherEndTime) < 0;
     }
 
     public String startTimeToString() {

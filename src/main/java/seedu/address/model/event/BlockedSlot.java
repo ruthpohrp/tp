@@ -7,16 +7,29 @@ import static java.util.Objects.requireNonNull;
  */
 public class BlockedSlot implements Overlappable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Blocked time should be of the format HHmm-HHmm e.g 1300-1400. ";
+    public static final String TIMESLOT_BLOCKED = "TimeSlot coincides with a blocked period.";
 
-    public final Date date;
-    public final TimeSlot timeSlot;
+    private final Date date;
+    private final TimeSlot timeSlot;
 
+    /**
+     * Constructs a BlockedSlot.
+     * @param date Date to block.
+     * @param timeSlot TimeSlot to block.
+     */
     public BlockedSlot(Date date, TimeSlot timeSlot) {
         requireNonNull(date);
         requireNonNull(timeSlot);
         this.date = date;
         this.timeSlot = timeSlot;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
     }
 
     @Override
@@ -29,8 +42,8 @@ public class BlockedSlot implements Overlappable {
      * Compares this BlockedSlot instance with another BlockedSlot instance.
      *
      * @param other other BlockedSlot to compare to.
-     * @return a positive integer if this BlockedSlot's Date and timeSlot are chronologically before other BlockedSlot,
-     * a negative integer if this BlockedSlot's Date and timeSlot are chronologically after other BlockedSlot,
+     * @return a positive integer if this BlockedSlot's Date and TimeSlot are chronologically before other BlockedSlot,
+     * a negative integer if this BlockedSlot's Date and TimeSlot are chronologically after other BlockedSlot,
      * zero if both BlockedSlots are on the same date and start at the same time.
      */
     public int compareTo(BlockedSlot other) {
@@ -40,5 +53,16 @@ public class BlockedSlot implements Overlappable {
         } else {
             return timeSlot.compareTo(other.timeSlot);
         }
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("; Date: ")
+                .append(getDate())
+                .append("; TimeSlot: ")
+                .append(getTimeSlot());
+
+        return builder.toString();
     }
 }

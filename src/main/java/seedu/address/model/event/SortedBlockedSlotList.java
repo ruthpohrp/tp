@@ -1,17 +1,17 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Comparator;
+import java.util.Iterator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.model.event.exceptions.BlockedSlotNotFoundException;
 
-import java.util.Comparator;
-import java.util.Iterator;
-
-import static java.util.Objects.requireNonNull;
-
 /**
- * A list of blocked slots is sorted chronogically and does not allow nulls.
+ * A list of blocked slots is sorted chronologically and does not allow nulls.
  */
 public class SortedBlockedSlotList implements SortedOverlappableList<BlockedSlot> {
     private class BlockedSlotSorter implements Comparator<BlockedSlot> {

@@ -9,11 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class TimeSlotTest {
 
-    @AfterEach
-    public void clearBlockedTimeSlots() {
-        TimeSlot.unblockAll();
-    }
-
     @Test
     public void constructor_startTimeNull_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TimeSlot(null, "1500"));
@@ -34,14 +29,6 @@ public class TimeSlotTest {
     public void constructor_invalidEndTime_throwsIllegalArgumentException() {
         String invalidTime = "";
         assertThrows(IllegalArgumentException.class, () -> new TimeSlot("1500", invalidTime));
-    }
-
-    @Test
-    public void constructor_blockedTimeSlot_throwsIllegalArgumentException() {
-        TimeSlot.block("1200", "1300");
-        String blockedStartTime = "1230";
-        String validEndTime = "1330";
-        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(blockedStartTime, validEndTime));
     }
 
     @Test
@@ -82,45 +69,5 @@ public class TimeSlotTest {
         TimeSlot laterSlot = new TimeSlot("1400", "1500");
         assertTrue(earlierSlot.compareTo(laterSlot) < 0);
         assertTrue(earlierSlot.compareTo(sameAsEarlierSlot) == 0);
-    }
-
-    @Test
-    public void overlaps() {
-        TimeSlot timeSlot = new TimeSlot("1200", "1400");
-
-        // fully before
-        assertFalse(timeSlot.overlaps("1000", "1200"));
-
-        // partial overlap before
-        assertTrue(timeSlot.overlaps("1100", "1300"));
-
-        // full overlap
-        assertTrue(timeSlot.overlaps("1200", "1400"));
-
-        // partial overlap after
-        assertTrue(timeSlot.overlaps("1300", "1500"));
-
-        // fully after
-        assertFalse(timeSlot.overlaps("1400", "1600"));
-    }
-
-    @Test
-    public void isBlocked() {
-        TimeSlot.block("1800", "2000");
-
-        // fully before
-        assertFalse(TimeSlot.isBlocked("1600", "1800"));
-
-        // partial overlap before
-        assertTrue(TimeSlot.isBlocked("1700", "1900"));
-
-        // full overlap
-        assertTrue(TimeSlot.isBlocked("1800", "2000"));
-
-        // partial overlap after
-        assertTrue(TimeSlot.isBlocked("1900", "2100"));
-
-        // fully after
-        assertFalse(TimeSlot.isBlocked("2000", "2200"));
     }
 }

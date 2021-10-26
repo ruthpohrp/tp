@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Schedule;
+import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
@@ -124,7 +125,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void blockTimeSlot(String startTime, String endTime) {
+        public void addBlock(BlockedSlot blockedSlot) {
             throw new AssertionError("This method should not be called.");
         }
 

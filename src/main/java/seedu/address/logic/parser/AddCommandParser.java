@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
@@ -20,7 +19,6 @@ import seedu.address.model.event.Location;
 import seedu.address.model.event.Name;
 import seedu.address.model.event.Remark;
 import seedu.address.model.event.TimeSlot;
-import seedu.address.logic.commands.exceptions.TimeSlotBlockedException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +31,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException, CommandException {
+    public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_TIMESLOT, PREFIX_LOCATION,
                         PREFIX_TAG, PREFIX_REMARK);

@@ -81,7 +81,7 @@ public class JsonAdaptedEventTest {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_NAME, VALID_DATE, INVALID_TIME, VALID_ENDTIME, VALID_ADDRESS,
                         VALID_TAGS, VALID_REMARK);
-        String expectedMessage = TimeSlot.MESSAGE_CONSTRAINTS_TIMESLOT;
+        String expectedMessage = TimeSlot.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
@@ -90,7 +90,7 @@ public class JsonAdaptedEventTest {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_NAME, VALID_DATE, VALID_STARTTIME, INVALID_TIME, VALID_ADDRESS,
                         VALID_TAGS, VALID_REMARK);
-        String expectedMessage = TimeSlot.MESSAGE_CONSTRAINTS_TIMESLOT;
+        String expectedMessage = TimeSlot.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 

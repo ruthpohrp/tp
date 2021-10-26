@@ -1,7 +1,12 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+
 import seedu.address.logic.commands.BlockCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.TimeSlot;
 
 /**
@@ -17,13 +22,13 @@ public class BlockCommandParser implements Parser<BlockCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public BlockCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        String[] startTimeAndEndTime = trimmedArgs.split("-");
-        try {
-            //TODO: check if isBlockable()
-            return new BlockCommand(startTimeAndEndTime[0], startTimeAndEndTime[1]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS_BLOCK);
-        }
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_TIMESLOT);
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        TimeSlot timeSlot = ParserUtil.parseTimeSlot(argMultimap.getValue(PREFIX_TIMESLOT).get());
+
+        BlockedSlot blockedSlot = new BlockedSlot(date, timeSlot);
+
+        return new BlockCommand(blockedSlot);
     }
 }

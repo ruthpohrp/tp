@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
+import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
 
 /**
@@ -107,11 +109,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void blockTimeSlot(String startTime, String endTime) {
-        requireAllNonNull(startTime);
-        requireAllNonNull(endTime);
+    public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
+        requireAllNonNull(blockedSlot);
 
-        schedule.blockTimeSlot(startTime, endTime);
+        schedule.addBlock(blockedSlot);
     }
 
     //=========== Filtered Event List Accessors =============================================================

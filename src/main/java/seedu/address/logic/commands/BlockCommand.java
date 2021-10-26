@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.event.BlockedSlot;
 
 /**
  * Blocks out a time slot in the schedule.
@@ -18,36 +19,31 @@ public class BlockCommand extends Command {
             + "Parameters: "
             + PREFIX_TIMESLOT + "TIMESLOT ";
 
-    public static final String MESSAGE_SUCCESS = "New time slot blocked out: %1$s-%2$s";
+    public static final String MESSAGE_SUCCESS = "New slot blocked out: %1$s";
 
-    private final String startTimeToBlock;
-    private final String endTimeToBlock;
+    private final BlockedSlot blockedSlot;
 
     /**
-     * Creates a BlockCommand to block the specified TimeSlot.
-     * @param startTime start time of time slot to block.
-     * @param endTime end time of time slot to block.
+     * Creates a BlockCommand to block the specified BlockedSlot.
+     * @param blockedSlot
      */
-    public BlockCommand(String startTime, String endTime) {
-        requireNonNull(startTime);
-        requireNonNull(endTime);
-        this.startTimeToBlock = startTime;
-        this.endTimeToBlock = endTime;
+    public BlockCommand(BlockedSlot blockedSlot) {
+        requireNonNull(blockedSlot);
+        this.blockedSlot = blockedSlot;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.blockTimeSlot(startTimeToBlock, endTimeToBlock);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, startTimeToBlock, endTimeToBlock));
+        model.addBlock(blockedSlot);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, blockedSlot));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BlockCommand // instanceof handles nulls
-                && startTimeToBlock.equals(((BlockCommand) other).startTimeToBlock)
-                && endTimeToBlock.equals(((BlockCommand) other).endTimeToBlock));
+                && blockedSlot.equals(((BlockCommand) other).blockedSlot));
     }
 }

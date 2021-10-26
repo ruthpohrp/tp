@@ -127,7 +127,7 @@ public class AddCommandParserTest {
 
         // invalid time
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + INVALID_TIME_DESC + LOCATION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + REMARK_DESC_BOB, TimeSlot.MESSAGE_CONSTRAINTS_TIMESLOT);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + REMARK_DESC_BOB, TimeSlot.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + TIMESLOT_DESC_BOB + INVALID_LOCATION_DESC
