@@ -2,6 +2,7 @@ package seedu.address.model.tag;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
+import javafx.scene.control.Label;
 import org.junit.jupiter.api.Test;
 
 public class TagTest {
@@ -22,5 +23,6 @@ public class TagTest {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
+
 
 }
