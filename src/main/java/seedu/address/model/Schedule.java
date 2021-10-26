@@ -3,10 +3,8 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
@@ -19,8 +17,6 @@ import seedu.address.model.event.SortedEventList;
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
 public class Schedule implements ReadOnlySchedule {
-
-    private final Logger logger = LogsCenter.getLogger(Schedule.class);
 
     private final SortedEventList events;
     private final SortedBlockedSlotList blockedSlotList;

@@ -75,16 +75,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setScheduleFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setScheduleFilePath(addressBookFilePath);
+    public void setScheduleFilePath(Path scheduleFilePath) {
+        requireNonNull(scheduleFilePath);
+        userPrefs.setScheduleFilePath(scheduleFilePath);
     }
 
     //=========== Schedule ================================================================================
 
     @Override
-    public void setSchedule(ReadOnlySchedule addressBook) {
-        this.schedule.resetData(addressBook);
+    public void setSchedule(ReadOnlySchedule schedule) {
+        this.schedule.resetData(schedule);
     }
 
     @Override
@@ -106,7 +106,6 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-
         schedule.setEvent(target, editedEvent);
     }
 
@@ -151,6 +150,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String filteredBlockedSlotListToString() {
+        StringBuilder builder = new StringBuilder();
+        for (BlockedSlot blockedSlot : filteredBlockedSlots) {
+            builder.append(blockedSlot);
+        }
+        return builder.toString();
+    }
+
+    @Override
     public Event nextEventInTheList() {
         return filteredEvents.get(0);
     }
@@ -171,7 +179,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return schedule.equals(other.schedule)
                 && userPrefs.equals(other.userPrefs)
-                && filteredEvents.equals(other.filteredEvents);
+                && filteredEvents.equals(other.filteredEvents)
+                && filteredBlockedSlots.equals(other.filteredBlockedSlots);
     }
 
 

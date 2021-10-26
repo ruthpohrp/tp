@@ -99,6 +99,9 @@ public interface Model {
      */
     void updateFilteredBlockedSlotList(Predicate<BlockedSlot> predicate);
 
+    /** Returns the BlockedSlot list in String format */
+    String filteredBlockedSlotListToString();
+
     /**
      * Gets the first event in the filtered list.
      */

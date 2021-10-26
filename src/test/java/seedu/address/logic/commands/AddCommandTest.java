@@ -150,6 +150,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public String filteredBlockedSlotListToString() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Event nextEventInTheList() {
             throw new AssertionError("This method should not be called.");
         }
