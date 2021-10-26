@@ -10,6 +10,6 @@ public interface Overlappable {
      * @param overlappable other Overlappable to check for overlaps.
      * @return true if there is an overlap, false otherwise.
      */
-    boolean overlapsWith(Overlappable overlappable);
+    boolean isOverlappingWith(Overlappable overlappable);
 
 }

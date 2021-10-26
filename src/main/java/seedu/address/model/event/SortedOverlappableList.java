@@ -32,6 +32,6 @@ public interface SortedOverlappableList<T extends Overlappable> extends Iterable
      * @param overlappable Overlappable to check.
      * @return true if the given Overlappable overlaps with an Overlappable in the list, false otherwise.
      */
-    boolean overlapsWith(Overlappable overlappable);
+    boolean isOverlappingWith(Overlappable overlappable);
 
 }

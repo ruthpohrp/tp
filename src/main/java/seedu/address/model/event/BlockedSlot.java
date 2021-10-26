@@ -20,8 +20,25 @@ public class BlockedSlot implements Overlappable {
     }
 
     @Override
-    public boolean overlapsWith(Overlappable overlappable) {
+    public boolean isOverlappingWith(Overlappable overlappable) {
         //TODO: For Ruth to implement.
         return false;
+    }
+
+    /**
+     * Compares this BlockedSlot instance with another BlockedSlot instance.
+     *
+     * @param other other BlockedSlot to compare to.
+     * @return a positive integer if this BlockedSlot's Date and timeSlot are chronologically before other BlockedSlot,
+     * a negative integer if this BlockedSlot's Date and timeSlot are chronologically after other BlockedSlot,
+     * zero if both BlockedSlots are on the same date and start at the same time.
+     */
+    public int compareTo(BlockedSlot other) {
+        int compareDate = date.compareTo(other.date);
+        if (compareDate != 0) {
+            return compareDate;
+        } else {
+            return timeSlot.compareTo(other.timeSlot);
+        }
     }
 }

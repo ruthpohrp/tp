@@ -93,7 +93,7 @@ public class SortedEventList implements SortedOverlappableList<Event> {
     }
 
     @Override
-    public boolean overlapsWith(Overlappable toCheck) {
+    public boolean isOverlappingWith(Overlappable toCheck) {
         //TODO: For Ruth to implement
         return false;
     }
