@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
+import seedu.address.model.event.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Overlappable;
@@ -74,8 +74,7 @@ public class Schedule implements ReadOnlySchedule {
      */
     public void addEvent(Event e) {
         if (isBlocked(e)) {
-            logger.info(BlockedSlot.TIMESLOT_BLOCKED);
-            //throw new SlotBlockedException(BlockedSlot.TIMESLOT_BLOCKED);
+            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
         }
         events.add(e);
     }
@@ -106,7 +105,7 @@ public class Schedule implements ReadOnlySchedule {
     public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
         //TODO: instead of throwing error, merge with other blocked periods
         if (isBlocked(blockedSlot)) {
-            throw new SlotBlockedException(BlockedSlot.TIMESLOT_BLOCKED);
+            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
         }
         blockedSlotList.add(blockedSlot);
     }

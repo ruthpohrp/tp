@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
+import seedu.address.model.event.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
 

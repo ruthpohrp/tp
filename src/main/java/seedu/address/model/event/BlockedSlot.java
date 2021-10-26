@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class BlockedSlot implements Overlappable {
 
-    public static final String TIMESLOT_BLOCKED = "TimeSlot coincides with a blocked period.";
+    public static final String SLOT_BLOCKED = "This slot coincides with a blocked period.";
 
     private final Date date;
     private final TimeSlot timeSlot;
