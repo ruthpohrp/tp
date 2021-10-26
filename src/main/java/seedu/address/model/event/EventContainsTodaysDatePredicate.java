@@ -13,7 +13,7 @@ public class EventContainsTodaysDatePredicate implements Predicate<Event> {
      * Constructs a {@code EventContainsTodaysDatePredicate}
      */
     public EventContainsTodaysDatePredicate() {
-        this.today = new Date(LocalDate.now().toString());
+        this.today = Date.TODAY;
     }
 
     @Override

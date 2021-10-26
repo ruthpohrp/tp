@@ -134,7 +134,12 @@ public class ModelManager implements Model {
     }
     @Override
     public Event nextEventInTheList() {
-        return filteredEvents.get(0);
+        if (filteredEvents.isEmpty()) {
+            return null;
+        } else {
+            return filteredEvents.get(0);
+        }
+
     }
 
     @Override

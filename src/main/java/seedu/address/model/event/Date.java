@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an Event's date number in the schedule.
@@ -16,6 +17,8 @@ public class Date {
     public final LocalDate date;
     public final String value;
 
+    public static final Date TODAY = new Date(LocalDate.now());
+
     /**
      * Constructs a {@code Date}.
      *
@@ -26,6 +29,12 @@ public class Date {
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date);
         this.value = date;
+    }
+
+    public Date(LocalDate date) {
+        requireNonNull(date);
+        this.date = date;
+        this.value = date.format(DateTimeFormatter.ISO_DATE);
     }
 
     /**

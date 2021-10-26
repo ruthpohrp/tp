@@ -184,10 +184,10 @@ public class Schedule implements ReadOnlySchedule {
         return allOverlappables;
     }
 
-    private LocalDate today = null;
+    private Date today = null;
 
     public ArrayList<FreeSlot> getFreeSlots() {
-        today = LocalDate.now();
+        today = Date.TODAY;
         ArrayList<Overlappable> allOverlappables = merge();
         ArrayList<FreeSlot> freeSlots = new ArrayList<>();
         if (allOverlappables.isEmpty()) {
@@ -209,7 +209,6 @@ public class Schedule implements ReadOnlySchedule {
                     freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, "2359")));
                 }
 
-                today = today.plusDays(1);
                 addEmptyDates(freeSlots, curr);
 
                 if (!currStartTime.equals("0000")) {
@@ -222,10 +221,11 @@ public class Schedule implements ReadOnlySchedule {
 
 
     private void addEmptyDates(ArrayList<FreeSlot> freeSlots, Overlappable next) {
-        while (today.isBefore(next.getDate().date)){
+        while (today.compareTo(next.getDate()) < 0) {
             freeSlots.add(new FreeSlot(today, new TimeSlot("0000", "2359")));
-            today = today.plusDays(1);
+            today = new Date(today.date.plusDays(1));
         }
+        today = new Date(today.date.plusDays(1));
     }
 
 }
