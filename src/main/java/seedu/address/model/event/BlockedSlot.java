@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class BlockedSlot implements Overlappable {
 
-    public static final String TIMESLOT_BLOCKED = "TimeSlot coincides with a blocked period.";
+    public static final String SLOT_BLOCKED = "This slot coincides with a blocked period.";
 
     private final Date date;
     private final TimeSlot timeSlot;
@@ -24,18 +24,32 @@ public class BlockedSlot implements Overlappable {
         this.timeSlot = timeSlot;
     }
 
+    @Override
     public Date getDate() {
         return date;
     }
 
+    @Override
     public TimeSlot getTimeSlot() {
         return timeSlot;
     }
 
+    public boolean hasSameDate(Overlappable overlappable) {
+        return this.date.hasSameDate(overlappable.getDate());
+    }
+
+    /**
+     * Checks if this BlockedSlot overlaps with another Overlappable.
+     * @param overlappable Other Overlappable to check for overlaps.
+     * @return True if overlapping, false otherwise.
+     */
     @Override
     public boolean isOverlappingWith(Overlappable overlappable) {
-        //TODO: For Ruth to implement.
-        return false;
+        boolean hasSameDate = this.hasSameDate(overlappable);
+        boolean isTimeSlotOverlapping = this.timeSlot
+                .isOverlappingWith(overlappable.getTimeSlot());
+
+        return hasSameDate && isTimeSlotOverlapping;
     }
 
     /**
@@ -58,10 +72,11 @@ public class BlockedSlot implements Overlappable {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Date: ")
+        builder.append("Date: ")
                 .append(getDate())
                 .append("; TimeSlot: ")
-                .append(getTimeSlot());
+                .append(getTimeSlot())
+                .append(";");
 
         return builder.toString();
     }

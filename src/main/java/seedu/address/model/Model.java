@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.exceptions.SlotBlockedException;
 
 /**
  * The API of the Model component.
@@ -15,6 +15,7 @@ import seedu.address.model.event.Event;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+    Predicate<BlockedSlot> PREDICATE_SHOW_ALL_BLOCKED_SLOTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -78,16 +79,28 @@ public interface Model {
     /**
      * Adds the given BlockedSlot.
      */
-    void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException;
+    void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException;
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the filtered blocked slot list */
+    ObservableList<BlockedSlot> getFilteredBlockedSlotList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the filter of the filtered blocked slot list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBlockedSlotList(Predicate<BlockedSlot> predicate);
+
+    /** Returns the BlockedSlot list in String format */
+    String filteredBlockedSlotListToString();
 
     /**
      * Gets the first event in the filtered list.
