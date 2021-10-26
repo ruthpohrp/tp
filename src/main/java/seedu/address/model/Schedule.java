@@ -186,8 +186,8 @@ public class Schedule implements ReadOnlySchedule {
 
     private Date today = null;
 
-    public ArrayList<FreeSlot> getFreeSlots() {
-        today = Date.TODAY;
+    public ArrayList<FreeSlot> getFreeSlots(Date date) {
+        today = date;
         ArrayList<Overlappable> allOverlappables = merge();
         ArrayList<FreeSlot> freeSlots = new ArrayList<>();
         if (allOverlappables.isEmpty()) {

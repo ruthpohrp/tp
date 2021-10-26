@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 
 /**
@@ -143,8 +144,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<FreeSlot> getFreeSlots() {
-        return schedule.getFreeSlots();
+    public ArrayList<FreeSlot> getFreeSlots(Date date) {
+        return schedule.getFreeSlots(date);
     }
 
     @Override

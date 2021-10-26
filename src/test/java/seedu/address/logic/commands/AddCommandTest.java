@@ -21,6 +21,7 @@ import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Schedule;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
@@ -145,7 +146,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ArrayList<FreeSlot> getFreeSlots() {
+        public ArrayList<FreeSlot> getFreeSlots(Date date) {
             throw new AssertionError("This method should not be called.");
         }
     }

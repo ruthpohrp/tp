@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FreeSlot;
 import seedu.address.model.Model;
+import seedu.address.model.event.Date;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class FreeSlotsCommand extends Command{
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ArrayList<FreeSlot> freeSlots = model.getFreeSlots();
+        ArrayList<FreeSlot> freeSlots = model.getFreeSlots(Date.TODAY);
         StringBuilder result = new StringBuilder(MESSAGE_SUCCESS);
         for (FreeSlot f: freeSlots) {
             result.append("\n" + f.toString());

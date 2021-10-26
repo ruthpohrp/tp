@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 
 /**
@@ -96,9 +97,10 @@ public interface Model {
     Event nextEventInTheList();
 
     /**
-     * Gets a list of all free slots between all events and blocked time.
+     * Gets a list of all free slots from today's date to last event/block slot.
      *
+     * @param date Today's date
      * @return ArrayList of freeSlots
      */
-    ArrayList<FreeSlot> getFreeSlots();
+    ArrayList<FreeSlot> getFreeSlots(Date date);
 }
