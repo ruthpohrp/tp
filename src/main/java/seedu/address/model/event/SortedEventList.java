@@ -19,7 +19,7 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
  * Supports a minimal set of list operations.
  *
  */
-public class SortedEventList implements EventList {
+public class SortedEventList implements SortedOverlappableList<Event> {
     private class EventSorter implements Comparator<Event> {
         @Override
         public int compare(Event o1, Event o2) {
@@ -31,12 +31,6 @@ public class SortedEventList implements EventList {
     private final ObservableList<Event> internalUnmodifiableList =
             new SortedList<>(FXCollections.unmodifiableObservableList(internalList),
                     new EventSorter());
-
-    @Override
-    public boolean contains(Event toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameEvent);
-    }
 
     @Override
     public void add(Event toAdd) {
@@ -52,8 +46,6 @@ public class SortedEventList implements EventList {
         }
     }
 
-
-    @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
 
@@ -101,7 +93,7 @@ public class SortedEventList implements EventList {
     }
 
     @Override
-    public boolean isOverlapping(Event toCheck) {
+    public boolean isOverlappingWith(Overlappable toCheck) {
         //TODO: For Ruth to implement
         return false;
     }

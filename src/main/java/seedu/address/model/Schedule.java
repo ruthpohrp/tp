@@ -3,9 +3,15 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
+import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.Overlappable;
+import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
 
 /**
@@ -14,7 +20,10 @@ import seedu.address.model.event.SortedEventList;
  */
 public class Schedule implements ReadOnlySchedule {
 
+    private final Logger logger = LogsCenter.getLogger(Schedule.class);
+
     private final SortedEventList events;
+    private final SortedBlockedSlotList blockedSlotList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,12 +34,13 @@ public class Schedule implements ReadOnlySchedule {
      */
     {
         events = new SortedEventList();
+        blockedSlotList = new SortedBlockedSlotList();
     }
 
     public Schedule() {}
 
     /**
-     * Creates an Schedule using the Events in the {@code toBeCopied}
+     * Creates a Schedule using the Events in the {@code toBeCopied}
      */
     public Schedule(ReadOnlySchedule toBeCopied) {
         this();
@@ -59,18 +69,14 @@ public class Schedule implements ReadOnlySchedule {
     //// event-level operations
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
-     */
-    public boolean hasEvent(Event event) {
-        requireNonNull(event);
-        return events.contains(event);
-    }
-
-    /**
      * Adds an event to the address book.
      * The event must not already exist in the address book.
      */
     public void addEvent(Event e) {
+        if (isBlocked(e)) {
+            logger.info(BlockedSlot.TIMESLOT_BLOCKED);
+            //throw new SlotBlockedException(BlockedSlot.TIMESLOT_BLOCKED);
+        }
         events.add(e);
     }
 
@@ -91,6 +97,27 @@ public class Schedule implements ReadOnlySchedule {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Adds a block with the given BlockedSlot.
+     * @param blockedSlot BlockedSlot to be added.
+     */
+    public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
+        //TODO: instead of throwing error, merge with other blocked periods
+        if (isBlocked(blockedSlot)) {
+            throw new SlotBlockedException(BlockedSlot.TIMESLOT_BLOCKED);
+        }
+        blockedSlotList.add(blockedSlot);
+    }
+
+    /**
+     * Checks if the given Overlappable is blocked.
+     * @param overlappable the Overlappable to be checked.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    public boolean isBlocked(Overlappable overlappable) {
+        return blockedSlotList.isOverlappingWith(overlappable);
     }
 
     //// util methods
