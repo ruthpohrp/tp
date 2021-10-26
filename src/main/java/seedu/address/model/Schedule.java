@@ -152,6 +152,9 @@ public class Schedule implements ReadOnlySchedule {
         return events.hashCode();
     }
 
+    /**
+     * Comparator class to sort list of Overlappable
+     */
     private class OverlappableComparator implements Comparator<Overlappable> {
 
         @Override
@@ -175,8 +178,13 @@ public class Schedule implements ReadOnlySchedule {
         return allOverlappables;
     }
 
-
-
+    /**
+     * Goes through both sortedEventList and sortedBlockedEventList to find free time slots
+     * between events and blocked slots.
+     *
+     * @param date starting date
+     * @return ArrayList of FreeSlot between date to last event/blocked slot
+     */
     public ArrayList<FreeSlot> getFreeSlots(Date date) {
         today = date;
         ArrayList<Overlappable> allOverlappables = merge();
