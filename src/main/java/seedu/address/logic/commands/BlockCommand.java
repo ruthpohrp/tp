@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,9 +18,10 @@ public class BlockCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Blocks a specified time slot in the schedule. "
             + "\n"
             + "Parameters: "
+            + PREFIX_DATE + "DATE "
             + PREFIX_TIMESLOT + "TIMESLOT ";
 
-    public static final String MESSAGE_SUCCESS = "New slot blocked out: %1$s";
+    public static final String MESSAGE_SUCCESS = "New slot blocked out: %1$s\n";
 
     private final BlockedSlot blockedSlot;
 

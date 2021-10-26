@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 
@@ -61,6 +62,7 @@ public class ScheduleTest {
      */
     private static class ScheduleStub implements ReadOnlySchedule {
         private final ObservableList<Event> events = FXCollections.observableArrayList();
+        private final ObservableList<BlockedSlot> blockedSlots = FXCollections.observableArrayList();
 
         ScheduleStub(Collection<Event> events) {
             this.events.setAll(events);
@@ -69,6 +71,11 @@ public class ScheduleTest {
         @Override
         public ObservableList<Event> getEventList() {
             return events;
+        }
+
+        @Override
+        public ObservableList<BlockedSlot> getBlockedSlotList() {
+            return blockedSlots;
         }
     }
 

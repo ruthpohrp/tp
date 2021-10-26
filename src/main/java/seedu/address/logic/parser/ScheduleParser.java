@@ -16,6 +16,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FreeSlotsCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListBlockedSlotsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NextEventCommand;
 import seedu.address.logic.commands.UpcomingEventsCommand;
@@ -83,6 +84,9 @@ public class ScheduleParser {
 
         case BlockCommand.COMMAND_WORD:
             return new BlockCommandParser().parse(arguments);
+
+        case ListBlockedSlotsCommand.COMMAND_WORD:
+            return new ListBlockedSlotsCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

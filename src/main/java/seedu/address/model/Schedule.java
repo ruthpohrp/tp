@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
@@ -19,14 +16,13 @@ import seedu.address.model.event.Overlappable;
 import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
 import seedu.address.model.event.TimeSlot;
+import seedu.address.model.event.exceptions.SlotBlockedException;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
 public class Schedule implements ReadOnlySchedule {
-
-    private final Logger logger = LogsCenter.getLogger(Schedule.class);
 
     private final SortedEventList events;
     private final SortedBlockedSlotList blockedSlotList;
@@ -81,8 +77,7 @@ public class Schedule implements ReadOnlySchedule {
      */
     public void addEvent(Event e) {
         if (isBlocked(e)) {
-            logger.info(BlockedSlot.TIMESLOT_BLOCKED);
-            //throw new SlotBlockedException(BlockedSlot.TIMESLOT_BLOCKED);
+            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
         }
         events.add(e);
     }
@@ -113,7 +108,7 @@ public class Schedule implements ReadOnlySchedule {
     public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
         //TODO: instead of throwing error, merge with other blocked periods
         if (isBlocked(blockedSlot)) {
-            throw new SlotBlockedException(BlockedSlot.TIMESLOT_BLOCKED);
+            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
         }
         blockedSlotList.add(blockedSlot);
     }
@@ -138,6 +133,11 @@ public class Schedule implements ReadOnlySchedule {
     @Override
     public ObservableList<Event> getEventList() {
         return events.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<BlockedSlot> getBlockedSlotList() {
+        return blockedSlotList.asUnmodifiableObservableList();
     }
 
     @Override
