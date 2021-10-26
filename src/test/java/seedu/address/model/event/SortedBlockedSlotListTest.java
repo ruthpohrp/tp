@@ -47,7 +47,7 @@ public class SortedBlockedSlotListTest {
         sortedBlockedSlotList.add(NINE_TO_TEN);
         SortedBlockedSlotList expectedSortedBlockedSlotList = new SortedBlockedSlotList();
         expectedSortedBlockedSlotList.add(NINE_TO_TEN);
-        sortedBlockedSlotList.add(EIGHT_TO_NINE);
+        expectedSortedBlockedSlotList.add(EIGHT_TO_NINE);
         expectedSortedBlockedSlotList.add(differentDateBlocked);
         assertEquals(expectedSortedBlockedSlotList, sortedBlockedSlotList);
     }

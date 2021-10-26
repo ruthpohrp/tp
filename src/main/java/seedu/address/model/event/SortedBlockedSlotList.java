@@ -41,6 +41,13 @@ public class SortedBlockedSlotList implements SortedOverlappableList<BlockedSlot
     }
 
     @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortedBlockedSlotList // instanceof handles nulls
+                && internalUnmodifiableList.equals(((SortedBlockedSlotList) other).internalUnmodifiableList));
+    }
+
+    @Override
     public ObservableList<BlockedSlot> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
