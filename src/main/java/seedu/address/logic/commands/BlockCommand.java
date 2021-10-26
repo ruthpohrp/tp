@@ -19,7 +19,7 @@ public class BlockCommand extends Command {
             + "Parameters: "
             + PREFIX_TIMESLOT + "TIMESLOT ";
 
-    public static final String MESSAGE_SUCCESS = "New slot blocked out: %1$s";
+    public static final String MESSAGE_SUCCESS = "New slot blocked out: %1$s\n";
 
     private final BlockedSlot blockedSlot;
 

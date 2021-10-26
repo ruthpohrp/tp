@@ -58,10 +58,11 @@ public class BlockedSlot implements Overlappable {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Date: ")
+        builder.append("Date: ")
                 .append(getDate())
                 .append("; TimeSlot: ")
-                .append(getTimeSlot());
+                .append(getTimeSlot())
+                .append(";");
 
         return builder.toString();
     }
