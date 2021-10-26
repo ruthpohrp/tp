@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.getTypicalEvents;
 import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.util.ArrayList;
@@ -43,19 +45,21 @@ public class ScheduleTest {
     }
 
     @Test
-    public void emptySchedule_getFreeSlot_EmptyList() {
+    public void emptySchedule_getFreeSlot_emptyList() {
         Schedule empty = new Schedule();
         assertEquals(new ArrayList<>(), empty.getFreeSlots(new Date("2020-01-01")));
     }
-//    @Test
-//    public void nonEmptySchedule_getFreeSlot_EmptyList() {
-//        Schedule schedule = getTypicalSchedule();
-//        ArrayList<FreeSlot> freeSlots = schedule.getFreeSlots(new Date("2020-01-01"));
-//        for (FreeSlot f: freeSlots) {
-//
-//        }
-////        assertEquals(new ArrayList<>(), empty.getFreeSlots(new Date("2020-01-01")));
-//    }
+
+    @Test
+    public void nonEmptySchedule_getFreeSlot_nonEmptyList() {
+        Schedule schedule = getTypicalSchedule();
+        ArrayList<FreeSlot> freeSlots = schedule.getFreeSlots(new Date("2020-01-01"));
+        for (FreeSlot f: freeSlots) {
+            for (Event e: getTypicalEvents()) {
+                assertTrue(!f.isOverlappingWith(e));
+            }
+        }
+    }
 
     /**
      * A stub ReadOnlySchedule whose events list can violate interface constraints.

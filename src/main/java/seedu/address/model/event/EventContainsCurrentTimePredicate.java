@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.function.Predicate;
 

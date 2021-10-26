@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -26,6 +25,7 @@ public class Schedule implements ReadOnlySchedule {
 
     private final SortedEventList events;
     private final SortedBlockedSlotList blockedSlotList;
+    private Date today = null;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -175,7 +175,7 @@ public class Schedule implements ReadOnlySchedule {
         return allOverlappables;
     }
 
-    private Date today = null;
+
 
     public ArrayList<FreeSlot> getFreeSlots(Date date) {
         today = date;

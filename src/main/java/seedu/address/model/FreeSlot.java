@@ -1,16 +1,23 @@
 package seedu.address.model;
 
-import seedu.address.model.event.Date;
-import seedu.address.model.event.TimeSlot;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.Overlappable;
+import seedu.address.model.event.TimeSlot;
 
-public class FreeSlot {
-    public Date date;
-    public TimeSlot timeSlot;
+public class FreeSlot implements Overlappable {
+    private Date date;
+    private TimeSlot timeSlot;
 
+    /**
+     * Constructs a FreeSlot instance
+     *
+     * @param date Date of free slot
+     * @param timeSlot time of free slot
+     */
     public FreeSlot(Date date, TimeSlot timeSlot) {
         requireNonNull(date);
         requireNonNull(timeSlot);
@@ -19,7 +26,26 @@ public class FreeSlot {
     }
 
     @Override
-    public String toString(){
+    public boolean isOverlappingWith(Overlappable o) {
+        if (this.date.equals(o.getDate())) {
+            return this.timeSlot.isOverlappingWith(o.getTimeSlot());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Date getDate() {
+        return date;
+    }
+
+    @Override
+    public TimeSlot getTimeSlot() {
+        return timeSlot;
+    }
+
+    @Override
+    public String toString() {
         return date + ": " + timeSlot;
     }
 
