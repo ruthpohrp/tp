@@ -76,7 +76,7 @@ public class BlockedSlot implements Overlappable {
                 .append(getDate())
                 .append("; TimeSlot: ")
                 .append(getTimeSlot())
-                .append(";");
+                .append(";\n");
 
         return builder.toString();
     }

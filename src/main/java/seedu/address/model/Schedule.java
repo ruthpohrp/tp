@@ -24,7 +24,7 @@ import seedu.address.model.event.exceptions.SlotBlockedException;
 public class Schedule implements ReadOnlySchedule {
 
     private final SortedEventList events;
-    private final SortedBlockedSlotList blockedSlotList;
+    private final SortedBlockedSlotList blockedSlots;
     private Date today = null;
 
     /*
@@ -36,7 +36,7 @@ public class Schedule implements ReadOnlySchedule {
      */
     {
         events = new SortedEventList();
-        blockedSlotList = new SortedBlockedSlotList();
+        blockedSlots = new SortedBlockedSlotList();
     }
 
     public Schedule() {
@@ -61,12 +61,21 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     /**
+     * Replaces the contents of the blocked slot list with {@code blockedSlots}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setBlockedSlots(List<BlockedSlot> blockedSlots) {
+        this.blockedSlots.setBlockedSlot(blockedSlots);
+    }
+
+    /**
      * Resets the existing data of this {@code Schedule} with {@code newData}.
      */
     public void resetData(ReadOnlySchedule newData) {
         requireNonNull(newData);
 
         setEvents(newData.getEventList());
+        setBlockedSlots(newData.getBlockedSlotList());
     }
 
     //// event-level operations
@@ -110,7 +119,7 @@ public class Schedule implements ReadOnlySchedule {
         if (isBlocked(blockedSlot)) {
             throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
         }
-        blockedSlotList.add(blockedSlot);
+        blockedSlots.add(blockedSlot);
     }
 
     /**
@@ -119,7 +128,7 @@ public class Schedule implements ReadOnlySchedule {
      * @return true if the Overlappable is blocked, false otherwise.
      */
     public boolean isBlocked(Overlappable overlappable) {
-        return blockedSlotList.isOverlappingWith(overlappable);
+        return blockedSlots.isOverlappingWith(overlappable);
     }
 
     //// util methods
@@ -137,7 +146,7 @@ public class Schedule implements ReadOnlySchedule {
 
     @Override
     public ObservableList<BlockedSlot> getBlockedSlotList() {
-        return blockedSlotList.asUnmodifiableObservableList();
+        return blockedSlots.asUnmodifiableObservableList();
     }
 
     @Override
@@ -170,7 +179,7 @@ public class Schedule implements ReadOnlySchedule {
 
     private ArrayList<Overlappable> merge() {
         Iterator<Event> eventsIterator = events.iterator();
-        Iterator<BlockedSlot> blockedIterator = blockedSlotList.iterator();
+        Iterator<BlockedSlot> blockedIterator = blockedSlots.iterator();
         ArrayList<Overlappable> allOverlappables = new ArrayList<>();
         eventsIterator.forEachRemaining(e -> allOverlappables.add(e));
         blockedIterator.forEachRemaining(b -> allOverlappables.add(b));
