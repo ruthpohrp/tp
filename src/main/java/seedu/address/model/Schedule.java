@@ -133,6 +133,11 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     @Override
+    public ObservableList<BlockedSlot> getBlockedSlotList() {
+        return blockedSlotList.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Schedule // instanceof handles nulls
