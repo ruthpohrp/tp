@@ -125,7 +125,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addBlock(BlockedSlot blockedSlot) {
+        public void addBlockedSlot(BlockedSlot blockedSlot) {
             throw new AssertionError("This method should not be called.");
         }
 

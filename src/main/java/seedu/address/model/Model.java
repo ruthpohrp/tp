@@ -79,7 +79,7 @@ public interface Model {
     /**
      * Adds the given BlockedSlot.
      */
-    void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException;
+    void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException;
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

@@ -98,7 +98,7 @@ public class Schedule implements ReadOnlySchedule {
      * Adds a block with the given BlockedSlot.
      * @param blockedSlot BlockedSlot to be added.
      */
-    public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
+    public void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException {
         //TODO: instead of throwing error, merge with other blocked periods
         if (isBlocked(blockedSlot)) {
             throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);

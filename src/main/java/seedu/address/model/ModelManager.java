@@ -110,8 +110,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
-        schedule.addBlock(blockedSlot);
+    public void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException {
+        schedule.addBlockedSlot(blockedSlot);
         updateFilteredBlockedSlotList(PREDICATE_SHOW_ALL_BLOCKED_SLOTS);
     }
 
