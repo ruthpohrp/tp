@@ -10,7 +10,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.Overlappable;
 import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
-import seedu.address.model.event.exceptions.SlotBlockedException;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
 
 /**
  * Wraps all data at the address-book level
@@ -69,9 +69,6 @@ public class Schedule implements ReadOnlySchedule {
      * The event must not already exist in the address book.
      */
     public void addEvent(Event e) {
-        if (isBlocked(e)) {
-            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
-        }
         events.add(e);
     }
 
