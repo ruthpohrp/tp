@@ -71,6 +71,6 @@ public class SortedBlockedSlotList implements SortedOverlappableList<BlockedSlot
 
     @Override
     public Iterator<BlockedSlot> iterator() {
-        return internalList.iterator();
+        return internalUnmodifiableList.iterator();
     }
 }
