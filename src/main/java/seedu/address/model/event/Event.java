@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents an Event in the schedule.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event {
+public class Event implements Overlappable {
 
     // Identity fields
     private final Name name;
@@ -83,8 +83,8 @@ public class Event {
      * Compares this Event instance with another Event instance.
      *
      * @param other other Event to compare to.
-     * @return a positive integer if this Event's Date and timeSlot is chronologically before other Event,
-     * a negative integer if this Event's Date and timeSlot is chronologically after other Event,
+     * @return a positive integer if this Event's Date and timeSlot are chronologically before other Event,
+     * a negative integer if this Event's Date and timeSlot are chronologically after other Event,
      * zero if both Events are on the same date and start at the same time.
      */
     public int compareTo(Event other) {
@@ -148,4 +148,9 @@ public class Event {
         return builder.toString();
     }
 
+    @Override
+    public boolean isOverlappingWith(Overlappable overlappable) {
+        //TODO: For Ruth to implement.
+        return false;
+    }
 }
