@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.Overlappable;
 
 /**

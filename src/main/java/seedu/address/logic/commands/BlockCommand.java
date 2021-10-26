@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
 import seedu.address.model.event.BlockedSlot;
 
@@ -38,6 +39,10 @@ public class BlockCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        //TODO: instead of throwing error, merge with other blocked periods
+        if (model.isBlocked(blockedSlot)) {
+            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
+        }
         model.addBlock(blockedSlot);
         return new CommandResult(String.format(MESSAGE_SUCCESS, blockedSlot));
     }

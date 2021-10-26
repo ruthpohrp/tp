@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.event.Overlappable;
 
 /**
@@ -111,7 +110,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
+    public void addBlock(BlockedSlot blockedSlot) {
         schedule.addBlock(blockedSlot);
         updateFilteredBlockedSlotList(PREDICATE_SHOW_ALL_BLOCKED_SLOTS);
     }
