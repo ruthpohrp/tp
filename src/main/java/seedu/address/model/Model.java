@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
+import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
 
 /**
@@ -54,11 +56,6 @@ public interface Model {
     ReadOnlySchedule getSchedule();
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
-     */
-    boolean hasEvent(Event event);
-
-    /**
      * Deletes the given event.
      * The event must exist in the address book.
      */
@@ -67,6 +64,7 @@ public interface Model {
     /**
      * Adds the given event.
      * {@code event} must not already exist in the address book.
+     * @throws SlotBlockedException if the Date and TimeSlot of the Event to add coincides with the blocked period.
      */
     void addEvent(Event event);
 
@@ -76,6 +74,11 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Adds the given BlockedSlot.
+     */
+    void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException;
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Schedule;
+import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
@@ -114,17 +115,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasEvent(Event event) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBlock(BlockedSlot blockedSlot) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -153,12 +154,6 @@ public class AddCommandTest {
             requireNonNull(event);
             this.event = event;
         }
-
-        @Override
-        public boolean hasEvent(Event event) {
-            requireNonNull(event);
-            return this.event.isSameEvent(event);
-        }
     }
 
     /**
@@ -166,12 +161,6 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingEventAdded extends ModelStub {
         final ArrayList<Event> eventsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasEvent(Event event) {
-            requireNonNull(event);
-            return eventsAdded.stream().anyMatch(event::isSameEvent);
-        }
 
         @Override
         public void addEvent(Event event) {

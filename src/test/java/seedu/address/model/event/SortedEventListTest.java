@@ -1,8 +1,6 @@
 package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -67,30 +65,6 @@ public class SortedEventListTest {
         expectedSortedEventList.add(sameDateCarl);
         expectedSortedEventList.add(editedAlice);
         assertEquals(expectedSortedEventList, sortedEventList);
-    }
-
-    @Test
-    public void contains_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> sortedEventList.contains(null));
-    }
-
-    @Test
-    public void contains_eventNotInList_returnsFalse() {
-        assertFalse(sortedEventList.contains(ALICE));
-    }
-
-    @Test
-    public void contains_eventInList_returnsTrue() {
-        sortedEventList.add(ALICE);
-        assertTrue(sortedEventList.contains(ALICE));
-    }
-
-    @Test
-    public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
-        sortedEventList.add(ALICE);
-        Event editedAlice = new EventBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(sortedEventList.contains(editedAlice));
     }
 
     @Test
