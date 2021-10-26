@@ -2,6 +2,7 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -42,10 +43,12 @@ public class Event implements Overlappable {
         return name;
     }
 
+    @Override
     public Date getDate() {
         return date;
     }
 
+    @Override
     public TimeSlot getTimeSlot() {
         return timeSlot;
     }
@@ -64,19 +67,6 @@ public class Event implements Overlappable {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    /**
-     * Returns true if both events have the same name.
-     * This defines a weaker notion of equality between two events.
-     */
-    public boolean isSameEvent(Event otherEvent) {
-        if (otherEvent == this) {
-            return true;
-        }
-
-        return otherEvent != null
-                && otherEvent.getName().equals(getName());
     }
 
     /**
@@ -148,9 +138,21 @@ public class Event implements Overlappable {
         return builder.toString();
     }
 
+    public boolean hasSameDate(Overlappable overlappable) {
+        return this.date.hasSameDate(overlappable.getDate());
+    }
+
+    /**
+     * Checks if this Event overlaps with another Overlappable.
+     * @param overlappable Other Overlappable to check for overlaps.
+     * @return True if overlapping, false otherwise.
+     */
     @Override
     public boolean isOverlappingWith(Overlappable overlappable) {
-        //TODO: For Ruth to implement.
-        return false;
+        boolean hasSameDate = this.hasSameDate(overlappable);
+        boolean isTimeSlotOverlapping = this.timeSlot
+                .isOverlappingWith(overlappable.getTimeSlot());
+
+        return hasSameDate && isTimeSlotOverlapping;
     }
 }

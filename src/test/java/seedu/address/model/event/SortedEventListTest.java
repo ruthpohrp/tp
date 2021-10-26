@@ -168,4 +168,6 @@ public class SortedEventListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> sortedEventList.asUnmodifiableObservableList().remove(0));
     }
+    
+
 }
