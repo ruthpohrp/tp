@@ -149,7 +149,7 @@ public class Event implements Overlappable {
     }
 
     @Override
-    public boolean overlaps(Overlappable overlappable) {
+    public boolean overlapsWith(Overlappable overlappable) {
         //TODO: For Ruth to implement.
         return false;
     }
