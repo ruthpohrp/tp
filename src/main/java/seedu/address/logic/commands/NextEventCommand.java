@@ -38,7 +38,7 @@ public class NextEventCommand extends Command {
             Event firstEvent = model.nextEventInTheList();
             model.updateFilteredEventList(new IsEventPredicate(firstEvent));
             return new CommandResult(Messages.MESSAGE_NEXT_EVENT_LISTED_OVERVIEW);
-        } catch(IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_NO_NEXT_EVENT);
         }
     }

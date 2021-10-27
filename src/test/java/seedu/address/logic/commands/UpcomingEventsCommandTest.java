@@ -1,29 +1,23 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.model.*;
-import seedu.address.model.event.Date;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventContainsTodaysDatePredicate;
-import seedu.address.model.event.NameContainsKeywordsPredicate;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.commons.core.Messages.MESSAGE_EVENT_LISTED_OVERVIEW;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_UPCOMING_EVENT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
-import static seedu.address.testutil.TypicalEvents.*;
-import static seedu.address.testutil.TypicalEvents.FIONA;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalEvents.ALICE;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.EventContainsTodaysDatePredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -50,12 +44,14 @@ public class UpcomingEventsCommandTest {
     }
     @Test
     public void equals() {
-        UpcomingEventsCommand firstCommand = new  UpcomingEventsCommand();
-        UpcomingEventsCommand secondCommand = new  UpcomingEventsCommand();
-        EventContainsTodaysDatePredicate firstPredicate = new  EventContainsTodaysDatePredicate(new Date("2021-10-26"));
-        EventContainsTodaysDatePredicate secondPredicate = new  EventContainsTodaysDatePredicate(new Date("2021-10-27"));
-        UpcomingEventsCommand thirdCommand = new  UpcomingEventsCommand(firstPredicate);
-        UpcomingEventsCommand fourthCommand = new  UpcomingEventsCommand(secondPredicate);
+        UpcomingEventsCommand firstCommand = new UpcomingEventsCommand();
+        UpcomingEventsCommand secondCommand = new UpcomingEventsCommand();
+        EventContainsTodaysDatePredicate firstPredicate =
+                new EventContainsTodaysDatePredicate(new Date("2021-10-26"));
+        EventContainsTodaysDatePredicate secondPredicate =
+                new EventContainsTodaysDatePredicate(new Date("2021-10-27"));
+        UpcomingEventsCommand thirdCommand = new UpcomingEventsCommand(firstPredicate);
+        UpcomingEventsCommand fourthCommand = new UpcomingEventsCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
@@ -78,9 +74,8 @@ public class UpcomingEventsCommandTest {
      * An EventContainsTodaysDatePredicate stub that always stores the date 2020-01-01.
      */
     private class EventContainsTodaysDatePredicateStub extends EventContainsTodaysDatePredicate {
-        public EventContainsTodaysDatePredicateStub (){
+        public EventContainsTodaysDatePredicateStub() {
             super(new Date("2020-01-01"));
-
         }
     }
 

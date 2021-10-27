@@ -1,33 +1,35 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Date;
-import seedu.address.model.event.EventContainsCurrentTimePredicate;
-import seedu.address.model.event.EventContainsTodaysDatePredicate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_NEXT_EVENT_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalEvents.ALICE;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_NEXT_EVENT_LISTED_OVERVIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_UPCOMING_EVENT_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEvents.ALICE;
-import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.EventContainsCurrentTimePredicate;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
 public class NextEventCommandTest {
 
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
     private Model model;
     private Model expectedModel;
-    public static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
 
     @BeforeEach
     public void setUp() {
@@ -46,20 +48,18 @@ public class NextEventCommandTest {
     }
     @Test
     public void equals() {
-        NextEventCommand firstCommand = new  NextEventCommand();
-        NextEventCommand secondCommand = new  NextEventCommand();
-        EventContainsCurrentTimePredicate firstPredicate = new  EventContainsCurrentTimePredicate(LocalTime.parse("0730", timeFormatter),
-                new Date("2020-01-01"));
-        EventContainsCurrentTimePredicate secondPredicate = new  EventContainsCurrentTimePredicate(LocalTime.parse("0830", timeFormatter),
-                new Date("2020-01-02"));
-        NextEventCommand thirdCommand = new  NextEventCommand(firstPredicate);
-        NextEventCommand fourthCommand = new  NextEventCommand(secondPredicate);
+        NextEventCommand firstCommand = new NextEventCommand();
+        EventContainsCurrentTimePredicate firstPredicate =
+                new EventContainsCurrentTimePredicate(LocalTime.parse("0730", timeFormatter),
+                        new Date("2020-01-01"));
+        EventContainsCurrentTimePredicate secondPredicate =
+                new EventContainsCurrentTimePredicate(LocalTime.parse("0830", timeFormatter),
+                        new Date("2020-01-02"));
+        NextEventCommand thirdCommand = new NextEventCommand(firstPredicate);
+        NextEventCommand fourthCommand = new NextEventCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
-
-//        // two objects containing same date -> returns true
-//        assertTrue(firstCommand.equals(secondCommand));
 
         // different types -> returns false
         assertFalse(firstCommand.equals(1));
@@ -75,9 +75,9 @@ public class NextEventCommandTest {
      * An EventContainsTodaysDatePredicate stub that always stores the date 2020-01-01.
      */
     private class EventContainsCurrentTimePredicateStub extends EventContainsCurrentTimePredicate {
-        public EventContainsCurrentTimePredicateStub (){
+        public EventContainsCurrentTimePredicateStub () {
             super(LocalTime.parse("0730", timeFormatter),
-                    new Date("2020-01-01") );
+                    new Date("2020-01-01"));
 
         }
     }

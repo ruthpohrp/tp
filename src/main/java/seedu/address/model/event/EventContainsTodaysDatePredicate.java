@@ -16,6 +16,10 @@ public class EventContainsTodaysDatePredicate implements Predicate<Event> {
         this.today = new Date(LocalDate.now().toString());
     }
 
+    /**
+     * Constructs a {@code EventContainsCurrentTimePredicate} with {@code LocalTime}
+     * and {@code Date} arguments
+     */
     public EventContainsTodaysDatePredicate(Date date) {
         this.today = date;
     }
