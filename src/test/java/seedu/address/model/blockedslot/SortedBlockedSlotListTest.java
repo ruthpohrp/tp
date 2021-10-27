@@ -1,4 +1,4 @@
-package seedu.address.model.event;
+package seedu.address.model.blockedslot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
