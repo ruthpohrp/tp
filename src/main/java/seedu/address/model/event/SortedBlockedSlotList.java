@@ -1,9 +1,11 @@
 package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +40,14 @@ public class SortedBlockedSlotList implements SortedOverlappableList<BlockedSlot
         if (!internalList.remove(toRemove)) {
             throw new BlockedSlotNotFoundException();
         }
+    }
+
+    /**
+     * Replaces the contents of this list with {@code blockSlots}.
+     */
+    public void setBlockedSlot(List<BlockedSlot> blockSlots) {
+        requireAllNonNull(blockSlots);
+        internalList.setAll(blockSlots);
     }
 
     @Override

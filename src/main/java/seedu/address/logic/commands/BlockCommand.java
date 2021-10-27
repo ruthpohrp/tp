@@ -38,12 +38,11 @@ public class BlockCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         //TODO: instead of throwing error, merge with other blocked periods
         if (model.isBlocked(blockedSlot)) {
             throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
         }
-        model.addBlock(blockedSlot);
+        model.addBlockedSlot(blockedSlot);
         return new CommandResult(String.format(MESSAGE_SUCCESS, blockedSlot));
     }
 
