@@ -14,5 +14,6 @@ public class Messages {
     public static final String MESSAGE_NO_NEXT_EVENT = "There are no more events today!";
     public static final String MESSAGE_INVALID_BLOCKED_SLOT_DISPLAYED_INDEX = "The blocked slot index provided is "
             + "invalid";
+    public static final String MESSAGE_FILTERED_TAGS = "%1$d events with the tag specified are listed!";
 
 }

@@ -15,6 +15,7 @@ import seedu.address.logic.commands.DeleteBlockedSlotCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterByTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FreeSlotsCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -77,6 +78,9 @@ public class ScheduleParser {
 
         case FreeSlotsCommand.COMMAND_WORD:
             return new FreeSlotsCommand(Date.TODAY);
+
+        case FilterByTagCommand.COMMAND_WORD:
+            return new FilterByTagCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
