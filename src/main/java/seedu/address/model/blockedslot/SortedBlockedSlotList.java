@@ -71,14 +71,14 @@ public class SortedBlockedSlotList implements SortedOverlappableList<BlockedSlot
      */
     @Override
     public boolean isOverlappingWith(Overlappable overlappable) {
-        boolean hasNoOverlaps = true;
+        boolean hasOverlaps = false;
         for (Overlappable o : internalList) {
             if (o.isOverlappingWith(overlappable)) {
-                hasNoOverlaps = false;
+                hasOverlaps = true;
             }
         }
 
-        return !hasNoOverlaps;
+        return hasOverlaps;
     }
 
     @Override

@@ -46,6 +46,14 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_eventClashesWithAnotherEvent_throwsSlotBlockedException() {
+        Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
+        Event clashingEvent = new EventBuilder().withDate("2020-01-01").withTimeSlot("0830", "0930").build();
+
+        assertThrows(SlotBlockedException.class, () -> new AddCommand(clashingEvent).execute(model));
+    }
+
+    @Test
     public void execute_eventAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
         Event validEvent = new EventBuilder().build();
