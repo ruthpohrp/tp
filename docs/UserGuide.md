@@ -44,7 +44,8 @@ Action | Format | Examples
 **[List](#57-listing-all-consultation-events--list)** | `list` | -
 **[Display Next Event](#58-displaying-the-next-consultation-event--next_event)** | `next_event` | -
 **[List Upcoming Events](#59-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
-**[Exit](#510-exiting-the-app--exit)** | `exit` | -
+**[View Command Summary Page](#510-viweing-the-command-summary-page--command_summary)** | `command_summary` | -
+**[Exit](#511-exiting-the-app--exit)** | `exit` | -
 
 
 ## 4. Quick Start
@@ -189,12 +190,17 @@ Lists down all the upcoming consultation events for the current day.
 
 Format: `upcoming_events`
 
-### 5.10 Exiting the app : `exit`
+### 5.10 Viewing the Command Summary Page: `command_summary`
+Opens a pop-up window with a Command Summary of all of DukePro(f)'s possible commands.
+
+Format: `command_summary`
+
+### 5.11 Exiting the app : `exit`
 Exits DukePro(f).
 
 Format: `exit`
 
-### 5.11 Saving all edits
+### 5.12 Saving all edits
 Event data is automatically saved into the hard disk after any command that changes the data. There is no
 need to save manually.
 
