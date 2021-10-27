@@ -164,8 +164,9 @@ public class ModelManager implements Model {
     @Override
     public String filteredBlockedSlotListToString() {
         StringBuilder builder = new StringBuilder();
-        for (BlockedSlot blockedSlot : filteredBlockedSlots) {
-            builder.append(blockedSlot);
+        for (int i = 0; i < filteredBlockedSlots.size(); i++) {
+            builder.append((i + 1) + ". ")
+                    .append(filteredBlockedSlots.get(i));
         }
         return builder.toString();
     }
