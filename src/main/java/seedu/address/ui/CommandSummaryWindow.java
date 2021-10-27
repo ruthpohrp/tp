@@ -35,20 +35,32 @@ public class CommandSummaryWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Shows the command summary window.
+     */
     public void show() {
         logger.fine("Showing command summary page");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
+    /**
+     * Returns true if the command summary window is currently being shown.
+     */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
+    /**
+     * Hides the command summary window.
+     */
     public void hide() {
         getRoot().hide();
     }
 
+    /**
+     * Focuses on the command summary window.
+     */
     public void focus() {
         getRoot().requestFocus();
     }

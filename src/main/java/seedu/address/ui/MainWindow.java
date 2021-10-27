@@ -154,6 +154,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the command summary window or focuses on it if it's already opened.
+     */
     @FXML
     public void handleCommandSummary() {
         if (!commandSummaryWindow.isShowing()) {
