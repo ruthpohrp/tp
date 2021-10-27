@@ -85,6 +85,12 @@ public interface Model {
     void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException;
 
     /**
+     * Deletes the given blocked slot.
+     * @param blockedSlot BlockedSlot to delete.
+     */
+    void deleteBlockedSlot(BlockedSlot blockedSlot);
+
+    /**
      * Checks if the given Overlappable is blocked.
      * @param overlappable the Overlappable to be checked.
      * @return true if the Overlappable is blocked, false otherwise.

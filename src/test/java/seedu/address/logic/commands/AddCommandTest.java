@@ -133,6 +133,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteBlockedSlot(BlockedSlot blockedSlot) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isBlocked(Overlappable overlappable) {
             //This method needs to be called.
             return false;

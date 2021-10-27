@@ -118,6 +118,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteBlockedSlot(BlockedSlot blockedSlot) {
+        schedule.removeBlockedSlot(blockedSlot);
+    }
+
+    @Override
     public boolean isBlocked(Overlappable overlappable) {
         return schedule.isBlocked(overlappable);
     }

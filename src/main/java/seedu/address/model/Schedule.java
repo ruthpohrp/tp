@@ -115,6 +115,14 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     /**
+     * Removes specified BlockedSlot from this Schedule.
+     * @param key BlockedSlot to be removed.
+     */
+    public void removeBlockedSlot(BlockedSlot key) {
+        blockedSlots.remove(key);
+    }
+
+    /**
      * Checks if the given Overlappable is blocked.
      * @param overlappable the Overlappable to be checked.
      * @return true if the Overlappable is blocked, false otherwise.
