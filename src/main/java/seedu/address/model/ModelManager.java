@@ -15,7 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.SlotBlockedException;
+import seedu.address.model.event.Overlappable;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -112,9 +112,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addBlock(BlockedSlot blockedSlot) throws SlotBlockedException {
-        schedule.addBlock(blockedSlot);
+    public void addBlockedSlot(BlockedSlot blockedSlot) {
+        schedule.addBlockedSlot(blockedSlot);
         updateFilteredBlockedSlotList(PREDICATE_SHOW_ALL_BLOCKED_SLOTS);
+    }
+
+    @Override
+    public boolean isBlocked(Overlappable overlappable) {
+        return schedule.isBlocked(overlappable);
     }
 
     //=========== Filtered Event List Accessors =============================================================

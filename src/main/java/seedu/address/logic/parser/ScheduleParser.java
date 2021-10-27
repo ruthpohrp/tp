@@ -10,9 +10,11 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BlockCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandSummaryCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterByTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FreeSlotsCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -76,6 +78,9 @@ public class ScheduleParser {
         case FreeSlotsCommand.COMMAND_WORD:
             return new FreeSlotsCommand(Date.TODAY);
 
+        case FilterByTagCommand.COMMAND_WORD:
+            return new FilterByTagCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -87,6 +92,9 @@ public class ScheduleParser {
 
         case ListBlockedSlotsCommand.COMMAND_WORD:
             return new ListBlockedSlotsCommand();
+
+        case CommandSummaryCommand.COMMAND_WORD:
+            return new CommandSummaryCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
