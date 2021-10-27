@@ -8,11 +8,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
+import seedu.address.model.blockedslot.SortedBlockedSlotList;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.Overlappable;
-import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
 import seedu.address.model.event.TimeSlot;
 
@@ -115,12 +114,21 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     /**
+     * Removes specified BlockedSlot from this Schedule.
+     * @param key BlockedSlot to be removed.
+     */
+    public void removeBlockedSlot(BlockedSlot key) {
+        blockedSlots.remove(key);
+    }
+
+    /**
      * Checks if the given Overlappable is blocked.
      * @param overlappable the Overlappable to be checked.
      * @return true if the Overlappable is blocked, false otherwise.
      */
     public boolean isBlocked(Overlappable overlappable) {
-        return blockedSlots.isOverlappingWith(overlappable);
+        return blockedSlots.isOverlappingWith(overlappable)
+                || events.isOverlappingWith(overlappable);
     }
 
     //// util methods

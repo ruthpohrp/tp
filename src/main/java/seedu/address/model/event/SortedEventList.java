@@ -10,6 +10,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.model.Overlappable;
+import seedu.address.model.SortedOverlappableList;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
@@ -99,13 +101,13 @@ public class SortedEventList implements SortedOverlappableList<Event> {
      */
     @Override
     public boolean isOverlappingWith(Overlappable overlappable) {
-        boolean passesOverlappingCheck = true;
+        boolean hasOverlaps = false;
         for (Overlappable o : internalList) {
-            if (!o.isOverlappingWith(overlappable)) {
-                passesOverlappingCheck = false;
+            if (o.isOverlappingWith(overlappable)) {
+                hasOverlaps = true;
             }
         }
 
-        return passesOverlappingCheck;
+        return hasOverlaps;
     }
 }

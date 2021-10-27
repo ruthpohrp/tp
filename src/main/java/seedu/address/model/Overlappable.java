@@ -1,4 +1,7 @@
-package seedu.address.model.event;
+package seedu.address.model;
+
+import seedu.address.model.event.Date;
+import seedu.address.model.event.TimeSlot;
 
 /**
  * An Overlappable can overlap with another based on date and time.
