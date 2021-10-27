@@ -25,7 +25,7 @@ public class SampleDataUtil {
                 getTagSet("CS1231S", "URGENT"), new Remark("Cool student")),
             new Event(new Name("Ruth Poh"), new Date("2020-10-15"), new TimeSlot("1600", "1700"),
                 new Location("Central Library"),
-                getTagSet("Supplementary"), new Remark("Coool student")),
+                getTagSet("supplementary"), new Remark("Coool student")),
             new Event(new Name("Teng Foong"), new Date("2020-10-18"), new TimeSlot("1000", "1100"),
                 new Location("COM1 Basement"),
                 getTagSet("CS1231S"), new Remark("Cooool student")),
