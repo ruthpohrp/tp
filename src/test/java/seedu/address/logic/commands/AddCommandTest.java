@@ -23,6 +23,7 @@ import seedu.address.model.Schedule;
 import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.Overlappable;
 import seedu.address.testutil.EventBuilder;
 
 public class AddCommandTest {
@@ -129,6 +130,12 @@ public class AddCommandTest {
         @Override
         public void addBlockedSlot(BlockedSlot blockedSlot) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isBlocked(Overlappable overlappable) {
+            //This method needs to be called.
+            return false;
         }
 
         @Override
