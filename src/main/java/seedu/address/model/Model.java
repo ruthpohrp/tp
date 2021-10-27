@@ -1,11 +1,16 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
+import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.Overlappable;
 
 /**
  * The API of the Model component.
@@ -13,6 +18,7 @@ import seedu.address.model.event.Event;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+    Predicate<BlockedSlot> PREDICATE_SHOW_ALL_BLOCKED_SLOTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -54,11 +60,6 @@ public interface Model {
     ReadOnlySchedule getSchedule();
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
-     */
-    boolean hasEvent(Event event);
-
-    /**
      * Deletes the given event.
      * The event must exist in the address book.
      */
@@ -67,6 +68,7 @@ public interface Model {
     /**
      * Adds the given event.
      * {@code event} must not already exist in the address book.
+     * @throws SlotBlockedException if the Date and TimeSlot of the Event to add coincides with the blocked period.
      */
     void addEvent(Event event);
 
@@ -77,8 +79,23 @@ public interface Model {
      */
     void setEvent(Event target, Event editedEvent);
 
+    /**
+     * Adds the given BlockedSlot.
+     */
+    void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException;
+
+    /**
+     * Checks if the given Overlappable is blocked.
+     * @param overlappable the Overlappable to be checked.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    boolean isBlocked(Overlappable overlappable);
+
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the filtered blocked slot list */
+    ObservableList<BlockedSlot> getFilteredBlockedSlotList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
@@ -87,7 +104,24 @@ public interface Model {
     void updateFilteredEventList(Predicate<Event> predicate);
 
     /**
+     * Updates the filter of the filtered blocked slot list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBlockedSlotList(Predicate<BlockedSlot> predicate);
+
+    /** Returns the BlockedSlot list in String format */
+    String filteredBlockedSlotListToString();
+
+    /**
      * Gets the first event in the filtered list.
      */
     Event nextEventInTheList();
+
+    /**
+     * Gets a list of all free slots from today's date to last event/block slot.
+     *
+     * @param date Today's date
+     * @return ArrayList of freeSlots
+     */
+    ArrayList<FreeSlot> getFreeSlots(Date date);
 }
