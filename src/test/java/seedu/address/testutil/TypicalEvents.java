@@ -76,7 +76,7 @@ public class TypicalEvents {
     private TypicalEvents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical events.
+     * Returns a {@code Schedule} with all the typical events.
      */
     public static Schedule getTypicalSchedule() {
         Schedule ab = new Schedule();
