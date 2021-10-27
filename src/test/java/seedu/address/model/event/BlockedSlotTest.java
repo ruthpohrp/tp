@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalBlockedSlots.NINE_TO_TEN;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.testutil.BlockedSlotBuilder;
 
 public class BlockedSlotTest {

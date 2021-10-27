@@ -1,4 +1,4 @@
-package seedu.address.model.event;
+package seedu.address.model.blockedslot;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -10,7 +10,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.model.event.exceptions.BlockedSlotNotFoundException;
+import seedu.address.model.Overlappable;
+import seedu.address.model.SortedOverlappableList;
+import seedu.address.model.blockedslot.exceptions.BlockedSlotNotFoundException;
 
 /**
  * A list of blocked slots is sorted chronologically and does not allow nulls.

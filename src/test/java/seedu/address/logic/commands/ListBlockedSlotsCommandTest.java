@@ -6,15 +6,13 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
 
 import java.util.List;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.testutil.TypicalEvents.getTypicalBlockedSlots;
 import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListBlockedSlotsCommand.

@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalBlockedSlots.EIGHT_TO_NINE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.event.Date;
-import seedu.address.model.event.Overlappable;
 import seedu.address.model.event.TimeSlot;
 
 

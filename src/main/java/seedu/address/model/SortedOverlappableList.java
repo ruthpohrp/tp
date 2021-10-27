@@ -1,6 +1,7 @@
-package seedu.address.model.event;
+package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.Overlappable;
 
 /**
  * Interface for a list of Overlappables.

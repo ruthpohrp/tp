@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Schedule;
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Event;
 
 /**

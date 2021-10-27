@@ -8,11 +8,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
+import seedu.address.model.blockedslot.SortedBlockedSlotList;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.Overlappable;
-import seedu.address.model.event.SortedBlockedSlotList;
 import seedu.address.model.event.SortedEventList;
 import seedu.address.model.event.TimeSlot;
 
