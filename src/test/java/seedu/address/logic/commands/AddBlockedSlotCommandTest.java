@@ -24,48 +24,50 @@ import seedu.address.model.event.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Overlappable;
-import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.BlockedSlotBuilder;
 
-public class AddCommandTest {
+public class AddBlockedSlotCommandTest {
 
     @Test
-    public void constructor_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullBlockedSlot_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddBlockedSlotCommand(null));
     }
 
     @Test
-    public void execute_eventAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
-        Event validEvent = new EventBuilder().build();
+    public void execute_blockedSlotAcceptedByModel_addSuccessful() throws Exception {
+        AddBlockedSlotCommandTest.ModelStubAcceptingBlockedSlotAdded modelStub =
+                new AddBlockedSlotCommandTest.ModelStubAcceptingBlockedSlotAdded();
+        BlockedSlot validBlockedSlot = new BlockedSlotBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validEvent).execute(modelStub);
+        CommandResult commandResult = new AddBlockedSlotCommand(validBlockedSlot).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEvent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validEvent), modelStub.eventsAdded);
+        assertEquals(String.format(AddBlockedSlotCommand.MESSAGE_SUCCESS, validBlockedSlot),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validBlockedSlot), modelStub.blockedSlotsAdded);
     }
 
     @Test
     public void equals() {
-        Event alice = new EventBuilder().withName("Alice").build();
-        Event bob = new EventBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        BlockedSlot slotA = new BlockedSlotBuilder().withDate("2021-01-01").build();
+        BlockedSlot slotB = new BlockedSlotBuilder().withDate("2021-01-02").build();
+        AddBlockedSlotCommand addSlotACommand = new AddBlockedSlotCommand(slotA);
+        AddBlockedSlotCommand addSlotBCommand = new AddBlockedSlotCommand(slotB);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addSlotACommand.equals(addSlotACommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddBlockedSlotCommand addSlotACommandCopy = new AddBlockedSlotCommand(slotA);
+        assertTrue(addSlotACommand.equals(addSlotACommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addSlotACommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addSlotACommandCopy.equals(null));
 
         // different event -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addSlotACommand.equals(addSlotBCommand));
     }
 
     /**
@@ -181,27 +183,27 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single event.
+     * A Model stub that contains a single blocked slot.
      */
-    private class ModelStubWithEvent extends ModelStub {
-        private final Event event;
+    private class ModelStubWithBlockedSlot extends AddBlockedSlotCommandTest.ModelStub {
+        private final BlockedSlot blockedSlot;
 
-        ModelStubWithEvent(Event event) {
-            requireNonNull(event);
-            this.event = event;
+        ModelStubWithBlockedSlot(BlockedSlot blockedSlot) {
+            requireNonNull(blockedSlot);
+            this.blockedSlot = blockedSlot;
         }
     }
 
     /**
-     * A Model stub that always accept the event being added.
+     * A Model stub that always accept the blocked slot being added.
      */
-    private class ModelStubAcceptingEventAdded extends ModelStub {
-        final ArrayList<Event> eventsAdded = new ArrayList<>();
+    private class ModelStubAcceptingBlockedSlotAdded extends AddBlockedSlotCommandTest.ModelStub {
+        final ArrayList<BlockedSlot> blockedSlotsAdded = new ArrayList<>();
 
         @Override
-        public void addEvent(Event event) {
-            requireNonNull(event);
-            eventsAdded.add(event);
+        public void addBlockedSlot(BlockedSlot blockedSlot) {
+            requireNonNull(blockedSlot);
+            blockedSlotsAdded.add(blockedSlot);
         }
 
         @Override
@@ -209,5 +211,4 @@ public class AddCommandTest {
             return new Schedule();
         }
     }
-
 }
