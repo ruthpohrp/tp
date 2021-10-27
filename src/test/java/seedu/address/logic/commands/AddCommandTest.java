@@ -17,13 +17,13 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.FreeSlot;
 import seedu.address.model.Model;
+import seedu.address.model.Overlappable;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Schedule;
 import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.Overlappable;
 import seedu.address.testutil.EventBuilder;
 
 public class AddCommandTest {

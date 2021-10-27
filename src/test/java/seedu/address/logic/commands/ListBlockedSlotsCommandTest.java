@@ -1,18 +1,19 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalEvents.getTypicalBlockedSlots;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
+
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.blockedslot.BlockedSlot;
-
-import java.util.List;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEvents.getTypicalBlockedSlots;
-import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListBlockedSlotsCommand.

@@ -30,7 +30,8 @@ public class BlockCommandParser implements Parser<AddBlockedSlotCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIMESLOT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBlockedSlotCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddBlockedSlotCommand.MESSAGE_USAGE));
         }
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
