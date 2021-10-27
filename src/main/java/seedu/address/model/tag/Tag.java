@@ -69,5 +69,8 @@ public class Tag {
             return new Label(tagName);
         }
     }
+    public String getTagName() {
+        return tagName;
+    }
 
 }

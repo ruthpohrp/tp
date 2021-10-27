@@ -6,14 +6,16 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddBlockedSlotCommand;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.BlockCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandSummaryCommand;
+import seedu.address.logic.commands.DeleteBlockedSlotCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterByTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FreeSlotsCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -77,13 +79,16 @@ public class ScheduleParser {
         case FreeSlotsCommand.COMMAND_WORD:
             return new FreeSlotsCommand(Date.TODAY);
 
+        case FilterByTagCommand.COMMAND_WORD:
+            return new FilterByTagCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case BlockCommand.COMMAND_WORD:
+        case AddBlockedSlotCommand.COMMAND_WORD:
             return new BlockCommandParser().parse(arguments);
 
         case ListBlockedSlotsCommand.COMMAND_WORD:
@@ -91,6 +96,9 @@ public class ScheduleParser {
 
         case CommandSummaryCommand.COMMAND_WORD:
             return new CommandSummaryCommand();
+
+        case DeleteBlockedSlotCommand.COMMAND_WORD:
+            return new DeleteBlockedSlotCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

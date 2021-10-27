@@ -1,6 +1,11 @@
-package seedu.address.model.event;
+package seedu.address.model.blockedslot;
+
 
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.Overlappable;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.TimeSlot;
 
 /**
  * Represents a blocked period of time which an Event should not overlap with.
