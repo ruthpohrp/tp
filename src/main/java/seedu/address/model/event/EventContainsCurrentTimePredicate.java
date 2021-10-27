@@ -17,7 +17,14 @@ public class EventContainsCurrentTimePredicate implements Predicate<Event> {
         this.time = LocalTime.now();
         this.today = Date.TODAY;
     }
-
+    /**
+     * Constructs a {@code EventContainsCurrentTimePredicate} with {@code LocalTime}
+     * and {@code Date} arguments
+     */
+    public EventContainsCurrentTimePredicate(LocalTime time, Date date) {
+        this.time = time;
+        this.today = date;
+    }
     @Override
     public boolean test(Event event) {
         return event.getTimeSlot().startTime.compareTo(time) > 0 && event.getDate().equals(today);
