@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,11 +16,14 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.FreeSlot;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlySchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Schedule;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
@@ -32,7 +36,7 @@ public class AddBlockedSlotCommandTest {
     public void constructor_nullBlockedSlot_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddBlockedSlotCommand(null));
     }
-
+    
     @Test
     public void execute_blockedSlotAcceptedByModel_addSuccessful() throws Exception {
         AddBlockedSlotCommandTest.ModelStubAcceptingBlockedSlotAdded modelStub =

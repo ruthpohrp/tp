@@ -81,7 +81,7 @@ public interface Model {
     /**
      * Adds the given BlockedSlot.
      */
-    void addBlockedSlot(BlockedSlot blockedSlot) throws SlotBlockedException;
+    void addBlockedSlot(BlockedSlot blockedSlot);
 
     /**
      * Deletes the given blocked slot.
