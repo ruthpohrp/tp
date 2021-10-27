@@ -7,12 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
 
 /**
  * Blocks out a time slot in the schedule.
  */
-public class BlockCommand extends Command {
+public class AddBlockedSlotCommand extends Command {
 
     public static final String COMMAND_WORD = "block";
 
@@ -27,10 +27,10 @@ public class BlockCommand extends Command {
     private final BlockedSlot blockedSlot;
 
     /**
-     * Creates a BlockCommand to block the specified BlockedSlot.
+     * Creates a AddBlockedSlotCommand to block the specified BlockedSlot.
      * @param blockedSlot
      */
-    public BlockCommand(BlockedSlot blockedSlot) {
+    public AddBlockedSlotCommand(BlockedSlot blockedSlot) {
         requireNonNull(blockedSlot);
         this.blockedSlot = blockedSlot;
     }
@@ -49,7 +49,7 @@ public class BlockCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BlockCommand // instanceof handles nulls
-                && blockedSlot.equals(((BlockCommand) other).blockedSlot));
+                || (other instanceof AddBlockedSlotCommand // instanceof handles nulls
+                && blockedSlot.equals(((AddBlockedSlotCommand) other).blockedSlot));
     }
 }

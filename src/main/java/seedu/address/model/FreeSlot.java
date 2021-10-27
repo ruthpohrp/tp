@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.model.event.Date;
-import seedu.address.model.event.Overlappable;
 import seedu.address.model.event.TimeSlot;
 
 public class FreeSlot implements Overlappable {

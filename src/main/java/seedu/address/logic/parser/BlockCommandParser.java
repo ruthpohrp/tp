@@ -6,31 +6,32 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.BlockCommand;
+import seedu.address.logic.commands.AddBlockedSlotCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.TimeSlot;
 
 /**
- * Parses input arguments and creates a new BlockCommand object
+ * Parses input arguments and creates a new AddBlockedSlotCommand object
  */
-public class BlockCommandParser implements Parser<BlockCommand> {
+public class BlockCommandParser implements Parser<AddBlockedSlotCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of BlockCommand
-     * and returns a BlockCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of AddBlockedSlotCommand
+     * and returns a AddBlockedSlotCommand object for execution.
      * @param args arguments provided by the user.
-     * @return a BlockCommand object.
+     * @return a AddBlockedSlotCommand object.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public BlockCommand parse(String args) throws ParseException {
+    public AddBlockedSlotCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_TIMESLOT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIMESLOT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BlockCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddBlockedSlotCommand.MESSAGE_USAGE));
         }
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
@@ -38,7 +39,7 @@ public class BlockCommandParser implements Parser<BlockCommand> {
 
         BlockedSlot blockedSlot = new BlockedSlot(date, timeSlot);
 
-        return new BlockCommand(blockedSlot);
+        return new AddBlockedSlotCommand(blockedSlot);
     }
 
     /**

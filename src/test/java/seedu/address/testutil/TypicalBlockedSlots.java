@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
 
 /**
  * A utility class containing a list of {@code TypicalBlocked} objects to be used in tests.

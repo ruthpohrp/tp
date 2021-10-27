@@ -12,10 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.Overlappable;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -118,6 +117,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteBlockedSlot(BlockedSlot blockedSlot) {
+        schedule.removeBlockedSlot(blockedSlot);
+    }
+
+    @Override
     public boolean isBlocked(Overlappable overlappable) {
         return schedule.isBlocked(overlappable);
     }
@@ -159,8 +163,9 @@ public class ModelManager implements Model {
     @Override
     public String filteredBlockedSlotListToString() {
         StringBuilder builder = new StringBuilder();
-        for (BlockedSlot blockedSlot : filteredBlockedSlots) {
-            builder.append(blockedSlot);
+        for (int i = 0; i < filteredBlockedSlots.size(); i++) {
+            builder.append((i + 1) + ". ")
+                    .append(filteredBlockedSlots.get(i));
         }
         return builder.toString();
     }
