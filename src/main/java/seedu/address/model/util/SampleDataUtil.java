@@ -34,7 +34,7 @@ public class SampleDataUtil {
                 getTagSet("CS2100"), new Remark("Student. Very cool.")),
             new Event(new Name("Lulu"), new Date("2020-10-20"), new TimeSlot("1400", "1500"),
                 new Location("Office"),
-                getTagSet("Supplementary"), new Remark(""))
+                getTagSet("supplementary"), new Remark(""))
         };
     }
 
