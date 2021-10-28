@@ -10,6 +10,9 @@ DukePro(f) is a schedule-planning desktop application that assists **university 
 their **consultations**, through the usage of an intuitive **Command-Line Interface (CLI)**<sup>1</sup>
 and an easy-to-navigate Graphical User Interface (GUI)<sup>2</sup>.
 
+It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors, and it is also a nod
+to our CS2103T iP (individual Project), which was named `Duke`.
+
 Amidst long hours of lectures and tutorials in the week, professors may still need to cater timeslots for student
 consultations, which can be hard to come by and difficult to keep track of. This is where Dukepro(f)
 comes in to help you out! 
@@ -23,11 +26,10 @@ With DukePro(f), you will be able to:
 * List all of the time slots that you've blocked so far
 * And many more!
 
-It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors, and it is also a nod
-to our CS2103T iP (individual Project), which was named `Duke`.
+<hr />
 
 <sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by 
-typing in text (commands).
+typing in text (commands).<br>
 <sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you 
 interact with it.
 
@@ -38,18 +40,18 @@ interact with it.
 {:toc}
 
 
-## 2. Purpose
+## 1. Purpose
 ***
 
 This document is the User Guide for DukePro(f). It is intended to provide all the necessary information to use this software.
 The manual assumes that the user has the ability to type fast and prefers typing over other means of input.
 This User Guide contains the following sections:
-1. Command Summary (TODO HYPERLINKS)
-2. Quick Start
-3. Commands and their Features
-4. FAQ
+* [Quick Start: Get Started Using DukePro(f)]
+* [Command Summary: A Summary of Commands for DukePro(f)]
+* [Commands and their Features]
+* [FAQ]
 
-## 2. Meaning of icons and textboxes
+## 2. Meaning of Icons and Textboxes
 <div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in form of small tips!
 </div>
 <div markdown="block" class="alert alert-info"> :information_source: Tells you things to take note of 
@@ -59,31 +61,10 @@ while using DukePro(f)!
 avoided! 
 </div>
 
-## 3. Command Summary
+## 3. Quick Start: Get Started Using DukePro(f)
 ***
+### 3.1 Downloading and Opening the App
 
-Action | Format | Examples
---------|-------|-------
-**[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary`
-**[Add Blocked Time Slots]** | `block d/DATE t/TIMESLOT` | `block d/2020-01-01 t/0800-0900`
-**[Clear](#52-clearing-all-consultation-events--clear)** | `clear`  | -
-**[Delete](#53-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
-**[Delete Blocked Time Slots]** | `delete_blocked INDEX` | `delete_blocked 1`
-**[Display Next Event](#58-displaying-the-next-consultation-event--next_event)** | `next_event` | -
-**[Edit](#54-editing-a-consultation-event--edit)** | `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
-**[Filter By Tags]** | `filter_tag TAG_NAME [MORE_TAG_NAMES]...` |
-**[Find](#55-finding-a-consultation-event--find)** | `find KEYWORD [MORE_KEYWORDS]...` | `find Teng Foong`
-**[List](#57-listing-all-consultation-events--list)** | `list` | -
-**[List Blocked Time Slots]** | `list_blocked` | -
-**[List Free Time Slots]** | `list_free` | -
-**[List Upcoming Events](#59-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
-**[Help](#56-viewing-help--help)** | `help` | -
-**[View Command Summary](#510-viewing-the-command-summary-page--command_summary)** | `command_summary` | -
-**[Exit](#511-exiting-the-app--exit)** | `exit` | -
-
-
-## 4. Quick Start
-***
 1. Ensure you have Java `11` or above installed in your Computer. 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
    Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
@@ -95,18 +76,20 @@ Action | Format | Examples
    application and its data) for your DukePro(f).
 
 4. Double-click the file to start the app. A GUI similar to the image below should appear in a few seconds. 
-   Note how the app contains some sample data.<br>
+   Note that the app will contain some sample data.<br>
    <img src="images/Ui.png" width="500px">
 
 5. Refer to our [Tutorial on How To Use DukePro(f)] to start typing commands.
    
 6. Refer to the [Features](#3-features) for details of each command.
 
-## 4. How To Use DukePro(f): A Quick Tutorial
+### 3.2 How To Use DukePro(f): A Quick Tutorial
 
-Here are the different parts of DukePro(f)'s GUI:
+These are the different parts of DukePro(f)'s GUI:
 <img src="images/UG_Tutorial_1.png" width="700px">
 <br>
+
+Here's how to add a consultation event to DukePro(f).
 
 <img src="images/UG_Tutorial_2" width="700px">
 Step 1: Type the desired command into the Command Box and press `ENTER`. 
@@ -134,13 +117,36 @@ Some other commands you can try:
 * **`delete`** `delete 3`<br>
   Deletes the 3rd consultation event on your consultation list.
 
+## 4. Command Summary
+***
+
+Action | Format | Example(s)
+--------|-------|-------
+**[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary r/May switch to Zoom`
+**[Add Blocked Time Slots]** | `block d/DATE t/TIMESLOT` | `block d/2020-01-01 t/0800-0900`
+**[Clear](#52-clearing-all-consultation-events--clear)** | `clear`  | -
+**[Delete](#53-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
+**[Delete Blocked Time Slots]** | `delete_blocked INDEX` | `delete_blocked 1`
+**[Display Next Event](#58-displaying-the-next-consultation-event--next_event)** | `next_event` | -
+**[Edit](#54-editing-a-consultation-event--edit)** | `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
+**[Filter By Tags]** | `filter_tag TAG_NAME [MORE_TAG_NAMES]...` | `filter_tag URGENT`
+**[Find](#55-finding-a-consultation-event--find)** | `find KEYWORD [MORE_KEYWORDS]...` | `find Teng Foong`
+**[List](#57-listing-all-consultation-events--list)** | `list` | -
+**[List Blocked Time Slots]** | `list_blocked` | -
+**[List Free Time Slots]** | `list_free` | -
+**[List Upcoming Events](#59-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
+**[Help](#56-viewing-help--help)** | `help` | -
+**[View Command Summary](#510-viewing-the-command-summary-page--command_summary)** | `command_summary` | -
+**[Exit](#511-exiting-the-app--exit)** | `exit` | -
+
+
 ## 5. Commands and their Features
 ***
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are parameters to be supplied by the user.<br>
   * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Lulu Yousef`.
 
 * Items in square brackets are optional. (Items not in square brackets are necessary!)
@@ -162,10 +168,13 @@ Some other commands you can try:
 
 </div>
 
-### 5.1: Managing Your Consultations
+***
+### Managing Your Consultations
 Listed below are the commands for managing your consultations.
+Consultation events show the name, date, time (start and end), location, and additional details of the 
+consultation. Consultation events cannot overlap.
 
-### 5.1.1 Adding a Consultation Event : `add`
+### 5.1 Adding a Consultation Event : `add`
 
 Adds a consultation event to Dukepro(f).
 
@@ -183,7 +192,7 @@ Example(s):
 * `tag/URGENT` will be shown as ![urgent tag](images/URGENT tag.png)
 * `tag/supplementary` will be shown as ![supplementary tag](images/supplementary tag.png)
 
-### 5.3 Deleting a Consultation Event : `delete`
+### 5.2 Deleting a Consultation Event : `delete`
 
 Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 
@@ -192,7 +201,7 @@ Format: `delete INDEX`
 Example(s):
 * `delete 1`
 
-### 5.4 Editing a Consultation Event : `edit`
+### 5.3 Editing a Consultation Event : `edit`
 
 Edits the details of a consultation event from DukePro(f) at the specified `INDEX`.
 
@@ -206,22 +215,22 @@ Example(s):
 * `edit 2 n/Ruth t/0730-0830`
 * `edit 3 r/May have to switch to zoom`
 
-### 5.7 Listing all Consultation Events : `list`
+### 5.4 Listing all Consultation Events : `list`
 Lists down all consultation events scheduled in DukePro(f).
 
 Format: `list`
 
-### 5.8 Displaying the next Consultation Event : `next_event`
+### 5.5 Displaying the next Consultation Event : `next_event`
 Displays the next consultation event scheduled for the day in DukePro(f).
 
 Format: `next_event`
 
-### 5.9 Listing all Upcoming Events : `upcoming_events`
+### 5.6 Listing all Upcoming Events : `upcoming_events`
 Lists down all the upcoming consultation events for the current day.
 
 Format: `upcoming_events`
 
-### 5.2 Clearing all Consultation Events : `clear`
+### 5.7 Clearing all Consultation Events : `clear`
 
 Clears all consultation events stored in DukePro(f).
 
@@ -231,7 +240,7 @@ careful when using this command!
 
 Format: `clear`
 
-### 5.5 Finding a Consultation Event : `find`
+### 5.8 Finding a Consultation Event : `find`
 Finds all consultation events whose names contain any of the specified keywords and displays them as an indexed list.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
@@ -247,7 +256,7 @@ won't register unless the full word of the keyword is inputted. E.g.:
 Example(s):
 * `find Jacob`
 
-### 5.5 Filtering Consultation Events By Tags : `filter_tag`
+### 5.9 Filtering Consultation Events By Tags : `filter_tag`
 Finds all consultation events whose tags contain any of the specified tag names (case-insensitive) and displays them as 
 an indexed list.
 Format: `filter_tag TAG_NAME [MORE_TAG_NAMES]...`
@@ -259,46 +268,60 @@ usage warnings as finding consultation events does!
 Example(s):
 * `filter_tag URGENT`
 
-### 5.2: Managing Your Blocked Time Slots
+### 5.10 Listing all Free Slots : `free_slots`
+Lists down all free time slots in DukePro(f) from today until the last event or blocked slot.
+
+Format: `free_slots`
+
+
+***
+### Managing Your Blocked Time Slots
 Listed below are the commands for managing your blocked time slots.
+Blocked time slots ensure that you will not be able to add consultation events during those time slots.
 
-### 5.1.1 Adding a Blocked Time Slot : `block`
-
+### 5.11 Adding a Blocked Time Slot : `block`
 Adds a blocked time slot to Dukepro(f).
 
 Format: `add d/DATE t/TIMESLOT`
 
 Example(s):
-* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`
-* `add n/Ruth Poh d/2020-02-02 t/1000-1100 l/The Deck r/May have to switch to zoom`
-* `tag/URGENT` will be shown as ![urgent tag](images/URGENT tag.png)
-* `tag/supplementary` will be shown as ![supplementary tag](images/supplementary tag.png)
+* `block d/2020-01-01 t/0800-0900`
+* `block d/2020-02-02 t/1000-1100`
+
+### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
+Deletes a blocked time slot in DukePro(f) at the specified `INDEX`.
+
+Format: `delete INDEX`
+
+Example(s):
+* `delete 1`
+
+### 5.13 Listing all Blocked Time Slots : `list_blocked`
+Lists down all consultation events scheduled in DukePro(f).
+
+Format: `list_blocked`
 
 
-
-### 5.3: Help Commands
+***
+### Help Commands
 Listed below are the commands if you're stuck on how to use DukePro(f).
 
-### 5.3.1 Viewing help : `help`
-
+### 5.14 Viewing help : `help`
 Opens a pop-up window with a link to DukePro(f)'s user guide.
 
 Format: `help`
 
-### 5.3.2 Viewing the Command Summary Page: `command_summary`
+### 5.15 Viewing the Command Summary Page: `command_summary`
 Opens a pop-up window with a Command Summary of all of DukePro(f)'s possible commands.
 
 Format: `command_summary`
 
-### 5.4: Exiting the app : `exit`
+***
+### 5.16: Exiting the app : `exit`
 
 Exits DukePro(f).
 
 Format: `exit`
-
-### 5.5 Saving all edits
-Event data is automatically saved into the hard disk after any command that changes the data. There is no
-need to save manually.
 
 
 ## 6. FAQ
@@ -311,12 +334,12 @@ com/AY2122S1-CS2103T-T11-4/tp/releases)!
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
 that contains the data of your previous DukePro(f) home folder.
 
-**Q**: Where are the releases?<br>
-**A**: You can download the latest `dukeprof.jar` from [here](https://github.
-com/AY2122S1-CS2103T-T11-4/tp/releases)!
+**Q**: How do I save my edits?<br>
+**A**: All data is automatically saved into the hard disk after any command that changes the data. There is no
+need to save manually.
 
-**Q**: The dukeprof.jar isn’t opening when I double-click it.<br>
+**Q**: The dukeprof.jar isn’t opening when I double-click it. Please help?<br>
 **A**: 
-If you're using Windows, click here for a tutorial video.
-If you're using Mac, click here for a tutorial video.
-If you're using Linux, click here for a tutorial video.
+If you're using Windows, [click here](https://www.youtube.com/watch?v=ifBlevULGtM) for a tutorial video.
+If you're using Mac, [click here](https://www.youtube.com/watch?v=WkTt70O6SwI&ab_channel=CS.Math.Educator) for a tutorial video.
+If you're using Linux, [click here](https://www.youtube.com/watch?v=oIMX8qcdvSA) for a tutorial video.

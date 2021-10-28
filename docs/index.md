@@ -11,33 +11,12 @@ DukePro(f) is a schedule-planning desktop application that assists **university 
 their **consultations**, through the usage of an intuitive **Command-Line Interface (CLI)**<sup>1</sup>
 and an easy-to-navigate Graphical User Interface (GUI)<sup>2</sup>.
 
-Amidst long hours of lectures and tutorials in the week, professors may still need to cater timeslots for student
-consultations, which can be hard to come by and difficult to keep track of. This is where Dukepro(f)
-comes in to help you out!
-
-With DukePro(f), you will be able to:
-
-* Add, edit, and delete your consultations
-* List all of your consultations, or just your next consultation
-* List your free time slots for consultation booking
-* Block certain time slots to ensure your consultations don't clash with other commitments
-* List all of the time slots that you've blocked so far
-* And many more!
-
 It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors, and it is also a nod
 to our CS2103T iP (individual Project), which was named `Duke`.
 
-Want to get started using DukePro(f)?
-[**Click here**](https://ay2122s1-cs2103t-t11-4.github.io/tp/UserGuide.html#4-quick-start)!
-
-Want to try your hand at improving DukePro(f)? [**Click here**](https://ay2122s1-cs2103t-t11-4.github.io/tp/DeveloperGuide.html) for the Developer Guide!
-
-<sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by
-typing in text (commands).
-<sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you
-interact with it.
-
-<hr />
+Amidst long hours of lectures and tutorials in the week, professors may still need to cater timeslots for student
+consultations, which can be hard to come by and difficult to keep track of. This is where Dukepro(f)
+comes in to help you out! 
 
 With DukePro(f), you will be able to:
 
@@ -49,7 +28,17 @@ With DukePro(f), you will be able to:
 * List your free time slots for consultation booking
 * Block certain time slots (to ensure your consultations don't clash with other commitments)
 
+Want to get started using DukePro(f)?
+[**Click here**](https://ay2122s1-cs2103t-t11-4.github.io/tp/UserGuide.html#4-quick-start)!
+
+Want to try your hand at improving DukePro(f)? [**Click here**](https://ay2122s1-cs2103t-t11-4.github.io/tp/DeveloperGuide.html) for the Developer Guide!
+
 <hr />
+
+<sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by
+typing in text (commands).<br>
+<sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you
+interact with it.
 
 
 
