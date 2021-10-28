@@ -46,19 +46,20 @@ interact with it.
 This document is the User Guide for DukePro(f). It is intended to provide all the necessary information to use this software.
 The manual assumes that the user has the ability to type fast and prefers typing over other means of input.
 This User Guide contains the following sections:
-* [Quick Start: Get Started Using DukePro(f)]
-* [Command Summary: A Summary of Commands for DukePro(f)]
-* [Commands and their Features]
-* [FAQ]
+* [Quick Start: Get Started Using DukePro(f)](#3-quick-start-get-started-using-dukeprof)
+* [Command Summary: A Summary of Commands for DukePro(f)](#4-command-summary-a-summary-of-commands-for-dukeprof)
+* [Commands and their Features](#5-commands-and-their-features)
+* [FAQ](#6-faq)
 
 ## 2. Meaning of Icons and Textboxes
-<div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in form of small tips!
+***
+<div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in form of small tips.
 </div>
 <div markdown="block" class="alert alert-info"> :information_source: Tells you things to take note of 
-while using DukePro(f)!
+while using DukePro(f).
 </div>
 <div markdown="span" class="alert alert-danger">:warning: Warns you of errors that should be 
-avoided! 
+avoided.
 </div>
 
 ## 3. Quick Start: Get Started Using DukePro(f)
@@ -79,9 +80,11 @@ avoided!
    Note that the app will contain some sample data.<br>
    <img src="images/Ui.png" width="500px">
 
-5. Refer to our [Tutorial on How To Use DukePro(f)] to start typing commands.
+5. Refer to our [tutorial](#32-how-to-use-dukeprof-a-quick-tutorial) on how to use DukePro(f) to start 
+   typing commands.
    
-6. Refer to the [Features](#3-features) for details of each command.
+6. Refer to the [Commands and their Features](#5-commands-and-their-features) section for details on each 
+   command.
 
 ### 3.2 How To Use DukePro(f): A Quick Tutorial
 
@@ -117,27 +120,28 @@ Some other commands you can try:
 * **`delete`** `delete 3`<br>
   Deletes the 3rd consultation event on your consultation list.
 
-## 4. Command Summary
+## 4. Command Summary: A Summary of Commands for DukePro(f)
 ***
+Listed are the commands DukePro(f) supports, in alphabetical order:
 
 Action | Format | Example(s)
 --------|-------|-------
 **[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary r/May switch to Zoom`
-**[Add Blocked Time Slots]** | `block d/DATE t/TIMESLOT` | `block d/2020-01-01 t/0800-0900`
-**[Clear](#52-clearing-all-consultation-events--clear)** | `clear`  | -
-**[Delete](#53-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
-**[Delete Blocked Time Slots]** | `delete_blocked INDEX` | `delete_blocked 1`
-**[Display Next Event](#58-displaying-the-next-consultation-event--next_event)** | `next_event` | -
-**[Edit](#54-editing-a-consultation-event--edit)** | `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
-**[Filter By Tags]** | `filter_tag TAG_NAME [MORE_TAG_NAMES]...` | `filter_tag URGENT`
-**[Find](#55-finding-a-consultation-event--find)** | `find KEYWORD [MORE_KEYWORDS]...` | `find Teng Foong`
-**[List](#57-listing-all-consultation-events--list)** | `list` | -
-**[List Blocked Time Slots]** | `list_blocked` | -
-**[List Free Time Slots]** | `list_free` | -
-**[List Upcoming Events](#59-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
-**[Help](#56-viewing-help--help)** | `help` | -
-**[View Command Summary](#510-viewing-the-command-summary-page--command_summary)** | `command_summary` | -
-**[Exit](#511-exiting-the-app--exit)** | `exit` | -
+**[Add Blocked Time Slots](#511-adding-a-blocked-time-slot--block)** | `block d/DATE t/TIMESLOT` | `block d/2020-01-01 t/0800-0900`
+**[Clear](#57-clearing-all-consultation-events--clear)** | `clear`  | -
+**[Delete](#52-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
+**[Delete Blocked Time Slots](#512-deleting-a-blocked-time-slot--delete_blocked)** | `delete_blocked INDEX` | `delete_blocked 1`
+**[Display Next Event](#55-displaying-the-next-consultation-event--next_event)** | `next_event` | -
+**[Edit](#53-editing-a-consultation-event--edit)** | `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
+**[Exit](#516-exiting-the-app--exit)** | `exit` | -
+**[Filter By Tags](#59-filtering-consultation-events-by-tags--filter_tag)** | `filter_tag TAG_NAME [MORE_TAG_NAMES]...` | `filter_tag URGENT`
+**[Find](#58-finding-a-consultation-event--find)** | `find KEYWORD [MORE_KEYWORDS]...` | `find Teng Foong`
+**[Help](#514-viewing-help--help)** | `help` | -
+**[List](#54-listing-all-consultation-events--list)** | `list` | -
+**[List Blocked Time Slots](#513-listing-all-blocked-time-slots--list_blocked)** | `list_blocked` | -
+**[List Free Time Slots](#510-listing-all-free-time-slots--free_slots)** | `list_free` | -
+**[List Upcoming Events](#56-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
+**[View Command Summary](#515-viewing-the-command-summary-page-command_summary)** | `command_summary` | -
 
 
 ## 5. Commands and their Features
@@ -268,11 +272,12 @@ usage warnings as finding consultation events does!
 Example(s):
 * `filter_tag URGENT`
 
-### 5.10 Listing all Free Slots : `free_slots`
+### 5.10 Listing all Free Time Slots : `free_slots`
 Lists down all free time slots in DukePro(f) from today until the last event or blocked slot.
 
 Format: `free_slots`
 
+<br>
 
 ***
 ### Managing Your Blocked Time Slots
@@ -301,6 +306,7 @@ Lists down all consultation events scheduled in DukePro(f).
 
 Format: `list_blocked`
 
+<br>
 
 ***
 ### Help Commands
@@ -315,6 +321,7 @@ Format: `help`
 Opens a pop-up window with a Command Summary of all of DukePro(f)'s possible commands.
 
 Format: `command_summary`
+<br>
 
 ***
 ### 5.16: Exiting the app : `exit`
