@@ -11,13 +11,15 @@ import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Event;
+import seedu.address.testutil.BlockedSlotBuilder;
 import seedu.address.testutil.EventBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddBlockedSlotIntegrationTest {
 
     private Model model;
 
@@ -27,14 +29,15 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newEvent_success() {
-        Event validEvent = new EventBuilder().withDate("2020-01-01").withTimeSlot("1000", "1100").build();
+    public void execute_newBlockedSlot_success() {
+        BlockedSlot validBlockedSlot =
+                new BlockedSlotBuilder().withDate("2020-01-01").withTimeSlot("1000", "1100").build();
 
         Model expectedModel = new ModelManager(model.getSchedule(), new UserPrefs());
-        expectedModel.addEvent(validEvent);
+        expectedModel.addBlockedSlot(validBlockedSlot);
 
-        assertCommandSuccess(new AddCommand(validEvent), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validEvent), expectedModel);
+        assertCommandSuccess(new AddBlockedSlotCommand(validBlockedSlot), model,
+                String.format(AddBlockedSlotCommand.MESSAGE_SUCCESS, validBlockedSlot), expectedModel);
     }
 
     @Test

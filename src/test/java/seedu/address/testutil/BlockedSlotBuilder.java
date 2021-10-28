@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.event.BlockedSlot;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.TimeSlot;
 

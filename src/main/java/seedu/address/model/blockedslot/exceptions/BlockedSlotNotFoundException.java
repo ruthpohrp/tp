@@ -1,4 +1,4 @@
-package seedu.address.model.event.exceptions;
+package seedu.address.model.blockedslot.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified BlockedSlot.

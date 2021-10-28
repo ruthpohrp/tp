@@ -1,4 +1,4 @@
-package seedu.address.model.event;
+package seedu.address.model.blockedslot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalBlockedSlots.NINE_TO_TEN;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.event.exceptions.BlockedSlotNotFoundException;
+import seedu.address.model.blockedslot.exceptions.BlockedSlotNotFoundException;
 import seedu.address.testutil.BlockedSlotBuilder;
 
 public class SortedBlockedSlotListTest {
