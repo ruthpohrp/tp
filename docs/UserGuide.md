@@ -3,21 +3,40 @@ layout: page
 title: User Guide
 ---
 
+## Introduction
+***
+
+DukePro(f) is a schedule-planning desktop application that assists **university professors** in managing
+their **consultations**, through the usage of an intuitive **Command-Line Interface (CLI)**<sup>1</sup>
+and an easy-to-navigate Graphical User Interface (GUI)<sup>2</sup>.
+
+Amidst long hours of lectures and tutorials in the week, professors may still need to cater timeslots for student
+consultations, which can be hard to come by and difficult to keep track of. This is where Dukepro(f)
+comes in to help you out! 
+
+With DukePro(f), you will be able to:
+
+* Add, edit, and delete your consultations
+* List all of your consultations, or just your next consultation
+* List your free time slots for consultation booking
+* Block certain time slots to ensure your consultations don't clash with other commitments
+* List all of the time slots that you've blocked so far
+* And many more!
+
+It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors, and it is also a nod
+to our CS2103T iP (individual Project), which was named `Duke`.
+
+<sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by 
+typing in text (commands).
+<sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you 
+interact with it.
+
 ## Table of Contents
 ***
 
 * TOC
 {:toc}
 
-## 1. Introduction
-***
-
-DukePro(f) is an application that assists **professors in the University** in planning for their weekly engagements.
-Amidst long hours of lectures and tutorials in the week, professors may still need to cater timeslots for **student
-consultations**, which can be hard to come by and difficult to keep track of.
-
-It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors in a University, and it is also a nod
-to our CS2103T iP (individual Project), which was named `Duke`.
 
 ## 2. Purpose
 ***
@@ -27,8 +46,18 @@ The manual assumes that the user has the ability to type fast and prefers typing
 This User Guide contains the following sections:
 1. Command Summary (TODO HYPERLINKS)
 2. Quick Start
-3. Features
+3. Commands and their Features
 4. FAQ
+
+## 2. Meaning of icons and textboxes
+<div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in form of small tips!
+</div>
+<div markdown="block" class="alert alert-info"> :information_source: Tells you things to take note of 
+while using DukePro(f)!
+</div>
+<div markdown="span" class="alert alert-danger">:warning: Warns you of errors that should be 
+avoided! 
+</div>
 
 ## 3. Command Summary
 ***
@@ -36,15 +65,20 @@ This User Guide contains the following sections:
 Action | Format | Examples
 --------|-------|-------
 **[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary`
+**[Add Blocked Slots]** | `block d/DATE t/TIMESLOT` | `block d/2020-01-01 t/0800-0900`
 **[Clear](#52-clearing-all-consultation-events--clear)** | `clear`  | -
 **[Delete](#53-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
-**[Edit](#54-editing-a-consultation-event--edit)** | `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
-**[Find](#55-finding-a-consultation-event--find)** | `find KEYWORD`  | `find Teng Foong`
-**[Help](#56-viewing-help--help)** | `help` | -
-**[List](#57-listing-all-consultation-events--list)** | `list` | -
+**[Delete Blocked Slots]** | `delete_blocked INDEX` | `delete_blocked 1`
 **[Display Next Event](#58-displaying-the-next-consultation-event--next_event)** | `next_event` | -
+**[Edit](#54-editing-a-consultation-event--edit)** | `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`  | `edit 2 n/Quan Teng Foong` <br> `edit 6 tag/Zoom Meeting`
+**[Filter List By Tags]** | `filter_tag KEYWORD [MORE_KEYWORDS]...`|
+**[Find](#55-finding-a-consultation-event--find)** | `find KEYWORD [MORE_KEYWORDS]...` | `find Teng Foong`
+**[List](#57-listing-all-consultation-events--list)** | `list` | -
+**[List Blocked Slots]** | `list_blocked` | -
+**[List Free Slots]** | `list_free` | -
 **[List Upcoming Events](#59-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
-**[View Command Summary Page](#510-viweing-the-command-summary-page--command_summary)** | `command_summary` | -
+**[Help](#56-viewing-help--help)** | `help` | -
+**[View Command Summary](#510-viewing-the-command-summary-page--command_summary)** | `command_summary` | -
 **[Exit](#511-exiting-the-app--exit)** | `exit` | -
 
 
@@ -52,33 +86,55 @@ Action | Format | Examples
 ***
 1. Ensure you have Java `11` or above installed in your Computer. 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-   Not sure how? Click [here](https://www.oracle.com/java/technologies/downloads/)!
+   Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
 </div>
 
 2. Download the latest `dukeprof.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your DukePro(f).
+3. Copy the file to the folder you want to use as the _home folder_ (the folder where you want to store the
+   application and its data) for your DukePro(f).
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
    Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-   <!-- will need to change Ui.png once GUI is updated.-->
+   <img src="images/Ui.png" width="500px">
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing 
-   Enter will open the help window.<br>
-   Some example commands you can try:
+5. Refer to our [Tutorial on How To Use DukePro(f)] to start typing commands.
+   
+6. Refer to the [Features](#3-features) for details of each command.
 
-   * **`list`** : Lists all consultation events.
+## 4. How To Use DukePro(f): A Quick Tutorial
 
-   * **`add`**`add n/Galvin Chan d/2020-07-07 t/1000-1100 l/NUS tag/Tutorial 4` : Adds a consultation event for `Galvin Chan` to DukePro(f).
+Here are the different parts of DukePro(f)'s GUI:
+<img src="images/UG_Tutorial_1.png" width="500px">
+<br>
 
-   * **`delete`**`3` : Deletes the 3rd event shown in DukePro(f)'s current event list.
-    
+<img src="images/UG_Tutorial_2" width="500px">
+Step 1: Type the desired command into the Command Box and press `ENTER`. 
+<br>
 
-6. Refer to the [Features](#3-features) below for details of each command.
+<br>
+<img src="images/UG_Tutorial_3" width="500px">
+Step 2: Check the Result Display to see if your command is successful.
+<br>
 
+<br>
+<img src="images/UG_Tutorial_4" width="500px">
+Step 3: Check the Consultation List to see if your consultation event has been added.
+<br>
 
-## 5. Features
+Some other commands you can try:
+
+* **`list`**<br>
+  Lists all consultation events.
+
+* **`add`** `add n/Galvin Chan d/2020-07-07 t/1000-1100 l/NUS tag/Tutorial 4`<br>
+  Adds a consultation event for `Galvin Chan`, at date `2020-07-07`, time `1000-1100`, 
+  at location `NUS`, and tagged with `Tutorial 4` to DukePro(f).
+
+* **`delete`** `delete 3`<br>
+  Deletes the 3rd event shown in DukePro(f)'s current event list.
+
+## 5. Commands and their Features
 ***
 <div markdown="block" class="alert alert-info">
 
@@ -150,7 +206,7 @@ Edits the details of a consultation event from DukePro(f) at the specified `INDE
 
 Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`
 
-<div markdown="span" class="alert alert-danger">:bulb: **Tip**: Editing the tags will automatically 
+<div markdown="span" class="alert alert-danger">:bulb: **Warning**: Editing the tags will automatically 
 erase all previous tags!
 </div>
 
@@ -163,7 +219,8 @@ Finds all events whose names contain any of the specified keywords and displays 
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip**: The keywords are case-insensitive!
+<div markdown="span" class="alert alert-primary">:bulb: **Tip**: The keywords are case-insensitive and 
+won't register unless the full keyword is inputted (i.e. No partial keywords)!
 </div>
 
 Example(s): 

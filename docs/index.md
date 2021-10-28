@@ -15,6 +15,15 @@ Amidst long hours of lectures and tutorials in the week, professors may still ne
 consultations, which can be hard to come by and difficult to keep track of. This is where Dukepro(f)
 comes in to help you out!
 
+With DukePro(f), you will be able to:
+
+* Add, edit, and delete your consultations
+* List all of your consultations, or just your next consultation
+* List your free time slots for consultation booking
+* Block certain time slots to ensure your consultations don't clash with other commitments
+* List all of the time slots that you've blocked so far
+* And many more!
+
 It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors, and it is also a nod
 to our CS2103T iP (individual Project), which was named `Duke`.
 
@@ -22,6 +31,11 @@ Want to get started using DukePro(f)?
 [**Click here**](https://ay2122s1-cs2103t-t11-4.github.io/tp/UserGuide.html#4-quick-start)!
 
 Want to try your hand at improving DukePro(f)? [**Click here**](https://ay2122s1-cs2103t-t11-4.github.io/tp/DeveloperGuide.html) for the Developer Guide!
+
+<sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by
+typing in text (commands).
+<sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you
+interact with it.
 
 <hr />
 
@@ -31,7 +45,7 @@ With DukePro(f), you will be able to:
 * Delete your consultations
 * Edit your consultation details
 * List all of your consultations
-* List your next consultation event
+* List your next consultation
 * List your free time slots for consultation booking
 * Block certain time slots (to ensure your consultations don't clash with other commitments)
 

@@ -1,8 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.SlotBlockedException;
@@ -20,7 +19,10 @@ public class AddBlockedSlotCommand extends Command {
             + "\n"
             + "Parameters: "
             + PREFIX_DATE + "DATE "
-            + PREFIX_TIMESLOT + "TIMESLOT ";
+            + PREFIX_TIMESLOT + "TIMESLOT "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DATE + "2020-10-13 "
+            + PREFIX_TIMESLOT + "1300-1400";
 
     public static final String MESSAGE_SUCCESS = "New slot blocked out: %1$s\n";
 
