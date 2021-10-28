@@ -240,6 +240,19 @@ When the command `command_summary` is input by the user, `LogicManager` parses t
 `CommandSummaryCommand`. The `execute` method is called with the `showCommands` parameter being set to `true`. 
 This causes `MainWindow` to execute the `handleCommandSummary` method, which opens the Command Summary Page.
 
+### BlockedSlot - Teng Foong
+#### Description
+
+The `BlockedSlot` class represents a period of time that was blocked off by the user intentionally so that it is not possible for a new `Event` to be created during that time.
+
+#### Implementation
+
+The `BlockedSlot` class and `Event` class both implement the `Overlappable` interface. `Overlappable#isOverlappedWith` can be used to check for overlaps between `Overlappable`s.
+
+The `block` command adds a new `BlockedSlot` to the `SortedBlockedSlotList`. When adding a new `Event` we search through
+the `SortedBlockedSlotList` to check whether the `Date` and `TimeSlot` of the Event `isBlocked()`. The add command only
+succeeds if `isBlocked()` returns false.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
