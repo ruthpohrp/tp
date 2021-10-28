@@ -89,20 +89,23 @@ avoided.
 ### 3.2 How To Use DukePro(f): A Quick Tutorial
 
 These are the different parts of DukePro(f)'s GUI:
-<img src="images/UG_Tutorial_1.png" width="700px">
+<img src="images/UG_Tutorial_1.png" width="500px">
 <br> <br>
 
 Here's how to add a consultation event to DukePro(f).
 <br>
-<img src="images/UG_Tutorial_2.png" width="700px">
+<img src="images/UG_Tutorial_2.png" width="500px">
+<br>
 Step 1: Type the desired command into the Command Box and press `ENTER`.<br>
 
 <br>
-<img src="images/UG_Tutorial_3.png" width="700px">
+<img src="images/UG_Tutorial_3.png" width="500px">
+<br>
 Step 2: Check the Result Display to see if your command is successful.<br>
 
 <br>
-<img src="images/UG_Tutorial_4.png" width="700px">
+<img src="images/UG_Tutorial_4.png" width="500px">
+<br>
 Step 3: Check the Consultation List to see if your consultation event has been added.<br>
 
 Some other commands you can try:
