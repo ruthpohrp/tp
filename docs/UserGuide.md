@@ -272,10 +272,10 @@ usage warnings as finding consultation events does!
 Example(s):
 * `filter_tag URGENT`
 
-### 5.10 Listing all Free Time Slots : `free_slots`
+### 5.10 Listing all Free Time Slots : `list_free`
 Lists down all free time slots in DukePro(f) from today until the last event or blocked slot.
 
-Format: `free_slots`
+Format: `list_free`
 
 <br>
 
