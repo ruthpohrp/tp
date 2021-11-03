@@ -139,7 +139,7 @@ Action | Format | Example(s)
 **[Help](#514-viewing-help--help)** | `help` | -
 **[List](#54-listing-all-consultation-events--list)** | `list` | -
 **[List Blocked Time Slots](#513-listing-all-blocked-time-slots--list_blocked)** | `list_blocked` | -
-**[List Free Time Slots](#510-listing-all-free-time-slots--free_slots)** | `list_free` | -
+**[List Free Time Slots](#510-listing-all-free-time-slots--list_free)** | `list_free` | -
 **[List Upcoming Events](#56-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
 **[View Command Summary](#515-viewing-the-command-summary-page-command_summary)** | `command_summary` | -
 
