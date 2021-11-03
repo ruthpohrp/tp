@@ -287,7 +287,7 @@ Blocked time slots ensure that you will not be able to add consultation events d
 ### 5.11 Adding a Blocked Time Slot : `block`
 Adds a blocked time slot to Dukepro(f).
 
-Format: `add d/DATE t/TIMESLOT`
+Format: `block d/DATE t/TIMESLOT`
 
 Example(s):
 * `block d/2020-01-01 t/0800-0900`
@@ -296,10 +296,10 @@ Example(s):
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot in DukePro(f) at the specified `INDEX`.
 
-Format: `delete INDEX`
+Format: `delete_blocked INDEX`
 
 Example(s):
-* `delete 1`
+* `delete_blocked 1`
 
 ### 5.13 Listing all Blocked Time Slots : `list_blocked`
 Lists down all consultation events scheduled in DukePro(f).
