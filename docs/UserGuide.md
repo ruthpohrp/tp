@@ -205,6 +205,8 @@ Example(s):
 Limitations:
 * Currently, names with dashes or hyphens i.e. the `-` symbol are not accepted by DukePro(f). It may be 
   added in future versions, so please be patient with us!
+* Tags cannot span more than one word i.e. `tag/URGENT` will be accepted but not `tag/URGENT MATTER`.
+
 
 ### 5.2 Deleting a Consultation Event : `delete`
 
@@ -279,12 +281,17 @@ Finds all consultation events whose tags contain any of the specified tag names 
 an indexed list.
 Format: `filter_tag TAG_NAME [MORE_TAG_NAMES]...`
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The tag names have the 
-usage warnings as finding consultation events does! 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The tag names will not register unless 
+the full word of the tag name is inputted and search per one word only. E.g.:
+<br>* `filter_tag URGENT` can return a consultation event tagged `URGENT` but `filter_tag URG` 
+cannot return a consultation event tagged `URGENT`
+<br>* `filter_tag URGENT` can return a consultation event tagged `urgent`
 </div>
 
 Example(s):
-* `filter_tag URGENT`
+* `filter_tag URGENT`<br>
+  Filters any events that contain the tag `URGENT`
+
 
 ### 5.10 Listing all Free Time Slots : `list_free`
 Lists down all free time slots in DukePro(f) from today until the last event or blocked slot.
