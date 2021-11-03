@@ -355,8 +355,8 @@ Format: `exit`
 ## 6. FAQ
 ***
 **Q**: Where are the releases?<br>
-**A**: You can download the latest `dukeprof.jar` from [here](https://github.
-com/AY2122S1-CS2103T-T11-4/tp/releases)!
+**A**: You can download the latest `dukeprof.jar` from
+ [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases)!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
