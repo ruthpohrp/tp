@@ -183,18 +183,28 @@ consultation. Consultation events cannot overlap.
 Adds a consultation event to Dukepro(f).
 
 Format: `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]`
-* tags with the text "URGENT" and "supplementary" will automatically be changed to red and yellow respectively to
-  enable the user to indicate the consultation's severity
+* Tags with the text "URGENT" and "supplementary" will automatically be changed to red and yellow 
+  respectively to enable the user to indicate the consultation's severity (case-sensitive!). 
+* DATE is in format YYYY-MM-DD.
+* TIMESLOT is in 24h format of HHmm.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A consultation event can have any number of tags (including 0).
 </div>
 
 Example(s):
-* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`
-* `add n/Ruth Poh d/2020-02-02 t/1000-1100 l/The Deck r/May have to switch to zoom`
+* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`<br>
+  Adds a consultation event for `Lulu Yousef`, at date `1 Jan 2020`, time `8am to 9am`,
+  at location `NUS`, tagged with `Important` and `supplementary`.
+* `add n/Ruth Poh d/2020-03-02 t/1300-1400 l/The Deck r/May have to switch to zoom`<br>
+  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2020`, time `1pm to 2pm`,
+  at location `The Deck`, with the remark `May have to switch to zoom`.
 * `tag/URGENT` will be shown as ![urgent tag](images/URGENT tag.png)
 * `tag/supplementary` will be shown as ![supplementary tag](images/supplementary tag.png)
+
+Limitations:
+* Currently, names with dashes or hyphens i.e. the `-` symbol are not accepted by DukePro(f). It may be 
+  added in future versions, so please be patient with us!
 
 ### 5.2 Deleting a Consultation Event : `delete`
 
@@ -246,15 +256,19 @@ Format: `clear`
 
 ### 5.8 Finding a Consultation Event : `find`
 Finds all consultation events whose names contain any of the specified keywords and displays them as an indexed list.
+* Keywords are case-insensitive.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords are case-insensitive, but 
-won't register unless the full word of the keyword is inputted. E.g.:
-* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an event with the name 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords will not register unless 
+the full word of the keyword is inputted and search per one word only. E.g.:
+<br>* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an 
+event with the name 
 `Jacob`
-* `find Jacob` can return a consultation event with the name `Jacob Ng`
-* `find jacob` and `find jAcOb` can return a consultation event with the name `Jacob`
+<br>* `find Jacob` can return a consultation event with the name `Jacob Ng`
+<br>* `find jacob` and `find jAcOb` can return a consultation event with the name `Jacob`
+<br>* `find Jacob R` can return a consultation event with the name `Jacob Ng`, `R Ng` and `Jacob Ong` but 
+not `Jacob Rong`
 </div>
 
 Example(s):
