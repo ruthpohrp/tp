@@ -183,10 +183,12 @@ consultation. Consultation events cannot overlap.
 Adds a consultation event to Dukepro(f).
 
 Format: `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]`
-* Tags with the text "URGENT" and "supplementary" will automatically be changed to red and yellow 
-  respectively to enable the user to indicate the consultation's severity (case-sensitive!). 
+* The entries for NAME and TAG must be alphanumeric, i.e. no dashes/hyphens like in `Poh Hui-En Ruth`.
 * DATE is in format YYYY-MM-DD.
 * TIMESLOT is in 24h format of HHmm.
+* Tags cannot span more than one word i.e. `tag/URGENT` will be accepted but not `tag/URGENT MATTER`.
+* Tags with the text "URGENT" and "supplementary" will automatically be changed to red and yellow 
+  respectively to enable the user to indicate the consultation's severity (case-sensitive!). 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A consultation event can have any number of tags (including 0).
@@ -201,11 +203,6 @@ Example(s):
   at location `The Deck`, with the remark `May have to switch to zoom`.
 * `tag/URGENT` will be shown as ![urgent tag](images/URGENT tag.png)
 * `tag/supplementary` will be shown as ![supplementary tag](images/supplementary tag.png)
-
-Limitations:
-* Currently, names with dashes or hyphens i.e. the `-` symbol are not accepted by DukePro(f). It may be 
-  added in future versions, so please be patient with us!
-* Tags cannot span more than one word i.e. `tag/URGENT` will be accepted but not `tag/URGENT MATTER`.
 
 
 ### 5.2 Deleting a Consultation Event : `delete`
