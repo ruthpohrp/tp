@@ -148,7 +148,7 @@ Action | Format | Example(s)
 **[View Command Summary](#515-viewing-the-command-summary-page-command_summary)** | `command_summary` | -
 
 
-## 5. Commands and their Features
+## 5. Commands and Their Features
 ***
 <div markdown="block" class="alert alert-info">
 
