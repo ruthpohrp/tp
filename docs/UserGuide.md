@@ -36,7 +36,7 @@ interact with it.
 ## Table of Contents
 ***
 
-* TOC
+* Table of Contents
 {:toc}
 
 
