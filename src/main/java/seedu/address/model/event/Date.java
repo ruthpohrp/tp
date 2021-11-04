@@ -50,7 +50,7 @@ public class Date {
         try {
             LocalDate.parse(test);
             return test.matches(VALIDATION_REGEX);
-        } catch(DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
