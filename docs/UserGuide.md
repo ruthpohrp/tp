@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 <p align="center">
-  <img width="200" src="images/user-guide/dukelogo.PNG">
+  <img width="200" src="images/dukelogo.png">
 </p> 
 ## Introduction
 ***
