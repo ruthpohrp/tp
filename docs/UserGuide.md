@@ -220,7 +220,9 @@ Edits the details of a consultation event from DukePro(f) at the specified `INDE
 Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:** 
+
 * Editing the tags will automatically erase all previous tags!
+
 * This command edits the index of the list on the right hand side (i.e. if its filtered, 
 `edit 1 n/Ruth` will edit the first index in the filtered list and not the entire list. 
 </div>
