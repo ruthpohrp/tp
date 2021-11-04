@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 <p align="center">
-  <img width="200" src="images/user-guide/dukelogo.png">
+  <img width="200" src="images/user-guide/dukelogo.PNG">
 </p> 
 ## Introduction
 ***
@@ -213,7 +213,7 @@ Edits the details of a consultation event from DukePro(f) at the specified `INDE
 
 Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`
 
-<div markdown="span" class="alert alert-danger">:bulb: **Warning**: Editing the tags will automatically 
+<div markdown="span" class="alert alert-danger">:bulb: **WARNING:** Editing the tags will automatically 
 erase all previous tags!
 </div>
 
@@ -240,7 +240,7 @@ Format: `upcoming_events`
 
 Clears all consultation events stored in DukePro(f).
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING**: This command cannot be reversed. Be 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command cannot be reversed. Be 
 careful when using this command!
 </div>
 
