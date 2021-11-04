@@ -65,7 +65,7 @@ public class Tag {
         if (tagName.equals("URGENT")) {
             l = new UrgentLabel();
         } else if (tagName.equals("supplementary")) {
-            l =  new SupplementaryLabel();
+            l = new SupplementaryLabel();
         } else {
             l = new Label(tagName);
         }

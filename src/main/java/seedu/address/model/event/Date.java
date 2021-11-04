@@ -47,10 +47,10 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        try{
+        try {
             LocalDate.parse(test);
             return test.matches(VALIDATION_REGEX);
-        }catch(DateTimeParseException e){
+        } catch(DateTimeParseException e) {
             return false;
         }
     }
