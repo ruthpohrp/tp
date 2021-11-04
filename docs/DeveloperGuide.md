@@ -171,14 +171,15 @@ The `SortedEventList#asUnmodifiableObservableList()` method returns an Observabl
 
 ### UpcomingEventsCommand - Lulu
 #### Description
-The `UpcomingEventCommand` class is a command that lists all the events scheduled for the current day.
+The `UpcomingEventCommand` class is a command that lists all the upcoming events scheduled for the current day excluding
+the ongoing consultation event.
 
 #### Implementation
-The `UpcomingEventsCommand` class has one field `datePredicate` of type `EventContainsTodaysDatePredicate`.
+The `UpcomingEventsCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
 
-`EventContainsTodaysDatePredicate` is  a class that checks whether an event's date matches today's date.
+`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot and date is after the current time and date.
 
-The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered event list that is filtered by the `datePredicate`.
+The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the upcoming events, filtered by the `timePredicate`.
 
 ### NextEventCommand - Lulu
 #### Description
@@ -187,11 +188,21 @@ The `NextEventCommand` class is a command that displays the next event based on 
 #### Implementation
 The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
 
-`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot is after the current time.
+`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot and date is after the current time and date.
 
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
+### FilterByTag Command - Lulu
+#### Description
+The `FilterByTagCommand` class is a command that finds all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
+
+#### Implementation
+The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKeywordsPredicate.
+
+`TagContainsKeywordsPredicate` is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
+
+The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
 
 ### Remark feature - Ruth
 
