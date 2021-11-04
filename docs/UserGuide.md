@@ -1,12 +1,11 @@
-
-<p align="center">
-  <img width="200" src="images/dukelogo.png">
-</p> 
-
 ---
 layout: page
 title: User Guide
 ---
+
+<p align="center">
+  <img width="200" src="images/dukelogo.png">
+</p> 
 
 ## Introduction
 ***
@@ -216,7 +215,7 @@ Edits the details of a consultation event from DukePro(f) at the specified `INDE
 
 Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`
 
-<div markdown="span" class="alert alert-danger">:bulb: **WARNING:** Editing the tags will automatically 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:** Editing the tags will automatically 
 erase all previous tags!
 </div>
 
