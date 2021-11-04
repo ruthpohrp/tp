@@ -139,7 +139,7 @@ Action | Format | Example(s)
 **[Help](#514-viewing-help--help)** | `help` | -
 **[List](#54-listing-all-consultation-events--list)** | `list` | -
 **[List Blocked Time Slots](#513-listing-all-blocked-time-slots--list_blocked)** | `list_blocked` | -
-**[List Free Time Slots](#510-listing-all-free-time-slots--free_slots)** | `list_free` | -
+**[List Free Time Slots](#510-listing-all-free-time-slots--list_free)** | `list_free` | -
 **[List Upcoming Events](#56-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
 **[View Command Summary](#515-viewing-the-command-summary-page-command_summary)** | `command_summary` | -
 
@@ -183,18 +183,27 @@ consultation. Consultation events cannot overlap.
 Adds a consultation event to Dukepro(f).
 
 Format: `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]`
-* tags with the text "URGENT" and "supplementary" will automatically be changed to red and yellow respectively to
-  enable the user to indicate the consultation's severity
+* The entries for NAME and TAG must be alphanumeric, i.e. no dashes/hyphens like in `Poh Hui-En Ruth`.
+* DATE is in format YYYY-MM-DD.
+* TIMESLOT is in 24h format of HHmm.
+* Tags cannot span more than one word i.e. `tag/URGENT` will be accepted but not `tag/URGENT MATTER`.
+* Tags with the text "URGENT" and "supplementary" will automatically be changed to red and yellow 
+  respectively to enable the user to indicate the consultation's severity (case-sensitive!). 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A consultation event can have any number of tags (including 0).
 </div>
 
 Example(s):
-* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`
-* `add n/Ruth Poh d/2020-02-02 t/1000-1100 l/The Deck r/May have to switch to zoom`
+* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`<br>
+  Adds a consultation event for `Lulu Yousef`, at date `1 Jan 2020`, time `8am to 9am`,
+  at location `NUS`, tagged with `Important` and `supplementary`.
+* `add n/Ruth Poh d/2020-03-02 t/1300-1400 l/The Deck r/May have to switch to zoom`<br>
+  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2020`, time `1pm to 2pm`,
+  at location `The Deck`, with the remark `May have to switch to zoom`.
 * `tag/URGENT` will be shown as ![urgent tag](images/URGENT tag.png)
 * `tag/supplementary` will be shown as ![supplementary tag](images/supplementary tag.png)
+
 
 ### 5.2 Deleting a Consultation Event : `delete`
 
@@ -246,15 +255,19 @@ Format: `clear`
 
 ### 5.8 Finding a Consultation Event : `find`
 Finds all consultation events whose names contain any of the specified keywords and displays them as an indexed list.
+* Keywords are case-insensitive.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords are case-insensitive, but 
-won't register unless the full word of the keyword is inputted. E.g.:
-* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an event with the name 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords will not register unless 
+the full word of the keyword is inputted and search per one word only. E.g.:
+<br>* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an 
+event with the name 
 `Jacob`
-* `find Jacob` can return a consultation event with the name `Jacob Ng`
-* `find jacob` and `find jAcOb` can return a consultation event with the name `Jacob`
+<br>* `find Jacob` can return a consultation event with the name `Jacob Ng`
+<br>* `find jacob` and `find jAcOb` can return a consultation event with the name `Jacob`
+<br>* `find Jacob R` can return a consultation event with the name `Jacob Ng`, `R Ng` and `Jacob Ong` but 
+not `Jacob Rong`
 </div>
 
 Example(s):
@@ -265,12 +278,17 @@ Finds all consultation events whose tags contain any of the specified tag names 
 an indexed list.
 Format: `filter_tag TAG_NAME [MORE_TAG_NAMES]...`
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The tag names have the 
-usage warnings as finding consultation events does! 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The tag names will not register unless 
+the full word of the tag name is inputted and search per one word only. E.g.:
+<br>* `filter_tag URGENT` can return a consultation event tagged `URGENT` but `filter_tag URG` 
+cannot return a consultation event tagged `URGENT`
+<br>* `filter_tag URGENT` can return a consultation event tagged `urgent`
 </div>
 
 Example(s):
-* `filter_tag URGENT`
+* `filter_tag URGENT`<br>
+  Filters any events that contain the tag `URGENT`
+
 
 ### 5.10 Listing all Free Time Slots : `list_free`
 Lists down all free time slots in DukePro(f) from today until the last event or blocked slot.
@@ -287,7 +305,7 @@ Blocked time slots ensure that you will not be able to add consultation events d
 ### 5.11 Adding a Blocked Time Slot : `block`
 Adds a blocked time slot to Dukepro(f).
 
-Format: `add d/DATE t/TIMESLOT`
+Format: `block d/DATE t/TIMESLOT`
 
 Example(s):
 * `block d/2020-01-01 t/0800-0900`
@@ -296,10 +314,10 @@ Example(s):
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot in DukePro(f) at the specified `INDEX`.
 
-Format: `delete INDEX`
+Format: `delete_blocked INDEX`
 
 Example(s):
-* `delete 1`
+* `delete_blocked 1`
 
 ### 5.13 Listing all Blocked Time Slots : `list_blocked`
 Lists down all consultation events scheduled in DukePro(f).
@@ -334,8 +352,8 @@ Format: `exit`
 ## 6. FAQ
 ***
 **Q**: Where are the releases?<br>
-**A**: You can download the latest `dukeprof.jar` from [here](https://github.
-com/AY2122S1-CS2103T-T11-4/tp/releases)!
+**A**: You can download the latest `dukeprof.jar` from
+ [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases)!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
