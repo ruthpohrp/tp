@@ -24,7 +24,7 @@ import seedu.address.model.event.EventContainsCurrentTimePredicateTest;
 
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for NextEventCommand.
  */
 public class NextEventCommandTest {
 
@@ -69,7 +69,7 @@ public class NextEventCommandTest {
         // null -> returns false
         assertFalse(firstCommand.equals(null));
 
-        // different dates -> returns false
+        // different dates and time -> returns false
         assertFalse(thirdCommand.equals(fourthCommand));
     }
 }
