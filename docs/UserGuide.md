@@ -1,10 +1,13 @@
+
+<p align="center">
+  <img width="200" src="images/dukelogo.png">
+</p> 
+
 ---
 layout: page
 title: User Guide
 ---
-<p align="center">
-  <img width="200" src="images/dukelogo.png">
-</p> 
+
 ## Introduction
 ***
 
