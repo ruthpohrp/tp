@@ -221,9 +221,8 @@ Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:** 
 
-* Editing the tags will automatically erase all previous tags!
-
-* This command edits the index of the list on the right hand side (i.e. if its filtered, `edit 1 n/Ruth` will edit the first index in the filtered list and not the entire list. 
+<br>* Editing the tags will automatically erase all previous tags!
+<br>* This command edits the index of the list on the right hand side (i.e. if its filtered, `edit 1 n/Ruth` will edit the first index in the filtered list and not the entire list. 
 </div>
 
 Example(s):
@@ -260,12 +259,15 @@ Finds all consultation events whose names contain any of the specified keywords 
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords are case-insensitive, but 
-won't register unless the full word of the keyword is inputted. E.g.:
-* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an event with the name 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords will not register unless 
+the full word of the keyword is inputted and search per one word only. E.g.:
+<br>* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an 
+event with the name 
 `Jacob`
-* `find Jacob` can return a consultation event with the name `Jacob Ng`
-* `find jacob` and `find jAcOb` can return a consultation event with the name `Jacob`
+<br>* `find Jacob` can return a consultation event with the name `Jacob Ng`
+<br>* `find jacob` and `find jAcOb` can return a consultation event with the name `Jacob`
+<br>* `find Jacob R` can return a consultation event with the name `Jacob Ng`, `R Ng` and `Jacob Ong` but 
+not `Jacob Rong`
 </div>
 
 Example(s):
