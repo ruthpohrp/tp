@@ -45,8 +45,8 @@ public class BlockCommandIntegrationTest {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
         Event clashingEvent = new EventBuilder().withDate("2020-02-06").withTimeSlot("1130", "1230").build();
 
-        assertThrows(SlotBlockedException.class, BlockedSlot.SLOT_BLOCKED,
-                () -> new AddCommand(clashingEvent).execute(model));
+        assertThrows(SlotBlockedException.class, BlockedSlot.SLOT_BLOCKED, () ->
+            new AddCommand(clashingEvent).execute(model));
     }
 
     @Test
@@ -54,8 +54,8 @@ public class BlockCommandIntegrationTest {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
         Event clashingEvent = new EventBuilder().withDate("2020-01-01").withTimeSlot("0830", "0930").build();
 
-        assertThrows(SlotBlockedException.class, Event.SLOT_BLOCKED,
-                () -> new AddCommand(clashingEvent).execute(model));
+        assertThrows(SlotBlockedException.class, Event.SLOT_BLOCKED, () ->
+            new AddCommand(clashingEvent).execute(model));
     }
 
 }
