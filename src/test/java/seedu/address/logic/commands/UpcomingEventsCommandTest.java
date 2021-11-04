@@ -51,7 +51,6 @@ public class UpcomingEventsCommandTest {
     @Test
     public void equals() {
         UpcomingEventsCommand firstCommand = new UpcomingEventsCommand();
-        UpcomingEventsCommand secondCommand = new UpcomingEventsCommand();
         EventContainsCurrentTimePredicate firstPredicate =
                 new EventContainsCurrentTimePredicate(LocalTime.parse("0730", timeFormatter),
                         new Date("2020-01-01"));
@@ -63,10 +62,6 @@ public class UpcomingEventsCommandTest {
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
-
-        // two objects containing same date -> returns true
-        assertTrue(firstCommand.equals(secondCommand));
-
 
         // different types -> returns false
         assertFalse(firstCommand.equals(1));
