@@ -20,6 +20,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.EventContainsCurrentTimePredicate;
+import seedu.address.model.event.EventContainsCurrentTimePredicateTest;
 
 
 /**
@@ -40,7 +41,7 @@ public class NextEventCommandTest {
     @Test
     public void execute_nextEvent() {
         String expectedMessage = String.format(MESSAGE_NEXT_EVENT_LISTED_OVERVIEW, 1);
-        EventContainsCurrentTimePredicateStub predicate = new EventContainsCurrentTimePredicateStub();
+        EventContainsCurrentTimePredicateTest.EventContainsCurrentTimePredicateStub predicate = new EventContainsCurrentTimePredicateTest.EventContainsCurrentTimePredicateStub();
         NextEventCommand command = new NextEventCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -70,16 +71,4 @@ public class NextEventCommandTest {
         // different dates -> returns false
         assertFalse(thirdCommand.equals(fourthCommand));
     }
-
-    /**
-     * An EventContainsTodaysDatePredicate stub that always stores the date 2020-01-01.
-     */
-    private class EventContainsCurrentTimePredicateStub extends EventContainsCurrentTimePredicate {
-        public EventContainsCurrentTimePredicateStub () {
-            super(LocalTime.parse("0730", timeFormatter),
-                    new Date("2020-01-01"));
-
-        }
-    }
-
 }
