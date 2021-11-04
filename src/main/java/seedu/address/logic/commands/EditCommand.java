@@ -80,7 +80,6 @@ public class EditCommand extends Command {
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
         model.setEvent(eventToEdit, editedEvent);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
