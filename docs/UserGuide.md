@@ -232,6 +232,8 @@ Format: `next_event`
 ### 5.6 Listing all Upcoming Events : `upcoming_events`
 Lists down all the upcoming consultation events for the current day.
 
+**:information_source: This will not include the current ongoing consultation event.**<br>
+
 Format: `upcoming_events`
 
 ### 5.7 Clearing all Consultation Events : `clear`
