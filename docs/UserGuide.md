@@ -206,6 +206,10 @@ Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 
 Format: `delete INDEX`
 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:** `delete` deletes the index of the list on the right hand side (i.e. if its filtered, 
+`delete 1` will delete the first index in the filtered list and not the entire list). 
+</div>
+
 Example(s):
 * `delete 1`
 
