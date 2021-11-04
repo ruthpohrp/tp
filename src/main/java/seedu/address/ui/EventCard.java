@@ -52,10 +52,13 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
+        name.setWrapText(true);
         date.setText(event.getDate().value);
         loc.setText(event.getLocation().value);
+        loc.setWrapText(true);
         timeSlot.setText(event.getTimeSlot().toString());
         remark.setText(event.getRemark().value);
+        remark.setWrapText(true);
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(tag.createLabel()));

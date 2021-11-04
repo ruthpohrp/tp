@@ -61,13 +61,17 @@ public class Tag {
      * The tag name "supplementary" returns a label with a yellow background
      */
     public Label createLabel() {
+        Label l;
         if (tagName.equals("URGENT")) {
-            return new UrgentLabel();
+            l = new UrgentLabel();
         } else if (tagName.equals("supplementary")) {
-            return new SupplementaryLabel();
+            l =  new SupplementaryLabel();
         } else {
-            return new Label(tagName);
+            l = new Label(tagName);
         }
+        l.setMaxWidth(100);
+        l.setWrapText(true);
+        return l;
     }
     public String getTagName() {
         return tagName;
