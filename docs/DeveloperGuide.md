@@ -177,7 +177,7 @@ the ongoing consultation event.
 #### Implementation
 The `UpcomingEventsCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
 
-`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot is after the current time and date.
+`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot and date is after the current time and date.
 
 The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the upcoming events, filtered by the `timePredicate`.
 
@@ -188,19 +188,19 @@ The `NextEventCommand` class is a command that displays the next event based on 
 #### Implementation
 The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
 
-`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot is after the current time and date.
+`EventContainsCurrentTimePredicate` is  a class that checks whether an event's timeslot and date is after the current time and date.
 
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
 ### FilterByTag Command - Lulu
 #### Description
-The `FilterByTag` class is a command that displays the next event based on the current time in the schedule.
+The `FilterByTagCommand` class is a command that finds all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
 
 #### Implementation
 The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKeywordsPredicate.
 
-`TagContainsKeywordsPredicate` is  a class that checks whether Tests that an event's tag(s) matches any of the keyword(s) given.
+`TagContainsKeywordsPredicate` is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
 
 The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
 
