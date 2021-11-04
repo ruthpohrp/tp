@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Event's date number in the schedule.
@@ -13,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class Date {
     public static final Date TODAY = new Date(LocalDate.now());
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should only contain numbers, and it should be in the form yyyy-mm-dd";
+            "Dates should be in the form yyyy-mm-dd and must be a valid date";
     public static final String VALIDATION_REGEX = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
     public final LocalDate date;
     public final String value;
@@ -46,7 +47,12 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try{
+            LocalDate.parse(test);
+            return test.matches(VALIDATION_REGEX);
+        }catch(DateTimeParseException e){
+            return false;
+        }
     }
 
     /**
