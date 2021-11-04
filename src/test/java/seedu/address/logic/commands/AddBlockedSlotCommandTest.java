@@ -71,7 +71,7 @@ public class AddBlockedSlotCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing, except isBlocked.
+     * A default model stub that have all of the methods failing, except isBlockedByBlockedSlot and isBlockedByEvent.
      */
     private class ModelStub implements Model {
         @Override
@@ -140,9 +140,16 @@ public class AddBlockedSlotCommandTest {
         }
 
         @Override
-        public boolean isBlocked(Overlappable overlappable) {
+        public boolean isBlockedByBlockedSlot(Overlappable overlappable) {
             //This method needs to be called.
-            //Always returns false so that any Event can always be added.
+            //Always returns false so that any BlockedSlot can always be added.
+            return false;
+        }
+
+        @Override
+        public boolean isBlockedByEvent(Overlappable overlappable) {
+            //This method needs to be called.
+            //Always returns false so that any BlockedSlot can always be added.
             return false;
         }
 

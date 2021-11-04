@@ -54,9 +54,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.isBlocked(toAdd)) {
+        if (model.isBlockedByBlockedSlot(toAdd)) {
             throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
+        } else if (model.isBlockedByEvent(toAdd)) {
+            throw new SlotBlockedException(Event.SLOT_BLOCKED);
         }
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

@@ -122,13 +122,21 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     /**
-     * Checks if the given Overlappable is blocked.
+     * Checks if the given Overlappable is blocked by a BlockedSlot.
      * @param overlappable the Overlappable to be checked.
      * @return true if the Overlappable is blocked, false otherwise.
      */
-    public boolean isBlocked(Overlappable overlappable) {
-        return blockedSlots.isOverlappingWith(overlappable)
-                || events.isOverlappingWith(overlappable);
+    public boolean isBlockedByBlockedSlot(Overlappable overlappable) {
+        return blockedSlots.isOverlappingWith(overlappable);
+    }
+
+    /**
+     * Checks if the given Overlappable is blocked by an Event.
+     * @param overlappable the Overlappable to be checked.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    public boolean isBlockedByEvent(Overlappable overlappable) {
+        return events.isOverlappingWith(overlappable);
     }
 
     //// util methods
