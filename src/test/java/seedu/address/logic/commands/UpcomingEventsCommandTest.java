@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_UPCOMING_EVENT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEvents.*;
+import static seedu.address.testutil.TypicalEvents.ALICE;
+import static seedu.address.testutil.TypicalEvents.REBECCA;
+import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +19,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.EventContainsCurrentTimePredicate;
+import seedu.address.model.event.EventContainsCurrentTimePredicateTest;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

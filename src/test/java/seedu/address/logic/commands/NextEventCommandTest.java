@@ -41,7 +41,8 @@ public class NextEventCommandTest {
     @Test
     public void execute_nextEvent() {
         String expectedMessage = String.format(MESSAGE_NEXT_EVENT_LISTED_OVERVIEW, 1);
-        EventContainsCurrentTimePredicateTest.EventContainsCurrentTimePredicateStub predicate = new EventContainsCurrentTimePredicateTest.EventContainsCurrentTimePredicateStub();
+        EventContainsCurrentTimePredicateTest.EventContainsCurrentTimePredicateStub predicate =
+                new EventContainsCurrentTimePredicateTest.EventContainsCurrentTimePredicateStub();
         NextEventCommand command = new NextEventCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
