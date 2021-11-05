@@ -34,5 +34,4 @@ public class JsonSerializableScheduleTest {
                 JsonSerializableSchedule.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-
 }

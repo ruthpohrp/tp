@@ -14,6 +14,7 @@ import seedu.address.model.event.TimeSlot;
 class JsonAdaptedBlockedSlot {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "BlockedSlot's %s field is missing!";
+    public static final String SLOT_BLOCKED = "Slot coincides with a blocked period.";
 
     private final String date;
     private final String startTime;
