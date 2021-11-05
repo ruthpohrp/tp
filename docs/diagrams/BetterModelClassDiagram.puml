@@ -4,18 +4,28 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Schedule *-right-> "1" UniqueEventList
+Schedule *-right-> "1" SortedEventList
 Schedule *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueEventList
-UniqueTagList -[hidden]down- UniqueEventList
+Schedule *--> "1" SortedBlockedSlotList
+UniqueTagList -[hidden]down- SortedEventList
+UniqueTagList -[hidden]down- SortedEventList
+SortedBlockedSlotList -down-> BlockedSlot
+BlockedSlot -down-> Date
+BlockedSlot -down-> TimeSlot
 
-UniqueTagList *-right-> "*" Tag
-UniqueEventList -right-> Event
+
+UniqueTagList *-down-> "*" Tag
+SortedEventList -right-> Event
 
 Event -up-> "*" Tag
 
 Event *--> Name
 Event *--> Date
-Event *--> Time
+Event *--> TimeSlot
 Event *--> Location
+
+TimeSlot -[hidden]right-> Date
+TimeSlot -[hidden]right-> Name
+Name -[hidden]right-> Location
+Location -[hidden]right-> Tag
 @enduml
