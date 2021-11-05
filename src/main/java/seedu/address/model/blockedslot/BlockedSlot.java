@@ -3,6 +3,7 @@ package seedu.address.model.blockedslot;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.AddBlockedSlotCommand;
 import seedu.address.model.Overlappable;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.TimeSlot;
@@ -84,5 +85,13 @@ public class BlockedSlot implements Overlappable {
                 .append(";\n");
 
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof BlockedSlot // instanceof handles nulls
+                && date.equals(((BlockedSlot) other).date))
+                && timeSlot.equals(((BlockedSlot) other).timeSlot);
     }
 }

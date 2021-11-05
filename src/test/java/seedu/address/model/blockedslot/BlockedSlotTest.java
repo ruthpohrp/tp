@@ -2,12 +2,19 @@ package seedu.address.model.blockedslot;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.testutil.TypicalBlockedSlots.EIGHT_TO_NINE;
 import static seedu.address.testutil.TypicalBlockedSlots.NINE_TO_TEN;
+import static seedu.address.testutil.TypicalEvents.ALICE;
+import static seedu.address.testutil.TypicalEvents.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.event.Event;
 import seedu.address.testutil.BlockedSlotBuilder;
+import seedu.address.testutil.EventBuilder;
 
 public class BlockedSlotTest {
 
@@ -72,6 +79,33 @@ public class BlockedSlotTest {
         assertTrue(toCompareEvent.isOverlappingWith(overlappingDateHasOverlappingSlot2));
         assertTrue(toCompareEvent.isOverlappingWith(overlappingDateHasOverlappingSlot3));
         assertTrue(toCompareEvent.isOverlappingWith(overlappingDateHasOverlappingSlot4));
+    }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        BlockedSlot eightToNineCopy = new BlockedSlotBuilder(EIGHT_TO_NINE).build();
+        assertTrue(EIGHT_TO_NINE.equals(eightToNineCopy));
+
+        // same object -> returns true
+        assertTrue(EIGHT_TO_NINE.equals(EIGHT_TO_NINE));
+
+        // null -> returns false
+        assertFalse(EIGHT_TO_NINE.equals(null));
+
+        // different type -> returns false
+        assertFalse(EIGHT_TO_NINE.equals(5));
+
+        // different event -> returns false
+        assertFalse(EIGHT_TO_NINE.equals(NINE_TO_TEN));
+
+        // different date -> returns false
+        BlockedSlot editedEightToNine = new BlockedSlotBuilder(EIGHT_TO_NINE).withDate("2020-01-02").build();
+        assertFalse(EIGHT_TO_NINE.equals(editedEightToNine));
+
+        // different time -> returns false
+        editedEightToNine = new BlockedSlotBuilder(EIGHT_TO_NINE).withTimeSlot("0700", "0800").build();
+        assertFalse(ALICE.equals(editedEightToNine));
     }
 }
 
