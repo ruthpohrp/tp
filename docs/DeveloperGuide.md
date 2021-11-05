@@ -234,17 +234,17 @@ This causes `MainWindow` to execute the `handleCommandSummary` method, which ope
 
 The Block feature allows the user to block off a specified period of time so that it is not possible for a new `Event` to be created during that time slot.
 
-####Implementation
+#### Implementation
 
 The following class diagram illustrates the implementation of the Block feature.
 
-#####Model
+##### Model
 <img src="images/BlockedSlotDiagram.png" width="450" />
 
 As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
 Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.
 
-#####Logic
+##### Logic
 The Block feature comes with the following new commands, they are quite self-explanatory:
 1. `AddBlockedSlotCommand`
 2. `ListBlockedSlotsCommand`
@@ -257,7 +257,7 @@ The following steps describe the execution of an `AddCommand`(`EditCommand`follo
    1. If there is an overlap, a `SlotBlockedException`(which extends `CommandException`) is thrown, with an error message telling the user if the command was blocked by another event or a blocked slot.
    2. If there is no overlap, the new `Event` is added and the command succeeds.
 
-#####Storage
+##### Storage
 These changes also made the new `JsonAdaptedBlockedSlot` necessary in order to save blocked slots created by the user into the save file.
 
 Design Considerations
@@ -410,6 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise)
 
+```
 **UC01: Delete an event**
 
 **MSS**
@@ -431,9 +432,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. The System shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2.  
+```
 
-
+```
 **UC02: Edit an event**
 
 **MSS**
@@ -466,8 +468,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c1. The System shows an error message.
 
       Use case resumes at step 2.
+```
 
-
+```
 **UC03: Search for an event**
 
 **MSS**
@@ -482,7 +485,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *2a1. The System shows an empty list.
 
   Use case ends.
+```
 
+```
 **UC04: Block slots**
 
 **MSS**
@@ -504,7 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
   
   Use case ends
-  
+```
 
 ### Non-Functional Requirements
 
