@@ -123,7 +123,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the schedule data i.e., all `Event` objects (which are contained in a `SortEventList` object).
+* stores the schedule data i.e., all `Event` objects (which are contained in a `SortEventList` object) and all `BlockedSlot` objects (which are contained in a `SortedBlockedSlotList`).
+  * **Note:** `Event` and `BlockedSlot` are implementations of the `Overlappable` interface.
+  * **Note:** `SortedEventList` and `SortedBlockedSlotList` are implementations of the `SortedOverlappableList` interface.
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
