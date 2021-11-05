@@ -28,7 +28,7 @@ public class ListFreeSlotsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ArrayList<FreeSlot> freeSlots = model.getFreeSlots(Date.TODAY);
+        ArrayList<FreeSlot> freeSlots = model.getFreeSlots(today);
         StringBuilder result = new StringBuilder(MESSAGE_SUCCESS);
         for (FreeSlot f: freeSlots) {
             result.append("\n" + f.toString());
