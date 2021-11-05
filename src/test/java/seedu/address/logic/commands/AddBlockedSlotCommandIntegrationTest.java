@@ -19,7 +19,7 @@ import seedu.address.testutil.EventBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class BlockCommandIntegrationTest {
+public class AddBlockedSlotCommandIntegrationTest {
 
     private Model model;
 

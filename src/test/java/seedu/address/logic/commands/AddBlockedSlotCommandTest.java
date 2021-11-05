@@ -26,7 +26,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.BlockedSlotBuilder;
 
-public class BlockCommandTest {
+public class AddBlockedSlotCommandTest {
 
     @Test
     public void constructor_nullBlockedSlot_throwsNullPointerException() {
@@ -35,8 +35,8 @@ public class BlockCommandTest {
 
     @Test
     public void execute_blockedSlotAcceptedByModel_addSuccessful() throws Exception {
-        BlockCommandTest.ModelStubAcceptingBlockedSlotAdded modelStub =
-                new BlockCommandTest.ModelStubAcceptingBlockedSlotAdded();
+        AddBlockedSlotCommandTest.ModelStubAcceptingBlockedSlotAdded modelStub =
+                new AddBlockedSlotCommandTest.ModelStubAcceptingBlockedSlotAdded();
         BlockedSlot validBlockedSlot = new BlockedSlotBuilder().build();
 
         CommandResult commandResult = new AddBlockedSlotCommand(validBlockedSlot).execute(modelStub);
@@ -192,7 +192,7 @@ public class BlockCommandTest {
     /**
      * A Model stub that contains a single blocked slot.
      */
-    private class ModelStubWithBlockedSlot extends BlockCommandTest.ModelStub {
+    private class ModelStubWithBlockedSlot extends AddBlockedSlotCommandTest.ModelStub {
         private final BlockedSlot blockedSlot;
 
         ModelStubWithBlockedSlot(BlockedSlot blockedSlot) {
@@ -204,7 +204,7 @@ public class BlockCommandTest {
     /**
      * A Model stub that always accept the blocked slot being added.
      */
-    private class ModelStubAcceptingBlockedSlotAdded extends BlockCommandTest.ModelStub {
+    private class ModelStubAcceptingBlockedSlotAdded extends AddBlockedSlotCommandTest.ModelStub {
         final ArrayList<BlockedSlot> blockedSlotsAdded = new ArrayList<>();
 
         @Override
