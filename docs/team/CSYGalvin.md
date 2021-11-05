@@ -28,4 +28,3 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added NFR and Glossary to requirements section
         * Added implementation details of the addition of the Sorted Event List feature
-    
