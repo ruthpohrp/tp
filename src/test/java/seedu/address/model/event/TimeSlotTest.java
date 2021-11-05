@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,6 +32,20 @@ public class TimeSlotTest {
     }
 
     @Test
+    public void constructor_endTimeBeforeStartTime_throwsIllegalArgumentException() {
+        String startTime = "1300";
+        String endTime = "1200";
+        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(startTime, endTime));
+    }
+
+    @Test
+    public void constructor_endTimeSameAsStartTime_throwsIllegalArgumentException() {
+        String startTime = "1300";
+        String endTime = "1300";
+        assertThrows(IllegalArgumentException.class, () -> new TimeSlot(startTime, endTime));
+    }
+
+    @Test
     public void isValidTimeSlot() {
         // null startTime
         assertThrows(NullPointerException.class, () -> TimeSlot.isValidTimeSlot(null, "1300"));
@@ -52,8 +67,9 @@ public class TimeSlotTest {
         assertFalse(TimeSlot.isValidTimeSlot("1400", "15")); // missing minutes
         assertFalse(TimeSlot.isValidTimeSlot("0400", "04:30")); // ':' not allowed in time
 
-        // invalid startTime endTime combo (endTime comes before startTime)
-        assertFalse(TimeSlot.isValidTimeSlot("1300", "1200"));
+        // invalid startTime endTime combo
+        assertFalse(TimeSlot.isValidTimeSlot("1300", "1200")); // endTime comes before startTime
+        assertFalse(TimeSlot.isValidTimeSlot("1300", "1300")); // startTime same as endTime
 
         // valid TimeSlot
         assertTrue(TimeSlot.isValidTimeSlot("2030", "2130"));
@@ -67,7 +83,7 @@ public class TimeSlotTest {
         TimeSlot sameAsEarlierSlot = new TimeSlot("1300", "1400");
         TimeSlot laterSlot = new TimeSlot("1400", "1500");
         assertTrue(earlierSlot.compareTo(laterSlot) < 0);
-        assertTrue(earlierSlot.compareTo(sameAsEarlierSlot) == 0);
+        assertEquals(0, earlierSlot.compareTo(sameAsEarlierSlot));
     }
 
     @Test
