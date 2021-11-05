@@ -35,4 +35,14 @@ public class EventContainsCurrentTimePredicateTest {
         // different dates -> returns false
         assertFalse(thirdPredicate.equals(fourthPredicate));
     }
+    /**
+     * An EventContainsTodaysDatePredicate stub that always stores the date 2020-01-01.
+     */
+    public static class EventContainsCurrentTimePredicateStub extends EventContainsCurrentTimePredicate {
+        public EventContainsCurrentTimePredicateStub () {
+            super(LocalTime.parse("0730", timeFormatter),
+                    new Date("2020-01-01"));
+
+        }
+    }
 }

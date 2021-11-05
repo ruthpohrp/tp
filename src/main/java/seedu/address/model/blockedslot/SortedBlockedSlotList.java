@@ -64,16 +64,23 @@ public class SortedBlockedSlotList implements SortedOverlappableList<BlockedSlot
         return internalUnmodifiableList;
     }
 
-    /**
-     * Checks if any Overlappable in the list overlaps with another Overlappable instance.
-     * @param overlappable Overlappable to check.
-     * @return True if overlaps, false otherwise.
-     */
     @Override
     public boolean isOverlappingWith(Overlappable overlappable) {
         boolean hasOverlaps = false;
         for (Overlappable o : internalList) {
             if (o.isOverlappingWith(overlappable)) {
+                hasOverlaps = true;
+            }
+        }
+
+        return hasOverlaps;
+    }
+
+    @Override
+    public boolean isOverlappingWith(Overlappable overlappable, Overlappable excluding) {
+        boolean hasOverlaps = false;
+        for (BlockedSlot b : internalList) {
+            if (!b.equals(excluding) && b.isOverlappingWith(overlappable)) {
                 hasOverlaps = true;
             }
         }
