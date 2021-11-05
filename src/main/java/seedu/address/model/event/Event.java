@@ -16,6 +16,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Event implements Overlappable {
 
+    public static final String SLOT_BLOCKED = "This slot coincides with a currently existing event.";
+
     // Identity fields
     private final Name name;
     private final Date date;

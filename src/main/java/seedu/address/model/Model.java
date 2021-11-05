@@ -90,11 +90,18 @@ public interface Model {
     void deleteBlockedSlot(BlockedSlot blockedSlot);
 
     /**
-     * Checks if the given Overlappable is blocked.
+     * Checks if the given Overlappable is blocked by a BlockedSlot.
      * @param overlappable the Overlappable to be checked.
      * @return true if the Overlappable is blocked, false otherwise.
      */
-    boolean isBlocked(Overlappable overlappable);
+    boolean isBlockedByBlockedSlot(Overlappable overlappable);
+
+    /**
+     * Checks if the given Overlappable is blocked by an Event.
+     * @param overlappable the Overlappable to be checked.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    boolean isBlockedByEvent(Overlappable overlappable);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
