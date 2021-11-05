@@ -81,9 +81,9 @@ public class EditCommand extends Command {
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (model.isBlockedByBlockedSlot(editedEvent)) {
+        if (model.isBlockedByBlockedSlot(editedEvent, eventToEdit)) {
             throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
-        } else if (model.isBlockedByEvent(editedEvent)) {
+        } else if (model.isBlockedByEvent(editedEvent, eventToEdit)) {
             throw new SlotBlockedException(Event.SLOT_BLOCKED);
         }
 

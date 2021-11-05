@@ -145,10 +145,20 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isBlockedByBlockedSlot(Overlappable overlappable, Overlappable excluding) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isBlockedByEvent(Overlappable overlappable) {
             //This method needs to be called.
             //Always returns false so that any Event can always be added.
             return false;
+        }
+
+        @Override
+        public boolean isBlockedByEvent(Overlappable overlappable, Overlappable excluding) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
