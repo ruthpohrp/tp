@@ -156,7 +156,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveSchedule(ReadOnlySchedule addressBook, Path filePath) throws IOException {
+        public void saveSchedule(ReadOnlySchedule schedule, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

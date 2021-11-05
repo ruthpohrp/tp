@@ -24,6 +24,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedEvent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
+    public static final String SLOT_BLOCKED = "Slot coincides with an event.";
 
     private final String name;
     private final String date;
