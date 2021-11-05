@@ -21,7 +21,8 @@ public class JsonSerializableScheduleTest {
     private static final Path INVALID_BLOCKEDSLOT_FILE = TEST_DATA_FOLDER.resolve("invalidBlockedSlotSchedule.json");
     private static final Path CLASHING_EVENT_FILE = TEST_DATA_FOLDER.resolve("clashingEventSchedule.json");
     private static final Path CLASHING_BLOCKEDSLOT_FILE = TEST_DATA_FOLDER.resolve("clashingBlockedSlotSchedule.json");
-    private static final Path EVENT_CLASHES_WITH_BLOCKEDSLOT_FILE = TEST_DATA_FOLDER.resolve("eventClashesWithBlockedSlotSchedule.json");
+    private static final Path EVENT_CLASHES_WITH_BLOCKEDSLOT_FILE =
+            TEST_DATA_FOLDER.resolve("eventClashesWithBlockedSlotSchedule.json");
 
     @Test
     public void toModelType_typicalEventsFile_success() throws Exception {
@@ -62,7 +63,7 @@ public class JsonSerializableScheduleTest {
 
     @Test
     public void toModelType_eventClashesWithBlockedSlot_throwsIllegalValueException() throws Exception {
-        JsonSerializableSchedule dataFromFile = JsonUtil.readJsonFile(EVENT_CLASHES_WITH_BLOCKEDSLOT_FILE   ,
+        JsonSerializableSchedule dataFromFile = JsonUtil.readJsonFile(EVENT_CLASHES_WITH_BLOCKEDSLOT_FILE,
                 JsonSerializableSchedule.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
