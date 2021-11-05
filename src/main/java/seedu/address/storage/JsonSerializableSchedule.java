@@ -54,10 +54,20 @@ class JsonSerializableSchedule {
         Schedule schedule = new Schedule();
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
+            if (schedule.isBlockedByBlockedSlot(event)) {
+                throw new IllegalValueException(JsonAdaptedBlockedSlot.SLOT_BLOCKED);
+            } else if (schedule.isBlockedByEvent(event)) {
+                throw new IllegalValueException(JsonAdaptedEvent.SLOT_BLOCKED);
+            }
             schedule.addEvent(event);
         }
         for (JsonAdaptedBlockedSlot jsonAdaptedBlockedSlots : blockedSlots) {
             BlockedSlot blockedSlot = jsonAdaptedBlockedSlots.toModelType();
+            if (schedule.isBlockedByBlockedSlot(blockedSlot)) {
+                throw new IllegalValueException(JsonAdaptedBlockedSlot.SLOT_BLOCKED);
+            } else if (schedule.isBlockedByEvent(blockedSlot)) {
+                throw new IllegalValueException(JsonAdaptedEvent.SLOT_BLOCKED);
+            }
             schedule.addBlockedSlot(blockedSlot);
         }
         return schedule;
