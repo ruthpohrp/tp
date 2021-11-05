@@ -93,6 +93,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new Schedule(model.getSchedule()), new UserPrefs());
+        showEventAtIndex(expectedModel, INDEX_FIRST_EVENT);
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
