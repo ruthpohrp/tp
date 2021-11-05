@@ -8,8 +8,6 @@ Package Model <<Rectangle>>{
 Interface ReadOnlySchedule <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
 Interface Model <<Interface>>
-Interface Overlappable <<Interface>>
-Interface SortedOverlappableList <<Interface>>
 Class Schedule
 Class ReadOnlySchedule
 Class Model
@@ -44,6 +42,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Schedule *--> "1" SortedEventList
 SortedEventList --> "~* all" Event
+SortedBlockedSlotList --> "~* all" BlockedSlot
 Event *--> Name
 Event *--> Date
 Event *--> TimeSlot
@@ -53,13 +52,6 @@ Event *--> "*" Tag
 Schedule *--> "1" SortedBlockedSlotList
 BlockedSlot *--> Date
 BlockedSlot *--> TimeSlot
-
-Event .up.|> Overlappable
-BlockedSlot .up.|> Overlappable
-
-SortedEventList .up.|> SortedOverlappableList
-SortedBlockedSlotList .up.|> SortedOverlappableList
-
 
 Name -[hidden]right-> Date
 Date -[hidden]right-> Location

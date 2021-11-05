@@ -105,7 +105,7 @@ How the parsing works:
 2. All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -113,8 +113,6 @@ How the parsing works:
 The `Model` component,
 
 * stores the schedule data i.e., all `Event` objects (which are contained in a `SortEventList` object) and all `BlockedSlot` objects (which are contained in a `SortedBlockedSlotList`).
-  * **Note:** `Event` and `BlockedSlot` are implementations of the `Overlappable` interface.
-  * **Note:** `SortedEventList` and `SortedBlockedSlotList` are implementations of the `SortedOverlappableList` interface.
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -128,12 +126,12 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both schedule data and user preference data in json format, and read them back into corresponding objects.
+* can _save_ both **schedule data** and **user preference data** in json format, and _read_ them back into corresponding objects.
 * inherits from both `ScheduleStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -216,17 +214,6 @@ As a Remark is an optional input, if user does not input any remarks when adding
 
 To display the remark in the GUI, a new `Label` called `remark` is added to `EventCard` as well as `EventListCard.fxml`.
 
-### TimeSlot - Teng Foong
-#### Description
-
-The `TimeSlot` class encapsulates the concept of an Event taking up a certain time period.
-
-#### Implementation
-
-The `TimeSlot` class has 2 fields, `startTime` and `endTime` and their values hold what their names imply.
-
-A `TimeSlot` can be compared to another `TimeSlot` and this is done **only** using their `startTime` fields.
-
 ### CommandSummaryCommand - Jacob
 #### Description
 
@@ -242,18 +229,45 @@ When the command `command_summary` is input by the user, `LogicManager` parses t
 `CommandSummaryCommand`. The `execute` method is called with the `showCommands` parameter being set to `true`. 
 This causes `MainWindow` to execute the `handleCommandSummary` method, which opens the Command Summary Page.
 
-### BlockedSlot - Teng Foong
+### Block Feature
 #### Description
 
-The `BlockedSlot` class represents a period of time that was blocked off by the user intentionally so that it is not possible for a new `Event` to be created during that time.
+The Block feature allows the user to block off a specified period of time so that it is not possible for a new `Event` to be created during that time slot.
 
-#### Implementation
+####Implementation
 
-The `BlockedSlot` class and `Event` class both implement the `Overlappable` interface. `Overlappable#isOverlappedWith` can be used to check for overlaps between `Overlappable`s.
+The following class diagram illustrates the implementation of the Block feature.
 
-The `block` command adds a new `BlockedSlot` to the `SortedBlockedSlotList`. When adding a new `Event` we search through
-the `SortedBlockedSlotList` to check whether the `Date` and `TimeSlot` of the Event `isBlocked()`. The add command only
-succeeds if `isBlocked()` returns false.
+#####Model
+<img src="images/BlockedSlotDiagram.png" width="450" />
+
+As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
+Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.
+
+#####Logic
+The Block feature comes with the following new commands, they are quite self-explanatory:
+1. `AddBlockedSlotCommand`
+2. `ListBlockedSlotsCommand`
+3. `DeleteBlockedSlotCommand`
+
+Existing commands `AddCommand` and `EditCommand` also had to be edited(see below) to check for overlaps before adding/editing the `Event`.
+
+The following steps describe the execution of an `AddCommand`(`EditCommand`follows similarly):
+1. The `execute()` method of the `AddCommand` checks if the `Event` to be added overlaps with any items in the `Schedule`'s `SortedEventList` or `SortedBlockedSlotList`.
+   1. If there is an overlap, a `SlotBlockedException`(which extends `CommandException`) is thrown, with an error message telling the user if the command was blocked by another event or a blocked slot.
+   2. If there is no overlap, the new `Event` is added and the command succeeds.
+
+#####Storage
+These changes also made the new `JsonAdaptedBlockedSlot` necessary in order to save blocked slots created by the user into the save file.
+
+Design Considerations
+
+|   |Pros|Cons|
+|---|---|---|
+|Alternative 1: Have the `TimeSlot` class maintain a list of blocked time slots and prevent any new overlapping `TimeSlots` from being created.|Easy to implement. User is able to block out a specific time slot every day(e.g., 1800-1900 for dinner every day)|Does not work well with `FreeSlots` feature. User is unable to choose which days to have the blocked slot as it is applied to every day.|
+|Alternative 2 (currently chosen): Implementation described above.|Code is easier to extend with more features. User is able to select the time slot and date to block.|More difficult to implement. More testing required. Blocked time slots will have to be added one by one.|
+
+We originally intended for the user to block out a certain time slot for every day, making Option 1 a possibility, but we eventually decided that Option 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
 
 ### \[Proposed\] Undo/redo feature
 
