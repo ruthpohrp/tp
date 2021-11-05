@@ -87,6 +87,35 @@ public class TimeSlotTest {
     }
 
     @Test
+    public void equals() {
+        // same values -> returns true
+        TimeSlot timeSlotA = new TimeSlot("0800", "0900");
+        TimeSlot timeSlotACopy = new TimeSlot("0800", "0900");
+        TimeSlot timeSlotB = new TimeSlot("1000", "1100");
+        assertTrue(timeSlotA.equals(timeSlotACopy));
+
+        // same object -> returns true
+        assertTrue(timeSlotA.equals(timeSlotA));
+
+        // null -> returns false
+        assertFalse(timeSlotA.equals(null));
+
+        // different type -> returns false
+        assertFalse(timeSlotA.equals(5));
+
+        // different timeslot -> returns false
+        assertFalse(timeSlotA.equals(timeSlotB));
+
+        // different startTime -> returns false
+        TimeSlot editedTimeSlotA = new TimeSlot("0830", "0900");
+        assertFalse(timeSlotA.equals(editedTimeSlotA));
+
+        // different endTime -> returns false
+        editedTimeSlotA = new TimeSlot("0800", "0830");
+        assertFalse(timeSlotA.equals(editedTimeSlotA));
+    }
+
+    @Test
     public void isOverlappingWith() {
         TimeSlot toBeComparedSlot = new TimeSlot("1300", "1500");
         TimeSlot notOverlappingSlot1 = new TimeSlot("1200", "1300");
