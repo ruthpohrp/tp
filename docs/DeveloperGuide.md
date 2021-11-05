@@ -410,6 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise)
 
+```
 **UC01: Delete an event**
 
 **MSS**
@@ -431,9 +432,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. The System shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2.  
+```
 
-
+```
 **UC02: Edit an event**
 
 **MSS**
@@ -466,8 +468,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c1. The System shows an error message.
 
       Use case resumes at step 2.
+```
 
-
+```
 **UC03: Search for an event**
 
 **MSS**
@@ -482,7 +485,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *2a1. The System shows an empty list.
 
   Use case ends.
+```
 
+```
 **UC04: Block slots**
 
 **MSS**
@@ -504,7 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
   
   Use case ends
-  
+```
 
 ### Non-Functional Requirements
 
