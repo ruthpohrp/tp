@@ -54,6 +54,8 @@ public class TypicalEvents {
             .withTimeSlot("1300", "1400").withLocation("little india").build();
     public static final Event IDA = new EventBuilder().withName("Ida Mueller").withDate("2020-01-09")
             .withTimeSlot("1330", "1430").withLocation("chicago ave").build();
+    public static final Event REBECCA = new EventBuilder().withName("Rebecca White").withDate("2020-01-01")
+            .withTimeSlot("1200", "1330").withLocation("Pasir Panjang").build();
 
     // Manually added - Event's details found in {@code CommandTestUtil}
     public static final Event AMY = new EventBuilder().withName(VALID_NAME_AMY).withDate(VALID_DATE_AMY)
