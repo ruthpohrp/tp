@@ -408,16 +408,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: Delete an event**
+**UC01: Delete an event**
 
 **MSS**
 
-1.  User requests to list events
-2.  DukePro(f) shows the list of events
-3.  User requests to delete a specific event in the list
-4.  DukePro(f) deletes the event
+1.  User requests to list events.
+2.  The System shows the list of events.
+3.  User requests to delete a specific event in the list.
+4.  The System deletes the event.
 
     Use case ends.
 
@@ -429,19 +429,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. DukePro(f) shows an error message.
+    * 3a1. The System shows an error message.
 
       Use case resumes at step 2.
 
 
-**Use case: Edit an event**
+**UC02: Edit an event**
 
 **MSS**
 
-1. User requests to list events
-2. DukePro(f) shows the list of events
-3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit
-4. DukePro(f) shows the list of events, with the newly edited event
+1. User requests to list events.
+2. The System shows the list of events.
+3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit.
+4. The System shows the list of events, with the newly edited event.
 
 **Extensions**
 
@@ -451,37 +451,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. DukePro(f) shows an error message.
+    * 3a1. The System shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The given fields do not exist.
 
-    * 3b1. DukePro(f) shows an error message.
+    * 3b1. The System shows an error message.
 
       Use case resumes at step 2.
 
 * 3c. The given fields exist, but the given information is improperly formatted.
 
-    * 3c1. DukePro(f) shows an error message.
+    * 3c1. The System shows an error message.
 
       Use case resumes at step 2.
 
 
-**Use case: Search for an event**
+**UC03: Search for an event**
 
 **MSS**
 
-1. User requests to search events
-2. DukePro(f) shows a list of events which have the search term in their name
+1. User requests to search events.
+2. The System shows a list of events which have the search term in their name.
 
 **Extensions**
 
-* 2a. No matches to the search term
+* 2a. No matches to the search term.
 
-  *2a1. DukePro(f) shows an empty list
+  *2a1. The System shows an empty list.
 
   Use case ends.
+
+**UC04: Block slots**
+
+**MSS**
+
+1. User blocks out a time slot: 2021-11-01, 1800-1900.
+2. User accidentally tries to key in a new event at the above time slot.
+3. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+
+**Extensions**
+
+* 1a. Time slot entered is already blocked.
+
+  * 1a1. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+  
+  Use case ends.
+
+* 1b. Time slot entered coincides with an event.
+
+  * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
+  
+  Use case ends
+  
 
 ### Non-Functional Requirements
 
