@@ -122,8 +122,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isBlocked(Overlappable overlappable) {
-        return schedule.isBlocked(overlappable);
+    public boolean isBlockedByBlockedSlot(Overlappable overlappable) {
+        return schedule.isBlockedByBlockedSlot(overlappable);
+    }
+
+    @Override
+    public boolean isBlockedByEvent(Overlappable overlappable) {
+        return schedule.isBlockedByEvent(overlappable);
     }
 
     //=========== Filtered Event List Accessors =============================================================
