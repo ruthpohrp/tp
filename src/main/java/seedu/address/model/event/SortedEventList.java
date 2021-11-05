@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.model.Overlappable;
 import seedu.address.model.SortedOverlappableList;
-import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
