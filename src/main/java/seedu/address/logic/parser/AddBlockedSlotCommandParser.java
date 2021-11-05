@@ -28,8 +28,6 @@ public class AddBlockedSlotCommandParser implements Parser<AddBlockedSlotCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_TIMESLOT);
 
-        boolean A = !arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIMESLOT);
-        boolean B = !argMultimap.getPreamble().isEmpty();
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIMESLOT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

@@ -14,7 +14,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.BlockedSlotBuilder;
-import seedu.address.testutil.EventBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.

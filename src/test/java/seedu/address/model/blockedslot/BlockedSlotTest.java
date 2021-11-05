@@ -2,19 +2,13 @@ package seedu.address.model.blockedslot;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.testutil.TypicalBlockedSlots.EIGHT_TO_NINE;
 import static seedu.address.testutil.TypicalBlockedSlots.NINE_TO_TEN;
 import static seedu.address.testutil.TypicalEvents.ALICE;
-import static seedu.address.testutil.TypicalEvents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.event.Event;
 import seedu.address.testutil.BlockedSlotBuilder;
-import seedu.address.testutil.EventBuilder;
 
 public class BlockedSlotTest {
 

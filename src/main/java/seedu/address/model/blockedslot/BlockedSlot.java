@@ -3,7 +3,6 @@ package seedu.address.model.blockedslot;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.AddBlockedSlotCommand;
 import seedu.address.model.Overlappable;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.TimeSlot;
