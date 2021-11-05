@@ -236,10 +236,10 @@ The Block feature allows the user to block off a specified period of time so tha
 
 #### Implementation
 
+##### Model
 The following class diagram illustrates the implementation of the Block feature.
 
-##### Model
-<img src="images/BlockedSlotDiagram.png" width="450" />
+<img src="images/BlockedSlotClassDiagram.png" width="450" />
 
 As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
 Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.
