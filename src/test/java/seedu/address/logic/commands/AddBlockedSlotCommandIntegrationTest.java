@@ -41,21 +41,21 @@ public class AddBlockedSlotCommandIntegrationTest {
     }
 
     @Test
-    public void execute_eventClashesWithBlockedSlot_throwsSlotBlockedException() {
+    public void execute_blockedSlotClashesWithBlockedSlot_throwsSlotBlockedException() {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
-        Event clashingEvent = new EventBuilder().withDate("2020-02-06").withTimeSlot("1130", "1230").build();
-
+        BlockedSlot clashingBlockedSlot = new BlockedSlotBuilder().withDate("2020-02-06")
+                .withTimeSlot("1100", "1200").build();
         assertThrows(SlotBlockedException.class, BlockedSlot.SLOT_BLOCKED, () ->
-            new AddCommand(clashingEvent).execute(model));
+            new AddBlockedSlotCommand(clashingBlockedSlot).execute(model));
     }
 
     @Test
-    public void execute_eventClashesWithEvent_throwsSlotBlockedException() {
+    public void execute_blockedSlotClashesWithEvent_throwsSlotBlockedException() {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
-        Event clashingEvent = new EventBuilder().withDate("2020-01-01").withTimeSlot("0830", "0930").build();
-
+        BlockedSlot clashingBlockedSlot = new BlockedSlotBuilder().withDate("2020-01-01")
+                .withTimeSlot("0830", "0930").build();
         assertThrows(SlotBlockedException.class, Event.SLOT_BLOCKED, () ->
-            new AddCommand(clashingEvent).execute(model));
+            new AddBlockedSlotCommand(clashingBlockedSlot).execute(model));
     }
 
 }
