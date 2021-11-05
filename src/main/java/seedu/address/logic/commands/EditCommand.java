@@ -19,7 +19,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
@@ -78,6 +80,12 @@ public class EditCommand extends Command {
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
+
+        if (model.isBlockedByBlockedSlot(editedEvent)) {
+            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
+        } else if (model.isBlockedByEvent(editedEvent)) {
+            throw new SlotBlockedException(Event.SLOT_BLOCKED);
+        }
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
