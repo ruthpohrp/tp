@@ -4,15 +4,16 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.FreeSlot;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Date;
-
-import java.util.ArrayList;
 
 public class ListFreeSlotsCommandTest {
 
