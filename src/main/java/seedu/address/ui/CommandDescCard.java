@@ -116,8 +116,8 @@ public class CommandDescCard extends UiPart<TitledPane> {
         case LIST_FREE:
             this.getRoot().setText("List Free Slots Command");
             this.format.setText("list_free");
-            this.description.setText("List out all free slots from 0000 today " +
-                    "to 2359 of the date with last event/blocked slot");
+            this.description.setText("List out all free slots from 0000 today "
+                    + "to 2359 of the date with last event/blocked slot");
             this.examples.setText("list_free");
             break;
         case NEXT_EVENT:
