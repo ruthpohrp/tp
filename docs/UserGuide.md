@@ -116,7 +116,7 @@ Step 3: Check the Consultation List to see if your consultation event has been a
 Some other commands you can try:
 
 * **`list`**<br>
-  Lists all of your consultation events on the right side of the application.
+  Lists all of your consultation events in the Consultation List box.
 
 * **`add`** `add n/Galvin Chan d/2021-11-01 t/1000-1100 l/NUS tag/Tutorial4`<br>
   Adds a consultation event for `Galvin Chan`, at date `2021-11-01`, time `1000-1100`, 
