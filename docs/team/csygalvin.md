@@ -38,4 +38,3 @@ Given below are my contributions to the project.
     * Maintained issue tracker
     * Refactor `Address` to `Location`
     * Refactor `person` to `event`
-    
