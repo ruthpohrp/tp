@@ -65,11 +65,6 @@ while using DukePro(f).
 <div markdown="span" class="alert alert-danger">:warning: Warns you of errors that should be 
 avoided.
 </div>
-|Icon | Meaning|
-| ----- | ---------------------------------------------------|
-|**:bulb:** | additional information in the form of tips|
-|**:information_source:** | things to take note of while using DukePro(f)|
-|**:warning:** | warnings of errors that should be avoided|
 
 ## 3. Quick Start: Get Started Using DukePro(f)
 ***
