@@ -16,14 +16,13 @@ import seedu.address.model.event.SortedEventList;
 import seedu.address.model.event.TimeSlot;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the schedule level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
 public class Schedule implements ReadOnlySchedule {
 
     private final SortedEventList events;
     private final SortedBlockedSlotList blockedSlots;
-    private Date today = null;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -79,8 +78,8 @@ public class Schedule implements ReadOnlySchedule {
     //// event-level operations
 
     /**
-     * Adds an event to the address book.
-     * The event must not already exist in the address book.
+     * Adds an event to the schedule.
+     * The event must not already exist in the schedule.
      */
     public void addEvent(Event e) {
         events.add(e);
@@ -88,8 +87,8 @@ public class Schedule implements ReadOnlySchedule {
 
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     * {@code target} must exist in the schedule.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the schedule.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
@@ -99,7 +98,7 @@ public class Schedule implements ReadOnlySchedule {
 
     /**
      * Removes {@code key} from this {@code Schedule}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the schedule.
      */
     public void removeEvent(Event key) {
         events.remove(key);
@@ -122,13 +121,41 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     /**
-     * Checks if the given Overlappable is blocked.
+     * Checks if the given Overlappable is blocked by a BlockedSlot.
      * @param overlappable the Overlappable to be checked.
      * @return true if the Overlappable is blocked, false otherwise.
      */
-    public boolean isBlocked(Overlappable overlappable) {
-        return blockedSlots.isOverlappingWith(overlappable)
-                || events.isOverlappingWith(overlappable);
+    public boolean isBlockedByBlockedSlot(Overlappable overlappable) {
+        return blockedSlots.isOverlappingWith(overlappable);
+    }
+
+    /**
+     * Checks if the given Overlappable is blocked by a BlockedSlot excluding the given Overlappable.
+     * @param overlappable the Overlappable to be checked.
+     * @param excluding the Overlappable to exclude from the check.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    public boolean isBlockedByBlockedSlot(Overlappable overlappable, Overlappable excluding) {
+        return blockedSlots.isOverlappingWith(overlappable, excluding);
+    }
+
+    /**
+     * Checks if the given Overlappable is blocked by an Event.
+     * @param overlappable the Overlappable to be checked.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    public boolean isBlockedByEvent(Overlappable overlappable) {
+        return events.isOverlappingWith(overlappable);
+    }
+
+    /**
+     * Checks if the given Overlappable is blocked by an Event excluding the given Overlappable.
+     * @param overlappable the Overlappable to be checked.
+     * @param excluding the Overlappable to exclude from the check.
+     * @return true if the Overlappable is blocked, false otherwise.
+     */
+    public boolean isBlockedByEvent(Overlappable overlappable, Overlappable excluding) {
+        return events.isOverlappingWith(overlappable, excluding);
     }
 
     //// util methods
@@ -188,52 +215,107 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     /**
-     * Goes through both sortedEventList and sortedBlockedEventList to find free time slots
+     * Goes through both sortedEventList and sortedBlockedSlotList to find free time slots
      * between events and blocked slots.
      *
-     * @param date starting date
+     * @param today starting date
      * @return ArrayList of FreeSlot between date to last event/blocked slot
      */
-    public ArrayList<FreeSlot> getFreeSlots(Date date) {
-        today = date;
+    public ArrayList<FreeSlot> getFreeSlots(Date today) {
         ArrayList<Overlappable> allOverlappables = merge();
         ArrayList<FreeSlot> freeSlots = new ArrayList<>();
         if (allOverlappables.isEmpty()) {
             return freeSlots;
         }
 
-        addEmptyDates(freeSlots, allOverlappables.get(0));
+        addEmptyDates(freeSlots, today, allOverlappables.get(0).getDate());
 
+        if (allOverlappables.size() == 1) {
+            Overlappable e = allOverlappables.get(0);
+            if (!e.getDate().date.isBefore(today.date)) {
+                TimeSlot t = e.getTimeSlot();
+                addToList(freeSlots, e.getDate(), "0000", t.startTimeToString());
+                addToList(freeSlots, e.getDate(), t.endTimeToString(), "2359");
+            }
+            return freeSlots;
+        }
+
+        boolean addedFirstFreeSlot = false;
         for (int i = 1; i < allOverlappables.size(); i++) {
             Overlappable prev = allOverlappables.get(i - 1);
             Overlappable curr = allOverlappables.get(i);
-            String prevEndTime = prev.getTimeSlot().endTimeToString();
-            String currStartTime = curr.getTimeSlot().startTimeToString();
 
-            if (prev.getDate().equals(curr.getDate()) && !prevEndTime.equals(currStartTime)) {
-                freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, currStartTime)));
-            } else {
-                if (!prevEndTime.equals("2359")) {
-                    freeSlots.add(new FreeSlot(prev.getDate(), new TimeSlot(prevEndTime, "2359")));
-                }
-
-                addEmptyDates(freeSlots, curr);
-
-                if (!currStartTime.equals("0000")) {
-                    freeSlots.add(new FreeSlot(curr.getDate(), new TimeSlot("0000", currStartTime)));
-                }
+            // ignore past events and blocked slots when generating free slots
+            if (prev.getDate().date.isBefore(today.date)) {
+                continue;
             }
+            // add free slot from 0000 to start of first event/blocked slot
+            if (!addedFirstFreeSlot) {
+                addedFirstFreeSlot = true;
+                String prevStartTime = prev.getTimeSlot().startTimeToString();
+                addToList(freeSlots, prev.getDate(), "0000", prevStartTime);
+            }
+            // add free slot between prev and curr
+            addFreeSlotBetween(freeSlots, prev, curr);
+        }
+        // add free slot between last event/blocked slot to 2359
+        Overlappable last = allOverlappables.get(allOverlappables.size() - 1);
+        if (!last.getDate().date.isBefore(today.date)) {
+            String lastEndTime = last.getTimeSlot().endTimeToString();
+            addToList(freeSlots, last.getDate(), lastEndTime, "2359");
         }
         return freeSlots;
     }
 
-
-    private void addEmptyDates(ArrayList<FreeSlot> freeSlots, Overlappable next) {
-        while (today.compareTo(next.getDate()) < 0) {
-            freeSlots.add(new FreeSlot(today, new TimeSlot("0000", "2359")));
-            today = new Date(today.date.plusDays(1));
+    /**
+     * Creates a freeSlot on date d and timeslot between start and end.
+     * Adds freeSlot to list of freeSlots.
+     * Ignores if start and end are the same.
+     *
+     * @param freeSlots list of freeSlots
+     * @param d date of freeSlot
+     * @param start start time of freeSlot
+     * @param end end time of freeSlots
+     */
+    private void addToList(ArrayList<FreeSlot> freeSlots, Date d, String start, String end) {
+        if (!start.equals(end)) {
+            freeSlots.add(new FreeSlot(d, new TimeSlot(start, end)));
         }
-        today = new Date(today.date.plusDays(1));
+    }
+
+    /**
+     * Adds freeSlots for timeslot between first and second events/blocked slots.
+     *
+     * @param freeSlots list of freeSlots
+     * @param first first event/blocked slot
+     * @param second second event/blocked slot
+     */
+    public void addFreeSlotBetween(ArrayList<FreeSlot> freeSlots, Overlappable first, Overlappable second) {
+        String firstEndTime = first.getTimeSlot().endTimeToString();
+        String secondStartTime = second.getTimeSlot().startTimeToString();
+
+        if (first.getDate().equals(second.getDate())) {
+            addToList(freeSlots, first.getDate(), firstEndTime, secondStartTime);
+        } else {
+            addToList(freeSlots, first.getDate(), firstEndTime, "2359");
+            addEmptyDates(freeSlots, new Date(first.getDate().date.plusDays(1)), second.getDate());
+            addToList(freeSlots, second.getDate(), "0000", secondStartTime);
+        }
+    }
+
+    /**
+     * Adds freeSlots for whole days between start (inclusive) and end (exclusive) dates.
+     *  @param freeSlots list of freeSlots
+     * @param start start date
+     * @param end end date
+     */
+    public void addEmptyDates(ArrayList<FreeSlot> freeSlots, Date start, Date end) {
+        if (!start.date.isBefore(end.date)) {
+            return;
+        } else {
+            freeSlots.add(new FreeSlot(start, new TimeSlot("0000", "2359")));
+            addEmptyDates(freeSlots, new Date(start.date.plusDays(1)), end);
+        }
     }
 
 }

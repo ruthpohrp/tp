@@ -15,11 +15,13 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
+Class SortedBlockedSlotList
+Class BlockedSlot
 
-Class UniqueEventList
+Class SortedEventList
 Class Event
 Class Location
-Class Time
+Class TimeSlot
 Class Name
 Class Date
 Class Tag
@@ -38,17 +40,22 @@ ModelManager -left-> "1" Schedule
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Schedule *--> "1" UniqueEventList
-UniqueEventList --> "~* all" Event
+Schedule *--> "1" SortedEventList
+SortedEventList --> "~* all" Event
+SortedBlockedSlotList --> "~* all" BlockedSlot
 Event *--> Name
 Event *--> Date
-Event *--> Time
+Event *--> TimeSlot
 Event *--> Location
 Event *--> "*" Tag
 
+Schedule *--> "1" SortedBlockedSlotList
+BlockedSlot *--> Date
+BlockedSlot *--> TimeSlot
+
 Name -[hidden]right-> Date
 Date -[hidden]right-> Location
-Location -[hidden]right-> Time
+Location -[hidden]right-> TimeSlot
 
 ModelManager -->"~* filtered" Event
 @enduml

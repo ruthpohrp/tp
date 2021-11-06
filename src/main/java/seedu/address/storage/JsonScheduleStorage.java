@@ -45,14 +45,14 @@ public class JsonScheduleStorage implements ScheduleStorage {
     public Optional<ReadOnlySchedule> readSchedule(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableSchedule> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableSchedule> jsonSchedule = JsonUtil.readJsonFile(
                 filePath, JsonSerializableSchedule.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonSchedule.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonSchedule.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,8 +60,8 @@ public class JsonScheduleStorage implements ScheduleStorage {
     }
 
     @Override
-    public void saveSchedule(ReadOnlySchedule addressBook) throws IOException {
-        saveSchedule(addressBook, filePath);
+    public void saveSchedule(ReadOnlySchedule schedule) throws IOException {
+        saveSchedule(schedule, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonScheduleStorage implements ScheduleStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveSchedule(ReadOnlySchedule addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveSchedule(ReadOnlySchedule schedule, Path filePath) throws IOException {
+        requireNonNull(schedule);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableSchedule(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableSchedule(schedule), filePath);
     }
 
 }
