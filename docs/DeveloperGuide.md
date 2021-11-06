@@ -2,6 +2,15 @@
 layout: page
 title: Developer Guide
 ---
+
+<p align="center">
+  <img width="350" src="images/dukelogo.png">
+</p>
+## Introduction
+***
+
+## Table of Contents
+***
 * Table of Contents
 {:toc}
 
@@ -424,19 +433,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add a consultation event       | easily record and remember consultation sessions with my students      |
 | `* * *`  | user                                       | delete a consultation event    | forget about cancelled consultations and free up my timetable          |
-| `* * *`  | user                                       | list out all my events         | find out what is my next engagement                                    |
+| `* * *`  | user                                       | list out all my consultation events         | find out what is my next engagement                                    |
 | `* * *`  | user                                       | list out all my free slots     | find a suitable slot to add a commitment                               |
 | `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
-| `* * *`  | busy user with many daily events           | search for an event by name    | locate the details of events without going through the entire list     |
+| `* * *`  | busy user with many daily events           | search for a consultation event by name    | locate the details of events without going through the entire list     |
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
 | `* * *`  | meticulous user                            | add remarks to my events       | add details that I need to make preparations for before the event      |
 | `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
 | `* * *`  | user                                       | exit the app                   |                                                                        |
-| `* *`    | user                                       | add tags to my events          | group them more easily                                                 |
+| `* *`    | user                                       | add tags to my consultation events          | group them more easily                                                 |
+| `* *`     | user                                       | I can filter my consultations by tags  | I can find consultations with certain tags more easily |
 | `* *`    | new user                                   | click a link to access the product website | receive help regarding any problems I have with the app    |
 | `* *`    | user                                       | clear the list of events       | empty out everything quickly instead of deleting them one by one       |
-| `* *`    | user                                       | list the upcoming events in the day | take note of what I should make preparations for                  |
-| `* *`    | user                                       | view the next upcoming event   | find out what is my next engagement                                    |
+| `* *`    | user                                       | list the upcoming consultation events in the day | take note of what I should make preparations for                  |
+| `* *`    | user                                       | view the next upcoming consultation event   | find out what is my next engagement                                    |
 | `* *`    | user                                       | print my schedule with censored details | send it to my students to see my available timings while maintaining confidentiality |
 | `*`      | new user                                   | see usage instructions/examples| refer to the instructions to learn how to optimize my usage of the app |
 
@@ -543,6 +553,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
   
   Use case ends
+```
+
+```
+**UC05: List all upcoming events for the day**
+
+**MSS**
+
+1. User requests to view today's upcoming consultation events.
+2. DukePro(f) displays all the upcoming events.
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User inputs the wrong format for the command.
+
+  * 1a1. An error message telling the user that it's an unknown command.
+    
+    Use case ends.
+
+* 1b. DukePro(f) has no upcoming consultation events.
+
+  * 1b1. An empty events list is displayed with a message indicating that there are 0 upcoming events.
+  
+    Use case ends
+```
+
+```
+**UC06: List the next consultation event for the day**
+
+**MSS**
+
+1. User requests to view the next consultation event.
+2. DukePro(f) displays the next event.
+    
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User inputs the wrong format for the command.
+
+  * 1a1. An error message telling the user that it's an unknown command.
+    
+    Use case ends.
+
+* 1b. DukePro(f) has no events scheduled.
+
+  * 1b1. An empty events list is displayed with a message indicating that there are 0 events scheduled.
+    
+    Use case ends
+```
+
+```
+**UC07: Filter consultation events by tags**
+
+**MSS**
+
+1. User requests to filter the consultation events by tag(s).
+2. DukePro(f) displays the events that have the specified tag(s).
+    
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User inputs the wrong format for the command.
+
+  * 1a1. An error message is displayed with the correct format.
+    
+    Use case ends.
+
+* 1b. DukePro(f) has no consultation events that have the tag(s) specified
+
+  * 1b1. An empty events list is displayed with a with a message indicating 0 events are matched with the tags specified.
+  
+    Use case ends
 ```
 
 ### Non-Functional Requirements

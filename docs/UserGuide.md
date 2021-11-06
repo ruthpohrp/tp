@@ -3,6 +3,9 @@ layout: page
 title: User Guide
 ---
 
+<p align="center">
+  <img width="350" src="images/dukelogo.png">
+</p>
 ## Introduction
 ***
 
@@ -36,7 +39,7 @@ interact with it.
 ## Table of Contents
 ***
 
-* TOC
+* Table of Contents
 {:toc}
 
 
@@ -144,7 +147,7 @@ Action | Format | Example(s)
 **[View Command Summary](#515-viewing-the-command-summary-page-command_summary)** | `command_summary` | -
 
 
-## 5. Commands and their Features
+## 5. Commands and Their Features
 ***
 <div markdown="block" class="alert alert-info">
 
@@ -211,6 +214,10 @@ Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 
 Format: `delete INDEX`
 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command deletes the index of the list on the right hand side (i.e. if its filtered, 
+`delete 1` will delete the first index in the filtered list and not the entire list. 
+</div>
+
 Example(s):
 * `delete 1`
 
@@ -220,8 +227,10 @@ Edits the details of a consultation event from DukePro(f) at the specified `INDE
 
 Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`
 
-<div markdown="span" class="alert alert-danger">:bulb: **Warning**: Editing the tags will automatically 
-erase all previous tags!
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:** 
+
+* Editing the tags will automatically erase all previous tags!
+* This command edits the index of the list on the right hand side (i.e. if its filtered, `edit 1 n/Ruth` will edit the first index in the filtered list and not the entire list. 
 </div>
 
 Example(s):
@@ -249,7 +258,7 @@ Format: `upcoming_events`
 
 Clears all consultation events stored in DukePro(f).
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING**: This command cannot be reversed. Be 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command cannot be reversed. Be 
 careful when using this command!
 </div>
 
