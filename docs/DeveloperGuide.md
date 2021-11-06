@@ -295,14 +295,14 @@ The following steps describe the execution of an `AddCommand`(`EditCommand`follo
 ##### Storage
 These changes also made the new `JsonAdaptedBlockedSlot` necessary in order to save blocked slots created by the user into the save file.
 
-Design Considerations
+####Design Considerations:
 
 |   |Pros|Cons|
 |---|---|---|
 |Alternative 1: Have the `TimeSlot` class maintain a list of blocked time slots and prevent any new overlapping `TimeSlots` from being created.|Easy to implement. User is able to block out a specific time slot every day(e.g., 1800-1900 for dinner every day)|Does not work well with `FreeSlots` feature. User is unable to choose which days to have the blocked slot as it is applied to every day.|
 |Alternative 2 (currently chosen): Implementation described above.|Code is easier to extend with more features. User is able to select the time slot and date to block.|More difficult to implement. More testing required. Blocked time slots will have to be added one by one.|
 
-We originally intended for the user to block out a certain time slot for every day, making Option 1 a possibility, but we eventually decided that Option 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
+We originally intended for the user to block out a certain time slot for every day, making Alternative 1 a possibility, but we eventually decided that Alternative 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
 
 ### \[Proposed\] Undo/redo feature
 
