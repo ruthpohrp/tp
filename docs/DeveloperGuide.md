@@ -173,11 +173,15 @@ The `ListFreeSlotsCommand` class is a command that lists all the free slots in t
 #### Implementation
 The `ListFreeSlotsCommand` class has one field `today` of type `Date`. This field is necessary to allow testing, where a specific date can be passed in to the `ListFreeSlotsCommand`.
 
+![](images/ListFreeSlotsCommand.png)
+
 The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`.
 
-The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one ArrayList of Overlappables.
+![](images/getFreeSlotsActivityDiagram.png)
 
-The `schedule#getFreeSlots()` method then iterates through this ArrayList of Overlappables to find free slots between events and blocked slots. 
+The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one list of Overlappables.
+
+The `schedule#getFreeSlots()` method then iterates through this list of Overlappables to find free slots between events and blocked slots. 
 
 #### Design Considerations:
 
