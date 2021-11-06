@@ -31,7 +31,9 @@ public class DateTest {
         assertFalse(Date.isValidDate("date")); // non-numeric
         assertFalse(Date.isValidDate("2020a-01-01")); // alphabets within digits
         assertFalse(Date.isValidDate("2020 01 01")); // spaces instead of hyphens
-
+        assertFalse(Date.isValidDate("2020-13-30")); // invalid month
+        assertFalse(Date.isValidDate("2020-02-33")); // invalid day
+        assertFalse(Date.isValidDate("2020-02-30")); // invalid combination of month and day
         // valid date numbers
         assertTrue(Date.isValidDate("2020-01-01"));
         assertTrue(Date.isValidDate("2024-02-29")); // leap year

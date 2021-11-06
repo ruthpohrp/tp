@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,7 +18,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Location;
@@ -79,8 +80,13 @@ public class EditCommand extends Command {
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
+        if (model.isBlockedByBlockedSlot(editedEvent, eventToEdit)) {
+            throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
+        } else if (model.isBlockedByEvent(editedEvent, eventToEdit)) {
+            throw new SlotBlockedException(Event.SLOT_BLOCKED);
+        }
+
         model.setEvent(eventToEdit, editedEvent);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 

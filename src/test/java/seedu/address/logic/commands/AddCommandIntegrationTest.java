@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
@@ -42,7 +43,8 @@ public class AddCommandIntegrationTest {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
         Event clashingEvent = new EventBuilder().withDate("2020-02-06").withTimeSlot("1130", "1230").build();
 
-        assertThrows(SlotBlockedException.class, () -> new AddCommand(clashingEvent).execute(model));
+        assertThrows(SlotBlockedException.class, BlockedSlot.SLOT_BLOCKED, () ->
+            new AddCommand(clashingEvent).execute(model));
     }
 
     @Test
@@ -50,7 +52,8 @@ public class AddCommandIntegrationTest {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
         Event clashingEvent = new EventBuilder().withDate("2020-01-01").withTimeSlot("0830", "0930").build();
 
-        assertThrows(SlotBlockedException.class, () -> new AddCommand(clashingEvent).execute(model));
+        assertThrows(SlotBlockedException.class, Event.SLOT_BLOCKED, () ->
+            new AddCommand(clashingEvent).execute(model));
     }
 
 }

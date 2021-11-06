@@ -69,7 +69,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing, except isBlocked.
+     * A default model stub that have all of the methods failing, except isBlockedByBlockedSlot and isBlockedByEvent.
      */
     private class ModelStub implements Model {
         @Override
@@ -98,7 +98,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setScheduleFilePath(Path addressBookFilePath) {
+        public void setScheduleFilePath(Path scheduleFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -108,7 +108,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setSchedule(ReadOnlySchedule newData) {
+        public void setSchedule(ReadOnlySchedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -138,10 +138,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean isBlocked(Overlappable overlappable) {
+        public boolean isBlockedByBlockedSlot(Overlappable overlappable) {
             //This method needs to be called.
             //Always returns false so that any Event can always be added.
             return false;
+        }
+
+        @Override
+        public boolean isBlockedByBlockedSlot(Overlappable overlappable, Overlappable excluding) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isBlockedByEvent(Overlappable overlappable) {
+            //This method needs to be called.
+            //Always returns false so that any Event can always be added.
+            return false;
+        }
+
+        @Override
+        public boolean isBlockedByEvent(Overlappable overlappable, Overlappable excluding) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

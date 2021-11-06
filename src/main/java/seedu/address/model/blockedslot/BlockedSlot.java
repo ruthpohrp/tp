@@ -85,4 +85,12 @@ public class BlockedSlot implements Overlappable {
 
         return builder.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof BlockedSlot // instanceof handles nulls
+                && date.equals(((BlockedSlot) other).date))
+                && timeSlot.equals(((BlockedSlot) other).timeSlot);
+    }
 }
