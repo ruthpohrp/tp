@@ -48,6 +48,9 @@ public class SortedEventList implements SortedOverlappableList<Event> {
         }
     }
 
+    /**
+     * Replaces the target Event in the list with the new edited Event.
+     */
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
 
@@ -59,13 +62,16 @@ public class SortedEventList implements SortedOverlappableList<Event> {
         internalList.set(index, editedEvent);
     }
 
+    /**
+     * Replaces the contents of this list with {@code Events}.
+     */
     public void setEvent(SortedEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code events}.
+     * Replaces the contents of this list with {@code Events}.
      */
     public void setEvent(List<Event> events) {
         requireAllNonNull(events);
