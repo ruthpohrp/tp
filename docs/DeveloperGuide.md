@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 <p align="center">
-  <img width="500" src="images/DukePro(f).png">
+  <img width="350" src="images/DukePro(f).png">
 </p> 
 
 ## Introduction
