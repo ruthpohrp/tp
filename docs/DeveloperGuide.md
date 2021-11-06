@@ -146,17 +146,52 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### SortedEventList - Galvin
+
 #### Description
-The `SortedEventList` class provides an abstraction over an internal list of `Events`. 
+The `SortedEventList` class provides an abstraction over an internal list of `Events`.
+The `SortedEventList` supports minimal list operations including add, remove and set.
+Duplicate Events are allowed in this Event list to accommodate repeated consultations with the same person.
 
 #### Implementation
 The `SortedEventList` class contains 2 fields, `internalList` and `internalUnmodifiableList`.
 
 The `internalList` is an `ObservableArrayList` that is not sorted.
 
-The `internalUnmodifiableList` is a `SortedList` that wraps around the `internalList` to maintain the sorted property of Events
+The `internalUnmodifiableList` is a `SortedList` that wraps around the `internalList` to maintain the sorted property of Events.
+All changes in the `internalList` are propagated immediately to the SortedList.
+An `EventComparator` class that implements the `Comparator` interface is created and used when constructing `SortedList`.
 
-The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that `Schedule` uses as a field to store events. This ObservableList will have its Events sorted chronologically.
+The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that the Ui can listen to display the list of consultations on the right.
+This ObservableList will have its Events sorted chronologically.
+This ObservableList is unmodifiable as part of defensive programming to prevent other classes from adding or deleting events from the ObservableList.
+
+### List Free Slots Command - Galvin
+
+#### Description
+The `ListFreeSlotsCommand` class is a command that lists all the free slots in the schedule starting from 0000 of today to 2359 of day with the last event/blocked slot.
+
+#### Implementation
+The `ListFreeSlotsCommand` class has one field `today` of type `Date`. This field is necessary to allow testing, where a specific date can be passed in to the `ListFreeSlotsCommand`.
+
+![](images/ListFreeSlotsCommand.png)
+
+The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`.
+
+![](images/getFreeSlotsActivityDiagram.png)
+
+The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one list of Overlappables.
+
+The `schedule#getFreeSlots()` method then iterates through this list of Overlappables to find free slots between events and blocked slots. 
+
+#### Design Considerations:
+
+|   |Pros|Cons|
+|---|---|---|
+| Alternative 1: Implement FreeSlots as a special Event and store FreeSlots in the SortedEventList|Easy to list all free slots in the schedule by using a predicate to select only FreeSlots and updating the filteredList.|Adding, deleting and editing event will be harder as the corresponding FreeSlot at that timeslot will need to be deleted or edited. Only one list containing all Events, FreeSlots and BlockedSlots is allowed.|
+| Alternative 2 (current): Go through the schedule each time the user uses the `list_free` command to find free slots|Easy to add and delete and edit events in SortedEventList. Easy to add additional lists such as SortedBlockedSlotList.|More computationally intensive as each time the user uses the `list_free` command, DukePro(f) will iterate through all events and blocked slots to find free slots in between.|
+
+Alternative 2 is chosen to allow future implementations such as adding additional lists 
+containing different types of events or commitments. 
 
 ### UpcomingEventsCommand - Lulu
 #### Description
@@ -236,10 +271,10 @@ The Block feature allows the user to block off a specified period of time so tha
 
 #### Implementation
 
+##### Model
 The following class diagram illustrates the implementation of the Block feature.
 
-##### Model
-<img src="images/BlockedSlotDiagram.png" width="450" />
+<img src="images/BlockedSlotClassDiagram.png" width="450" />
 
 As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
 Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.

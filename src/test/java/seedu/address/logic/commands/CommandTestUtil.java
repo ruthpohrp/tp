@@ -44,6 +44,17 @@ public class CommandTestUtil {
     public static final String VALID_TIMESLOT_AMY = VALID_STARTTIME_AMY + "-" + VALID_ENDTIME_AMY;
     public static final String VALID_TIMESLOT_BOB = VALID_STARTTIME_BOB + "-" + VALID_ENDTIME_BOB;
 
+    public static final String VALID_STARTTIME_BLOCKEDSLOTA = "0800";
+    public static final String VALID_ENDTIME_BLOCKEDSLOTA = "0900";
+    public static final String VALID_TIMESLOT_BLOCKEDSLOTA = VALID_STARTTIME_BLOCKEDSLOTA + "-"
+            + VALID_ENDTIME_BLOCKEDSLOTA;
+    public static final String VALID_DATE_BLOCKEDSLOTA = "2020-01-01";
+    public static final String VALID_STARTTIME_BLOCKEDSLOTB = "0900";
+    public static final String VALID_ENDTIME_BLOCKEDSLOTB = "1000";
+    public static final String VALID_TIMESLOT_BLOCKEDSLOTB = VALID_STARTTIME_BLOCKEDSLOTB + "-"
+            + VALID_ENDTIME_BLOCKEDSLOTB;
+    public static final String VALID_DATE_BLOCKEDSLOTB = "2020-02-02";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
@@ -56,6 +67,11 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    public static final String DATE_DESC_BLOCKEDSLOTA = " " + PREFIX_DATE + VALID_DATE_BLOCKEDSLOTA;
+    public static final String DATE_DESC_BLOCKEDSLOTB = " " + PREFIX_DATE + VALID_DATE_BLOCKEDSLOTB;
+    public static final String TIMESLOT_DESC_BLOCKEDSLOTA = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_BLOCKEDSLOTA;
+    public static final String TIMESLOT_DESC_BLOCKEDSLOTB = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_BLOCKEDSLOTB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020a-02-02"; // 'a' not allowed in
