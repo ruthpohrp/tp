@@ -2,6 +2,16 @@
 layout: page
 title: Developer Guide
 ---
+
+<p align="center">
+  <img width="200" src="images/DukePro(f).png">
+</p> 
+
+## Introduction
+***
+
+## Table of Contents
+***
 * Table of Contents
 {:toc}
 
