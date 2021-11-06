@@ -65,6 +65,11 @@ while using DukePro(f).
 <div markdown="span" class="alert alert-danger">:warning: Warns you of errors that should be 
 avoided.
 </div>
+Icon | Meaning
+-------|------------------
+**:bulb:** | additional information in the form of tips
+**:information_source:** | things to take note of while using DukePro(f)
+**:warning:** | warnings of errors that should be avoided
 
 ## 3. Quick Start: Get Started Using DukePro(f)
 ***
@@ -216,7 +221,7 @@ Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 Format: `delete INDEX`
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command deletes the index of the list on the right hand side (i.e. if its filtered, 
-`delete 1` will delete the first index in the filtered list and not the entire list). 
+`delete 1` will delete the first index in the filtered list and not the entire list. 
 </div>
 
 Example(s):
