@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
 import seedu.address.model.blockedslot.BlockedSlot;
+import seedu.address.model.event.Event;
 
 /**
  * Blocks out a time slot in the schedule.
@@ -42,8 +43,10 @@ public class AddBlockedSlotCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         //TODO: instead of throwing error, merge with other blocked periods
-        if (model.isBlocked(blockedSlot)) {
+        if (model.isBlockedByBlockedSlot(blockedSlot)) {
             throw new SlotBlockedException(BlockedSlot.SLOT_BLOCKED);
+        } else if (model.isBlockedByEvent(blockedSlot)) {
+            throw new SlotBlockedException(Event.SLOT_BLOCKED);
         }
         model.addBlockedSlot(blockedSlot);
         return new CommandResult(String.format(MESSAGE_SUCCESS, blockedSlot));

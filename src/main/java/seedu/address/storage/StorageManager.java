@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveSchedule(ReadOnlySchedule addressBook) throws IOException {
-        saveSchedule(addressBook, scheduleStorage.getScheduleFilePath());
+    public void saveSchedule(ReadOnlySchedule schedule) throws IOException {
+        saveSchedule(schedule, scheduleStorage.getScheduleFilePath());
     }
 
     @Override
-    public void saveSchedule(ReadOnlySchedule addressBook, Path filePath) throws IOException {
+    public void saveSchedule(ReadOnlySchedule schedule, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        scheduleStorage.saveSchedule(addressBook, filePath);
+        scheduleStorage.saveSchedule(schedule, filePath);
     }
 
 }

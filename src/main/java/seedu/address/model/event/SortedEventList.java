@@ -22,7 +22,7 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
  *
  */
 public class SortedEventList implements SortedOverlappableList<Event> {
-    private class EventSorter implements Comparator<Event> {
+    private class EventComparator implements Comparator<Event> {
         @Override
         public int compare(Event o1, Event o2) {
             return o1.compareTo(o2);
@@ -32,7 +32,7 @@ public class SortedEventList implements SortedOverlappableList<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             new SortedList<>(FXCollections.unmodifiableObservableList(internalList),
-                    new EventSorter());
+                    new EventComparator());
 
     @Override
     public void add(Event toAdd) {
@@ -48,6 +48,9 @@ public class SortedEventList implements SortedOverlappableList<Event> {
         }
     }
 
+    /**
+     * Replaces the target Event in the list with the new edited Event.
+     */
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
 
@@ -59,13 +62,16 @@ public class SortedEventList implements SortedOverlappableList<Event> {
         internalList.set(index, editedEvent);
     }
 
+    /**
+     * Replaces the contents of this list with {@code Events}.
+     */
     public void setEvent(SortedEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code events}.
+     * Replaces the contents of this list with {@code Events}.
      */
     public void setEvent(List<Event> events) {
         requireAllNonNull(events);
@@ -94,16 +100,23 @@ public class SortedEventList implements SortedOverlappableList<Event> {
         return internalList.hashCode();
     }
 
-    /**
-     * Checks if any Overlappable in the list overlaps with another Overlappable instance.
-     * @param overlappable Overlappable to check.
-     * @return True if overlaps, false otherwise.
-     */
     @Override
     public boolean isOverlappingWith(Overlappable overlappable) {
         boolean hasOverlaps = false;
         for (Overlappable o : internalList) {
             if (o.isOverlappingWith(overlappable)) {
+                hasOverlaps = true;
+            }
+        }
+
+        return hasOverlaps;
+    }
+
+    @Override
+    public boolean isOverlappingWith(Overlappable overlappable, Overlappable excluding) {
+        boolean hasOverlaps = false;
+        for (Event e : internalList) {
+            if (!e.equals(excluding) && e.isOverlappingWith(overlappable)) {
                 hasOverlaps = true;
             }
         }

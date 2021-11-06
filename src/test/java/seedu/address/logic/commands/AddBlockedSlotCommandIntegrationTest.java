@@ -14,12 +14,11 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.BlockedSlotBuilder;
-import seedu.address.testutil.EventBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddBlockedSlotIntegrationTest {
+public class AddBlockedSlotCommandIntegrationTest {
 
     private Model model;
 
@@ -41,19 +40,21 @@ public class AddBlockedSlotIntegrationTest {
     }
 
     @Test
-    public void execute_eventClashesWithBlockedSlot_throwsSlotBlockedException() {
+    public void execute_blockedSlotClashesWithBlockedSlot_throwsSlotBlockedException() {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
-        Event clashingEvent = new EventBuilder().withDate("2020-02-06").withTimeSlot("1130", "1230").build();
-
-        assertThrows(SlotBlockedException.class, () -> new AddCommand(clashingEvent).execute(model));
+        BlockedSlot clashingBlockedSlot = new BlockedSlotBuilder().withDate("2020-02-06")
+                .withTimeSlot("1100", "1200").build();
+        assertThrows(SlotBlockedException.class, BlockedSlot.SLOT_BLOCKED, () ->
+            new AddBlockedSlotCommand(clashingBlockedSlot).execute(model));
     }
 
     @Test
-    public void execute_eventClashesWithEvent_throwsSlotBlockedException() {
+    public void execute_blockedSlotClashesWithEvent_throwsSlotBlockedException() {
         Model model = new ModelManager(getTypicalSchedule(), new UserPrefs());
-        Event clashingEvent = new EventBuilder().withDate("2020-01-01").withTimeSlot("0830", "0930").build();
-
-        assertThrows(SlotBlockedException.class, () -> new AddCommand(clashingEvent).execute(model));
+        BlockedSlot clashingBlockedSlot = new BlockedSlotBuilder().withDate("2020-01-01")
+                .withTimeSlot("0830", "0930").build();
+        assertThrows(SlotBlockedException.class, Event.SLOT_BLOCKED, () ->
+            new AddBlockedSlotCommand(clashingBlockedSlot).execute(model));
     }
 
 }

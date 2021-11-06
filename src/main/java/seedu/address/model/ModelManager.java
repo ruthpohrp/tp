@@ -17,7 +17,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the schedule data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -30,13 +30,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given schedule and userPrefs.
      */
-    public ModelManager(ReadOnlySchedule addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySchedule schedule, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(schedule, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with schedule: " + schedule + " and user prefs " + userPrefs);
 
-        this.schedule = new Schedule(addressBook);
+        this.schedule = new Schedule(schedule);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.schedule.getEventList());
         filteredBlockedSlots = new FilteredList<>(this.schedule.getBlockedSlotList());
@@ -122,15 +122,29 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isBlocked(Overlappable overlappable) {
-        return schedule.isBlocked(overlappable);
+    public boolean isBlockedByBlockedSlot(Overlappable overlappable) {
+        return schedule.isBlockedByBlockedSlot(overlappable);
+    }
+
+    @Override
+    public boolean isBlockedByBlockedSlot(Overlappable overlappable, Overlappable excluding) {
+        return schedule.isBlockedByBlockedSlot(overlappable, excluding);
+    }
+
+    @Override
+    public boolean isBlockedByEvent(Overlappable overlappable) {
+        return schedule.isBlockedByEvent(overlappable);
+    }
+
+    @Override
+    public boolean isBlockedByEvent(Overlappable overlappable, Overlappable excluding) {
+        return schedule.isBlockedByEvent(overlappable, excluding);
     }
 
     //=========== Filtered Event List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Event}s.
      */
     @Override
     public ObservableList<Event> getFilteredEventList() {
@@ -146,8 +160,7 @@ public class ModelManager implements Model {
     //=========== Filtered Blocked Slot List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code BlockedSlot} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code BlockedSlot}s.
      */
     @Override
     public ObservableList<BlockedSlot> getFilteredBlockedSlotList() {

@@ -1,8 +1,12 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.ALICE;
+import static seedu.address.testutil.TypicalEvents.BENSON;
+import static seedu.address.testutil.TypicalEvents.getTypicalBlockedSlots;
 import static seedu.address.testutil.TypicalEvents.getTypicalEvents;
 import static seedu.address.testutil.TypicalEvents.getTypicalSchedule;
 
@@ -45,20 +49,99 @@ public class ScheduleTest {
     }
 
     @Test
-    public void emptySchedule_getFreeSlot_emptyList() {
+    public void addEmptyDates() {
+        ArrayList<FreeSlot> sameStartAndEnd = new ArrayList<>();
+        schedule.addEmptyDates(sameStartAndEnd, ALICE.getDate(), ALICE.getDate());
+        assertTrue(sameStartAndEnd.isEmpty());
+
+        ArrayList<FreeSlot> startBeforeEnd = new ArrayList<>();
+        schedule.addEmptyDates(startBeforeEnd, ALICE.getDate(), BENSON.getDate());
+        assertTrue(startBeforeEnd.size() == 1);
+
+        ArrayList<FreeSlot> startAfterEnd = new ArrayList<>();
+        schedule.addEmptyDates(startAfterEnd, BENSON.getDate(), ALICE.getDate());
+        assertTrue(startAfterEnd.isEmpty());
+    }
+
+    @Test
+    public void getFreeSlot_emptySchedule_emptyList() {
         Schedule empty = new Schedule();
         assertEquals(new ArrayList<>(), empty.getFreeSlots(new Date("2020-01-01")));
     }
 
     @Test
-    public void nonEmptySchedule_getFreeSlot_nonEmptyList() {
+    public void getFreeSlot_scheduleWithSingleEvent() {
+        Schedule schedule = new Schedule();
+        schedule.addEvent(BENSON);
+        ArrayList<FreeSlot> freeSlotsSameDay = schedule.getFreeSlots(new Date("2020-01-02"));
+        assertTrue(freeSlotsSameDay.size() == 2);
+
+        ArrayList<FreeSlot> freeSlotsDayBefore = schedule.getFreeSlots(new Date("2020-01-01"));
+        assertTrue(freeSlotsDayBefore.size() == 3);
+
+        ArrayList<FreeSlot> freeSlotsDayAfter = schedule.getFreeSlots(new Date("2020-01-03"));
+        assertTrue(freeSlotsDayAfter.size() == 0);
+
+    }
+
+    @Test
+    public void getFreeSlot_nonEmptySchedule_nonEmptyList() {
         Schedule schedule = getTypicalSchedule();
+        ArrayList<FreeSlot> freeSlots = schedule.getFreeSlots(new Date("2020-01-01"));
+        assertFalse(freeSlots.isEmpty());
+        for (FreeSlot f: freeSlots) {
+            for (Event e: getTypicalEvents()) {
+                assertFalse(f.isOverlappingWith(e));
+            }
+            for (BlockedSlot b: getTypicalBlockedSlots()) {
+                assertFalse(f.isOverlappingWith(b));
+            }
+        }
+    }
+
+    @Test
+    public void getFreeSlot_backToBackEvents_nonEmptyList() {
+        Schedule schedule = new Schedule();
+        for (BlockedSlot b: getTypicalBlockedSlots()) {
+            schedule.addBlockedSlot(b);
+        }
+        ArrayList<FreeSlot> freeSlots = schedule.getFreeSlots(new Date("2020-01-01"));
+        for (FreeSlot f: freeSlots) {
+            for (BlockedSlot b: getTypicalBlockedSlots()) {
+                assertFalse(f.isOverlappingWith(b));
+            }
+        }
+    }
+
+    @Test
+    public void getFreeSlot_noBackToBackEvents_nonEmptyList() {
+        Schedule schedule = new Schedule();
+        for (Event e: getTypicalEvents()) {
+            schedule.addEvent(e);
+        }
         ArrayList<FreeSlot> freeSlots = schedule.getFreeSlots(new Date("2020-01-01"));
         for (FreeSlot f: freeSlots) {
             for (Event e: getTypicalEvents()) {
-                assertTrue(!f.isOverlappingWith(e));
+                assertFalse(f.isOverlappingWith(e));
             }
         }
+    }
+
+    @Test
+    public void getFreeSlot_eventsBeforeStartDate_ignorePastEvents() {
+        Schedule scheduleWithSomePastEvents = getTypicalSchedule();
+        ArrayList<FreeSlot> freeSlots1 = scheduleWithSomePastEvents.getFreeSlots(new Date("2020-01-03"));
+        Schedule scheduleWithoutSomePastEvents = getTypicalSchedule();
+        scheduleWithoutSomePastEvents.removeEvent(ALICE);
+        scheduleWithoutSomePastEvents.removeEvent(BENSON);
+        ArrayList<FreeSlot> freeSlots2 = scheduleWithoutSomePastEvents.getFreeSlots(new Date("2020-01-03"));
+        assertEquals(freeSlots2, freeSlots1);
+
+        Schedule scheduleWithAllPastEvents = getTypicalSchedule();
+        ArrayList<FreeSlot> freeSlots3 = scheduleWithAllPastEvents.getFreeSlots(new Date("2020-10-10"));
+        Schedule scheduleWithoutAllPastEvents = new Schedule();
+        ArrayList<FreeSlot> freeSlots4 = scheduleWithoutAllPastEvents.getFreeSlots(new Date("2020-10-10"));
+        assertEquals(freeSlots4, freeSlots3);
     }
 
     /**
