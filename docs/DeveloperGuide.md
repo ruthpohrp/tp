@@ -258,7 +258,7 @@ As a Remark is an optional input, if user does not input any remarks when adding
 
 To display the remark in the GUI, a new `Label` called `remark` is added to `EventCard` as well as `EventListCard.fxml`.
 
-### CommandSummaryCommand - Jacob
+### CommandSummary Command
 #### Description
 
 The `CommandSummaryCommand` class is a command that opens a pop-up window containing a Command Summary of DukePro(f)'s
@@ -272,7 +272,6 @@ constructor of `CommandResult`.
 When the command `command_summary` is input by the user, `LogicManager` parses the input and returns a 
 `CommandSummaryCommand`. The `execute` method is called with the `showCommands` parameter being set to `true`. 
 This causes `MainWindow` to execute the `handleCommandSummary` method, which opens the Command Summary Page.
-
 ### Block Feature
 #### Description
 
