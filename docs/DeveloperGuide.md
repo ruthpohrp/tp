@@ -295,7 +295,7 @@ The following steps describe the execution of an `AddCommand`(`EditCommand`follo
 ##### Storage
 These changes also made the new `JsonAdaptedBlockedSlot` necessary in order to save blocked slots created by the user into the save file.
 
-####Design Considerations:
+#### Design Considerations:
 
 |   |Pros|Cons|
 |---|---|---|
