@@ -271,7 +271,9 @@ Format: `next_event`
 ### 5.6 Listing all Upcoming Events : `upcoming_events`
 Lists down all the upcoming consultation events for the current day.
 
-**:information_source: This will not include the current ongoing consultation event.**<br>
+<div markdown="block" class="alert alert-info"> :information_source: 
+This will not include the current ongoing consultation event.
+</div>
 
 Format: `upcoming_events`
 
@@ -327,7 +329,9 @@ Lists down all free time slots in DukePro(f) from now until 2359 of the day with
 
 Format: `list_free`
 
-**:information_source: An empty schedule i.e. no events and blocked slots in schedule, will have no free slots displayed.**<br>
+<div markdown="block" class="alert alert-info"> :information_source: 
+An empty schedule i.e. no events and blocked slots in schedule, will have no free slots displayed.
+</div>
 
 <br>
 
