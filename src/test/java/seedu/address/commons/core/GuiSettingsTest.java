@@ -1,4 +1,4 @@
-package seedu.address.commons.core.index;
+package seedu.address.commons.core;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
