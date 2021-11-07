@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 <p align="center">
-  <img width="350" src="images/dukelogo.png">
+  <img width="200" src="images/dukelogo.png">
 </p>
 ## Introduction
 ***
@@ -236,9 +236,10 @@ Finally, the `schedule#getFreeSlots()` method removes past freeSlot and returns 
 Alternative 2 is chosen to allow future implementations such as adding additional lists 
 containing different types of events or commitments. 
 
-### UpcomingEventsCommand
+
+### Today's Upcoming Events Feature
 #### Description
-The `UpcomingEventCommand` class is a command that lists all the upcoming events scheduled for the current day excluding
+This feature lists all the upcoming events scheduled for the current day excluding
 the ongoing consultation event.
 
 #### Implementation
@@ -248,9 +249,13 @@ The `UpcomingEventsCommand` class has one field timePredicate of type EventConta
 
 The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the upcoming events, filtered by the `timePredicate`.
 
-### NextEventCommand
+
+The following sequence diagram illustrates the interactions discussed above for the execute("upcoming_events") API call:
+![](images/UpcomingEventsSequenceDiagram.png)
+
+### Next Event Feature
 #### Description
-The `NextEventCommand` class is a command that displays the next event based on the current time in the schedule.
+This feature displays the next event based on the current time in the schedule.
 
 #### Implementation
 The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
@@ -260,19 +265,25 @@ The `NextEventCommand` class has one field timePredicate of type EventContainsCu
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
-### FilterByTag Command
+
+The following activity diagram summarizes what happens when a user executes the NextEventCommand:
+![](images/NextEventActivityDiagram.png)
+
+### Filter by Tag Feature
 #### Description
-The `FilterByTagCommand` class is a command that finds all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
+This feature allows users to find all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
 
 #### Implementation
 The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKeywordsPredicate.
 
-`TagContainsKeywordsPredicate` is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
+`TagContainsKeywordsPredicate`, found under `model/event` package, is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
 
 The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
 
-### Remark feature
+The following sequence diagram illustrates the interactions discussed above for the execute("filter_tag URGENT") API call:
+![](images/FilterByTagSequenceDiagram.png)
 
+### Remark feature
 #### Description
 
 The remark feature is an optional description added to `Event`. It adds a remark to the
