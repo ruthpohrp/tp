@@ -698,41 +698,41 @@ New schedule with sample events.
     `missing`
 
     1. Test case `schedule.json` file with data with overlapping time slots:<br>
-   `{  
-      "events" : [ {  
-      "name" : "Jacob Ng",  
-      "date" : "2021-11-12",  
-      "startTime" : "1300",  
-      "endTime" : "1400",  
-      "location" : "The Deck",  
-      "tagged" : [ "URGENT", "CS1231S" ],  
-      "remark" : "Cool student"  
-      }, {  
-      "name" : "Ruth Poh",  
-      "date" : "2021-11-12",  
-      "startTime" : "1300",  
-      "endTime" : "1400",  
-      "location" : "Central Library",  
-      "tagged" : [ "supplementary" ],  
-      "remark" : "Coool student"
-      } ],  
-      "blockedSlots" : [ ]  
-      }`
+   ```{  
+      "events" : [ { 
+      "name" : "Jacob Ng", 
+      "date" : "2021-11-12", 
+      "startTime" : "1300", 
+      "endTime" : "1400", 
+      "location" : "The Deck", 
+      "tagged" : [ "URGENT", "CS1231S" ], 
+      "remark" : "Cool student" 
+      }, { 
+      "name" : "Ruth Poh", 
+      "date" : "2021-11-12", 
+      "startTime" : "1300", 
+      "endTime" : "1400", 
+      "location" : "Central Library", 
+      "tagged" : [ "supplementary" ], 
+      "remark" : "Coool student" 
+      } ], 
+      "blockedSlots" : [ ] 
+      }```
    
    1. Test case `schedule.json` file with data with invalid fields:<br>
-    `{  
-      "events" : [ {  
-      "name" : "Jacob Ng",  
-      "dat" : "2021-11-12",  
-      "startTime" : "1300",  
-      "endTime" : "1400",  
-      "location" : "The Deck",  
-      "tagged" : [ "URGENT", "CS1231S" ],  
-      "remark" : "Cool student"  
-      } ],  
-      "blockedSlots" : [ ]  
-      }`
-      Expected for test cases above:
+    ```{ 
+      "events" : [ { 
+      "name" : "Jacob Ng", 
+      "dat" : "2021-11-12", 
+      "startTime" : "1300", 
+      "endTime" : "1400", 
+      "location" : "The Deck", 
+      "tagged" : [ "URGENT", "CS1231S" ], 
+      "remark" : "Cool student" 
+      } ], 
+      "blockedSlots" : [ ] 
+      }``` 
+      Expected for test cases 1 to 3 above:
 <br>
 <img src="images/blank.png" width="600px">
 <br>
