@@ -15,7 +15,7 @@ import seedu.address.model.event.TimeSlot;
 /**
  * Parses input arguments and creates a new AddBlockedSlotCommand object
  */
-public class BlockCommandParser implements Parser<AddBlockedSlotCommand> {
+public class AddBlockedSlotCommandParser implements Parser<AddBlockedSlotCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of AddBlockedSlotCommand

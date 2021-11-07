@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the schedule data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -30,13 +31,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given schedule and userPrefs.
      */
-    public ModelManager(ReadOnlySchedule addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySchedule schedule, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(schedule, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with schedule: " + schedule + " and user prefs " + userPrefs);
 
-        this.schedule = new Schedule(addressBook);
+        this.schedule = new Schedule(schedule);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.schedule.getEventList());
         filteredBlockedSlots = new FilteredList<>(this.schedule.getBlockedSlotList());
@@ -144,8 +145,7 @@ public class ModelManager implements Model {
     //=========== Filtered Event List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Event}s.
      */
     @Override
     public ObservableList<Event> getFilteredEventList() {
@@ -161,8 +161,7 @@ public class ModelManager implements Model {
     //=========== Filtered Blocked Slot List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code BlockedSlot} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code BlockedSlot}s.
      */
     @Override
     public ObservableList<BlockedSlot> getFilteredBlockedSlotList() {
@@ -196,8 +195,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<FreeSlot> getFreeSlots(Date date) {
-        return schedule.getFreeSlots(date);
+    public ArrayList<FreeSlot> getFreeSlots(Date date, LocalTime now) {
+        return schedule.getFreeSlots(date, now);
     }
 
     @Override

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -16,7 +17,7 @@ import seedu.address.model.event.SortedEventList;
 import seedu.address.model.event.TimeSlot;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the schedule level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
 public class Schedule implements ReadOnlySchedule {
@@ -78,8 +79,8 @@ public class Schedule implements ReadOnlySchedule {
     //// event-level operations
 
     /**
-     * Adds an event to the address book.
-     * The event must not already exist in the address book.
+     * Adds an event to the schedule.
+     * The event must not already exist in the schedule.
      */
     public void addEvent(Event e) {
         events.add(e);
@@ -87,8 +88,8 @@ public class Schedule implements ReadOnlySchedule {
 
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     * {@code target} must exist in the schedule.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the schedule.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
@@ -98,7 +99,7 @@ public class Schedule implements ReadOnlySchedule {
 
     /**
      * Removes {@code key} from this {@code Schedule}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the schedule.
      */
     public void removeEvent(Event key) {
         events.remove(key);
@@ -215,56 +216,63 @@ public class Schedule implements ReadOnlySchedule {
     }
 
     /**
-     * Goes through both sortedEventList and sortedBlockedEventList to find free time slots
+     * Goes through both sortedEventList and sortedBlockedSlotList to find free time slots
      * between events and blocked slots.
      *
      * @param today starting date
-     * @return ArrayList of FreeSlot between date to last event/blocked slot
+     * @param now time noe
+     * @return ArrayList of FreeSlot between now to 2359 of date with last event/blocked slot
      */
-    public ArrayList<FreeSlot> getFreeSlots(Date today) {
+    public ArrayList<FreeSlot> getFreeSlots(Date today, LocalTime now) {
         ArrayList<Overlappable> allOverlappables = merge();
         ArrayList<FreeSlot> freeSlots = new ArrayList<>();
         if (allOverlappables.isEmpty()) {
             return freeSlots;
         }
-
-        addEmptyDates(freeSlots, today, allOverlappables.get(0).getDate());
-
-        if (allOverlappables.size() == 1) {
-            Overlappable e = allOverlappables.get(0);
-            if (!e.getDate().date.isBefore(today.date)) {
-                TimeSlot t = e.getTimeSlot();
-                addToList(freeSlots, e.getDate(), "0000", t.startTimeToString());
-                addToList(freeSlots, e.getDate(), t.endTimeToString(), "2359");
-            }
-            return freeSlots;
-        }
-
-        boolean addedFirstFreeSlot = false;
+        // adds FreeSlots from today 0000 to start time of first Overlappable
+        Overlappable first = allOverlappables.get(0);
+        addEmptyDates(freeSlots, today, first.getDate());
+        addToList(freeSlots, first.getDate(), "0000", first.getTimeSlot().startTimeToString());
+        // adds FreeSlots between all Overlappables
         for (int i = 1; i < allOverlappables.size(); i++) {
             Overlappable prev = allOverlappables.get(i - 1);
             Overlappable curr = allOverlappables.get(i);
-
-            // ignore past events and blocked slots when generating free slots
-            if (prev.getDate().date.isBefore(today.date)) {
-                continue;
-            }
-            // add free slot from 0000 to start of first event/blocked slot
-            if (!addedFirstFreeSlot) {
-                addedFirstFreeSlot = true;
-                String prevStartTime = prev.getTimeSlot().startTimeToString();
-                addToList(freeSlots, prev.getDate(), "0000", prevStartTime);
-            }
-            // add free slot between prev and curr
             addFreeSlotBetween(freeSlots, prev, curr);
         }
-        // add free slot between last event/blocked slot to 2359
+        // adds FreeSlot from end time of last overlappable to 2359
         Overlappable last = allOverlappables.get(allOverlappables.size() - 1);
-        if (!last.getDate().date.isBefore(today.date)) {
-            String lastEndTime = last.getTimeSlot().endTimeToString();
-            addToList(freeSlots, last.getDate(), lastEndTime, "2359");
+        addToList(freeSlots, last.getDate(), last.getTimeSlot().endTimeToString(), "2359");
+
+        return removePastFreeSlots(freeSlots, today, now);
+    }
+
+    /**
+     * Creates a new ArrayList using given list containing all freeslots starting from now.
+     *
+     * @param allFreeSlots list of all freeslots, past and future.
+     * @param today today's date.
+     * @return list of all freeslots after now.
+     */
+    private ArrayList<FreeSlot> removePastFreeSlots(ArrayList<FreeSlot> allFreeSlots, Date today, LocalTime now) {
+        ArrayList<FreeSlot> futureFreeSlots = new ArrayList<>();
+        for (FreeSlot f: allFreeSlots) {
+            if (f.getDate().date.isBefore(today.date)) {
+                continue;
+            } else if (f.getDate().date.isAfter(today.date)) {
+                futureFreeSlots.add(f);
+            } else {
+                if (f.getTimeSlot().endTime.isBefore(now)) {
+                    continue;
+                } else if (f.getTimeSlot().startTime.isAfter(now)) {
+                    futureFreeSlots.add(f);
+                } else {
+                    String[] nowString = now.toString().split(":");
+                    String nowFormatted = nowString[0] + nowString[1];
+                    addToList(futureFreeSlots, today, nowFormatted, f.getTimeSlot().endTimeToString());
+                }
+            }
         }
-        return freeSlots;
+        return futureFreeSlots;
     }
 
     /**
