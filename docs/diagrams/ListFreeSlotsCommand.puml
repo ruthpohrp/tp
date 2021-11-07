@@ -12,6 +12,7 @@ Model -> Schedule:getFreeSlots()
 activate Schedule
 return freeSlots
 return freeSlots
+create CommandResult
 ListFreeSlotsCommand -> CommandResult:CommandResult()
 activate CommandResult
 return result

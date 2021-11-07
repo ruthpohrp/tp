@@ -131,8 +131,8 @@ Listed below are the commands that DukePro(f) supports, in alphabetical order:
 
 Action | Format | Example(s)
 --------|-------|-------
-**[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary r/May switch to Zoom`
-**[Add Blocked Time Slots](#511-adding-a-blocked-time-slot--block)** | `block d/DATE t/TIMESLOT` | `block d/2020-01-01 t/0800-0900`
+**[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2021-11-11 t/0800-0900 l/NUS tag/Important tag/supplementary r/May switch to Zoom`
+**[Add Blocked Time Slots](#511-adding-a-blocked-time-slot--block)** | `block d/DATE t/TIMESLOT` | `block d/2021-11-12 t/0800-0900`
 **[Clear](#57-clearing-all-consultation-events--clear)** | `clear`  | -
 **[Delete](#52-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
 **[Delete Blocked Time Slots](#512-deleting-a-blocked-time-slot--delete_blocked)** | `delete_blocked INDEX` | `delete_blocked 1`
@@ -169,7 +169,7 @@ Action | Format | Example(s)
 
 * If a parameter is expected only once in the command, but you have specified it multiple times, only the 
   last occurrence of the parameter will be taken.<br>
-  * E.g. If you specify `t/0100 t/2359`, only `t/2359` will be taken.
+  * E.g. If you specify `d/2021-11-11 d/2021-11-21`, only `d/2021-11-21` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be 
   ignored.<br>
@@ -211,11 +211,11 @@ A consultation event can have any number of tags (including 0).
 </div>
 
 Example(s):
-* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`<br>
-  Adds a consultation event for `Lulu Yousef`, at date `1 Jan 2020`, time `8am to 9am`,
+* `add n/Lulu Yousef d/2021-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`<br>
+  Adds a consultation event for `Lulu Yousef`, at date `1 Jan 2021`, time `8am to 9am`,
   at location `NUS`, tagged with `Important` and `supplementary`.
-* `add n/Ruth Poh d/2020-03-02 t/1300-1400 l/The Deck r/May have to switch to zoom`<br>
-  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2020`, time `1pm to 2pm`,
+* `add n/Ruth Poh d/2021-03-02 t/1300-1400 l/The Deck r/May have to switch to zoom`<br>
+  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2021`, time `1pm to 2pm`,
   at location `The Deck`, with the remark `May have to switch to zoom`.
 
 ### 5.2 Deleting a Consultation Event : `delete`
@@ -312,9 +312,11 @@ Example(s):
 
 
 ### 5.10 Listing all Free Time Slots : `list_free`
-Lists down all free time slots in DukePro(f) from today until the last event or blocked slot.
+Lists down all free time slots in DukePro(f) from now until 2359 of the day with the last event or blocked slot.
 
 Format: `list_free`
+
+**:information_source: An empty schedule i.e. no events and blocked slots in schedule, will have no free slots displayed.**<br>
 
 <br>
 
@@ -329,8 +331,8 @@ Adds a blocked time slot to Dukepro(f).
 Format: `block d/DATE t/TIMESLOT`
 
 Example(s):
-* `block d/2020-01-01 t/0800-0900`
-* `block d/2020-02-02 t/1000-1100`
+* `block d/2021-01-01 t/0800-0900`
+* `block d/2021-02-02 t/1000-1100`
 
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot in DukePro(f) at the specified `INDEX`.

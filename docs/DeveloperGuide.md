@@ -154,7 +154,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### SortedEventList - Galvin
+### SortedEventList
 
 #### Description
 The `SortedEventList` class provides an abstraction over an internal list of `Events`.
@@ -174,30 +174,36 @@ The `SortedEventList#asUnmodifiableObservableList()` method returns an Observabl
 This ObservableList will have its Events sorted chronologically.
 This ObservableList is unmodifiable as part of defensive programming to prevent other classes from adding or deleting events from the ObservableList.
 
-### List Free Slots Command - Galvin
+### List Free Slots Feature
 
 #### Description
-The `ListFreeSlotsCommand` class is a command that lists all the free slots in the schedule starting from 0000 of today to 2359 of day with the last event/blocked slot.
+The List Free Slots Feature allows users to list down all free slots in the schedule from now
+to 2359 of the day with the last event/blocked slot.
 
 #### Implementation
-The `ListFreeSlotsCommand` class has one field `today` of type `Date`. This field is necessary to allow testing, where a specific date can be passed in to the `ListFreeSlotsCommand`.
+This feature introduces a new command called `ListFreeSlotsCommand`.
+
+The `ListFreeSlotsCommand` class has two fields `today` of type `Date` and `now` of type `LocalTime`. These fields are necessary to allow testing, where a specific date and time can be passed in to the `ListFreeSlotsCommand`.
 
 ![](images/ListFreeSlotsCommand.png)
 
-The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`.
+The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`. This command does not update the model.
+Instead a list of FreeSlot is returned. The `execute()` method then makes wraps this list of FreeSlot in a `CommandResult` to be displayed to user.
 
 ![](images/getFreeSlotsActivityDiagram.png)
 
 The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one list of Overlappables.
 
-The `schedule#getFreeSlots()` method then iterates through this list of Overlappables to find free slots between events and blocked slots. 
+The `schedule#getFreeSlots()` method then iterates through this list of Overlappables to find free slots between events/blocked slots.
+
+Finally, the `schedule#getFreeSlots()` method removes past freeSlot and returns a list of future freeSlots.
 
 #### Design Considerations:
 
 |   |Pros|Cons|
 |---|---|---|
 | Alternative 1: Implement FreeSlots as a special Event and store FreeSlots in the SortedEventList|Easy to list all free slots in the schedule by using a predicate to select only FreeSlots and updating the filteredList.|Adding, deleting and editing event will be harder as the corresponding FreeSlot at that timeslot will need to be deleted or edited. Only one list containing all Events, FreeSlots and BlockedSlots is allowed.|
-| Alternative 2 (current): Go through the schedule each time the user uses the `list_free` command to find free slots|Easy to add and delete and edit events in SortedEventList. Easy to add additional lists such as SortedBlockedSlotList.|More computationally intensive as each time the user uses the `list_free` command, DukePro(f) will iterate through all events and blocked slots to find free slots in between.|
+| Alternative 2 (current): Go through the schedule each time the user uses the `list_free` command to find free slots|Easy to add, delete and edit events in SortedEventList. Easy to add additional lists such as SortedBlockedSlotList.|More computationally intensive as each time the user uses the `list_free` command, DukePro(f) will iterate through all events and blocked slots to find free slots in between.|
 
 Alternative 2 is chosen to allow future implementations such as adding additional lists 
 containing different types of events or commitments. 
