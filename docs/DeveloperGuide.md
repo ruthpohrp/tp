@@ -685,55 +685,58 @@ Shows the GUI with a set of sample events. The window size may not be optimum.
 ### Saving data
 
 1. Dealing with missing/corrupted/invalid `schedule.json` file in `data` directory
-
-   * Test case: missing `schedule.json` file
-    Expected:
-<br>
-<img src="images/startup.png" width="600px">
-<br>
+    1. Test case: missing `schedule.json` file<br>
+       Expected:
+       <br>
+       <img src="images/startup.png" width="600px">
+       <br>
 New schedule with sample events.
    
 2. Invalid data
     1. Test case `schedule.json` file with data:<br>
-    `missing`
+       ```missing```
 
     1. Test case `schedule.json` file with data with overlapping time slots:<br>
-   `{  
-      "events" : [ {  
-      "name" : "Jacob Ng",  
-      "date" : "2021-11-12",  
-      "startTime" : "1300",  
-      "endTime" : "1400",  
-      "location" : "The Deck",  
-      "tagged" : [ "URGENT", "CS1231S" ],  
-      "remark" : "Cool student"  
-      }, {  
-      "name" : "Ruth Poh",  
-      "date" : "2021-11-12",  
-      "startTime" : "1300",  
-      "endTime" : "1400",  
-      "location" : "Central Library",  
-      "tagged" : [ "supplementary" ],  
-      "remark" : "Coool student"
-      } ],  
-      "blockedSlots" : [ ]  
-      }`
-   
-   1. Test case `schedule.json` file with data with invalid fields:<br>
-    `{  
-      "events" : [ {  
-      "name" : "Jacob Ng",  
-      "dat" : "2021-11-12",  
-      "startTime" : "1300",  
-      "endTime" : "1400",  
-      "location" : "The Deck",  
-      "tagged" : [ "URGENT", "CS1231S" ],  
-      "remark" : "Cool student"  
-      } ],  
-      "blockedSlots" : [ ]  
-      }`
-      Expected for test cases above:
-<br>
-<img src="images/blank.png" width="600px">
-<br>
+       ```
+       {
+         "events" : [ {
+           "name" : "Jacob Ng",
+           "date" : "2021-11-12",
+           "startTime" : "1300",
+           "endTime" : "1400",
+           "location" : "The Deck",
+           "tagged" : [ "URGENT", "CS1231S" ],
+           "remark" : "Cool student"
+         }, {
+           "name" : "Ruth Poh",
+           "date" : "2021-11-12",
+           "startTime" : "1300",
+           "endTime" : "1400",
+           "location" : "Central Library",
+           "tagged" : [ "supplementary" ],
+           "remark" : "Coool student"
+         } ],
+         "blockedSlots" : [ ]
+       }
+       ```
+
+    1. Test case `schedule.json` file with data with invalid fields:<br>
+       ```
+       { 
+         "events" : [ { 
+         "name" : "Jacob Ng", 
+         "dat" : "2021-11-12", 
+         "startTime" : "1300", 
+         "endTime" : "1400", 
+         "location" : "The Deck", 
+         "tagged" : [ "URGENT", "CS1231S" ], 
+         "remark" : "Cool student" 
+         } ], 
+         "blockedSlots" : [ ] 
+       }
+       ``` 
+   Expected for test cases 1 to 3 above:
+   <br>
+   <img src="images/blank.png" width="600px">
+   <br>
 Empty schedule.
