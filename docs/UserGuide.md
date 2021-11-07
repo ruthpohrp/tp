@@ -38,10 +38,10 @@ interact with it.
 
 ## Table of Contents
 ***
-
+<div class="segment">
 * Table of Contents
 {:toc}
-
+</div>
 
 ## 1. Purpose
 ***
