@@ -46,7 +46,7 @@ public class ConfigTest {
     public void hashCodeMethod() {
         Config configA = new Config();
         Config configB = new Config();
-        assertTrue(configA.hashCode() == configB.hashCode());
+        assertEquals(configA.hashCode(), configB.hashCode());
     }
 
 }
