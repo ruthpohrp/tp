@@ -36,10 +36,14 @@ typing in text (commands).<br>
 <sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you 
 interact with it.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 ***
 * Table of Contents
 {:toc}
+  
+<div style="page-break-after: always;"></div>
 
 ## 1. Purpose
 ***
@@ -65,6 +69,8 @@ while using DukePro(f).
 avoided.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Quick Start: Get Started Using DukePro(f)
 ***
 ### 3.1 Downloading and Opening the App
@@ -88,6 +94,8 @@ avoided.
    
 6. Refer to the [Commands and their Features](#5-commands-and-their-features) section for details on each 
    command.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 How To Use DukePro(f): A Quick Tutorial
 
@@ -123,6 +131,8 @@ Some other commands you can try:
 * **`delete`** `delete 3`<br>
   Deletes the 3rd consultation event on your consultation list.
 
+<div style="page-break-after: always;"></div>
+
 ## 4. Command Summary: A Summary of Commands for DukePro(f)
 ***
 Listed below are the commands that DukePro(f) supports, in alphabetical order:
@@ -146,6 +156,7 @@ Action | Format | Example(s)
 **[List Upcoming Events](#56-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
 **[View Command Summary](#515-viewing-the-command-summary-page-command_summary)** | `command_summary` | -
 
+<div style="page-break-after: always;"></div>
 
 ## 5. Commands and Their Features
 ***
@@ -191,6 +202,8 @@ Action | Format | Example(s)
   * `tag/supplementary` will be shown as ![supplementary tag](images/supplementary tag.png)
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ***
 ### Managing Your Consultations
@@ -318,6 +331,8 @@ Format: `list_free`
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ***
 ### Managing Your Blocked Time Slots
 Listed below are the commands for managing your blocked time slots.
@@ -347,6 +362,8 @@ Format: `list_blocked`
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ***
 ### Help Commands
 Listed below are the commands if you're stuck on how to use DukePro(f).
@@ -361,6 +378,8 @@ Opens a pop-up window with a Command Summary of all of DukePro(f)'s possible com
 
 Format: `command_summary`
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ***
 ### 5.16: Editing the data file
@@ -378,6 +397,7 @@ Exits DukePro(f).
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ## 6. FAQ
 ***
