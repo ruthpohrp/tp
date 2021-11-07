@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 <p align="center">
-  <img width="350" src="images/dukelogo.png">
+  <img width="200" src="images/dukelogo.png">
 </p>
 ## Introduction
 ***
