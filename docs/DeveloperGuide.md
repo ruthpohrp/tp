@@ -154,7 +154,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### SortedEventList - Galvin
+### SortedEventList
 
 #### Description
 The `SortedEventList` class provides an abstraction over an internal list of `Events`.
@@ -174,12 +174,15 @@ The `SortedEventList#asUnmodifiableObservableList()` method returns an Observabl
 This ObservableList will have its Events sorted chronologically.
 This ObservableList is unmodifiable as part of defensive programming to prevent other classes from adding or deleting events from the ObservableList.
 
-### List Free Slots Command - Galvin
+### List Free Slots Feature
 
 #### Description
-The `ListFreeSlotsCommand` class is a command that lists all the free slots in the schedule starting from 0000 of today to 2359 of day with the last event/blocked slot.
+The List Free Slots Feature allows users to list down all free slots in the schedule starting from 0000 of today 
+to 2359 of day with the last event/blocked slot.
 
 #### Implementation
+This feature introduces a new command called `ListFreeSlotsCommand`.
+
 The `ListFreeSlotsCommand` class has one field `today` of type `Date`. This field is necessary to allow testing, where a specific date can be passed in to the `ListFreeSlotsCommand`.
 
 ![](images/ListFreeSlotsCommand.png)
