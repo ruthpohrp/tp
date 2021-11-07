@@ -695,10 +695,11 @@ New schedule with sample events.
    
 2. Invalid data
     1. Test case `schedule.json` file with data:<br>
-    `missing`
+    ```missing```
 
     1. Test case `schedule.json` file with data with overlapping time slots:<br>
-   ```{  
+   ```
+   {  
       "events" : [ { 
       "name" : "Jacob Ng", 
       "date" : "2021-11-12", 
@@ -717,10 +718,12 @@ New schedule with sample events.
       "remark" : "Coool student" 
       } ], 
       "blockedSlots" : [ ] 
-      }```
+      }
+     ```
    
    1. Test case `schedule.json` file with data with invalid fields:<br>
-    ```{ 
+    ```
+    { 
       "events" : [ { 
       "name" : "Jacob Ng", 
       "dat" : "2021-11-12", 
@@ -731,8 +734,9 @@ New schedule with sample events.
       "remark" : "Cool student" 
       } ], 
       "blockedSlots" : [ ] 
-      }``` 
-      Expected for test cases 1 to 3 above:
+      }
+     ``` 
+   Expected for test cases 1 to 3 above:
 <br>
 <img src="images/blank.png" width="600px">
 <br>
