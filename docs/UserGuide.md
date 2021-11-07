@@ -316,6 +316,8 @@ Lists down all free time slots in DukePro(f) from now until 2359 of the day with
 
 Format: `list_free`
 
+**:information_source: An empty schedule i.e. no events and blocked slots in schedule, will have no free slots displayed.**<br>
+
 <br>
 
 ***
