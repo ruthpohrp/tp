@@ -312,7 +312,7 @@ Example(s):
 
 
 ### 5.10 Listing all Free Time Slots : `list_free`
-Lists down all free time slots in DukePro(f) from 0000 of today until 2359 of the day with the last event or blocked slot.
+Lists down all free time slots in DukePro(f) from now until 2359 of the day with the last event or blocked slot.
 
 Format: `list_free`
 
