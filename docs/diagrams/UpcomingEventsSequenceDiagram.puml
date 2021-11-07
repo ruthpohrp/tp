@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ScheduleParser" as ScheduleParser LOGIC_COLOR
-participant "e:UpcomingEventsCommand" as UpcomingEventsCommand LOGIC_COLOR
+participant "u:UpcomingEventsCommand" as UpcomingEventsCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -22,10 +22,10 @@ create UpcomingEventsCommand
 ScheduleParser -> UpcomingEventsCommand
 activate UpcomingEventsCommand
 
-UpcomingEventsCommand --> ScheduleParser : e
+UpcomingEventsCommand --> ScheduleParser : u
 deactivate UpcomingEventsCommand
 
-ScheduleParser --> LogicManager : e
+ScheduleParser --> LogicManager : u
 deactivate ScheduleParser
 
 LogicManager -> UpcomingEventsCommand : execute(model)
