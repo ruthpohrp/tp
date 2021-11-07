@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_NEXT_EVENT_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_NEXT_EVENT;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE;
@@ -19,11 +18,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.exceptions.SlotBlockedException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.blockedslot.BlockedSlot;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.EventContainsCurrentTimePredicate;
 import seedu.address.model.event.EventContainsCurrentTimePredicateTest;
@@ -58,7 +55,8 @@ public class NextEventCommandTest {
     @Test
     public void execute_noNextEvent() {
         String expectedMessage = MESSAGE_NO_NEXT_EVENT;
-        EventContainsCurrentTimePredicate predicate = new EventContainsCurrentTimePredicate(LocalTime.parse("0730", timeFormatter),
+        EventContainsCurrentTimePredicate predicate =
+                new EventContainsCurrentTimePredicate(LocalTime.parse("0730", timeFormatter),
                 new Date("2019-01-01"));
         assertThrows(CommandException.class, expectedMessage, () ->
                 new NextEventCommand(predicate).execute(model));
