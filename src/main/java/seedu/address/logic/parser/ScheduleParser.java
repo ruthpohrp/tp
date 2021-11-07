@@ -89,7 +89,7 @@ public class ScheduleParser {
             return new HelpCommand();
 
         case AddBlockedSlotCommand.COMMAND_WORD:
-            return new BlockCommandParser().parse(arguments);
+            return new AddBlockedSlotCommandParser().parse(arguments);
 
         case ListBlockedSlotsCommand.COMMAND_WORD:
             return new ListBlockedSlotsCommand();

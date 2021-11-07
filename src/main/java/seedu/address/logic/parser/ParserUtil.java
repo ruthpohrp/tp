@@ -92,7 +92,8 @@ public class ParserUtil {
         String trimmedTimeSlot = timeSlot.trim();
         String[] startTimeAndEndTime = trimmedTimeSlot.split("-"); // Index 0: startTime; Index 1: endTime;
         try {
-            if (!TimeSlot.isValidTimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1])) {
+            if (!TimeSlot.isValidTimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1])
+                    || startTimeAndEndTime.length != 2) {
                 throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
             }
             return new TimeSlot(startTimeAndEndTime[0], startTimeAndEndTime[1]);

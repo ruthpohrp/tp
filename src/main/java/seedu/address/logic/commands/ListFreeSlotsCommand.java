@@ -9,6 +9,9 @@ import seedu.address.model.FreeSlot;
 import seedu.address.model.Model;
 import seedu.address.model.event.Date;
 
+/**
+ * Lists out all the free slots in the schedule.
+ */
 public class ListFreeSlotsCommand extends Command {
     public static final String COMMAND_WORD = "list_free";
 
@@ -28,7 +31,7 @@ public class ListFreeSlotsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ArrayList<FreeSlot> freeSlots = model.getFreeSlots(Date.TODAY);
+        ArrayList<FreeSlot> freeSlots = model.getFreeSlots(today);
         StringBuilder result = new StringBuilder(MESSAGE_SUCCESS);
         for (FreeSlot f: freeSlots) {
             result.append("\n" + f.toString());

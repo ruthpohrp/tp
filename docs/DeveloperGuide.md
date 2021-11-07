@@ -2,6 +2,15 @@
 layout: page
 title: Developer Guide
 ---
+
+<p align="center">
+  <img width="350" src="images/dukelogo.png">
+</p>
+## Introduction
+***
+
+## Table of Contents
+***
 * Table of Contents
 {:toc}
 
@@ -25,32 +34,25 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-T11-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-T11-4/tp/tree/master/docs/diagrams) folder.
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of DukePro(f).
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
-
-**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
-The rest of the App consists of four components.
-
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+| Component | Description | API | Concrete Implementation|
+|---|---|---|---|
+|**`Main`**|Consists of two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for initializing the components in the correct sequence and connecting them with each other upon app launch. Upon shut down, it also responsible for shutting down the components and invoking cleanup methods where necessary.|-|-|
+|[**`Commons`**](#common-classes)|Represents a collection of classes used by multiple other components.|-|-|
+|[**`Ui`**](#ui-component)|The UI of the App.|[`Ui`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)|[`UiManager`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/ui/UiManager.java)
+|[**`Logic`**](#logic-component)|The command executor.|[`Logic`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)|[`LogicManager`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/logic/LogicManager.java)|
+|[**`Model`**](#model-component)|Holds the data of the App in memory.|[`Model`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)|[`ModelManager`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/ModelManager.java)|
+|[**`Storage`**](#storage-component)|Reads data from, and writes data to, the hard disk.|[`Storage`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)|[`StorageManager`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/storage/StorageManager.java)|
 
 **How the architecture components interact with each other**
 
@@ -58,12 +60,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
-
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+The `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (in order to prevent outside components' from being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -88,42 +86,42 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component works:
+`Logic` is split into 2 packages, `Command` and `Parser`. This is how `Logic` works:
 1. When `Logic` is called upon to execute a command, it uses the `ScheduleParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions discussed above for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Here are the other classes in `Logic` (omitted from the earlier class diagram) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ScheduleParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ScheduleParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+1. When called upon to parse a user command, the `ScheduleParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ScheduleParser` returns back as a `Command` object.
+2. All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the schedule data i.e., all `Event` objects (which are contained in a `SortEventList` object).
+* stores the schedule data i.e., all `Event` objects (which are contained in a `SortEventList` object) and all `BlockedSlot` objects (which are contained in a `SortedBlockedSlotList`).
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -137,12 +135,12 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both schedule data and user preference data in json format, and read them back into corresponding objects.
+* can _save_ both **schedule data** and **user preference data** in json format, and _read_ them back into corresponding objects.
 * inherits from both `ScheduleStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -157,17 +155,52 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### SortedEventList - Galvin
+
 #### Description
-The `SortedEventList` class provides an abstraction over an internal list of `Events`. 
+The `SortedEventList` class provides an abstraction over an internal list of `Events`.
+The `SortedEventList` supports minimal list operations including add, remove and set.
+Duplicate Events are allowed in this Event list to accommodate repeated consultations with the same person.
 
 #### Implementation
 The `SortedEventList` class contains 2 fields, `internalList` and `internalUnmodifiableList`.
 
 The `internalList` is an `ObservableArrayList` that is not sorted.
 
-The `internalUnmodifiableList` is a `SortedList` that wraps around the `internalList` to maintain the sorted property of Events
+The `internalUnmodifiableList` is a `SortedList` that wraps around the `internalList` to maintain the sorted property of Events.
+All changes in the `internalList` are propagated immediately to the SortedList.
+An `EventComparator` class that implements the `Comparator` interface is created and used when constructing `SortedList`.
 
-The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that `Schedule` uses as a field to store events. This ObservableList will have its Events sorted chronologically.
+The `SortedEventList#asUnmodifiableObservableList()` method returns an ObservableList that the Ui can listen to display the list of consultations on the right.
+This ObservableList will have its Events sorted chronologically.
+This ObservableList is unmodifiable as part of defensive programming to prevent other classes from adding or deleting events from the ObservableList.
+
+### List Free Slots Command - Galvin
+
+#### Description
+The `ListFreeSlotsCommand` class is a command that lists all the free slots in the schedule starting from 0000 of today to 2359 of day with the last event/blocked slot.
+
+#### Implementation
+The `ListFreeSlotsCommand` class has one field `today` of type `Date`. This field is necessary to allow testing, where a specific date can be passed in to the `ListFreeSlotsCommand`.
+
+![](images/ListFreeSlotsCommand.png)
+
+The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`.
+
+![](images/getFreeSlotsActivityDiagram.png)
+
+The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one list of Overlappables.
+
+The `schedule#getFreeSlots()` method then iterates through this list of Overlappables to find free slots between events and blocked slots. 
+
+#### Design Considerations:
+
+|   |Pros|Cons|
+|---|---|---|
+| Alternative 1: Implement FreeSlots as a special Event and store FreeSlots in the SortedEventList|Easy to list all free slots in the schedule by using a predicate to select only FreeSlots and updating the filteredList.|Adding, deleting and editing event will be harder as the corresponding FreeSlot at that timeslot will need to be deleted or edited. Only one list containing all Events, FreeSlots and BlockedSlots is allowed.|
+| Alternative 2 (current): Go through the schedule each time the user uses the `list_free` command to find free slots|Easy to add and delete and edit events in SortedEventList. Easy to add additional lists such as SortedBlockedSlotList.|More computationally intensive as each time the user uses the `list_free` command, DukePro(f) will iterate through all events and blocked slots to find free slots in between.|
+
+Alternative 2 is chosen to allow future implementations such as adding additional lists 
+containing different types of events or commitments. 
 
 ### UpcomingEventsCommand - Lulu
 #### Description
@@ -225,18 +258,7 @@ As a Remark is an optional input, if user does not input any remarks when adding
 
 To display the remark in the GUI, a new `Label` called `remark` is added to `EventCard` as well as `EventListCard.fxml`.
 
-### TimeSlot - Teng Foong
-#### Description
-
-The `TimeSlot` class encapsulates the concept of an Event taking up a certain time period.
-
-#### Implementation
-
-The `TimeSlot` class has 2 fields, `startTime` and `endTime` and their values hold what their names imply.
-
-A `TimeSlot` can be compared to another `TimeSlot` and this is done **only** using their `startTime` fields.
-
-### CommandSummaryCommand - Jacob
+### CommandSummary Command
 #### Description
 
 The `CommandSummaryCommand` class is a command that opens a pop-up window containing a Command Summary of DukePro(f)'s
@@ -250,6 +272,45 @@ constructor of `CommandResult`.
 When the command `command_summary` is input by the user, `LogicManager` parses the input and returns a 
 `CommandSummaryCommand`. The `execute` method is called with the `showCommands` parameter being set to `true`. 
 This causes `MainWindow` to execute the `handleCommandSummary` method, which opens the Command Summary Page.
+### Block Feature
+#### Description
+
+The Block feature allows the user to block off a specified period of time so that it is not possible for a new `Event` to be created during that time slot.
+
+#### Implementation
+
+##### Model
+The following class diagram illustrates the implementation of the Block feature.
+
+<img src="images/BlockedSlotClassDiagram.png" width="450" />
+
+As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
+Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.
+
+##### Logic
+The Block feature comes with the following new commands, they are quite self-explanatory:
+1. `AddBlockedSlotCommand`
+2. `ListBlockedSlotsCommand`
+3. `DeleteBlockedSlotCommand`
+
+Existing commands `AddCommand` and `EditCommand` also had to be edited(see below) to check for overlaps before adding/editing the `Event`.
+
+The following steps describe the execution of an `AddCommand`(`EditCommand`follows similarly):
+1. The `execute()` method of the `AddCommand` checks if the `Event` to be added overlaps with any items in the `Schedule`'s `SortedEventList` or `SortedBlockedSlotList`.
+   1. If there is an overlap, a `SlotBlockedException`(which extends `CommandException`) is thrown, with an error message telling the user if the command was blocked by another event or a blocked slot.
+   2. If there is no overlap, the new `Event` is added and the command succeeds.
+
+##### Storage
+These changes also made the new `JsonAdaptedBlockedSlot` necessary in order to save blocked slots created by the user into the save file.
+
+Design Considerations
+
+|   |Pros|Cons|
+|---|---|---|
+|Alternative 1: Have the `TimeSlot` class maintain a list of blocked time slots and prevent any new overlapping `TimeSlots` from being created.|Easy to implement. User is able to block out a specific time slot every day(e.g., 1800-1900 for dinner every day)|Does not work well with `FreeSlots` feature. User is unable to choose which days to have the blocked slot as it is applied to every day.|
+|Alternative 2 (currently chosen): Implementation described above.|Code is easier to extend with more features. User is able to select the time slot and date to block.|More difficult to implement. More testing required. Blocked time slots will have to be added one by one.|
+
+We originally intended for the user to block out a certain time slot for every day, making Option 1 a possibility, but we eventually decided that Option 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -372,34 +433,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add a consultation event       | easily record and remember consultation sessions with my students      |
 | `* * *`  | user                                       | delete a consultation event    | forget about cancelled consultations and free up my timetable          |
-| `* * *`  | user                                       | list out all my events         | find out what is my next engagement                                    |
+| `* * *`  | user                                       | list out all my consultation events         | find out what is my next engagement                                    |
 | `* * *`  | user                                       | list out all my free slots     | find a suitable slot to add a commitment                               |
 | `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
-| `* * *`  | busy user with many daily events           | search for an event by name    | locate the details of events without going through the entire list     |
+| `* * *`  | busy user with many daily events           | search for a consultation event by name    | locate the details of events without going through the entire list     |
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
 | `* * *`  | meticulous user                            | add remarks to my events       | add details that I need to make preparations for before the event      |
 | `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
 | `* * *`  | user                                       | exit the app                   |                                                                        |
-| `* *`    | user                                       | add tags to my events          | group them more easily                                                 |
+| `* *`    | user                                       | add tags to my consultation events          | group them more easily                                                 |
+| `* *`     | user                                       | I can filter my consultations by tags  | I can find consultations with certain tags more easily |
 | `* *`    | new user                                   | click a link to access the product website | receive help regarding any problems I have with the app    |
 | `* *`    | user                                       | clear the list of events       | empty out everything quickly instead of deleting them one by one       |
-| `* *`    | user                                       | list the upcoming events in the day | take note of what I should make preparations for                  |
-| `* *`    | user                                       | view the next upcoming event   | find out what is my next engagement                                    |
+| `* *`    | user                                       | list the upcoming consultation events in the day | take note of what I should make preparations for                  |
+| `* *`    | user                                       | view the next upcoming consultation event   | find out what is my next engagement                                    |
 | `* *`    | user                                       | print my schedule with censored details | send it to my students to see my available timings while maintaining confidentiality |
 | `*`      | new user                                   | see usage instructions/examples| refer to the instructions to learn how to optimize my usage of the app |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: Delete an event**
+```
+**UC01: Delete an event**
 
 **MSS**
 
-1.  User requests to list events
-2.  DukePro(f) shows the list of events
-3.  User requests to delete a specific event in the list
-4.  DukePro(f) deletes the event
+1.  User requests to list events.
+2.  The System shows the list of events.
+3.  User requests to delete a specific event in the list.
+4.  The System deletes the event.
 
     Use case ends.
 
@@ -411,19 +474,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. DukePro(f) shows an error message.
+    * 3a1. The System shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2.  
+```
 
-
-**Use case: Edit an event**
+```
+**UC02: Edit an event**
 
 **MSS**
 
-1. User requests to list events
-2. DukePro(f) shows the list of events
-3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit
-4. DukePro(f) shows the list of events, with the newly edited event
+1. User requests to list events.
+2. The System shows the list of events.
+3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit.
+4. The System shows the list of events, with the newly edited event.
 
 **Extensions**
 
@@ -433,37 +497,138 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. DukePro(f) shows an error message.
+    * 3a1. The System shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The given fields do not exist.
 
-    * 3b1. DukePro(f) shows an error message.
+    * 3b1. The System shows an error message.
 
       Use case resumes at step 2.
 
 * 3c. The given fields exist, but the given information is improperly formatted.
 
-    * 3c1. DukePro(f) shows an error message.
+    * 3c1. The System shows an error message.
 
       Use case resumes at step 2.
+```
 
-
-**Use case: Search for an event**
+```
+**UC03: Search for an event**
 
 **MSS**
 
-1. User requests to search events
-2. DukePro(f) shows a list of events which have the search term in their name
+1. User requests to search events.
+2. The System shows a list of events which have the search term in their name.
 
 **Extensions**
 
-* 2a. No matches to the search term
+* 2a. No matches to the search term.
 
-  *2a1. DukePro(f) shows an empty list
+  *2a1. The System shows an empty list.
 
   Use case ends.
+```
+
+```
+**UC04: Block slots**
+
+**MSS**
+
+1. User blocks out a time slot: 2021-11-01, 1800-1900.
+2. User accidentally tries to key in a new event at the above time slot.
+3. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+
+**Extensions**
+
+* 1a. Time slot entered is already blocked.
+
+  * 1a1. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+  
+  Use case ends.
+
+* 1b. Time slot entered coincides with an event.
+
+  * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
+  
+  Use case ends
+```
+
+```
+**UC05: List all upcoming events for the day**
+
+**MSS**
+
+1. User requests to view today's upcoming consultation events.
+2. DukePro(f) displays all the upcoming events.
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User inputs the wrong format for the command.
+
+  * 1a1. An error message telling the user that it's an unknown command.
+    
+    Use case ends.
+
+* 1b. DukePro(f) has no upcoming consultation events.
+
+  * 1b1. An empty events list is displayed with a message indicating that there are 0 upcoming events.
+  
+    Use case ends
+```
+
+```
+**UC06: List the next consultation event for the day**
+
+**MSS**
+
+1. User requests to view the next consultation event.
+2. DukePro(f) displays the next event.
+    
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User inputs the wrong format for the command.
+
+  * 1a1. An error message telling the user that it's an unknown command.
+    
+    Use case ends.
+
+* 1b. DukePro(f) has no events scheduled.
+
+  * 1b1. An empty events list is displayed with a message indicating that there are 0 events scheduled.
+    
+    Use case ends
+```
+
+```
+**UC07: Filter consultation events by tags**
+
+**MSS**
+
+1. User requests to filter the consultation events by tag(s).
+2. DukePro(f) displays the events that have the specified tag(s).
+    
+    Use case ends.
+    
+**Extensions**
+
+* 1a. User inputs the wrong format for the command.
+
+  * 1a1. An error message is displayed with the correct format.
+    
+    Use case ends.
+
+* 1b. DukePro(f) has no consultation events that have the tag(s) specified
+
+  * 1b1. An empty events list is displayed with a with a message indicating 0 events are matched with the tags specified.
+  
+    Use case ends
+```
 
 ### Non-Functional Requirements
 

@@ -20,6 +20,7 @@ Class JsonScheduleStorage
 Class JsonSerializableSchedule
 Class JsonAdaptedEvent
 Class JsonAdaptedTag
+Class JsonAdaptedBlockedSlot
 }
 
 }
@@ -37,7 +38,8 @@ Storage -right-|> ScheduleStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonScheduleStorage .up.|> ScheduleStorage
 JsonScheduleStorage ..> JsonSerializableSchedule
-JsonSerializableSchedule --> "*" JsonAdaptedEvent
+JsonSerializableSchedule -down-> "*" JsonAdaptedEvent
+JsonSerializableSchedule -right-> "*" JsonAdaptedBlockedSlot
 JsonAdaptedEvent --> "*" JsonAdaptedTag
 
 @enduml
