@@ -36,12 +36,14 @@ typing in text (commands).<br>
 <sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you 
 interact with it.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 ***
-
 * Table of Contents
 {:toc}
-
+  
+<div style="page-break-after: always;"></div>
 
 ## 1. Purpose
 ***
@@ -67,6 +69,8 @@ while using DukePro(f).
 avoided.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Quick Start: Get Started Using DukePro(f)
 ***
 ### 3.1 Downloading and Opening the App
@@ -90,6 +94,8 @@ avoided.
    
 6. Refer to the [Commands and their Features](#5-commands-and-their-features) section for details on each 
    command.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 How To Use DukePro(f): A Quick Tutorial
 
@@ -116,7 +122,7 @@ Step 3: Check the Consultation List to see if your consultation event has been a
 Some other commands you can try:
 
 * **`list`**<br>
-  Lists all of your consultation events on the right side of the application.
+  Lists all of your consultation events in the Consultation List box.
 
 * **`add`** `add n/Galvin Chan d/2021-11-01 t/1000-1100 l/NUS tag/Tutorial4`<br>
   Adds a consultation event for `Galvin Chan`, at date `2021-11-01`, time `1000-1100`, 
@@ -125,14 +131,16 @@ Some other commands you can try:
 * **`delete`** `delete 3`<br>
   Deletes the 3rd consultation event on your consultation list.
 
+<div style="page-break-after: always;"></div>
+
 ## 4. Command Summary: A Summary of Commands for DukePro(f)
 ***
 Listed below are the commands that DukePro(f) supports, in alphabetical order:
 
 Action | Format | Example(s)
 --------|-------|-------
-**[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/Supplementary r/May switch to Zoom`
-**[Add Blocked Time Slots](#511-adding-a-blocked-time-slot--block)** | `block d/DATE t/TIMESLOT` | `block d/2020-01-01 t/0800-0900`
+**[Add](#51-adding-a-consultation-event--add)** | `add n/NAME d/DATE t/TIMESLOT l/LOCATION [tag/TAG]... [r/REMARK]` | `add n/Lulu Yousef d/2021-11-11 t/0800-0900 l/NUS tag/Important tag/supplementary r/May switch to Zoom`
+**[Add Blocked Time Slots](#511-adding-a-blocked-time-slot--block)** | `block d/DATE t/TIMESLOT` | `block d/2021-11-12 t/0800-0900`
 **[Clear](#57-clearing-all-consultation-events--clear)** | `clear`  | -
 **[Delete](#52-deleting-a-consultation-event--delete)** | `delete INDEX` | `delete 3`
 **[Delete Blocked Time Slots](#512-deleting-a-blocked-time-slot--delete_blocked)** | `delete_blocked INDEX` | `delete_blocked 1`
@@ -148,6 +156,7 @@ Action | Format | Example(s)
 **[List Upcoming Events](#56-listing-all-upcoming-events--upcoming_events)** | `upcoming_events` | -
 **[View Command Summary](#515-viewing-the-command-summary-page-command_summary)** | `command_summary` | -
 
+<div style="page-break-after: always;"></div>
 
 ## 5. Commands and Their Features
 ***
@@ -169,7 +178,7 @@ Action | Format | Example(s)
 
 * If a parameter is expected only once in the command, but you have specified it multiple times, only the 
   last occurrence of the parameter will be taken.<br>
-  * E.g. If you specify `t/0100 t/2359`, only `t/2359` will be taken.
+  * E.g. If you specify `d/2021-11-11 d/2021-11-21`, only `d/2021-11-21` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be 
   ignored.<br>
@@ -194,6 +203,8 @@ Action | Format | Example(s)
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ***
 ### Managing Your Consultations
 Listed below are the commands for managing your consultations.
@@ -211,11 +222,11 @@ A consultation event can have any number of tags (including 0).
 </div>
 
 Example(s):
-* `add n/Lulu Yousef d/2020-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`<br>
-  Adds a consultation event for `Lulu Yousef`, at date `1 Jan 2020`, time `8am to 9am`,
+* `add n/Lulu Yousef d/2021-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`<br>
+  Adds a consultation event for `Lulu Yousef`, at date `1 Jan 2021`, time `8am to 9am`,
   at location `NUS`, tagged with `Important` and `supplementary`.
-* `add n/Ruth Poh d/2020-03-02 t/1300-1400 l/The Deck r/May have to switch to zoom`<br>
-  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2020`, time `1pm to 2pm`,
+* `add n/Ruth Poh d/2021-03-02 t/1300-1400 l/The Deck r/May have to switch to zoom`<br>
+  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2021`, time `1pm to 2pm`,
   at location `The Deck`, with the remark `May have to switch to zoom`.
 
 ### 5.2 Deleting a Consultation Event : `delete`
@@ -312,11 +323,15 @@ Example(s):
 
 
 ### 5.10 Listing all Free Time Slots : `list_free`
-Lists down all free time slots in DukePro(f) from today until the last event or blocked slot.
+Lists down all free time slots in DukePro(f) from now until 2359 of the day with the last event or blocked slot.
 
 Format: `list_free`
 
+**:information_source: An empty schedule i.e. no events and blocked slots in schedule, will have no free slots displayed.**<br>
+
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ***
 ### Managing Your Blocked Time Slots
@@ -329,8 +344,8 @@ Adds a blocked time slot to Dukepro(f).
 Format: `block d/DATE t/TIMESLOT`
 
 Example(s):
-* `block d/2020-01-01 t/0800-0900`
-* `block d/2020-02-02 t/1000-1100`
+* `block d/2021-01-01 t/0800-0900`
+* `block d/2021-02-02 t/1000-1100`
 
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot in DukePro(f) at the specified `INDEX`.
@@ -347,6 +362,8 @@ Format: `list_blocked`
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ***
 ### Help Commands
 Listed below are the commands if you're stuck on how to use DukePro(f).
@@ -361,6 +378,8 @@ Opens a pop-up window with a Command Summary of all of DukePro(f)'s possible com
 
 Format: `command_summary`
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ***
 ### 5.16: Editing the data file
@@ -378,6 +397,7 @@ Exits DukePro(f).
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ## 6. FAQ
 ***
