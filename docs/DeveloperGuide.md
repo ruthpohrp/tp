@@ -649,8 +649,6 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 13. JAR file should not exceed 100MB.
 14. Document files should not exceed 15MB per file.
 
-
-
 ### Glossary
 * **Event**: A consultation event with a student that a university professor has arranged to go for
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
