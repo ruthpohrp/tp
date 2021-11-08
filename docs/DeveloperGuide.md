@@ -240,7 +240,7 @@ The following steps describe the execution of an `AddCommand`(`EditCommand`follo
 ##### Storage
 These changes also needed a new `JsonAdaptedBlockedSlot` in order to save blocked slots
 created by the user into save file.
-`JsonSerializableSchedule` has a new field `blockedSlots`, which is a list of JsonAdaptedBlockedSlots.
+`JsonSerializableSchedule` has a new field `blockedSlots`, which is a list of `JsonAdaptedBlockedSlot`s.
 When `JsonScheduleStorage` reads the json file where the data is stored, it constructs a
 `JsonSerializableSchedule` based on the `events` and `blockedSlots` fields found in the json file, and
 then converts it to a `Schedule` object for DukePro(f) to access.
@@ -251,7 +251,7 @@ itself and then performs `Schedule#resetData()`, the blockedSlots data is not er
 
 |   |Pros|Cons|
 |---|---|---|
-|Alternative 1: Have the `TimeSlot` class maintain a list of blocked time slots and prevent any new overlapping `TimeSlots` from being created.|Easy to implement. User is able to block out a specific time slot every day(e.g., 1800-1900 for dinner every day)|Does not work well with `FreeSlots` feature. User is unable to choose which days to have the blocked slot as it is applied to every day.|
+|Alternative 1: Have the `TimeSlot` class maintain a list of blocked time slots and prevent any new overlapping `TimeSlots` from being created.|Easy to implement. User is able to block out a specific time slot every day(e.g., 1800-1900 for dinner every day).|Does not work well with `FreeSlots` feature. User is unable to choose which days to have the blocked slot as it is applied to every day.|
 |Alternative 2 (currently chosen): Implementation described above.|Code is easier to extend with more features. User is able to select the time slot and date to block.|More difficult to implement. More testing required. Blocked time slots will have to be added one by one.|
 
 We originally intended for the user to block out a certain time slot for every day, making Alternative 1 a possibility, but we eventually decided that Alternative 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
