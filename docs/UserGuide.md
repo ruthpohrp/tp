@@ -99,7 +99,7 @@ avoided.
 ### 3.2 How To Use DukePro(f): A Quick Tutorial
 
 These are the different parts of DukePro(f)'s GUI:
-<img src="images/startup.png" width="600px">
+<img src="images/UG_Tutorial_1.png" width="600px">
 <br> <br>
 
 Here's how to add a consultation event to DukePro(f):
