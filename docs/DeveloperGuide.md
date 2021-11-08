@@ -583,9 +583,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ```
 
 ```
-<pre> 
-<b>UC07: Filter consultation events by tags</b> 
-</pre>
+**`UC07: Filter consultation events by tags`**
 
  **MSS**
 
