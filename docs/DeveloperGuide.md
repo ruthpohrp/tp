@@ -141,6 +141,7 @@ How the parsing works:
 1. When called upon to parse a user command, the `ScheduleParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ScheduleParser` returns back as a `Command` object.
 2. All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
 
 ### Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -229,6 +230,8 @@ The `schedule#getFreeSlots()` method then iterates through this list of Overlapp
 
 Finally, the `schedule#getFreeSlots()` method removes past freeSlot and returns a list of future freeSlots.
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations:
 
 |   |Pros|Cons|
@@ -252,6 +255,7 @@ The `UpcomingEventsCommand` class has one field timePredicate of type EventConta
 
 The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the upcoming events, filtered by the `timePredicate`.
 
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram illustrates the interactions discussed above for the execute("upcoming_events") API call:
 ![](images/UpcomingEventsSequenceDiagram.png)
@@ -268,10 +272,13 @@ The `NextEventCommand` class has one field timePredicate of type EventContainsCu
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes the NextEventCommand:
 
-![](images/NextEventActivityDiagram.png)
+<p align ="center">
+    <src= "images/NextEventActivityDiagram.png"
+</p>
 
 ### Filter by Tag Feature
 #### Description
@@ -283,6 +290,8 @@ The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKey
 `TagContainsKeywordsPredicate`, found under `model/event` package, is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
 
 The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram illustrates the interactions discussed above for the execute("filter_tag URGENT") API call:
 ![](images/FilterByTagSequenceDiagram.png)
