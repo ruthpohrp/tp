@@ -287,7 +287,7 @@ Format: `list`
 ### 5.5 Displaying the next Consultation Event : `next_event`
 Displays the next consultation event scheduled for the day in the Consultation List.
 <div markdown="block" class="alert alert-info"> :information_source: 
-**Tip:** If you are currently in the middle of an existing consultation event, DukePro(f) will list the next 
+**Note:** If you are currently in the middle of an existing consultation event, DukePro(f) will list the next 
 event after the current consultation event.
 </div>
 
@@ -297,7 +297,7 @@ Format: `next_event`
 Displays all upcoming consultation events for the current day in the Consultation List.
 
 <div markdown="block" class="alert alert-info"> :information_source: 
-**Tip:** This will not include the current ongoing consultation event.
+**Note:** This will not include the current ongoing consultation event.
 </div>
 
 Format: `upcoming_events`

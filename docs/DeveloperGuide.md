@@ -653,17 +653,9 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
 ### Glossary
 * **Event**: A consultation event with a student that a university professor has arranged to go for
-* **Date**: Date of a consultation event
-* **Index**: Unique index number of each consultation event
-* **Location**: Location of the consultation event
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Name**: A student's name for the respective consultation event
-* **Remark**: Additional information about a consultation event
-* **Schedule**: A list of events
-* **Tag**: Additional label for the consultation event
-* **TimeSlot**: Time period of a consultation event
-
-
+* **Free slots**: Time slots available for adding consultation events by a university professor.  
+* **Blocked slots**: Time slots reserved for personal commitments by a university professor.
 
 --------------------------------------------------------------------------------------------------------------------
 
