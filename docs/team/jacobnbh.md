@@ -33,10 +33,10 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**: Revamped DukePro(f)'s GUI completely
   * Before (UI Mockup):
 
-    ![UI Mockup](images/Ui(v1.1).png)
+    <img src="images/Ui(v1.1).png">
   * After:
 
-    ![Final UI](images/Ui.png)
+    <img src="images/Ui.png">
     * Change DukePro(f)'s colour theme
     * Restructure DukePro(f)'s components
 
