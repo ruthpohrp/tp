@@ -209,7 +209,6 @@ Action | Format | Example(s)
 
 <div style="page-break-after: always;"></div>
 
-***
 ### Managing Your Consultations
 Listed below are the commands for managing your consultations.
 Consultation events listed in the Consultation List are sorted in chronological order with the earliest 
@@ -383,10 +382,13 @@ slots displayed.
 <div style="page-break-after: always;"></div>
 
 
-***
 ### Managing Your Blocked Time Slots
 Listed below are the commands for managing your blocked time slots.
-Blocked time slots ensure that you will not be able to add consultation events during those time slots.
+Blocked time slots ensure that you will not be able to add consultation events during that period.
+
+Listed is a description of the various fields of a Blocked Time Slot:
+* DATE: Date the blocked time slot occurs
+* TIMESLOT: Start and end time of the blocked time slot
 
 ### 5.11 Adding a Blocked Time Slot : `block`
 Adds a blocked time slot to Dukepro(f).
@@ -424,7 +426,6 @@ Here's an example of what your screen should look like after entering the `list_
 <br>
 
 
-***
 ### Help Commands
 Listed below are the commands you can use to guide you in case you're stuck.
 

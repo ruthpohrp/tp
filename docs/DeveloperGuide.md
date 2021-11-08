@@ -73,7 +73,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 | Component | Description | API | Concrete Implementation|
 |---|---|---|---|
-|**`Main`**|Consists of two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for initializing the components in the correct sequence and connecting them with each other upon app launch. Upon shut down, it also responsible for shutting down the components and invoking cleanup methods where necessary.|-|-|
+|**`Main`**|Consists of two classes called [`Main`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for initializing the components in the correct sequence and connecting them with each other upon app launch. Upon shut down, it is also responsible for shutting down the components and invoking cleanup methods where necessary.|-|-|
 |[**`Commons`**](#common-classes)|Represents a collection of classes used by multiple other components.|-|-|
 |[**`Ui`**](#ui-component)|The UI of the App.|[`Ui`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)|[`UiManager`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/ui/UiManager.java)
 |[**`Logic`**](#logic-component)|The command executor.|[`Logic`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)|[`LogicManager`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/logic/LogicManager.java)|
@@ -230,7 +230,8 @@ The Block feature comes with the following new commands, they are quite self-exp
 2. `ListBlockedSlotsCommand`
 3. `DeleteBlockedSlotCommand`
 
-Existing commands `AddCommand` and `EditCommand` also had to be edited(see below) to check for overlaps before adding/editing the `Event`.
+Existing commands `AddCommand` and `EditCommand` also had to be edited (see below) to check for overlaps 
+before adding/editing the `Event`.
 
 The following steps describe the execution of an `AddCommand`(`EditCommand`follows similarly):
 1. The `execute()` method of the `AddCommand` checks if the `Event` to be added overlaps with any items in the `Schedule`'s `SortedEventList` or `SortedBlockedSlotList`.
@@ -434,20 +435,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add a consultation event       | easily record and remember consultation sessions with my students      |
-| `* * *`  | user                                       | delete a consultation event    | forget about cancelled consultations and free up my timetable          |
-| `* * *`  | user                                       | list out all my consultation events         | find out what is my next engagement                                    |
-| `* * *`  | user                                       | list out all my free slots     | find a suitable slot to add a commitment                               |
-| `* * *`  | user                                       | save all of my data I enter into the app    | view the data again the next time I open the app                       |
+| `* * *`  | user                                       | delete a consultation event    | forget about cancelled or completed consultation events and free up my schedule    |
+| `* * *`  | user                                       | list out all my consultation events         | find out what consultation events I have                             | 
+| `* * *`  | user                                       | list out all my free slots     | find a suitable slot for a new consultation booking                       |
+| `* * *`  | user                                       | save all of my data I enter into the app    | view the data again the next time I open the app                    |
 | `* * *`  | user with many commitments                 | ensure existing and to-be-added consultation events do not have timings that overlap      | make sure I don't have commitments that clash with each other |
-| `* * *`  | busy user with many daily events           | search for a consultation event by name    | locate the details of events without going through the entire list     |
+| `* * *`  | busy user with many daily events           | search for a consultation event by name    | locate the details of consultation events without going through the entire list    |
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
 | `* * *`  | user                                       | unblock time slots I have previously blocked       | free time slots for consultations              |
 | `* * *`  | user                                       | list out all the time slots I have previously blocked       | find out which time slots I cannot have consultations at because of existing commitments      |
 | `* * *`  | meticulous user                            | add remarks to my events       | add additional details to my consultation events that I need to take note of   |
-| `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
+| `* * *`  | user                                       | edit a previously added event  | update changes in the details of my existing consultation event                            |
 | `* * *`  | user                                       | exit the app                   |                                                                        |
 | `* *`    | user                                       | add tags to my consultation events          | group consultation events more easily                                                 |
-| `* *`    | user                                       | I can filter my consultation events by tags  | I can find consultations with certain tags more easily |
+| `* *`    | user                                       | I can filter my consultation events by tags  | I can find consultation events with certain tags more easily |
 | `* *`    | inexperienced user                         | bring up a link to access the product website | receive help regarding any problems I have with the app    |
 | `* *`    | impatient user                             | clear the list of consultation events       | empty out my list of consultation events quickly instead of having to delete them one by one     |
 | `* *`    | user                                       | list the upcoming consultation events in the day | take note of what I should make preparations for                  |
