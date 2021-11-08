@@ -583,9 +583,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ```
 
 ```
-**UC07: Filter consultation events by tags**
+> **UC07: Filter consultation events by tags**
 
-**MSS**
+> **MSS**
 
 1. User requests to filter the consultation events by tag(s).
 2. DukePro(f) displays the events that have the specified tag(s).
@@ -602,8 +602,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. DukePro(f) has no consultation events that have the tag(s) specified.
 
-  * 1b1. An empty events list is displayed with a with a message indicating 0 events 
-         are matched with the tags specified.
+  * 1b1. An empty events list is displayed with a with a message indicating 0 
+         events are matched with the tags specified.
   
     Use case ends.
 ```
