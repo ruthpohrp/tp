@@ -423,12 +423,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise)
+For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise.
 
-```
-**UC01: Delete an event**
 
-**MSS**
+### **UC01: Delete an event**
+
+#### **MSS**
 
 1.  User requests to list events.
 2.  The System shows the list of events.
@@ -437,7 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+#### **Extensions**
 
 * 2a. The list is empty.
 
@@ -448,7 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. The System shows an error message.
 
       Use case resumes at step 2.  
-```
+
 
 ```
 **UC02: Edit an event**
@@ -576,14 +576,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. DukePro(f) has no events scheduled.
 
-  * 1b1. An empty events list is displayed with a message indicating that there are 0 events 
-         scheduled.
+  * 1b1. An empty events list is displayed with a message indicating that there are 
+         0 events scheduled.
     
     Use case ends.
 ```
 
 ```
-**`UC07: Filter consultation events by tags`**
+**UC07: Filter consultation events by tags**
 
  **MSS**
 
