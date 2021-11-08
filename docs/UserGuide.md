@@ -75,7 +75,8 @@ avoided.
 ### 3.1 Downloading and Opening the App
 
 1. Ensure you have Java `11` or above installed in your Computer. 
-    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    
+   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
      Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
     </div>
 
