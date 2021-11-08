@@ -79,7 +79,7 @@ avoided.
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
      Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
     </div>
-
+   
 2. Download the latest `dukeprof.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ (the folder where you want to store the
@@ -87,7 +87,7 @@ avoided.
 
 4. Double-click the file to start the app. A GUI similar to the image below should appear in a few seconds. 
    Note that the app will contain some sample data.<br>
-   <img src="images/Ui.png" width="600px">
+   <img src="images/startup.png" width="600px">
     
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
    Facing issues? Refer to [6. FAQ](#6-faq) for help. 
