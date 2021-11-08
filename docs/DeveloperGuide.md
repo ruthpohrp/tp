@@ -4,10 +4,38 @@ title: Developer Guide
 ---
 
 <p align="center">
-  <img width="350" src="images/dukelogo.png">
+  <img width="200" src="images/dukelogo.png">
 </p>
 ## Introduction
 ***
+DukePro(f) is a schedule-planning desktop application that assists **university professors** in managing
+their **consultations**, through the usage of an intuitive **Command-Line Interface (CLI)**<sup>1</sup>
+and an easy-to-navigate **Graphical User Interface (GUI)**<sup>2</sup>.
+
+It is named `DukePro(f)` (Duke-Professor) because our project's target audience is professors, and it is also a nod
+to our CS2103T iP (individual Project), which was named `Duke`.
+
+Amidst long hours of lectures and tutorials in the week, professors may still need to cater timeslots for student
+consultations, which can be hard to come by and difficult to keep track of. This is where Dukepro(f)
+comes in to help you out!
+
+With DukePro(f), you will be able to:
+
+* Add, edit, and delete your consultations
+* List all of your consultations, or just your next consultation
+* List your free time slots for consultation booking
+* Block certain time slots to ensure your consultations don't clash with other commitments
+* List all of the time slots that you've blocked so far
+* And many more!
+
+<hr />
+
+<sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by
+typing in text (commands).<br>
+<sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you
+interact with it.
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 ***
@@ -18,7 +46,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The documentation is adapted from [SE-EDU initiative’s](https://se-education.org/#https://se-education.org/) AddressBook-Level3 project.
 
 
 
@@ -208,9 +236,10 @@ Finally, the `schedule#getFreeSlots()` method removes past freeSlot and returns 
 Alternative 2 is chosen to allow future implementations such as adding additional lists 
 containing different types of events or commitments. 
 
-### UpcomingEventsCommand - Lulu
+
+### Today's Upcoming Events Feature
 #### Description
-The `UpcomingEventCommand` class is a command that lists all the upcoming events scheduled for the current day excluding
+This feature lists all the upcoming events scheduled for the current day excluding
 the ongoing consultation event.
 
 #### Implementation
@@ -220,9 +249,13 @@ The `UpcomingEventsCommand` class has one field timePredicate of type EventConta
 
 The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the upcoming events, filtered by the `timePredicate`.
 
-### NextEventCommand - Lulu
+
+The following sequence diagram illustrates the interactions discussed above for the execute("upcoming_events") API call:
+![](images/UpcomingEventsSequenceDiagram.png)
+
+### Next Event Feature
 #### Description
-The `NextEventCommand` class is a command that displays the next event based on the current time in the schedule.
+This feature displays the next event based on the current time in the schedule.
 
 #### Implementation
 The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
@@ -232,19 +265,25 @@ The `NextEventCommand` class has one field timePredicate of type EventContainsCu
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
-### FilterByTag Command - Lulu
+
+The following activity diagram summarizes what happens when a user executes the NextEventCommand:
+![](images/NextEventActivityDiagram.png)
+
+### Filter by Tag Feature
 #### Description
-The `FilterByTagCommand` class is a command that finds all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
+This feature allows users to find all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
 
 #### Implementation
 The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKeywordsPredicate.
 
-`TagContainsKeywordsPredicate` is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
+`TagContainsKeywordsPredicate`, found under `model/event` package, is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
 
 The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
 
-### Remark feature - Ruth
+The following sequence diagram illustrates the interactions discussed above for the execute("filter_tag URGENT") API call:
+![](images/FilterByTagSequenceDiagram.png)
 
+### Remark feature
 #### Description
 
 The remark feature is an optional description added to `Event`. It adds a remark to the
@@ -278,6 +317,12 @@ constructor of `CommandResult`.
 When the command `command_summary` is input by the user, `LogicManager` parses the input and returns a 
 `CommandSummaryCommand`. The `execute` method is called with the `showCommands` parameter being set to `true`. 
 This causes `MainWindow` to execute the `handleCommandSummary` method, which opens the Command Summary Page.
+
+The sequence diagram below illustrates the interactions within the Logic class mentioned above for the 
+execute("command_summary") API call:
+
+![](images/CommandSummaryCommandSequenceDiagram.png)
+
 ### Block Feature
 #### Description
 
@@ -307,7 +352,14 @@ The following steps describe the execution of an `AddCommand`(`EditCommand`follo
    2. If there is no overlap, the new `Event` is added and the command succeeds.
 
 ##### Storage
-These changes also made the new `JsonAdaptedBlockedSlot` necessary in order to save blocked slots created by the user into the save file.
+These changes also needed a new `JsonAdaptedBlockedSlot` in order to save blocked slots 
+created by the user into save file. 
+`JsonSerializableSchedule` has a new field `blockedSlots`, which is a list of JsonAdaptedBlockedSlots. 
+When `JsonScheduleStorage` reads the json file where the data is stored, it constructs a 
+`JsonSerializableSchedule` based on the `events` and `blockedSlots` fields found in the json file, and 
+then converts it to a `Schedule` object for DukePro(f) to access.
+A new field `blockedSlots`, a `SortedBlockedSlotList`, is added to `Schedule` such that when it makes a copy of 
+itself and then performs `Schedule#resetData()`, the blockedSlots data is not erased.
 
 #### Design Considerations:
 
@@ -317,91 +369,6 @@ These changes also made the new `JsonAdaptedBlockedSlot` necessary in order to s
 |Alternative 2 (currently chosen): Implementation described above.|Code is easier to extend with more features. User is able to select the time slot and date to block.|More difficult to implement. More testing required. Blocked time slots will have to be added one by one.|
 
 We originally intended for the user to block out a certain time slot for every day, making Alternative 1 a possibility, but we eventually decided that Alternative 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedSchedule`. It extends `Schedule` with an undo/redo history, stored internally as an `scheduleStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedSchedule#commit()` — Saves the current schedule state in its history.
-* `VersionedSchedule#undo()` — Restores the previous schedule state from its history.
-* `VersionedSchedule#redo()` — Restores a previously undone schedule state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitSchedule()`, `Model#undoSchedule()` and `Model#redoSchedule()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedSchedule` will be initialized with the initial schedule state, and the `currentStatePointer` pointing to that single schedule state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th event in the schedule. The `delete` command calls `Model#commitSchedule()`, causing the modified state of the schedule after the `delete 5` command executes to be saved in the `scheduleStateList`, and the `currentStatePointer` is shifted to the newly inserted schedule state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new event. The `add` command also calls `Model#commitSchedule()`, causing another modified schedule state to be saved into the `scheduleStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitSchedule()`, so the schedule state will not be saved into the `scheduleStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the event was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSchedule()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous schedule state, and restores the schedule to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Schedule state, then there are no previous Schedule states to restore. The `undo` command uses `Model#canUndoSchedule()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoSchedule()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the schedule to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `scheduleStateList.size() - 1`, pointing to the latest schedule state, then there are no undone Schedule states to restore. The `redo` command uses `Model#canRedoSchedule()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the schedule, such as `list`, will usually not call `Model#commitSchedule()`, `Model#undoSchedule()` or `Model#redoSchedule()`. Thus, the `scheduleStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitSchedule()`. Since the `currentStatePointer` is not pointing at the end of the `scheduleStateList`, all schedule states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire schedule.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the event being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -441,20 +408,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a consultation event    | forget about cancelled consultations and free up my timetable          |
 | `* * *`  | user                                       | list out all my consultation events         | find out what is my next engagement                                    |
 | `* * *`  | user                                       | list out all my free slots     | find a suitable slot to add a commitment                               |
-| `* * *`  | user                                       | save all the data entered      | view the data again the next time I open the app                       |
+| `* * *`  | user                                       | save all of my data I enter into the app    | view the data again the next time I open the app                       |
+| `* * *`  | user with many commitments                 | ensure existing and to-be-added consultation events do not have timings that overlap      | make sure I don't have commitments that clash with each other |
 | `* * *`  | busy user with many daily events           | search for a consultation event by name    | locate the details of events without going through the entire list     |
 | `* * *`  | user                                       | block certain time slots       | reserve some private time for family/personal commitments              |
-| `* * *`  | meticulous user                            | add remarks to my events       | add details that I need to make preparations for before the event      |
+| `* * *`  | user                                       | unblock time slots I have previously blocked       | free time slots for consultations              |
+| `* * *`  | user                                       | list out all the time slots I have previously blocked       | find out which time slots I cannot have consultations at because of existing commitments      |
+| `* * *`  | meticulous user                            | add remarks to my events       | add additional details to my consultation events that I need to take note of   |
 | `* * *`  | user                                       | edit a previously added event  | update changes in the details of my event                              |
 | `* * *`  | user                                       | exit the app                   |                                                                        |
-| `* *`    | user                                       | add tags to my consultation events          | group them more easily                                                 |
-| `* *`     | user                                       | I can filter my consultations by tags  | I can find consultations with certain tags more easily |
-| `* *`    | new user                                   | click a link to access the product website | receive help regarding any problems I have with the app    |
-| `* *`    | user                                       | clear the list of events       | empty out everything quickly instead of deleting them one by one       |
+| `* *`    | user                                       | add tags to my consultation events          | group consultation events more easily                                                 |
+| `* *`    | user                                       | I can filter my consultation events by tags  | I can find consultations with certain tags more easily |
+| `* *`    | inexperienced user                         | bring up a link to access the product website | receive help regarding any problems I have with the app    |
+| `* *`    | impatient user                             | clear the list of consultation events       | empty out my list of consultation events quickly instead of having to delete them one by one     |
 | `* *`    | user                                       | list the upcoming consultation events in the day | take note of what I should make preparations for                  |
-| `* *`    | user                                       | view the next upcoming consultation event   | find out what is my next engagement                                    |
+| `* *`    | user                                       | view the next upcoming consultation event   | find out what my next consultation event is                                   |
+| `* *`    | new user                                   | have sample data in the app the first time I open it up | play around with the app easily |
 | `* *`    | user                                       | print my schedule with censored details | send it to my students to see my available timings while maintaining confidentiality |
-| `*`      | new user                                   | see usage instructions/examples| refer to the instructions to learn how to optimize my usage of the app |
+| `*`      | inexperienced user                         | see command usage instructions/examples| refer to the instructions to learn how to optimize my usage of the app |
 
 ### Use cases
 
@@ -654,22 +625,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. Document files should not exceed 15MB per file.
 
 
-*{More to be added}*
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Event**: A period of time to be blocked off
 * **Date**: Date of event
-* **TimeSlot**: Time period of an event
-* **Location**: Location of event
-* **Name**: Name of event
-* **Index**: Unique index number of each event
-* **Tag**: Additional information about an event
+* **Event**: A consultation event with a student that a university professor has arranged go for
+* **Index**: Unique index number of each consultation event
+* **Location**: Location of the consultation event
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Name**: Name of student having the consultation
+* **Remark**: Additional information about a consultation event
 * **Schedule**: A list of events
+* **Tag**: Additional one-word description of a consultation event
+* **TimeSlot**: Time period of a consultation event
 
-[comment]: <> (* **Note**: Detailed description of an event)
-[comment]: <> (* **EmptySlot**: A period of time that is free)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -687,9 +655,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample events. The window size may not be optimum.
+   1. Double-click the jar file. 
+    Expected:
+<br>
+<img src="images/startup.png" width="600px">
+<br>
+Shows the GUI with a set of sample events. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -697,8 +670,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+      
 
 ### Deleting an event
 
@@ -712,15 +684,65 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list 
+   size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
+      
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted/invalid `schedule.json` file in `data` directory
+    1. Test case: missing `schedule.json` file<br>
+       Expected:
+       <br>
+       <img src="images/startup.png" width="600px">
+       <br>
+New schedule with sample events.
+   
+2. Invalid data
+    1. Test case `schedule.json` file with data:<br>
+       ```missing```
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case `schedule.json` file with data with overlapping time slots:<br>
+       ```
+       {
+         "events" : [ {
+           "name" : "Jacob Ng",
+           "date" : "2021-11-12",
+           "startTime" : "1300",
+           "endTime" : "1400",
+           "location" : "The Deck",
+           "tagged" : [ "URGENT", "CS1231S" ],
+           "remark" : "Cool student"
+         }, {
+           "name" : "Ruth Poh",
+           "date" : "2021-11-12",
+           "startTime" : "1300",
+           "endTime" : "1400",
+           "location" : "Central Library",
+           "tagged" : [ "supplementary" ],
+           "remark" : "Coool student"
+         } ],
+         "blockedSlots" : [ ]
+       }
+       ```
 
-1. _{ more test cases …​ }_
+    1. Test case `schedule.json` file with data with invalid fields:<br>
+       ```
+       { 
+         "events" : [ { 
+         "name" : "Jacob Ng", 
+         "dat" : "2021-11-12", 
+         "startTime" : "1300", 
+         "endTime" : "1400", 
+         "location" : "The Deck", 
+         "tagged" : [ "URGENT", "CS1231S" ], 
+         "remark" : "Cool student" 
+         } ], 
+         "blockedSlots" : [ ] 
+       }
+       ``` 
+   Expected for test cases 1 to 3 above:
+   <br>
+   <img src="images/blank.png" width="600px">
+   <br>
+Empty schedule.
