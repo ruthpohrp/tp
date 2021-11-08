@@ -55,9 +55,9 @@ Given below are my contributions to the project.
         * Commands and their Features
         * FAQ 
     * Developer Guide:
-          * Added implementation details of the addition of the `remark` field.
-          * Added implementation details of the addition of the Blocked Feature regarding Storage.
-          * Added user stories and updated test cases for Appendix: Instructions for manual testing
+        * Added implementation details of the addition of the `remark` field.
+        * Added implementation details of the addition of the Blocked Feature regarding Storage.
+        * Added user stories and updated test cases for Appendix: Instructions for manual testing
     
 * **Team-Based Tasks**:
     * Maintained issue tracker and assigned people when necessary
