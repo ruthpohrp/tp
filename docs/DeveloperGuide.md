@@ -220,9 +220,9 @@ The `ListFreeSlotsCommand` class has two fields `today` of type `Date` and `now`
 ![](images/ListFreeSlotsCommand.png)
 
 The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`. This command does not update the model.
-Instead a list of FreeSlot is returned. The `execute()` method then makes wraps this list of FreeSlot in a `CommandResult` to be displayed to user.
+Instead, a list of FreeSlot is returned. The `execute()` method then makes wraps this list of FreeSlot in a `CommandResult` to be displayed to user.
 
-![](images/getFreeSlotsActivityDiagram.png)
+<img src="images/getFreeSlotsActivityDiagram.png" width="550"/>
 
 The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one list of Overlappables.
 
