@@ -306,6 +306,8 @@ Displays all upcoming consultation events for the current day in the Consultatio
 
 Format: `upcoming_events`
 
+<div style="page-break-after: always;"></div>
+
 ### 5.7 Clearing all Consultation Events : `clear`
 
 Clears all consultation events from DukePro(f).
@@ -315,8 +317,6 @@ careful when using this command!
 </div>
 
 Format: `clear`
-
-<div style="page-break-after: always;"></div>
 
 ### 5.8 Finding a Consultation Event : `find`
 Finds all consultation events whose names contain any of the specified keywords and displays them 
@@ -342,9 +342,12 @@ Example(s):
   Finds all consultation events that have students with the name `Jacob` (or any case-insensitive variant) 
   and displays them in the Consultation List.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.9 Filtering Consultation Events By Tags : `filter_tag`
 Finds all consultation events whose tags contain any of the specified tag names (case-insensitive) and displays them as 
 an indexed list in the Consultation List.
+
 Format: `filter_tag TAG_NAME [MORE_TAG_NAMES]...`
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING**: The tag names will not register unless 
@@ -357,8 +360,6 @@ cannot return a consultation event tagged `URGENT`
 Example(s):
 * `filter_tag URGENT`<br>
   Finds all consultation events that contain the tag `URGENT` and displays them in the Consultation List.
-
-<div style="page-break-after: always;"></div>
 
 ### 5.10 Listing all Free Time Slots : `list_free`
 Lists down all free time slots from now until 2359 of the day with the last event or blocked slot in the 
@@ -376,6 +377,8 @@ slots displayed.
 </div>
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 
 ***
