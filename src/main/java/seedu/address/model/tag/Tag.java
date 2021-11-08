@@ -73,7 +73,7 @@ public class Tag {
         l.setWrapText(true);
         return l;
     }
-    
+
     public String getTagName() {
         return tagName;
     }
