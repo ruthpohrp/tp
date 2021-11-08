@@ -733,7 +733,7 @@ New schedule with sample events.
 2. Invalid data
     1. Test case `schedule.json` file with data:<br>
        ```missing```
-
+<div style="page-break-after: always;"></div>
     1. Test case `schedule.json` file with data with overlapping time slots:<br>
        ```
        {
