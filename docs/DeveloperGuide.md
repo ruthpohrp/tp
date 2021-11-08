@@ -155,7 +155,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Schedule`, which `Event` references. This allows `Schedule` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
 
@@ -271,9 +271,7 @@ Next, it gets the first event in the filtered list using the overridden method `
 
 The following activity diagram summarizes what happens when a user executes the NextEventCommand:
 
-<p align="center">
 ![](images/NextEventActivityDiagram.png)
-</p>
 
 ### Filter by Tag Feature
 #### Description
