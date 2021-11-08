@@ -44,7 +44,6 @@ interact with it.
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * The documentation is adapted from [SE-EDU initiative’s](https://se-education.org/#https://se-education.org/) AddressBook-Level3 project.
@@ -458,7 +457,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list events.
 2. The System shows the list of events.
-3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit.
+3. User requests to edit a specific event in the list and provides the necessary 
+   information for the fields to edit.
 4. The System shows the list of events, with the newly edited event.
 
 **Extensions**
@@ -510,19 +510,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User blocks out a time slot: 2021-11-01, 1800-1900.
 2. User accidentally tries to key in a new event at the above time slot.
-3. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+3. The System rejects the command and tells the User that the specified time slot 
+   coincides with a blocked slot.
 
 **Extensions**
 
 * 1a. Time slot entered is already blocked.
 
-  * 1a1. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+  * 1a1. The System rejects the command and tells the User that the specified time slot 
+         coincides with a blocked slot.
   
   Use case ends.
 
 * 1b. Time slot entered coincides with an event.
 
-  * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
+  * 1b1. The System rejects the command and tells the User that the specified time slot 
+         coincides with an event.
   
   Use case ends.
 ```
@@ -547,7 +550,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. DukePro(f) has no upcoming consultation events.
 
-  * 1b1. An empty events list is displayed with a message indicating that there are 0 upcoming events.
+  * 1b1. An empty events list is displayed with a message indicating that there are 0
+         upcoming events.
   
     Use case ends.
 ```
@@ -572,7 +576,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. DukePro(f) has no events scheduled.
 
-  * 1b1. An empty events list is displayed with a message indicating that there are 0 events scheduled.
+  * 1b1. An empty events list is displayed with a message indicating that there are 0 events 
+         scheduled.
     
     Use case ends.
 ```
@@ -597,7 +602,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. DukePro(f) has no consultation events that have the tag(s) specified.
 
-  * 1b1. An empty events list is displayed with a with a message indicating 0 events are matched with the tags specified.
+  * 1b1. An empty events list is displayed with a with a message indicating 0 events 
+         are matched with the tags specified.
   
     Use case ends.
 ```

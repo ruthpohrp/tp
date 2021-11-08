@@ -59,7 +59,7 @@ This User Guide contains the following sections:
 
 ## **2. Meaning of Icons and Textboxes**
 ***
-<div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in form of small tips.
+<div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in the form of small tips.
 </div>
 <div markdown="block" class="alert alert-info"> :information_source: Tells you things to take note of 
 while using DukePro(f).
