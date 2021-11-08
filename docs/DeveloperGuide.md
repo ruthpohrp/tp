@@ -57,8 +57,6 @@ interact with it.
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-
-
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -68,7 +66,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="273" />
 
 The ***Architecture Diagram*** given above explains the high-level design of DukePro(f).
 
