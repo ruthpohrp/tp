@@ -354,6 +354,7 @@ Example(s):
 * `filter_tag URGENT`<br>
   Finds all consultation events that contain the tag `URGENT` and displays them in the Consultation List.
 
+<div style="page-break-after: always;"></div>
 
 ### 5.10 Listing all Free Time Slots : `list_free`
 Lists down all free time slots from now until 2359 of the day with the last event or blocked slot in the 
