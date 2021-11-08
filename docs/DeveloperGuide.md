@@ -680,6 +680,8 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Launch and shutdown
 
 1. Initial launch
