@@ -7,7 +7,7 @@ title: ruthpohrp's Project Portfolio Page
 
 DukePro(f) is a schedule-planning desktop application that assists university professors in managing their 
 consultations. 
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about XX Loc.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 42k Loc.
 
 Given below are my contributions to the project.
 
