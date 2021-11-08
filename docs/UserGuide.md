@@ -444,8 +444,8 @@ Format: `exit`
  [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases)!
 
 **Q**: How do I transfer my DukePro(f) data into another Computer?<br>
-**A**: Install the DukePro(f) into the other computer (if you're forgotten how, [click here]
-(#3-quick-start-get-started-using-dukeprof)). Then, in your previous computer, go to 
+**A**: Install the DukePro(f) into the other computer (if you're forgotten how,
+[click here](#3-quick-start-get-started-using-dukeprof)). Then, in your previous computer, go to 
 the home folder of DukePro(f), go into the`data` folder, and copy the `schedule.json` file and transfer it 
 into the respective (empty) `data` folder in your current computer.
 
