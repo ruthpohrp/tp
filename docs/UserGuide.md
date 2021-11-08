@@ -416,8 +416,6 @@ Opens a pop-up window with a Command Summary of all of DukePro(f)'s possible com
 Format: `command_summary`
 <br>
 
-<div style="page-break-after: always;"></div>
-
 ***
 ### 5.16: Editing the data file
 DukePro(f) data is all saved as a JSON file in `[JAR file location]/data/schedule.json`. Advanced users are 
