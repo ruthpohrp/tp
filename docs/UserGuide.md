@@ -99,7 +99,7 @@ avoided.
 ### 3.2 How To Use DukePro(f): A Quick Tutorial
 
 These are the different parts of DukePro(f)'s GUI:
-<img src="images/UG_Tutorial_1.png" width="600px">
+<img src="images/startup.png" width="600px">
 <br> <br>
 
 Here's how to add a consultation event to DukePro(f):
@@ -118,7 +118,7 @@ Step 2: Check the Result Display to see if your command is successful.<br>
 <br>
 Step 3: Check the Consultation List to see if your consultation event has been added.<br>
 
-Some other commands you can try:
+Here are some other commands you can try:
 
 * **`list`**<br>
   Lists all of your consultation events in the Consultation List box.
@@ -207,8 +207,17 @@ Action | Format | Example(s)
 ***
 ### Managing Your Consultations
 Listed below are the commands for managing your consultations.
-Consultation events show the name, date, time (start and end), location, and additional details of the 
-consultation. Consultation events cannot overlap.
+Consultation events listed in the Consultation List are sorted in chronological order, earliest 
+consultation at the top, and latest consultation at the bottom. All consultations, existing and 
+to-be-added, events cannot overlap.
+
+Listed is a description of the various fields of a Consultation Event:
+* NAME: Name of student involved in the consultation
+* DATE: Date the consultation occurs
+* TIMESLOT: Start and end time consultation occurs
+* LOCATION: Location of consultation
+* TAG: Any group that the consultation belongs to (commonly used in conjunction with the `filter_tag` command)
+* REMARK: Any additional details of the consultation
 
 ### 5.1 Adding a Consultation Event : `add`
 
@@ -221,11 +230,11 @@ A consultation event can have any number of tags (including 0).
 </div>
 
 Example(s):
-* `add n/Lulu Yousef d/2021-01-01 t/0800-0900 l/NUS tag/Important tag/supplementary`<br>
-  Adds a consultation event for `Lulu Yousef`, at date `1 Jan 2021`, time `8am to 9am`,
-  at location `NUS`, tagged with `Important` and `supplementary`.
+* `add n/Lulu Yousef d/2021-01-12 t/0800-0900 l/NUS tag/CS2103T tag/supplementary`<br>
+  Adds a consultation event for `Lulu Yousef`, at date `12 Jan 2021` and time `8am to 9am`,
+  at location `NUS`, tagged with `CS2103T` and `supplementary`.
 * `add n/Ruth Poh d/2021-03-02 t/1300-1400 l/The Deck r/May have to switch to zoom`<br>
-  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2021`, time `1pm to 2pm`,
+  Adds a consultation event for `Ruth Poh`, at date `2 Mar 2021` and time `1pm to 2pm`,
   at location `The Deck`, with the remark `May have to switch to zoom`.
 
 ### 5.2 Deleting a Consultation Event : `delete`
@@ -234,51 +243,63 @@ Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 
 Format: `delete INDEX`
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command deletes the index of the list on the right hand side (i.e. if its filtered, 
-`delete 1` will delete the first index in the filtered list and not the entire list. 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command deletes according to the 
+index of the Consultation List on the right hand side of the application (i.e. If the list has been filtered 
+with the `find` command, `delete 1` will delete the first consultation event in the filtered list, and not 
+the complete list of consultation events. 
 </div>
 
 Example(s):
-* `delete 1`
+* `delete 2`
+  Deletes the second consultation event indexed in the Consultation List. 
 
 ### 5.3 Editing a Consultation Event : `edit`
 
-Edits the details of a consultation event from DukePro(f) at the specified `INDEX`.
+Edits the details of a consultation event in DukePro(f) at the specified `INDEX`.
 
 Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/REMARK]`
 
-<div markdown="span" class="alert alert-danger">:warning: **WARNING:** 
-
-* Editing the tags will automatically erase all previous tags!
-* This command edits the index of the list on the right hand side (i.e. if its filtered, `edit 1 n/Ruth` will edit the first index in the filtered list and not the entire list. 
+<div markdown="span" class="alert alert-danger">:warning: **WARNING:**
+<br>* Editing the tags will automatically erase all previous tags!
+<br>* This command edits according to the index of the Consultation List on the right hand side of the 
+application (i.e. If the list has been filtered with the `find` command, `edit 1 n/Ruth` will edit the first 
+consultation event in the filtered list, and not the complete list of consultation events. 
 </div>
 
 Example(s):
-* `edit 2 n/Ruth t/0730-0830`
-* `edit 3 r/May have to switch to zoom`
+* `edit 2 n/Ruth t/0730-0830`<br>
+  Edits the name of the second consultation event indexed in the Consultation List to `Ruth` and the 
+  TimeSlot to 
+  `0730-0830`.
+* `edit 3 r/May have to switch to Zoom.`<br>
+  Edits the remark of the third consultation event indexed in the Consultation list to `May have to switch to Zoom.`
 
 ### 5.4 Listing all Consultation Events : `list`
-Lists down all consultation events scheduled in DukePro(f).
+Lists all consultation events in the Consultation List.
 
 Format: `list`
 
 ### 5.5 Displaying the next Consultation Event : `next_event`
-Displays the next consultation event scheduled for the day in DukePro(f).
+Displays the next consultation event scheduled for the day in the Consultation List.
+<div markdown="block" class="alert alert-info"> :information_source: 
+**Tip:** If you are currently in the middle of an existing consultation event, DukePro(f) will list the next 
+event after the current consultation event.
+</div>
 
 Format: `next_event`
 
 ### 5.6 Listing all Upcoming Events : `upcoming_events`
-Lists down all the upcoming consultation events for the current day.
+Displays all upcoming consultation events for the current day in the Consultation List.
 
 <div markdown="block" class="alert alert-info"> :information_source: 
-This will not include the current ongoing consultation event.
+**Tip:** This will not include the current ongoing consultation event.
 </div>
 
 Format: `upcoming_events`
 
 ### 5.7 Clearing all Consultation Events : `clear`
 
-Clears all consultation events stored in DukePro(f).
+Clears all consultation events from DukePro(f).
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command cannot be reversed. Be 
 careful when using this command!
@@ -287,7 +308,8 @@ careful when using this command!
 Format: `clear`
 
 ### 5.8 Finding a Consultation Event : `find`
-Finds all consultation events whose names contain any of the specified keywords and displays them as an indexed list.
+Finds all consultation events whose names contain any of the specified keywords and displays them 
+as an indexed list in the Consultation List.
 * Keywords are case-insensitive.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
@@ -305,10 +327,12 @@ not `Jacob Rong`
 
 Example(s):
 * `find Jacob`
+  Finds all consultation events that have students with the name `Jacob` (or any case-insensitive variant) 
+  and displays them in the Consultation List.
 
 ### 5.9 Filtering Consultation Events By Tags : `filter_tag`
 Finds all consultation events whose tags contain any of the specified tag names (case-insensitive) and displays them as 
-an indexed list.
+an indexed list in the Consultation List.
 Format: `filter_tag TAG_NAME [MORE_TAG_NAMES]...`
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING**: The tag names will not register unless 
@@ -320,16 +344,18 @@ cannot return a consultation event tagged `URGENT`
 
 Example(s):
 * `filter_tag URGENT`<br>
-  Filters any events that contain the tag `URGENT`
+  Finds all consultation events that contain the tag `URGENT` and displays them in the Consultation List.
 
 
 ### 5.10 Listing all Free Time Slots : `list_free`
-Lists down all free time slots in DukePro(f) from now until 2359 of the day with the last event or blocked slot.
+Lists down all free time slots from now until 2359 of the day with the last event or blocked slot in the 
+Result Display.
 
 Format: `list_free`
 
 <div markdown="block" class="alert alert-info"> :information_source: 
-An empty schedule i.e. no events and blocked slots in schedule, will have no free slots displayed.
+**Tip:** An empty schedule i.e. with 0 events and 0 blocked slots in the schedule, will not have any free 
+slots displayed.
 </div>
 
 <br>
@@ -351,15 +377,16 @@ Example(s):
 * `block d/2021-02-02 t/1000-1100`
 
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
-Deletes a blocked time slot in DukePro(f) at the specified `INDEX`.
+Deletes a blocked time slot from the list of blocked time slots at the specified `INDEX`.
 
 Format: `delete_blocked INDEX`
 
 Example(s):
-* `delete_blocked 1`
+* `delete_blocked 1`<br>
+  Deletes the first blocked time slot from the list of blocked time slots.
 
 ### 5.13 Listing all Blocked Time Slots : `list_blocked`
-Lists down all consultation events scheduled in DukePro(f).
+Lists all blocked time slots in the Result Display.
 
 Format: `list_blocked`
 
@@ -389,8 +416,8 @@ Format: `command_summary`
 DukePro(f) data is all saved as a JSON file in `[JAR file location]/data/schedule.json`. Advanced users are 
 welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-danger">:bulb: **Warning**: If your changes to the data file makes its format invalid,
- DukePro(f) will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-danger">:bulb: **Warning**: If any changes to the data file 
+make its format invalid, DukePro(f) will discard all data and start with an empty data file at the next run.
 </div>
 
 
@@ -408,9 +435,11 @@ Format: `exit`
 **A**: You can download the latest `dukeprof.jar` from
  [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases)!
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer, and overwrite the empty data file it creates with the file 
-that contains the data of your previous DukePro(f) home folder.
+**Q**: How do I transfer my DukePro(f) data into another Computer?<br>
+**A**: Install the DukePro(f) into the other computer (if you're forgotten how, [click here]
+(#3-quick-start-get-started-using-dukeprof)). Then, in your previous computer, go to 
+the home folder of DukePro(f), go into the`data` folder, and copy the `schedule.json` file and transfer it 
+into the respective (empty) `data` folder in your current computer.
 
 **Q**: How do I save my edits?<br>
 **A**: All data is automatically saved into the hard disk after any command that changes the data. There is no

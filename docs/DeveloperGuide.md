@@ -317,6 +317,12 @@ constructor of `CommandResult`.
 When the command `command_summary` is input by the user, `LogicManager` parses the input and returns a 
 `CommandSummaryCommand`. The `execute` method is called with the `showCommands` parameter being set to `true`. 
 This causes `MainWindow` to execute the `handleCommandSummary` method, which opens the Command Summary Page.
+
+The sequence diagram below illustrates the interactions within the Logic class mentioned above for the 
+execute("command_summary") API call:
+
+![](images/CommandSummaryCommandSequenceDiagram.png)
+
 ### Block Feature
 #### Description
 
