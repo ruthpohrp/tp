@@ -277,7 +277,7 @@ Next, it gets the first event in the filtered list using the overridden method `
 The following activity diagram summarizes what happens when a user executes the NextEventCommand:
 
 <p align ="center">
-    <src= "images/NextEventActivityDiagram.png"
+    <src= "images/NextEventActivityDiagram.png">
 </p>
 
 ### Filter by Tag Feature
