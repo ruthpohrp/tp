@@ -704,7 +704,9 @@ Shows the GUI with a set of sample events. The window size may not be optimum.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list 
    size)<br>
       Expected: Similar to previous.
-      
+
+<div style="page-break-after: always;"></div>
+
 ### Saving data
 
 1. Dealing with missing/corrupted/invalid `schedule.json` file in `data` directory
