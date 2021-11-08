@@ -425,10 +425,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise.
 
+<pre>
+<b>UC01: Delete an event**</b>
 
-### **UC01: Delete an event**
-
-#### **MSS**
+<b>MSS</b>
 
 1.  User requests to list events.
 2.  The System shows the list of events.
@@ -437,7 +437,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
     Use case ends.
 
-#### **Extensions**
+<b>Extensions**</b>
 
 * 2a. The list is empty.
 
@@ -448,7 +448,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
     * 3a1. The System shows an error message.
 
       Use case resumes at step 2.  
-
+</pre>
 
 ```
 **UC02: Edit an event**
