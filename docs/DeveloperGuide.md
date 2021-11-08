@@ -217,12 +217,16 @@ This feature introduces a new command called `ListFreeSlotsCommand`.
 
 The `ListFreeSlotsCommand` class has two fields `today` of type `Date` and `now` of type `LocalTime`. These fields are necessary to allow testing, where a specific date and time can be passed in to the `ListFreeSlotsCommand`.
 
-![](images/ListFreeSlotsCommand.png)
+<p align ="center">
+    <img src="images/ListFreeSlotsCommand.png"/>
+</p>
 
 The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`. This command does not update the model.
 Instead, a list of FreeSlot is returned. The `execute()` method then makes wraps this list of FreeSlot in a `CommandResult` to be displayed to user.
 
-<img src="images/getFreeSlotsActivityDiagram.png" width="550"/>
+<p align ="center">
+    <img src="images/getFreeSlotsActivityDiagram.png" width="550"/>
+</p>
 
 The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one list of Overlappables.
 
@@ -258,7 +262,10 @@ The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in t
 <div style="page-break-after: always;"></div>
 
 The following sequence diagram illustrates the interactions discussed above for the execute("upcoming_events") API call:
-![](images/UpcomingEventsSequenceDiagram.png)
+
+<p align ="center">
+    <img src="images/UpcomingEventsSequenceDiagram.png"/>
+</p>
 
 ### Next Event Feature
 #### Description
@@ -292,7 +299,10 @@ The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKey
 The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
 
 The following sequence diagram illustrates the interactions discussed above for the execute("filter_tag URGENT") API call:
-![](images/FilterByTagSequenceDiagram.png)
+<p align ="center">
+    <img src= "images/FilterByTagSequenceDiagram.png"/>
+</p>
+
 
 ### Remark feature
 #### Description
@@ -338,7 +348,9 @@ The Block feature allows the user to block off a specified period of time so tha
 ##### Model
 The following class diagram illustrates the implementation of the Block feature.
 
-<img src="images/BlockedSlotClassDiagram.png" width="450" />
+<p align="center">
+    <img src="images/BlockedSlotClassDiagram.png" width="450" />
+</p>
 
 As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
 Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.
