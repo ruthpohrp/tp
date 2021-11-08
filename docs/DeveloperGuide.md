@@ -132,6 +132,7 @@ The Sequence Diagram below illustrates the interactions discussed above for the 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
 Here are the other classes in `Logic` (omitted from the earlier class diagram) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -248,7 +249,7 @@ containing different types of events or commitments.
 
 ### Today's Upcoming Events Feature
 #### Description
-This feature lists all the upcoming events scheduled for the current day excluding
+The Upcoming Events feature lists all the upcoming events scheduled for the current day excluding
 the ongoing consultation event.
 
 #### Implementation
@@ -268,7 +269,7 @@ The following sequence diagram illustrates the interactions discussed above for 
 
 ### Next Event Feature
 #### Description
-This feature displays the next event based on the current time in the schedule.
+The Next Event feature displays the next event based on the current time in the schedule.
 
 #### Implementation
 The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
@@ -288,7 +289,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ### Filter by Tag Feature
 #### Description
-This feature allows users to find all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
+The Filter by Tag feature allows users to find all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
 
 #### Implementation
 The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKeywordsPredicate.
@@ -306,7 +307,7 @@ The following sequence diagram illustrates the interactions discussed above for 
 ### Remark feature
 #### Description
 
-The remark feature is an optional description added to `Event`. It adds a remark to the
+The Remark feature is an optional description added to `Event`. It adds a remark to the
 consultation event, and is stored internally as a `Remark` in `seedu.address.model.event.Event`.
 
 #### Implementation
