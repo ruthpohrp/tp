@@ -368,7 +368,7 @@ Format: `list_free`
 
 Here's an example of what your screen should look like after entering the `list_free` command:
 
-<img src="images/list_free.png.png" width="600px">
+<img src="images/list_free.png" width="600px">
 
 <div markdown="block" class="alert alert-info"> :information_source: 
 **Note:** An empty schedule i.e. with 0 events and 0 blocked slots in the schedule, will not have any free 
@@ -414,7 +414,7 @@ Format: `list_blocked`
 
 Here's an example of what your screen should look like after entering the `list_blocked` command:
 
-<img src="images/list_blocked.png.png.png" width="600px">
+<img src="images/list_blocked.png" width="600px">
 
 <br>
 
