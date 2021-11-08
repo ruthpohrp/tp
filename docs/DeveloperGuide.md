@@ -729,11 +729,11 @@ Shows the GUI with a set of sample events. The window size may not be optimum.
        <img src="images/startup.png" width="600px">
        <br>
 New schedule with sample events.
-   
+   <div style="page-break-after: always;"></div>
+    
 2. Invalid data
     1. Test case `schedule.json` file with data:<br>
        ```missing```
-<div style="page-break-after: always;"></div>
     1. Test case `schedule.json` file with data with overlapping time slots:<br>
        ```
        {
