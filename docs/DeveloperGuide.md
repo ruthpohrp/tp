@@ -451,7 +451,8 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 </pre>
 
 
-<pre>UC02: Edit an event
+<pre>
+<b>UC02: Edit an event</b>
 
 <b>MSS</b>
 
@@ -538,7 +539,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 1. User requests to view today's upcoming consultation events.
 2. DukePro(f) displays all the upcoming events.
 
-    Use case ends.
+   Use case ends.
     
 <b>Extensions</b>
 
@@ -564,7 +565,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 1. User requests to view the next consultation event.
 2. DukePro(f) displays the next event.
     
-    Use case ends.
+   Use case ends.
     
 <b>Extensions</b>
 
@@ -590,7 +591,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 1. User requests to filter the consultation events by tag(s).
 2. DukePro(f) displays the events that have the specified tag(s).
     
-    Use case ends.
+   Use case ends.
     
 <b>Extensions</b>
 
