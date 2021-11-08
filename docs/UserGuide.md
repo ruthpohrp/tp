@@ -105,6 +105,8 @@ These are the different parts of DukePro(f)'s GUI:
 <img src="images/UG_Tutorial_1.png" width="600px">
 <br> <br>
 
+<div style="page-break-after: always;"></div>
+
 Here's how to add a consultation event to DukePro(f):
 <br>
 <img src="images/UG_Tutorial_2.png" width="600px">
@@ -240,6 +242,8 @@ Example(s):
   Adds a consultation event for `Ruth Poh`, at date `2 Mar 2021` and time `1pm to 2pm`,
   at location `The Deck`, with the remark `May have to switch to zoom`.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2 Deleting a Consultation Event : `delete`
 
 Deletes a consultation event from DukePro(f) at the specified `INDEX`.
@@ -277,6 +281,8 @@ Example(s):
 * `edit 3 r/May have to switch to Zoom.`<br>
   Edits the remark of the third consultation event indexed in the Consultation list to `May have to switch to Zoom.`
 
+<div style="page-break-after: always;"></div>
+
 ### 5.4 Listing all Consultation Events : `list`
 Lists all consultation events in the Consultation List.
 
@@ -309,6 +315,8 @@ careful when using this command!
 </div>
 
 Format: `clear`
+
+<div style="page-break-after: always;"></div>
 
 ### 5.8 Finding a Consultation Event : `find`
 Finds all consultation events whose names contain any of the specified keywords and displays them 
