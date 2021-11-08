@@ -6,7 +6,7 @@ title: Developer Guide
 <p align="center">
   <img width="200" src="images/dukelogo.png">
 </p>
-## Introduction
+## **Introduction**
 ***
 DukePro(f) is a schedule-planning desktop application that assists **university professors** in managing
 their **consultations**, through the usage of an intuitive **Command-Line Interface (CLI)**<sup>1</sup>
@@ -25,8 +25,7 @@ With DukePro(f), you will be able to:
 * List all of your consultations, or just your next consultation
 * List your free time slots for consultation booking
 * Block certain time slots to ensure your consultations don't clash with other commitments
-* List all of the time slots that you've blocked so far
-* And many more!
+* And many other small quality of life features!
 
 <hr />
 
@@ -37,13 +36,13 @@ interact with it.
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
+## **Table of Contents**
 ***
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * The documentation is adapted from [SE-EDU initiative’s](https://se-education.org/#https://se-education.org/) AddressBook-Level3 project.
@@ -57,7 +56,6 @@ interact with it.
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -67,7 +65,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="260" />
 
 The ***Architecture Diagram*** given above explains the high-level design of DukePro(f).
 
@@ -133,6 +131,7 @@ The Sequence Diagram below illustrates the interactions discussed above for the 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
 Here are the other classes in `Logic` (omitted from the earlier class diagram) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -141,11 +140,13 @@ How the parsing works:
 1. When called upon to parse a user command, the `ScheduleParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ScheduleParser` returns back as a `Command` object.
 2. All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
-
+<p align="center">
 <img src="images/ModelClassDiagram.png" width="450" />
-
+</p>
 
 The `Model` component,
 
@@ -153,6 +154,8 @@ The `Model` component,
 * stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Schedule`, which `Event` references. This allows `Schedule` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
 
@@ -202,6 +205,57 @@ The `SortedEventList#asUnmodifiableObservableList()` method returns an Observabl
 This ObservableList will have its Events sorted chronologically.
 This ObservableList is unmodifiable as part of defensive programming to prevent other classes from adding or deleting events from the ObservableList.
 
+### Block Feature
+#### Description
+
+The Block feature allows the user to block off a specified period of time so that it is not possible for a new `Event` to be created during that time slot.
+
+<div style="page-break-after: always;"></div>
+
+#### Implementation
+
+##### Model
+The following class diagram illustrates the implementation of the Block feature.
+
+<p align="center">
+    <img src="images/BlockedSlotClassDiagram.png" width="450" />
+</p>
+
+As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
+Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.
+
+##### Logic
+The Block feature comes with the following new commands, they are quite self-explanatory:
+1. `AddBlockedSlotCommand`
+2. `ListBlockedSlotsCommand`
+3. `DeleteBlockedSlotCommand`
+
+Existing commands `AddCommand` and `EditCommand` also had to be edited(see below) to check for overlaps before adding/editing the `Event`.
+
+The following steps describe the execution of an `AddCommand`(`EditCommand`follows similarly):
+1. The `execute()` method of the `AddCommand` checks if the `Event` to be added overlaps with any items in the `Schedule`'s `SortedEventList` or `SortedBlockedSlotList`.
+    1. If there is an overlap, a `SlotBlockedException`(which extends `CommandException`) is thrown, with an error message telling the user if the command was blocked by another event or a blocked slot.
+    2. If there is no overlap, the new `Event` is added and the command succeeds.
+
+##### Storage
+These changes also needed a new `JsonAdaptedBlockedSlot` in order to save blocked slots
+created by the user into save file.
+`JsonSerializableSchedule` has a new field `blockedSlots`, which is a list of `JsonAdaptedBlockedSlot`s.
+When `JsonScheduleStorage` reads the json file where the data is stored, it constructs a
+`JsonSerializableSchedule` based on the `events` and `blockedSlots` fields found in the json file, and
+then converts it to a `Schedule` object for DukePro(f) to access.
+A new field `blockedSlots`, a `SortedBlockedSlotList`, is added to `Schedule` such that when it makes a copy of
+itself and then performs `Schedule#resetData()`, the blockedSlots data is not erased.
+
+#### Design Considerations:
+
+|   |Pros|Cons|
+|---|---|---|
+|Alternative 1: Have the `TimeSlot` class maintain a list of blocked time slots and prevent any new overlapping `TimeSlots` from being created.|Easy to implement. User is able to block out a specific time slot every day(e.g., 1800-1900 for dinner every day).|Does not work well with `FreeSlots` feature. User is unable to choose which days to have the blocked slot as it is applied to every day.|
+|Alternative 2 (currently chosen): Implementation described above.|Code is easier to extend with more features. User is able to select the time slot and date to block.|More difficult to implement. More testing required. Blocked time slots will have to be added one by one.|
+
+We originally intended for the user to block out a certain time slot for every day, making Alternative 1 a possibility, but we eventually decided that Alternative 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
+
 ### List Free Slots Feature
 
 #### Description
@@ -214,20 +268,26 @@ This feature introduces a new command called `ListFreeSlotsCommand`.
 The `ListFreeSlotsCommand` class has two fields `today` of type `Date` and `now` of type `LocalTime`. These fields are necessary to allow testing, where a specific date and time can be passed in to the `ListFreeSlotsCommand`.
 The sequence diagram below shows the interactions between various components when a `ListFreeSlotsCommand` is executed.
 
-![](images/ListFreeSlotsCommand.png)
+<p align ="center">
+    <img src="images/ListFreeSlotsCommand.png"/>
+</p>
 
 The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`. This command does not update the model.
 Instead a list of FreeSlot is returned. The `execute()` method then wraps this list of FreeSlot in a `CommandResult` to be displayed to user.
 
 The activity diagram below shows the process that occurs in `schedule#getFreeSlots()` to generate the list of free slots.
 
-![](images/getFreeSlotsActivityDiagram.png)
+<p align ="center">
+    <img src="images/getFreeSlotsActivityDiagram.png" width="550"/>
+</p>
 
 The `schedule#getFreeSlots()` method first combines the `SortedEventList` and the `SortedBlockedSlotList` into one list of Overlappables.
 
 The `schedule#getFreeSlots()` method then iterates through this list of Overlappables to find free slots between events/blocked slots.
 
 Finally, the `schedule#getFreeSlots()` method removes past freeSlot and returns a list of future freeSlots.
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations:
 
@@ -242,7 +302,7 @@ containing different types of events or commitments.
 
 ### Today's Upcoming Events Feature
 #### Description
-This feature lists all the upcoming events scheduled for the current day excluding
+The Upcoming Events feature lists all the upcoming events scheduled for the current day excluding
 the ongoing consultation event.
 
 #### Implementation
@@ -252,13 +312,17 @@ The `UpcomingEventsCommand` class has one field timePredicate of type EventConta
 
 The `UpcomingEventsCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the upcoming events, filtered by the `timePredicate`.
 
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram illustrates the interactions discussed above for the execute("upcoming_events") API call:
-![](images/UpcomingEventsSequenceDiagram.png)
+
+<p align ="center">
+    <img src="images/UpcomingEventsSequenceDiagram.png"/>
+</p>
 
 ### Next Event Feature
 #### Description
-This feature displays the next event based on the current time in the schedule.
+The Next Event feature displays the next event based on the current time in the schedule.
 
 #### Implementation
 The `NextEventCommand` class has one field timePredicate of type EventContainsCurrentTimePredicate.
@@ -268,13 +332,17 @@ The `NextEventCommand` class has one field timePredicate of type EventContainsCu
 The `NextEventCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered upcoming event that is filtered by the `timePredicate`.
 Next, it gets the first event in the filtered list using the overridden method `nextEventInTheList()` found in the `ModelManager` class.
 
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes the NextEventCommand:
-![](images/NextEventActivityDiagram.png)
+
+<p align ="center">
+    <img src= "images/NextEventActivityDiagram.png">
+</p>
 
 ### Filter by Tag Feature
 #### Description
-This feature allows users to find all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
+The Filter by Tag feature allows users to find all the consultation events whose tags contain any of the specified keywords (case-insensitive) and displays them as an indexed list.
 
 #### Implementation
 The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKeywordsPredicate.
@@ -284,12 +352,15 @@ The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKey
 The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
 
 The following sequence diagram illustrates the interactions discussed above for the execute("filter_tag URGENT") API call:
-![](images/FilterByTagSequenceDiagram.png)
+<p align ="center">
+    <img src= "images/FilterByTagSequenceDiagram.png"/>
+</p>
+
 
 ### Remark feature
 #### Description
 
-The remark feature is an optional description added to `Event`. It adds a remark to the
+The Remark feature is an optional description added to `Event`. It adds a remark to the
 consultation event, and is stored internally as a `Remark` in `seedu.address.model.event.Event`.
 
 #### Implementation
@@ -326,54 +397,8 @@ execute("command_summary") API call:
 
 ![](images/CommandSummaryCommandSequenceDiagram.png)
 
-### Block Feature
-#### Description
-
-The Block feature allows the user to block off a specified period of time so that it is not possible for a new `Event` to be created during that time slot.
-
-#### Implementation
-
-##### Model
-The following class diagram illustrates the implementation of the Block feature.
-
-<img src="images/BlockedSlotClassDiagram.png" width="450" />
-
-As shown in the class diagram, both `Event` and `BlockedSlot` implement the `Overlappable` interface. They also have their respective implementations of the `SortedOverlappableList` interface, `SortedEventList` and `SortedBlockedSlotList` respectively.
-Every `Overlappable` is able to check if it overlaps with another `Overlappable`. This allows us to maintain a `SortedEventList` and a `SortedBlockedSlotList` in a `Schedule` and check against both lists when adding/editing an `Overlappable`.
-
-##### Logic
-The Block feature comes with the following new commands, they are quite self-explanatory:
-1. `AddBlockedSlotCommand`
-2. `ListBlockedSlotsCommand`
-3. `DeleteBlockedSlotCommand`
-
-Existing commands `AddCommand` and `EditCommand` also had to be edited(see below) to check for overlaps before adding/editing the `Event`.
-
-The following steps describe the execution of an `AddCommand`(`EditCommand`follows similarly):
-1. The `execute()` method of the `AddCommand` checks if the `Event` to be added overlaps with any items in the `Schedule`'s `SortedEventList` or `SortedBlockedSlotList`.
-   1. If there is an overlap, a `SlotBlockedException`(which extends `CommandException`) is thrown, with an error message telling the user if the command was blocked by another event or a blocked slot.
-   2. If there is no overlap, the new `Event` is added and the command succeeds.
-
-##### Storage
-These changes also needed a new `JsonAdaptedBlockedSlot` in order to save blocked slots 
-created by the user into save file. 
-`JsonSerializableSchedule` has a new field `blockedSlots`, which is a list of JsonAdaptedBlockedSlots. 
-When `JsonScheduleStorage` reads the json file where the data is stored, it constructs a 
-`JsonSerializableSchedule` based on the `events` and `blockedSlots` fields found in the json file, and 
-then converts it to a `Schedule` object for DukePro(f) to access.
-A new field `blockedSlots`, a `SortedBlockedSlotList`, is added to `Schedule` such that when it makes a copy of 
-itself and then performs `Schedule#resetData()`, the blockedSlots data is not erased.
-
-#### Design Considerations:
-
-|   |Pros|Cons|
-|---|---|---|
-|Alternative 1: Have the `TimeSlot` class maintain a list of blocked time slots and prevent any new overlapping `TimeSlots` from being created.|Easy to implement. User is able to block out a specific time slot every day(e.g., 1800-1900 for dinner every day)|Does not work well with `FreeSlots` feature. User is unable to choose which days to have the blocked slot as it is applied to every day.|
-|Alternative 2 (currently chosen): Implementation described above.|Code is easier to extend with more features. User is able to select the time slot and date to block.|More difficult to implement. More testing required. Blocked time slots will have to be added one by one.|
-
-We originally intended for the user to block out a certain time slot for every day, making Alternative 1 a possibility, but we eventually decided that Alternative 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -393,13 +418,14 @@ We originally intended for the user to block out a certain time slot for every d
 
 * is a professor in a university
 * has a need to manage a significant number of commitments (i.e. lectures, tutorials, consultations)
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: manage daily commitments faster than a typical mouse/GUI driven app
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -432,12 +458,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise)
+For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise.
 
-```
-**UC01: Delete an event**
+<pre>
+<b>UC01: Delete an event</b>
 
-**MSS**
+<b>MSS</b>
 
 1.  User requests to list events.
 2.  The System shows the list of events.
@@ -446,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+<b>Extensions</b>
 
 * 2a. The list is empty.
 
@@ -457,19 +483,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. The System shows an error message.
 
       Use case resumes at step 2.  
-```
+</pre>
 
-```
-**UC02: Edit an event**
 
-**MSS**
+<pre>
+<b>UC02: Edit an event</b>
+
+<b>MSS</b>
 
 1. User requests to list events.
 2. The System shows the list of events.
-3. User requests to edit a specific event in the list and provides the necessary information for the fields to edit.
+3. User requests to edit a specific event in the list and provides the 
+   necessary information for the fields to edit.
 4. The System shows the list of events, with the newly edited event.
 
-**Extensions**
+<b>Extensions</b>
 
 * 2a. The list is empty.
 
@@ -492,60 +520,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c1. The System shows an error message.
 
       Use case resumes at step 2.
-```
+</pre>
 
-```
-**UC03: Search for an event**
+<pre>
+<b>UC03: Search for an event</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User requests to search events.
 2. The System shows a list of events which have the search term in their name.
 
-**Extensions**
+<b>Extensions</b>
 
 * 2a. No matches to the search term.
 
   *2a1. The System shows an empty list.
 
   Use case ends.
-```
+</pre>
 
-```
-**UC04: Block slots**
+<pre>
+<b>UC04: Block slots</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User blocks out a time slot: 2021-11-01, 1800-1900.
 2. User accidentally tries to key in a new event at the above time slot.
-3. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+3. The System rejects the command and tells the User that the specified 
+   time slot coincides with a blocked slot.
 
-**Extensions**
+<b>Extensions</b>
 
 * 1a. Time slot entered is already blocked.
 
-  * 1a1. The System rejects the command and tells the User that the specified time slot coincides with a blocked slot.
+  * 1a1. The System rejects the command and tells the User that the specified
+         time slot coincides with a blocked slot.
   
   Use case ends.
 
 * 1b. Time slot entered coincides with an event.
 
-  * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
+  * 1b1. The System rejects the command and tells the User that the specified 
+         time slot coincides with an event.
   
-  Use case ends
-```
+  Use case ends.
+</pre>
 
-```
-**UC05: List all upcoming events for the day**
+<pre>
+<b>UC05: List all upcoming events for the day</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User requests to view today's upcoming consultation events.
 2. DukePro(f) displays all the upcoming events.
 
-    Use case ends.
+   Use case ends.
     
-**Extensions**
+<b>Extensions</b>
 
 * 1a. User inputs the wrong format for the command.
 
@@ -555,22 +586,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. DukePro(f) has no upcoming consultation events.
 
-  * 1b1. An empty events list is displayed with a message indicating that there are 0 upcoming events.
+  * 1b1. An empty events list is displayed with a message indicating that 
+         there are 0 upcoming events.
   
-    Use case ends
-```
+    Use case ends.
+</pre>
 
-```
-**UC06: List the next consultation event for the day**
+<pre>
+<b>UC06: List the next consultation event for the day</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User requests to view the next consultation event.
 2. DukePro(f) displays the next event.
     
-    Use case ends.
+   Use case ends.
     
-**Extensions**
+<b>Extensions</b>
 
 * 1a. User inputs the wrong format for the command.
 
@@ -580,22 +612,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. DukePro(f) has no events scheduled.
 
-  * 1b1. An empty events list is displayed with a message indicating that there are 0 events scheduled.
+  * 1b1. An empty events list is displayed with a message indicating that 
+         there are 0 events scheduled.
     
-    Use case ends
-```
+    Use case ends.
+</pre>
 
-```
-**UC07: Filter consultation events by tags**
+<pre>
+<b>UC07: Filter consultation events by tags</b>
 
-**MSS**
+ <b>MSS</b>
 
 1. User requests to filter the consultation events by tag(s).
 2. DukePro(f) displays the events that have the specified tag(s).
     
-    Use case ends.
+   Use case ends.
     
-**Extensions**
+<b>Extensions</b>
 
 * 1a. User inputs the wrong format for the command.
 
@@ -603,24 +636,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-* 1b. DukePro(f) has no consultation events that have the tag(s) specified
+* 1b. DukePro(f) has no consultation events that have the tag(s) specified.
 
-  * 1b1. An empty events list is displayed with a with a message indicating 0 events are matched with the tags specified.
+  * 1b1. An empty events list is displayed with a with a message indicating 0 
+         events are matched with the tags specified.
   
-    Use case ends
-```
+    Use case ends.
+</pre>
 
 ### Non-Functional Requirements
 
-1.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
-2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-3.  The product should be for a single user.
-4.  The data should be stored locally and should be in a human editable text file.
-5.  The software should work on all Mainstream OS.
-6.  The software should work without requiring an installer.
-7.  Package everything into a single JAR file.
-8.  The GUI should work well standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
-9.  The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+1. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. The product should be for a single user.
+4. The data should be stored locally and should be in a human editable text file.
+5. The software should work on all Mainstream OS.
+6. The software should work without requiring an installer.
+7. Package everything into a single JAR file.
+8. The GUI should work well standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
+9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
 10. The Developer Guide and User Guide should be PDF-friendly.
 11. The product and its features should be testable under exam conditions.
 12. Schedule should be displayed in an easy-to-read format.
@@ -628,20 +662,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. Document files should not exceed 15MB per file.
 
 
-
 ### Glossary
-* **Date**: Date of event
-* **Event**: A consultation event with a student that a university professor has arranged go for
-* **Index**: Unique index number of each consultation event
-* **Location**: Location of the consultation event
+* **Event**: A consultation event with a student that a university professor has arranged to go for
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Name**: Name of student having the consultation
-* **Remark**: Additional information about a consultation event
-* **Schedule**: A list of events
-* **Tag**: Additional one-word description of a consultation event
-* **TimeSlot**: Time period of a consultation event
-
-
+* **Free slots**: Time slots available for adding consultation events by a university professor.  
+* **Blocked slots**: Time slots reserved for personal commitments by a university professor.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -653,6 +678,8 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Launch and shutdown
 
@@ -690,7 +717,8 @@ Shows the GUI with a set of sample events. The window size may not be optimum.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list 
    size)<br>
       Expected: Similar to previous.
-      
+   
+
 ### Saving data
 
 1. Dealing with missing/corrupted/invalid `schedule.json` file in `data` directory
@@ -700,11 +728,11 @@ Shows the GUI with a set of sample events. The window size may not be optimum.
        <img src="images/startup.png" width="600px">
        <br>
 New schedule with sample events.
-   
+   <div style="page-break-after: always;"></div>
+    
 2. Invalid data
     1. Test case `schedule.json` file with data:<br>
        ```missing```
-
     1. Test case `schedule.json` file with data with overlapping time slots:<br>
        ```
        {

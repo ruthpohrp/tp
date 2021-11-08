@@ -6,7 +6,7 @@ title: User Guide
 <p align="center">
   <img width="200" src="images/dukelogo.png">
 </p>
-## Introduction
+## **Introduction**
 ***
 
 DukePro(f) is a schedule-planning desktop application that assists **university professors** in managing
@@ -37,14 +37,14 @@ interact with it.
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
+## **Table of Contents**
 ***
 * Table of Contents
 {:toc}
   
 <div style="page-break-after: always;"></div>
 
-## 1. Purpose
+## **1. Purpose**
 ***
 
 This document is the User Guide for DukePro(f). It is intended to provide all the necessary information to use this software.
@@ -57,9 +57,9 @@ This User Guide contains the following sections:
 * [5. Commands and their Features](#5-commands-and-their-features)
 * [6. FAQ](#6-faq)
 
-## 2. Meaning of Icons and Textboxes
+## **2. Meaning of Icons and Textboxes**
 ***
-<div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in form of small tips.
+<div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in the form of small tips.
 </div>
 <div markdown="block" class="alert alert-info"> :information_source: Tells you things to take note of 
 while using DukePro(f).
@@ -70,15 +70,16 @@ avoided.
 
 <div style="page-break-after: always;"></div>
 
-## 3. Quick Start: Get Started Using DukePro(f)
+## **3. Quick Start: Get Started Using DukePro(f)**
 ***
 ### 3.1 Downloading and Opening the App
 
 1. Ensure you have Java `11` or above installed in your Computer. 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-   Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
-</div>
-
+    
+   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+     Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
+    </div>
+   
 2. Download the latest `dukeprof.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ (the folder where you want to store the
@@ -86,8 +87,12 @@ avoided.
 
 4. Double-click the file to start the app. A GUI similar to the image below should appear in a few seconds. 
    Note that the app will contain some sample data.<br>
-   <img src="images/Ui.png" width="600px">
-
+   <img src="images/startup.png" width="600px">
+    
+   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+   Facing issues? Refer to [6. FAQ](#6-faq) for help. 
+   </div>
+   
 5. Refer to our [tutorial](#32-how-to-use-dukeprof-a-quick-tutorial) on how to use DukePro(f) to start 
    typing commands.
    
@@ -132,7 +137,7 @@ Here are some other commands you can try:
 
 <div style="page-break-after: always;"></div>
 
-## 4. Command Summary: A Summary of Commands for DukePro(f)
+## **4. Command Summary: A Summary of Commands for DukePro(f)**
 ***
 Listed below are the commands that DukePro(f) supports, in alphabetical order:
 
@@ -157,7 +162,7 @@ Action | Format | Example(s)
 
 <div style="page-break-after: always;"></div>
 
-## 5. Commands and Their Features
+## **5. Commands and Their Features**
 ***
 <div markdown="block" class="alert alert-info">
 
@@ -244,7 +249,7 @@ Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 Format: `delete INDEX`
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command deletes according to the 
-index of the Consultation List on the right hand side of the application (i.e. If the list has been filtered 
+index of the Consultation List on the right hand side of the application, i.e., if the list has been filtered 
 with the `find` command, `delete 1` will delete the first consultation event in the filtered list, and not 
 the complete list of consultation events. 
 </div>
@@ -262,7 +267,7 @@ Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:**
 <br>* Editing the tags will automatically erase all previous tags!
 <br>* This command edits according to the index of the Consultation List on the right hand side of the 
-application (i.e. If the list has been filtered with the `find` command, `edit 1 n/Ruth` will edit the first 
+application, i.e., if the list has been filtered with the `find` command, `edit 1 n/Ruth` will edit the first 
 consultation event in the filtered list, and not the complete list of consultation events. 
 </div>
 
@@ -282,7 +287,7 @@ Format: `list`
 ### 5.5 Displaying the next Consultation Event : `next_event`
 Displays the next consultation event scheduled for the day in the Consultation List.
 <div markdown="block" class="alert alert-info"> :information_source: 
-**Tip:** If you are currently in the middle of an existing consultation event, DukePro(f) will list the next 
+**Note:** If you are currently in the middle of an existing consultation event, DukePro(f) will list the next 
 event after the current consultation event.
 </div>
 
@@ -292,7 +297,7 @@ Format: `next_event`
 Displays all upcoming consultation events for the current day in the Consultation List.
 
 <div markdown="block" class="alert alert-info"> :information_source: 
-**Tip:** This will not include the current ongoing consultation event.
+**Note:** This will not include the current ongoing consultation event.
 </div>
 
 Format: `upcoming_events`
@@ -314,6 +319,8 @@ as an indexed list in the Consultation List.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords will not register unless 
 the full word of the keyword is inputted and search per one word only. E.g.:
 <br>* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an 
@@ -327,6 +334,7 @@ not `Jacob Rong`
 
 Example(s):
 * `find Jacob`
+
   Finds all consultation events that have students with the name `Jacob` (or any case-insensitive variant) 
   and displays them in the Consultation List.
 
@@ -346,6 +354,7 @@ Example(s):
 * `filter_tag URGENT`<br>
   Finds all consultation events that contain the tag `URGENT` and displays them in the Consultation List.
 
+<div style="page-break-after: always;"></div>
 
 ### 5.10 Listing all Free Time Slots : `list_free`
 Lists down all free time slots from now until 2359 of the day with the last event or blocked slot in the 
@@ -354,13 +363,12 @@ Result Display.
 Format: `list_free`
 
 <div markdown="block" class="alert alert-info"> :information_source: 
-**Tip:** An empty schedule i.e. with 0 events and 0 blocked slots in the schedule, will not have any free 
+**Note:** An empty schedule i.e. with 0 events and 0 blocked slots in the schedule, will not have any free 
 slots displayed.
 </div>
 
 <br>
 
-<div style="page-break-after: always;"></div>
 
 ***
 ### Managing Your Blocked Time Slots
@@ -374,7 +382,13 @@ Format: `block d/DATE t/TIMESLOT`
 
 Example(s):
 * `block d/2021-01-01 t/0800-0900`
+  
+   Blocks the time slot `8am to 9am` on `January 1, 2021`.
 * `block d/2021-02-02 t/1000-1100`
+  
+   Blocks the time slot `10am to 11am` on `February 2, 2021`.
+
+<div style="page-break-after: always;"></div>
 
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot from the list of blocked time slots at the specified `INDEX`.
@@ -392,11 +406,10 @@ Format: `list_blocked`
 
 <br>
 
-<div style="page-break-after: always;"></div>
 
 ***
 ### Help Commands
-Listed below are the commands if you're stuck on how to use DukePro(f).
+Listed below are the commands you can use to guide you in case you're stuck.
 
 ### 5.14 Viewing help : `help`
 Opens a pop-up window with a link to DukePro(f)'s user guide.
@@ -409,14 +422,12 @@ Opens a pop-up window with a Command Summary of all of DukePro(f)'s possible com
 Format: `command_summary`
 <br>
 
-<div style="page-break-after: always;"></div>
-
 ***
 ### 5.16: Editing the data file
 DukePro(f) data is all saved as a JSON file in `[JAR file location]/data/schedule.json`. Advanced users are 
 welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-danger">:bulb: **Warning**: If any changes to the data file 
+<div markdown="span" class="alert alert-danger">:bulb: **WARNING**: If any changes to the data file 
 make its format invalid, DukePro(f) will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -429,15 +440,15 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
-## 6. FAQ
+## **6. FAQ**
 ***
 **Q**: Where are the releases?<br>
 **A**: You can download the latest `dukeprof.jar` from
  [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases)!
 
 **Q**: How do I transfer my DukePro(f) data into another Computer?<br>
-**A**: Install the DukePro(f) into the other computer (if you're forgotten how, [click here]
-(#3-quick-start-get-started-using-dukeprof)). Then, in your previous computer, go to 
+**A**: Install the DukePro(f) into the other computer (if you're forgotten how,
+[click here](#3-quick-start-get-started-using-dukeprof)). Then, in your previous computer, go to 
 the home folder of DukePro(f), go into the`data` folder, and copy the `schedule.json` file and transfer it 
 into the respective (empty) `data` folder in your current computer.
 

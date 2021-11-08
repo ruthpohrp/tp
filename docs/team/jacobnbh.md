@@ -7,7 +7,7 @@ title: jacobnbh's Project Portfolio Page
 
 DukePro(f) is a schedule-planning desktop application that assists university professors in managing their 
 consultations.The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and 
-has about XX Loc.
+has about 42k Loc.
 
 Given below are my contributions to the project.
 
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=jacobnbh&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**: Revamped DukePro(f)'s GUI completely
   * Before (UI Mockup):
@@ -48,9 +48,6 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added documentation for the command 'command_summary'[\#88](https://github.com/AY2122S1-CS2103T-T11-4/tp/pull/88/commits/3fdcb4608f9152855a8dcc6ca2b2f833b70a7f75)
 
-* **Community**:
-
-* **Tools**:
 
 * **Team-Based Tasks**:
   * Maintained issue tracker
