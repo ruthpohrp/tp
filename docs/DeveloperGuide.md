@@ -57,6 +57,7 @@ interact with it.
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -145,9 +146,9 @@ How the parsing works:
 
 ### Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
-
+<p align="center">
 <img src="images/ModelClassDiagram.png" width="450" />
-
+</p>
 
 The `Model` component,
 
