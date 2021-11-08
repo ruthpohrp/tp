@@ -363,7 +363,7 @@ Result Display.
 Format: `list_free`
 
 <div markdown="block" class="alert alert-info"> :information_source: 
-**Tip:** An empty schedule i.e. with 0 events and 0 blocked slots in the schedule, will not have any free 
+**Note:** An empty schedule i.e. with 0 events and 0 blocked slots in the schedule, will not have any free 
 slots displayed.
 </div>
 
