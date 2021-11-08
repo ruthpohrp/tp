@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.testutil.EventBuilder;
 
 public class EventContainsTodaysDatePredicateTest {
 
@@ -29,5 +30,15 @@ public class EventContainsTodaysDatePredicateTest {
 
         // different dates -> returns false
         assertFalse(thirdPredicate.equals(fourthPredicate));
+    }
+
+    @Test
+    public void test() {
+        Date dateA = new Date("2020-01-01");
+        EventContainsTodaysDatePredicate predicateA = new EventContainsTodaysDatePredicate(dateA);
+        Event eventA = new EventBuilder().withDate("2020-01-01").build();
+        Event eventB = new EventBuilder().withDate("2020-01-02").build();
+        assertTrue(predicateA.test(eventA));
+        assertFalse(predicateA.test(eventB));
     }
 }
