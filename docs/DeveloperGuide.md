@@ -212,11 +212,14 @@ to 2359 of the day with the last event/blocked slot.
 This feature introduces a new command called `ListFreeSlotsCommand`.
 
 The `ListFreeSlotsCommand` class has two fields `today` of type `Date` and `now` of type `LocalTime`. These fields are necessary to allow testing, where a specific date and time can be passed in to the `ListFreeSlotsCommand`.
+The sequence diagram below shows the interactions between various components when a `ListFreeSlotsCommand` is executed.
 
 ![](images/ListFreeSlotsCommand.png)
 
 The `execute()` method calls `model#getFreeSlots()` which calls `schedule#getFreeSlots()`. This command does not update the model.
-Instead a list of FreeSlot is returned. The `execute()` method then makes wraps this list of FreeSlot in a `CommandResult` to be displayed to user.
+Instead a list of FreeSlot is returned. The `execute()` method then wraps this list of FreeSlot in a `CommandResult` to be displayed to user.
+
+The activity diagram below shows the process that occurs in `schedule#getFreeSlots()` to generate the list of free slots.
 
 ![](images/getFreeSlotsActivityDiagram.png)
 
