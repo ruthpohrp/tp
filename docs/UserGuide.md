@@ -365,7 +365,6 @@ slots displayed.
 
 <br>
 
-<div style="page-break-after: always;"></div>
 
 ***
 ### Managing Your Blocked Time Slots
@@ -379,9 +378,11 @@ Format: `block d/DATE t/TIMESLOT`
 
 Example(s):
 * `block d/2021-01-01 t/0800-0900`
-  Blocks the time slot `8am to 9am` on `January 1, 2021`.
+  
+   Blocks the time slot `8am to 9am` on `January 1, 2021`.
 * `block d/2021-02-02 t/1000-1100`
-  Blocks the time slot `10am to 11am` on `February 2, 2021`.
+  
+   Blocks the time slot `10am to 11am` on `February 2, 2021`.
 
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot from the list of blocked time slots at the specified `INDEX`.
