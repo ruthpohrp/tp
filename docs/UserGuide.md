@@ -6,7 +6,7 @@ title: User Guide
 <p align="center">
   <img width="200" src="images/dukelogo.png">
 </p>
-## Introduction
+## **Introduction**
 ***
 
 DukePro(f) is a schedule-planning desktop application that assists **university professors** in managing
@@ -37,14 +37,14 @@ interact with it.
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
+## **Table of Contents**
 ***
 * Table of Contents
 {:toc}
   
 <div style="page-break-after: always;"></div>
 
-## 1. Purpose
+## **1. Purpose**
 ***
 
 This document is the User Guide for DukePro(f). It is intended to provide all the necessary information to use this software.
@@ -57,7 +57,7 @@ This User Guide contains the following sections:
 * [5. Commands and their Features](#5-commands-and-their-features)
 * [6. FAQ](#6-faq)
 
-## 2. Meaning of Icons and Textboxes
+## **2. Meaning of Icons and Textboxes**
 ***
 <div markdown="span" class="alert alert-primary">:bulb: Tells you additional info in form of small tips.
 </div>
@@ -70,7 +70,7 @@ avoided.
 
 <div style="page-break-after: always;"></div>
 
-## 3. Quick Start: Get Started Using DukePro(f)
+## **3. Quick Start: Get Started Using DukePro(f)**
 ***
 ### 3.1 Downloading and Opening the App
 
@@ -87,7 +87,9 @@ avoided.
 4. Double-click the file to start the app. A GUI similar to the image below should appear in a few seconds. 
    Note that the app will contain some sample data.<br>
    <img src="images/Ui.png" width="600px">
-
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+   Facing issues? Refer to [6. FAQ](#6-faq) for help. 
+</div>
 5. Refer to our [tutorial](#32-how-to-use-dukeprof-a-quick-tutorial) on how to use DukePro(f) to start 
    typing commands.
    
@@ -132,7 +134,7 @@ Here are some other commands you can try:
 
 <div style="page-break-after: always;"></div>
 
-## 4. Command Summary: A Summary of Commands for DukePro(f)
+## **4. Command Summary: A Summary of Commands for DukePro(f)**
 ***
 Listed below are the commands that DukePro(f) supports, in alphabetical order:
 
@@ -157,7 +159,7 @@ Action | Format | Example(s)
 
 <div style="page-break-after: always;"></div>
 
-## 5. Commands and Their Features
+## **5. Commands and Their Features**
 ***
 <div markdown="block" class="alert alert-info">
 
@@ -244,14 +246,15 @@ Deletes a consultation event from DukePro(f) at the specified `INDEX`.
 Format: `delete INDEX`
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:** This command deletes according to the 
-index of the Consultation List on the right hand side of the application (i.e. If the list has been filtered 
+index of the Consultation List on the right hand side of the application, i.e., if the list has been filtered 
 with the `find` command, `delete 1` will delete the first consultation event in the filtered list, and not 
 the complete list of consultation events. 
 </div>
 
 Example(s):
 * `delete 2`
-  Deletes the second consultation event indexed in the Consultation List. 
+  
+* Deletes the second consultation event indexed in the Consultation List. 
 
 ### 5.3 Editing a Consultation Event : `edit`
 
@@ -262,7 +265,7 @@ Format: `edit INDEX [n/NAME] [d/DATE] [t/TIMESLOT] [l/LOCATION] [tag/TAG]... [r/
 <div markdown="span" class="alert alert-danger">:warning: **WARNING:**
 <br>* Editing the tags will automatically erase all previous tags!
 <br>* This command edits according to the index of the Consultation List on the right hand side of the 
-application (i.e. If the list has been filtered with the `find` command, `edit 1 n/Ruth` will edit the first 
+application, i.e., if the list has been filtered with the `find` command, `edit 1 n/Ruth` will edit the first 
 consultation event in the filtered list, and not the complete list of consultation events. 
 </div>
 
@@ -327,6 +330,7 @@ not `Jacob Rong`
 
 Example(s):
 * `find Jacob`
+
   Finds all consultation events that have students with the name `Jacob` (or any case-insensitive variant) 
   and displays them in the Consultation List.
 
@@ -374,7 +378,11 @@ Format: `block d/DATE t/TIMESLOT`
 
 Example(s):
 * `block d/2021-01-01 t/0800-0900`
+
+  Blocks the time slot `8am to 9am` on `January 1, 2021`.
 * `block d/2021-02-02 t/1000-1100`
+
+  Blocks the time slot `10am to 11am` on `February 2, 2021`.
 
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot from the list of blocked time slots at the specified `INDEX`.
@@ -396,7 +404,7 @@ Format: `list_blocked`
 
 ***
 ### Help Commands
-Listed below are the commands if you're stuck on how to use DukePro(f).
+Listed below are the commands you can use to guide you in case you're stuck.
 
 ### 5.14 Viewing help : `help`
 Opens a pop-up window with a link to DukePro(f)'s user guide.
@@ -429,7 +437,7 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
-## 6. FAQ
+## **6. FAQ**
 ***
 **Q**: Where are the releases?<br>
 **A**: You can download the latest `dukeprof.jar` from

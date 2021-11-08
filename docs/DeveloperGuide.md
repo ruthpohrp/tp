@@ -6,7 +6,7 @@ title: Developer Guide
 <p align="center">
   <img width="200" src="images/dukelogo.png">
 </p>
-## Introduction
+## **Introduction**
 ***
 DukePro(f) is a schedule-planning desktop application that assists **university professors** in managing
 their **consultations**, through the usage of an intuitive **Command-Line Interface (CLI)**<sup>1</sup>
@@ -37,11 +37,12 @@ interact with it.
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
+## **Table of Contents**
 ***
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -384,7 +385,7 @@ We originally intended for the user to block out a certain time slot for every d
 
 * is a professor in a university
 * has a need to manage a significant number of commitments (i.e. lectures, tutorials, consultations)
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -523,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1b1. The System rejects the command and tells the User that the specified time slot coincides with an event.
   
-  Use case ends
+  Use case ends.
 ```
 
 ```
@@ -548,7 +549,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1b1. An empty events list is displayed with a message indicating that there are 0 upcoming events.
   
-    Use case ends
+    Use case ends.
 ```
 
 ```
@@ -573,7 +574,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1b1. An empty events list is displayed with a message indicating that there are 0 events scheduled.
     
-    Use case ends
+    Use case ends.
 ```
 
 ```
@@ -594,11 +595,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-* 1b. DukePro(f) has no consultation events that have the tag(s) specified
+* 1b. DukePro(f) has no consultation events that have the tag(s) specified.
 
   * 1b1. An empty events list is displayed with a with a message indicating 0 events are matched with the tags specified.
   
-    Use case ends
+    Use case ends.
 ```
 
 ### Non-Functional Requirements
@@ -621,15 +622,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 ### Glossary
-* **Date**: Date of event
-* **Event**: A consultation event with a student that a university professor has arranged go for
+* **Event**: A consultation event with a student that a university professor has arranged to go for
+* **Date**: Date of a consultation event
 * **Index**: Unique index number of each consultation event
 * **Location**: Location of the consultation event
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Name**: Name of student having the consultation
+* **Name**: A student's name for the respective consultation event
 * **Remark**: Additional information about a consultation event
 * **Schedule**: A list of events
-* **Tag**: Additional one-word description of a consultation event
+* **Tag**: Additional label for the consultation event
 * **TimeSlot**: Time period of a consultation event
 
 
