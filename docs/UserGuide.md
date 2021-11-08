@@ -400,7 +400,6 @@ Format: `list_blocked`
 
 <br>
 
-<div style="page-break-after: always;"></div>
 
 ***
 ### Help Commands
