@@ -325,8 +325,6 @@ as an indexed list in the Consultation List.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords will not register unless 
 the full word of the keyword is inputted and search per one word only. E.g.:
 <br>* `find Jacob` can return a consultation event with the name `Jacob` but `find Jac` cannot return an 
