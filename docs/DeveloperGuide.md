@@ -426,7 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is the `User`, unless specified otherwise.
 
 <pre>
-<b>UC01: Delete an event**</b>
+<b>UC01: Delete an event</b>
 
 <b>MSS</b>
 
@@ -437,7 +437,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
     Use case ends.
 
-<b>Extensions**</b>
+<b>Extensions</b>
 
 * 2a. The list is empty.
 
@@ -450,10 +450,10 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
       Use case resumes at step 2.  
 </pre>
 
-```
-**UC02: Edit an event**
 
-**MSS**
+<pre>UC02: Edit an event
+
+<b>MSS</b>
 
 1. User requests to list events.
 2. The System shows the list of events.
@@ -461,7 +461,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
    information for the fields to edit.
 4. The System shows the list of events, with the newly edited event.
 
-**Extensions**
+<b>Extensions</b>
 
 * 2a. The list is empty.
 
@@ -484,36 +484,36 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
     * 3c1. The System shows an error message.
 
       Use case resumes at step 2.
-```
+</pre>
 
-```
-**UC03: Search for an event**
+<pre>
+<b>UC03: Search for an event</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User requests to search events.
 2. The System shows a list of events which have the search term in their name.
 
-**Extensions**
+<b>Extensions</b>
 
 * 2a. No matches to the search term.
 
   *2a1. The System shows an empty list.
 
   Use case ends.
-```
+</pre>
 
-```
-**UC04: Block slots**
+<pre>
+<b>UC04: Block slots</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User blocks out a time slot: 2021-11-01, 1800-1900.
 2. User accidentally tries to key in a new event at the above time slot.
 3. The System rejects the command and tells the User that the specified time slot 
    coincides with a blocked slot.
 
-**Extensions**
+<b>Extensions</b>
 
 * 1a. Time slot entered is already blocked.
 
@@ -528,19 +528,19 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
          coincides with an event.
   
   Use case ends.
-```
+</pre>
 
-```
-**UC05: List all upcoming events for the day**
+<pre>
+<b>UC05: List all upcoming events for the day</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User requests to view today's upcoming consultation events.
 2. DukePro(f) displays all the upcoming events.
 
     Use case ends.
     
-**Extensions**
+<b>Extensions</b>
 
 * 1a. User inputs the wrong format for the command.
 
@@ -554,19 +554,19 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
          upcoming events.
   
     Use case ends.
-```
+</pre>
 
-```
-**UC06: List the next consultation event for the day**
+<pre>
+<b>UC06: List the next consultation event for the day</b>
 
-**MSS**
+<b>MSS</b>
 
 1. User requests to view the next consultation event.
 2. DukePro(f) displays the next event.
     
     Use case ends.
     
-**Extensions**
+<b>Extensions</b>
 
 * 1a. User inputs the wrong format for the command.
 
@@ -580,19 +580,19 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
          0 events scheduled.
     
     Use case ends.
-```
+</pre>
 
-```
-**UC07: Filter consultation events by tags**
+<pre>
+<b>UC07: Filter consultation events by tags</b>
 
- **MSS**
+ <b>MSS</b>
 
 1. User requests to filter the consultation events by tag(s).
 2. DukePro(f) displays the events that have the specified tag(s).
     
     Use case ends.
     
-**Extensions**
+<b>Extensions</b>
 
 * 1a. User inputs the wrong format for the command.
 
@@ -606,7 +606,7 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
          events are matched with the tags specified.
   
     Use case ends.
-```
+</pre>
 
 ### Non-Functional Requirements
 
