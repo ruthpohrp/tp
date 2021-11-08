@@ -352,6 +352,8 @@ execute("command_summary") API call:
 
 The Block feature allows the user to block off a specified period of time so that it is not possible for a new `Event` to be created during that time slot.
 
+<div style="page-break-after: always;"></div>
+
 #### Implementation
 
 ##### Model
@@ -660,7 +662,6 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 13. JAR file should not exceed 100MB.
 14. Document files should not exceed 15MB per file.
 
-<div style="page-break-after: always;"></div>
 
 ### Glossary
 * **Event**: A consultation event with a student that a university professor has arranged to go for
