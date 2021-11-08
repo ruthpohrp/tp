@@ -1,14 +1,15 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.Date;
-import seedu.address.model.event.TimeSlot;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedBlockedSlot.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBlockedSlots.EIGHT_TO_NINE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.TimeSlot;
 
 public class JsonAdaptedBlockedSlotTest {
     private static final String INVALID_DATE = "2020";
