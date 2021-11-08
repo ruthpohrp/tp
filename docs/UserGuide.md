@@ -87,9 +87,11 @@ avoided.
 4. Double-click the file to start the app. A GUI similar to the image below should appear in a few seconds. 
    Note that the app will contain some sample data.<br>
    <img src="images/Ui.png" width="600px">
-    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    
+   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
    Facing issues? Refer to [6. FAQ](#6-faq) for help. 
-    </div>
+   </div>
+   
 5. Refer to our [tutorial](#32-how-to-use-dukeprof-a-quick-tutorial) on how to use DukePro(f) to start 
    typing commands.
    
