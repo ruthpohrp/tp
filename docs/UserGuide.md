@@ -26,8 +26,7 @@ With DukePro(f), you will be able to:
 * List all of your consultations, or just your next consultation
 * List your free time slots for consultation booking
 * Block certain time slots to ensure your consultations don't clash with other commitments
-* List all of the time slots that you've blocked so far
-* And many more!
+* And many other small quality of life features!
 
 <hr />
 
