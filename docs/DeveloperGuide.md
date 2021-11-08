@@ -56,6 +56,7 @@ interact with it.
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
@@ -141,6 +142,7 @@ How the parsing works:
 1. When called upon to parse a user command, the `ScheduleParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ScheduleParser` returns back as a `Command` object.
 2. All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
 ### Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2122S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -267,6 +269,7 @@ Next, it gets the first event in the filtered list using the overridden method `
 
 
 The following activity diagram summarizes what happens when a user executes the NextEventCommand:
+
 ![](images/NextEventActivityDiagram.png)
 
 ### Filter by Tag Feature
@@ -511,15 +514,15 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
 1. User blocks out a time slot: 2021-11-01, 1800-1900.
 2. User accidentally tries to key in a new event at the above time slot.
-3. The System rejects the command and tells the User that the specified time slot 
-   coincides with a blocked slot.
+3. The System rejects the command and tells the User that the specified 
+   time slot coincides with a blocked slot.
 
 <b>Extensions</b>
 
 * 1a. Time slot entered is already blocked.
 
-  * 1a1. The System rejects the command and tells the User that the specified time slot 
-         coincides with a blocked slot.
+  * 1a1. The System rejects the command and tells the User that the specified
+         time slot coincides with a blocked slot.
   
   Use case ends.
 
