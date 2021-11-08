@@ -56,7 +56,6 @@ interact with it.
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
@@ -461,8 +460,8 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
 1. User requests to list events.
 2. The System shows the list of events.
-3. User requests to edit a specific event in the list and provides the necessary 
-   information for the fields to edit.
+3. User requests to edit a specific event in the list and provides the 
+   necessary information for the fields to edit.
 4. The System shows the list of events, with the newly edited event.
 
 <b>Extensions</b>
@@ -528,8 +527,8 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
 * 1b. Time slot entered coincides with an event.
 
-  * 1b1. The System rejects the command and tells the User that the specified time slot 
-         coincides with an event.
+  * 1b1. The System rejects the command and tells the User that the specified 
+         time slot coincides with an event.
   
   Use case ends.
 </pre>
@@ -554,8 +553,8 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
 * 1b. DukePro(f) has no upcoming consultation events.
 
-  * 1b1. An empty events list is displayed with a message indicating that there are 0
-         upcoming events.
+  * 1b1. An empty events list is displayed with a message indicating that 
+         there are 0 upcoming events.
   
     Use case ends.
 </pre>
@@ -580,8 +579,8 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 
 * 1b. DukePro(f) has no events scheduled.
 
-  * 1b1. An empty events list is displayed with a message indicating that there are 
-         0 events scheduled.
+  * 1b1. An empty events list is displayed with a message indicating that 
+         there are 0 events scheduled.
     
     Use case ends.
 </pre>
