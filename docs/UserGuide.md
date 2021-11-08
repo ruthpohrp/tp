@@ -425,6 +425,7 @@ Here's an example of what your screen should look like after entering the `list_
 
 <br>
 
+<div style="page-break-after: always;"></div>
 
 ### Help Commands
 Listed below are the commands you can use to guide you in case you're stuck.
