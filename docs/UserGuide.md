@@ -75,9 +75,9 @@ avoided.
 ### 3.1 Downloading and Opening the App
 
 1. Ensure you have Java `11` or above installed in your Computer. 
-  <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-   Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
-  </div>
+    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+     Not sure how? Click [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk)!
+    </div>
 
 2. Download the latest `dukeprof.jar` from [here](https://github.com/AY2122S1-CS2103T-T11-4/tp/releases).
 
@@ -87,9 +87,9 @@ avoided.
 4. Double-click the file to start the app. A GUI similar to the image below should appear in a few seconds. 
    Note that the app will contain some sample data.<br>
    <img src="images/Ui.png" width="600px">
-  <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
    Facing issues? Refer to [6. FAQ](#6-faq) for help. 
-  </div>
+    </div>
 5. Refer to our [tutorial](#32-how-to-use-dukeprof-a-quick-tutorial) on how to use DukePro(f) to start 
    typing commands.
    
