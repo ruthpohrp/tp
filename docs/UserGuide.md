@@ -212,9 +212,9 @@ Action | Format | Example(s)
 ***
 ### Managing Your Consultations
 Listed below are the commands for managing your consultations.
-Consultation events listed in the Consultation List are sorted in chronological order, earliest 
-consultation at the top, and latest consultation at the bottom. All consultations, existing and 
-to-be-added, events cannot overlap.
+Consultation events listed in the Consultation List are sorted in chronological order with the earliest 
+consultation at the top and the latest consultation at the bottom. All consultation events, existing or 
+to-be-added, cannot overlap.
 
 Listed is a description of the various fields of a Consultation Event:
 * NAME: Name of student involved in the consultation
@@ -362,6 +362,10 @@ Result Display.
 
 Format: `list_free`
 
+Here's an example of what your screen should look like after entering the `list_free` command:
+
+<img src="images/list_free.png.png" width="600px">
+
 <div markdown="block" class="alert alert-info"> :information_source: 
 **Note:** An empty schedule i.e. with 0 events and 0 blocked slots in the schedule, will not have any free 
 slots displayed.
@@ -403,6 +407,10 @@ Example(s):
 Lists all blocked time slots in the Result Display.
 
 Format: `list_blocked`
+
+Here's an example of what your screen should look like after entering the `list_blocked` command:
+
+<img src="images/list_blocked.png.png.png" width="600px">
 
 <br>
 
