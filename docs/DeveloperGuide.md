@@ -397,6 +397,7 @@ itself and then performs `Schedule#resetData()`, the blockedSlots data is not er
 We originally intended for the user to block out a certain time slot for every day, making Alternative 1 a possibility, but we eventually decided that Alternative 2 will still be able to achieve this (although a little more effort is required) and is much more flexible.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -650,9 +651,6 @@ For all use cases below, the **System** is the `DukePro(f)` and the **Actor** is
 5. The software should work on all Mainstream OS.
 6. The software should work without requiring an installer.
 7. Package everything into a single JAR file.
-
-<div style="page-break-after: always;"></div>
-
 8. The GUI should work well standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
 9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
 10. The Developer Guide and User Guide should be PDF-friendly.
