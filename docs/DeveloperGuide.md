@@ -583,9 +583,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ```
 
 ```
-> **UC07: Filter consultation events by tags**
+<pre> <b>UC07: Filter consultation events by tags</b>
 
-> **MSS**
+ **MSS**
 
 1. User requests to filter the consultation events by tag(s).
 2. DukePro(f) displays the events that have the specified tag(s).
