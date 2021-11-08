@@ -388,6 +388,8 @@ Example(s):
   
    Blocks the time slot `10am to 11am` on `February 2, 2021`.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.12 Deleting a Blocked Time Slot : `delete_blocked`
 Deletes a blocked time slot from the list of blocked time slots at the specified `INDEX`.
 
