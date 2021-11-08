@@ -255,8 +255,7 @@ the complete list of consultation events.
 
 Example(s):
 * `delete 2`
-  
-* Deletes the second consultation event indexed in the Consultation List. 
+  Deletes the second consultation event indexed in the Consultation List. 
 
 ### 5.3 Editing a Consultation Event : `edit`
 
