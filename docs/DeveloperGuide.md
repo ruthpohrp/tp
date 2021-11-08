@@ -424,6 +424,7 @@ We originally intended for the user to block out a certain time slot for every d
 
 **Value proposition**: manage daily commitments faster than a typical mouse/GUI driven app
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
