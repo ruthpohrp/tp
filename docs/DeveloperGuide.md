@@ -66,7 +66,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="273" />
+<img src="images/ArchitectureDiagram.png" width="260" />
 
 The ***Architecture Diagram*** given above explains the high-level design of DukePro(f).
 
