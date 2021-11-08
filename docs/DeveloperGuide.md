@@ -277,7 +277,7 @@ Next, it gets the first event in the filtered list using the overridden method `
 The following activity diagram summarizes what happens when a user executes the NextEventCommand:
 
 <p align ="center">
-    <src= "images/NextEventActivityDiagram.png">
+    <img src= "images/NextEventActivityDiagram.png">
 </p>
 
 ### Filter by Tag Feature
@@ -290,8 +290,6 @@ The `FilterByTagCommand` class has one field tagPredicate of type TagContainsKey
 `TagContainsKeywordsPredicate`, found under `model/event` package, is  a class that checks whether an event's tag(s) matches any of the keyword(s) given.
 
 The `FilterByTagCommand` utilizes the `updateFilteredEventList()` method in the `Model` class to return an updated filtered list of the events that have the specified tag. It is filtered by the `tagPredicate`.
-
-<div style="page-break-after: always;"></div>
 
 The following sequence diagram illustrates the interactions discussed above for the execute("filter_tag URGENT") API call:
 ![](images/FilterByTagSequenceDiagram.png)
