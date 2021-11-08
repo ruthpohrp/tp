@@ -28,12 +28,10 @@ With DukePro(f), you will be able to:
 * Block certain time slots to ensure your consultations don't clash with other commitments
 * And many other small quality of life features!
 
-<hr />
-
-<sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by 
-typing in text (commands).<br>
-<sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you 
-interact with it.
+<div style="font-size: 12px;"><sup>1</sup>Command-Line Interface (CLI): How you interact with the application, i.e. by 
+typing in text (commands).</div>
+<div style="font-size: 12px;"><sup>2</sup>Graphical User Interface (GUI): The visual component of DukePro(f), and the form by which you 
+interact with it.</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -106,6 +104,8 @@ avoided.
 These are the different parts of DukePro(f)'s GUI:
 <img src="images/UG_Tutorial_1.png" width="600px">
 <br> <br>
+
+<div style="page-break-after: always;"></div>
 
 Here's how to add a consultation event to DukePro(f):
 <br>
@@ -242,6 +242,8 @@ Example(s):
   Adds a consultation event for `Ruth Poh`, at date `2 Mar 2021` and time `1pm to 2pm`,
   at location `The Deck`, with the remark `May have to switch to zoom`.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2 Deleting a Consultation Event : `delete`
 
 Deletes a consultation event from DukePro(f) at the specified `INDEX`.
@@ -279,6 +281,8 @@ Example(s):
 * `edit 3 r/May have to switch to Zoom.`<br>
   Edits the remark of the third consultation event indexed in the Consultation list to `May have to switch to Zoom.`
 
+<div style="page-break-after: always;"></div>
+
 ### 5.4 Listing all Consultation Events : `list`
 Lists all consultation events in the Consultation List.
 
@@ -312,14 +316,14 @@ careful when using this command!
 
 Format: `clear`
 
+<div style="page-break-after: always;"></div>
+
 ### 5.8 Finding a Consultation Event : `find`
 Finds all consultation events whose names contain any of the specified keywords and displays them 
 as an indexed list in the Consultation List.
 * Keywords are case-insensitive.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-danger">:warning: **WARNING**: The keywords will not register unless 
 the full word of the keyword is inputted and search per one word only. E.g.:
