@@ -31,12 +31,12 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-    * Added test cases for the classes of the new features and other relevant classes to increase test coverage.([#70](https://github.com/AY2122S1-CS2103T-T11-4/tp/pull/70), [#87](https://github.com/AY2122S1-CS2103T-T11-4/tp/pull/87), [#91](https://github.com/AY2122S1-CS2103T-T11-4/tp/pull/91))
+    * Added test cases for the classes of the new features and other relevant classes to increase test coverage([#70](https://github.com/AY2122S1-CS2103T-T11-4/tp/pull/70), [#87](https://github.com/AY2122S1-CS2103T-T11-4/tp/pull/87), [#91](https://github.com/AY2122S1-CS2103T-T11-4/tp/pull/91).
 
 
 * **Documentation**:
     * User Guide:
-      * Drafted commands and features description, format, and examples.
+      * Co-drafted and added commands and features description, format, and examples(credits to kaldius and ruthpohrp).
       * Added documentation for the commands: `upcoming_events`, `next_event`, and `filter_tag`.
       * Touch up for overall guide.
 

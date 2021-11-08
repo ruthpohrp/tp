@@ -87,7 +87,7 @@ avoided.
 
 4. Double-click the file to start the app. A GUI similar to the image below should appear in a few seconds. 
    Note that the app will contain some sample data.<br>
-   <img src="images/Ui.png" width="600px">
+   <img src="images/startup.png" width="600px">
     
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
    Facing issues? Refer to [6. FAQ](#6-faq) for help. 
